@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae5a46bda3295124c99b0e6537ac7252, type: 3}
+  m_Name: ucat_voice_simulation_v1
+  m_EditorClassIdentifier: 
+  application:
+    witConfiguration: {fileID: 11400000}
+    name: ucat_voice_simulation_v1
+    id: 607770411130234
+    lang: en
+    isPrivate: 1
+    createdAt: 2022-10-30T13:45:42-0700
+  configId: a6a4a767fec5dce4fb5a0a932806a165
+  clientAccessToken: Z7QGFVBF3BGDHJTMUYA6M7B6ZNXVMWHM
+  timeoutMS: 10000
+  endpointConfiguration:
+    uriScheme: 
+    authority: 
+    port: 0
+    witApiVersion: 
+    speech: 
+    message: 
+    dictation: 
+  entities: []
+  intents: []
+  traits: []
+  isDemoOnly: 0
+  useConduit: 0
+  manifestLocalPath: ConduitManifest-9d0251fd-bb46-44bf-8e87-970e5be783bc.json
+  autoGenerateManifest: 0
+  openManifestOnGeneration: 0
