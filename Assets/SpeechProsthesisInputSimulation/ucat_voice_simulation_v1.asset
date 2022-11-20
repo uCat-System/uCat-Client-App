@@ -20,12 +20,15 @@ MonoBehaviour:
     isPrivate: 1
     createdAt: 2022-10-30T13:45:42-0700
     trainingStatus: 1
-    lastTrainDuration: 407
-    lastTrainedAt: 2022-11-06T13:14:30-0800
-    nextTrainAt: 2022-11-06T13:07:43-0800
+    lastTrainDuration: 27
+    lastTrainedAt: 2022-11-20T11:07:08-0800
+    nextTrainAt: 2022-11-20T11:06:41-0800
     intents:
+    - id: 509314694466357
+      name: choose_color
+      entities: []
     - id: 498585998993617
-      name: chooseTask
+      name: choose_task
       entities:
       - name: taskChooser:taskChooser
         id: 1048298179266521
