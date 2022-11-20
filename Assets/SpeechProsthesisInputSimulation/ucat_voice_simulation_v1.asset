@@ -12,15 +12,118 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae5a46bda3295124c99b0e6537ac7252, type: 3}
   m_Name: ucat_voice_simulation_v1
   m_EditorClassIdentifier: 
-  application:
-    witConfiguration: {fileID: 11400000}
+  _clientAccessToken: Z7QGFVBF3BGDHJTMUYA6M7B6ZNXVMWHM
+  _appInfo:
     name: ucat_voice_simulation_v1
     id: 607770411130234
     lang: en
     isPrivate: 1
     createdAt: 2022-10-30T13:45:42-0700
-  configId: a6a4a767fec5dce4fb5a0a932806a165
-  clientAccessToken: Z7QGFVBF3BGDHJTMUYA6M7B6ZNXVMWHM
+    trainingStatus: 1
+    lastTrainDuration: 407
+    lastTrainedAt: 2022-11-06T13:14:30-0800
+    nextTrainAt: 2022-11-06T13:07:43-0800
+    intents:
+    - id: 498585998993617
+      name: chooseTask
+      entities:
+      - name: taskChooser:taskChooser
+        id: 1048298179266521
+      - name: taskNumber:taskNumber
+        id: 611611054036518
+    entities:
+    - name: taskChooser
+      id: 640236524553729
+      lookups:
+      - free-text
+      - keywords
+      roles:
+      - name: taskChooser
+        id: 1048298179266521
+      keywords:
+      - keyword: start task
+        synonyms:
+        - display
+        - go to exercise
+        - launch exercise
+        - navigate to
+        - show me
+        - show task
+        - start task
+        - take me
+        - would like to practice
+    - name: taskNumber
+      id: 827337311730460
+      lookups:
+      - free-text
+      - keywords
+      roles:
+      - name: taskNumber
+        id: 611611054036518
+      keywords:
+      - keyword: 2
+        synonyms:
+        - 2
+        - practice short prompts
+        - recite words
+        - repeat words
+      - keyword: 4
+        synonyms:
+        - 4
+        - repeat sentences
+      - keyword: 5
+        synonyms:
+        - 5
+        - chat
+        - conversation
+        - conversation exercise
+        - conversation mode
+        - converse
+        - generate sentences
+        - take notes
+        - talk mode
+      - keyword: dashboard
+        synonyms:
+        - dashboard
+        - error rate
+        - graph
+        - performance
+        - report
+        - success rate
+      - keyword: main menu
+        synonyms:
+        - go home
+        - menu
+        - options
+    traits: []
+    voices:
+    - name: Charlie
+      locale: en_US
+      gender: male
+      styles:
+      - default
+      - soft
+      - fast
+      - projected
+    - name: Cooper
+      locale: en_US
+      gender: male
+      styles:
+      - default
+      - soft
+      - formal
+      - fast
+      - projected
+    - name: Rebecca
+      locale: en_US
+      gender: female
+      styles:
+      - default
+      - soft
+      - formal
+      - fast
+      - projected
+  _configurationId: a6a4a767fec5dce4fb5a0a932806a165
   timeoutMS: 10000
   endpointConfiguration:
     uriScheme: 
@@ -30,11 +133,8 @@ MonoBehaviour:
     speech: 
     message: 
     dictation: 
-  entities: []
-  intents: []
-  traits: []
   isDemoOnly: 0
   useConduit: 0
-  manifestLocalPath: ConduitManifest-9d0251fd-bb46-44bf-8e87-970e5be783bc.json
-  autoGenerateManifest: 0
-  openManifestOnGeneration: 0
+  _manifestLocalPath: 
+  excludedAssemblies: []
+  relaxedResolution: 0

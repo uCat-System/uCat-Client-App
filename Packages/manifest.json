@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.facebook.witai": "https://github.com/wit-ai/wit-unity.git",
     "com.unity.cinemachine": "2.3.4",
     "com.unity.collab-proxy": "1.15.17",
     "com.unity.ext.nunit": "1.0.0",
