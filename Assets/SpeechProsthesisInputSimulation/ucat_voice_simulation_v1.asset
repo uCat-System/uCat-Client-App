@@ -20,84 +20,173 @@ MonoBehaviour:
     isPrivate: 1
     createdAt: 2022-10-30T13:45:42-0700
     trainingStatus: 1
-    lastTrainDuration: 27
-    lastTrainedAt: 2022-11-20T11:07:08-0800
-    nextTrainAt: 2022-11-20T11:06:41-0800
+    lastTrainDuration: 254
+    lastTrainedAt: 2022-11-20T13:09:18-0800
+    nextTrainAt: 2022-11-20T13:05:04-0800
     intents:
     - id: 509314694466357
       name: choose_color
-      entities: []
+      entities:
+      - name: test_color:test_color
+        id: 688178969560829
+      - name: test_shape:test_shape
+        id: 453638120053911
     - id: 498585998993617
       name: choose_task
       entities:
-      - name: taskChooser:taskChooser
+      - name: 2_prompt_view_action:switch_view
         id: 1048298179266521
-      - name: taskNumber:taskNumber
+      - name: 3_choose_view:choose_view
         id: 611611054036518
+      - name: test_color:test_color
+        id: 688178969560829
+      - name: test_shape:test_shape
+        id: 453638120053911
+    - id: 544064154200472
+      name: wake_up
+      entities:
+      - name: 1_start_listening:start_listening
+        id: 642402280956046
     entities:
-    - name: taskChooser
+    - name: 1_start_listening
+      id: 534919481512724
+      lookups:
+      - keywords
+      roles:
+      - name: start_listening
+        id: 642402280956046
+      keywords:
+      - keyword: u cat
+        synonyms:
+        - cat
+        - u cat
+        - ucat
+        - you cat
+    - name: 2_prompt_view_action
       id: 640236524553729
       lookups:
       - free-text
       - keywords
       roles:
-      - name: taskChooser
+      - name: switch_view
         id: 1048298179266521
       keywords:
       - keyword: start task
         synonyms:
         - display
         - go to exercise
+        - go to level
+        - i want to
+        - i would like to
+        - i would like to practice
+        - launch
+        - launch excercise
         - launch exercise
+        - launch task
         - navigate to
+        - open
         - show me
         - show task
+        - start level
         - start task
         - take me
+        - take me to
         - would like to practice
-    - name: taskNumber
+    - name: 3_choose_view
       id: 827337311730460
       lookups:
-      - free-text
       - keywords
       roles:
-      - name: taskNumber
+      - name: choose_view
         id: 611611054036518
       keywords:
-      - keyword: 2
+      - keyword: 1
         synonyms:
-        - 2
+        - 1
+        - one
         - practice short prompts
         - recite words
         - repeat words
-      - keyword: 4
+        - repeating words
+        - speaking words
+      - keyword: 2
         synonyms:
+        - 2
         - 4
+        - practice sentences
         - repeat sentences
-      - keyword: 5
+        - repeat some sentences
+        - repeating sentences
+        - speak sentences
+        - two
+      - keyword: 3
         synonyms:
-        - 5
+        - 3
         - chat
         - conversation
         - conversation exercise
         - conversation mode
         - converse
-        - generate sentences
+        - practice speaking
+        - speak mode
         - take notes
+        - talk
         - talk mode
+        - three
       - keyword: dashboard
         synonyms:
+        - board
         - dashboard
         - error rate
         - graph
+        - panel
         - performance
         - report
+        - results
         - success rate
       - keyword: main menu
         synonyms:
-        - go home
+        - home
+        - main menu
         - menu
         - options
+    - name: test_color
+      id: 1488112994996518
+      lookups:
+      - keywords
+      roles:
+      - name: test_color
+        id: 688178969560829
+      keywords:
+      - keyword: blue
+        synonyms:
+        - blue
+      - keyword: green
+        synonyms:
+        - green
+      - keyword: red
+        synonyms:
+        - red
+    - name: test_shape
+      id: 1318139492274313
+      lookups:
+      - keywords
+      roles:
+      - name: test_shape
+        id: 453638120053911
+      keywords:
+      - keyword: capsule
+        synonyms:
+        - capsule
+        - cylinder
+      - keyword: cube
+        synonyms:
+        - cube
+        - square
+      - keyword: sphere
+        synonyms:
+        - ball
+        - sphere
     traits: []
     voices:
     - name: Charlie
