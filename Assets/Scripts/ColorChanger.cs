@@ -13,6 +13,7 @@ public class ColorChanger : MonoBehaviour
    {
        var colorString = values[0];
        var shapeString = values[1];
+       var transcription = values[2];
 
        if (ColorUtility.TryParseHtmlString(colorString, out var color))
        {
