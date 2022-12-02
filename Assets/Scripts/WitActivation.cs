@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Meta.WitAi;
-//using com.facebook.witai;
+using UnityEngine.InputSystem;
+
 
 public class WitActivation : MonoBehaviour
 {
@@ -10,14 +11,17 @@ public class WitActivation : MonoBehaviour
 
    private void OnValidate()
    {
-       if (!wit) wit = GetComponent<Wit>();
+       if (wit==null) wit = GetComponent<Wit>();
    }
 
-   void Update()
+   public void TriggerPressed(InputAction.CallbackContext context){
+        if(context.performed){
+            WitActivate();
+        }
+
+   }
+   public void WitActivate()
    {
-       if (Input.GetKeyDown(KeyCode.Space))
-       {
-           wit.Activate();
-       }
+        wit.Activate();   
    }
 }

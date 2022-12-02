@@ -11,6 +11,9 @@ public class ColorChanger : MonoBehaviour
 
    public void UpdateColor(string[] values)
    {
+        values[0] = "red";
+        values[1] = "sphere";
+        
        var colorString = values[0];
        var shapeString = values[1];
        var transcription = values[2];
@@ -21,6 +24,9 @@ public class ColorChanger : MonoBehaviour
            {
                var shape = transform.Find(shapeString);
                if (shape) SetColor(shape, color);
+               
+               //debugging shape selector
+               //print("shape was found");
            }
            else
            {
@@ -30,5 +36,7 @@ public class ColorChanger : MonoBehaviour
                }
            }
        }
+       //debugging transcription
+       //print(transcription);
    }
 }
