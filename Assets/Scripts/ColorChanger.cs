@@ -18,15 +18,19 @@ public class ColorChanger : MonoBehaviour
        var shapeString = values[1];
        var transcription = values[2];
 
-       if (ColorUtility.TryParseHtmlString(colorString, out var color))
+
+
+        if (ColorUtility.TryParseHtmlString(colorString, out var color))
        {
-           if (!string.IsNullOrEmpty(shapeString))
+
+            if (!string.IsNullOrEmpty(shapeString))
            {
                var shape = transform.Find(shapeString);
                if (shape) SetColor(shape, color);
                
                //debugging shape selector
-               //print("shape was found");
+               //print("shape was found" + shape);
+
            }
            else
            {

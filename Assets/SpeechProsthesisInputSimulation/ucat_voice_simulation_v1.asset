@@ -20,9 +20,9 @@ MonoBehaviour:
     isPrivate: 1
     createdAt: 2022-10-30T13:45:42-0700
     trainingStatus: 1
-    lastTrainDuration: 254
-    lastTrainedAt: 2022-11-20T13:09:18-0800
-    nextTrainAt: 2022-11-20T13:05:04-0800
+    lastTrainDuration: 38
+    lastTrainedAt: 2022-12-02T01:56:46-0800
+    nextTrainAt: 2022-12-02T01:56:08-0800
     intents:
     - id: 509314694466357
       name: choose_color
@@ -87,6 +87,7 @@ MonoBehaviour:
         - open
         - show me
         - show task
+        - start
         - start level
         - start task
         - take me
@@ -109,6 +110,8 @@ MonoBehaviour:
         - repeat words
         - repeating words
         - speaking words
+        - word repetition
+        - word repetition task
       - keyword: 2
         synonyms:
         - 2
@@ -128,6 +131,7 @@ MonoBehaviour:
         - conversation mode
         - converse
         - practice speaking
+        - sentence repetition
         - speak mode
         - take notes
         - talk

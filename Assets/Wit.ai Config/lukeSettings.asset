@@ -1,0 +1,143 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae5a46bda3295124c99b0e6537ac7252, type: 3}
+  m_Name: lukeSettings
+  m_EditorClassIdentifier: 
+  _clientAccessToken: OOSS6Y7V573D5JASEZSYYZUOK36VAQQA
+  _appInfo:
+    name: test_app
+    id: 471818378315989
+    lang: en
+    isPrivate: 1
+    createdAt: 2022-12-02T06:19:46-0800
+    trainingStatus: 1
+    lastTrainDuration: 30
+    lastTrainedAt: 2022-12-05T03:09:45-0800
+    nextTrainAt: 2022-12-05T03:09:15-0800
+    intents:
+    - id: 679256240444239
+      name: change_color
+      entities:
+      - name: color:color
+        id: 1145557246112278
+      - name: shape:shape
+        id: 539820177722877
+    - id: 839300063980121
+      name: change_scene
+      entities:
+      - name: change:change
+        id: 679547800543595
+      - name: scene:scene
+        id: 673595771149324
+    entities:
+    - name: change
+      id: 917370602786007
+      lookups:
+      - keywords
+      roles:
+      - name: change
+        id: 679547800543595
+      keywords:
+      - keyword: change
+        synonyms:
+        - change
+    - name: color
+      id: 1261264254443171
+      lookups:
+      - keywords
+      roles:
+      - name: color
+        id: 1145557246112278
+      keywords:
+      - keyword: black
+        synonyms:
+        - black
+      - keyword: red
+        synonyms:
+        - red
+      - keyword: yellow
+        synonyms:
+        - yellow
+    - name: scene
+      id: 1597973170656140
+      lookups:
+      - keywords
+      roles:
+      - name: scene
+        id: 673595771149324
+      keywords:
+      - keyword: main menu
+        synonyms:
+        - menu
+    - name: shape
+      id: 1352102311993871
+      lookups:
+      - keywords
+      roles:
+      - name: shape
+        id: 539820177722877
+      keywords:
+      - keyword: capsule
+        synonyms:
+        - capsule
+      - keyword: cube
+        synonyms:
+        - cube
+      - keyword: cylinder
+        synonyms:
+        - cylinder
+      - keyword: sphere
+        synonyms:
+        - sphere
+    traits: []
+    voices:
+    - name: Charlie
+      locale: en_US
+      gender: male
+      styles:
+      - default
+      - soft
+      - fast
+      - projected
+    - name: Cooper
+      locale: en_US
+      gender: male
+      styles:
+      - default
+      - soft
+      - formal
+      - fast
+      - projected
+    - name: Rebecca
+      locale: en_US
+      gender: female
+      styles:
+      - default
+      - soft
+      - formal
+      - fast
+      - projected
+  _configurationId: 1869a57f-b5dd-45f1-939e-ffb1cce26d56
+  timeoutMS: 10000
+  endpointConfiguration:
+    uriScheme: 
+    authority: 
+    port: 0
+    witApiVersion: 
+    speech: 
+    message: 
+    dictation: 
+  isDemoOnly: 0
+  useConduit: 1
+  _manifestLocalPath: ConduitManifest-b80bb82c-8b25-4d2d-97d0-71b5f962f0d6.json
+  excludedAssemblies: []
+  relaxedResolution: 0

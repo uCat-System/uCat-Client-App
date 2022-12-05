@@ -15,7 +15,8 @@ public class WitActivation : MonoBehaviour
    }
 
    public void TriggerPressed(InputAction.CallbackContext context){
-        if(context.performed){
+
+        if (context.performed){
             WitActivate();
         }
 
@@ -24,4 +25,14 @@ public class WitActivation : MonoBehaviour
    {
         wit.Activate();   
    }
+
+    // Use space to debug (luke)
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            wit.Activate();
+            print("pressing space");
+        }
+    }
 }
