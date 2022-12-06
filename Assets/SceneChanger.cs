@@ -22,6 +22,18 @@ public class SceneChanger : MonoBehaviour
             SceneManager.LoadScene("menu");
         }
 
-        
+        if (sceneString == "one" || sceneString == "menu")
+        {
+            //TODO --> check if scene actually exists
+            SceneManager.LoadScene("one");
+        }
+
+        if (sceneString == "home" || sceneString == "back home")
+        {
+            //TODO --> check if scene actually exists
+            SceneManager.LoadScene("JammoScene");
+        }
+
+
     }
 }

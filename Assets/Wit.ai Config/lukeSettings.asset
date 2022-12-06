@@ -20,9 +20,9 @@ MonoBehaviour:
     isPrivate: 1
     createdAt: 2022-12-02T06:19:46-0800
     trainingStatus: 1
-    lastTrainDuration: 30
-    lastTrainedAt: 2022-12-05T03:09:45-0800
-    nextTrainAt: 2022-12-05T03:09:15-0800
+    lastTrainDuration: 38
+    lastTrainedAt: 2022-12-05T19:52:53-0800
+    nextTrainAt: 2022-12-05T19:52:15-0800
     intents:
     - id: 679256240444239
       name: change_color
@@ -36,8 +36,19 @@ MonoBehaviour:
       entities:
       - name: change:change
         id: 679547800543595
+      - name: create:create
+        id: 681143736970473
+      - name: createdObject:createdObject
+        id: 623323219541076
       - name: scene:scene
         id: 673595771149324
+    - id: 672494311140170
+      name: create_something
+      entities:
+      - name: create:create
+        id: 681143736970473
+      - name: createdObject:createdObject
+        id: 623323219541076
     entities:
     - name: change
       id: 917370602786007
@@ -67,6 +78,31 @@ MonoBehaviour:
       - keyword: yellow
         synonyms:
         - yellow
+    - name: create
+      id: 514031124078337
+      lookups:
+      - keywords
+      roles:
+      - name: create
+        id: 681143736970473
+      keywords:
+      - keyword: create
+        synonyms:
+        - create
+        - instantiate
+        - make
+    - name: createdObject
+      id: 869124450754082
+      lookups:
+      - keywords
+      roles:
+      - name: createdObject
+        id: 623323219541076
+      keywords:
+      - keyword: sphere
+        synonyms:
+        - ball
+        - sphere
     - name: scene
       id: 1597973170656140
       lookups:
@@ -75,9 +111,24 @@ MonoBehaviour:
       - name: scene
         id: 673595771149324
       keywords:
+      - keyword: home
+        synonyms:
+        - home
       - keyword: main menu
         synonyms:
         - menu
+      - keyword: one
+        synonyms:
+        - one
+        - practice short prompts
+        - recite words
+        - repeat words
+        - short prompts
+        - speaking words
+        - word repetition task
+      - keyword: two
+        synonyms:
+        - two
     - name: shape
       id: 1352102311993871
       lookups:
@@ -95,9 +146,6 @@ MonoBehaviour:
       - keyword: cylinder
         synonyms:
         - cylinder
-      - keyword: sphere
-        synonyms:
-        - sphere
     traits: []
     voices:
     - name: Charlie
