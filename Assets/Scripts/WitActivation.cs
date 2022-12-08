@@ -14,14 +14,8 @@ public class WitActivation : MonoBehaviour
        if (wit==null) wit = GetComponent<Wit>();
    }
    
-    public void OpenXrTriggerPressed()
-    {
-        Debug.Log("TriggerPressed");
-        WitActivate();
-    }
 
    public void TriggerPressed(InputAction.CallbackContext context){
-        Debug.Log("original");
         if (context.performed){
             WitActivate();
         }
