@@ -20,9 +20,9 @@ MonoBehaviour:
     isPrivate: 1
     createdAt: 2022-12-02T06:19:46-0800
     trainingStatus: 1
-    lastTrainDuration: 38
-    lastTrainedAt: 2022-12-05T19:52:53-0800
-    nextTrainAt: 2022-12-05T19:52:15-0800
+    lastTrainDuration: 26
+    lastTrainedAt: 2022-12-10T03:42:27-0800
+    nextTrainAt: 2022-12-10T03:42:01-0800
     intents:
     - id: 679256240444239
       name: change_color
@@ -43,12 +43,17 @@ MonoBehaviour:
       - name: scene:scene
         id: 673595771149324
     - id: 672494311140170
-      name: create_something
+      name: create_sphere
       entities:
       - name: create:create
         id: 681143736970473
       - name: createdObject:createdObject
         id: 623323219541076
+    - id: 3409923722626246
+      name: recite_word
+      entities:
+      - name: recitedWord:recitedWord
+        id: 1219978745618552
     entities:
     - name: change
       id: 917370602786007
@@ -99,10 +104,36 @@ MonoBehaviour:
       - name: createdObject
         id: 623323219541076
       keywords:
+      - keyword: make
+        synonyms:
+        - make
       - keyword: sphere
         synonyms:
         - ball
         - sphere
+    - name: recitedWord
+      id: 5571946462923585
+      lookups:
+      - keywords
+      roles:
+      - name: recitedWord
+        id: 1219978745618552
+      keywords:
+      - keyword: I
+        synonyms:
+        - i
+      - keyword: are
+        synonyms:
+        - are
+      - keyword: thirsty
+        synonyms:
+        - thirsty
+      - keyword: tired
+        synonyms:
+        - tired
+      - keyword: up
+        synonyms:
+        - up
     - name: scene
       id: 1597973170656140
       lookups:
@@ -168,6 +199,15 @@ MonoBehaviour:
     - name: Rebecca
       locale: en_US
       gender: female
+      styles:
+      - default
+      - soft
+      - formal
+      - fast
+      - projected
+    - name: Vampire
+      locale: en_US
+      gender: male
       styles:
       - default
       - soft

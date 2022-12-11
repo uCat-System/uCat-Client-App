@@ -2407,6 +2407,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reciteText: {fileID: 2125899832}
+  wit: {fileID: 723296576}
 --- !u!1 &912189965
 GameObject:
   m_ObjectHideFlags: 0
@@ -3877,7 +3878,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 863806887}
         m_TargetAssemblyTypeName: WordReciteManager, Assembly-CSharp
-        m_MethodName: CheckRecitedWord
+        m_MethodName: StartWordCheck
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5070,6 +5071,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wit: {fileID: 723296576}
+  gameIsRunning: 0
 --- !u!1 &1938142902
 GameObject:
   m_ObjectHideFlags: 0
