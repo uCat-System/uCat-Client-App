@@ -17,12 +17,15 @@ public class SceneChanger : MonoBehaviour
         Debug.Log(changeString);
         Debug.Log(sceneString);
 
+        // if only 1 argument --> prompt user to specify scene ?
+
         if (sceneString == "main menu" || sceneString == "menu") {
+            // values[1] --> menus
             //TODO --> check if scene actually exists
             SceneManager.LoadScene("menu");
         }
 
-        if (sceneString == "one" || sceneString == "menu")
+        if (sceneString == "one")
         {
             //TODO --> check if scene actually exists
             SceneManager.LoadScene("one");

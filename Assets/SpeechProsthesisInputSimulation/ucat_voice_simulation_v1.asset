@@ -210,9 +210,23 @@ MonoBehaviour:
       - formal
       - fast
       - projected
+    - name: Prospector
+      locale: en_US
+      gender: male
+      styles:
+      - default
     - name: Rebecca
       locale: en_US
       gender: female
+      styles:
+      - default
+      - soft
+      - formal
+      - fast
+      - projected
+    - name: Vampire
+      locale: en_US
+      gender: male
       styles:
       - default
       - soft

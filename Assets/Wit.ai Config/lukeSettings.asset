@@ -196,6 +196,11 @@ MonoBehaviour:
       - formal
       - fast
       - projected
+    - name: Prospector
+      locale: en_US
+      gender: male
+      styles:
+      - default
     - name: Rebecca
       locale: en_US
       gender: female
@@ -214,7 +219,7 @@ MonoBehaviour:
       - formal
       - fast
       - projected
-  _configurationId: 1869a57f-b5dd-45f1-939e-ffb1cce26d56
+  _configurationId: 
   timeoutMS: 10000
   endpointConfiguration:
     uriScheme: 
@@ -226,6 +231,6 @@ MonoBehaviour:
     dictation: 
   isDemoOnly: 0
   useConduit: 1
-  _manifestLocalPath: ConduitManifest-b80bb82c-8b25-4d2d-97d0-71b5f962f0d6.json
+  _manifestLocalPath: ConduitManifest-bebda135-d15b-4993-9461-4aa4ef6f436c.json
   excludedAssemblies: []
   relaxedResolution: 0
