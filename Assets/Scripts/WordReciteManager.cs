@@ -1,64 +1,67 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Meta.WitAi;
-using UnityEngine.Events;
 
 public class WordReciteManager : MonoBehaviour
 {
-    private bool gameIsRunning;
     // For tracking if the user is repeating a word currently
     private bool isLastAttemptAtWord;
-    string currentWord = string.Empty;
+
+    // Current word tracking
+    int currentWordIndex = 0;
+
+    // Word lists
     string[] currentWordList;
     string[] changPaperWordList = new string[] { "hello","thirsty", "they", "hope", "up", "goodbye", "music", "tired", "nurse", "computer" };
+    bool changComplete;
     string[] uiControlsWordList = new string[] { "one", "two", "three", "proceed", "next", "repeat", "back", "pause", "menu", "help" };
-    int currentWordIndex = 0;
+
+
+    bool uiComplete;
+
+    // UI elements
     public TMPro.TextMeshPro reciteText;
 
     [SerializeField] private Wit wit;
 
-    UnityEvent changeWordEvent = new UnityEvent();
     void Start()
     {
+        uiComplete = false;
+        changComplete = false;
         isLastAttemptAtWord = false;
         // Start with the first chang word
         currentWordList = changPaperWordList;
-        currentWord = currentWordList[0];
 
-        UpdateReciteText();
-        // Debug only - will eventually start through voice 
-        gameIsRunning = true;
+
+        UpdateReciteTextToCurrentWord();
 
         // Activate microphone
         wit.Activate();
     }
 
-    void UpdateReciteText()
+    void UpdateReciteTextToCurrentWord()
     {
-        Debug.Log("updating text, current is" +currentWord);
-        reciteText.text = "Word to recite: " + currentWord;
+        reciteText.text = "Word to recite: " + currentWordList[currentWordIndex];
     }
 
     void GoToNextWord()
     {
-        Debug.Log("moving to next word");
         // If the next word does not exceed the limit
         if (currentWordIndex+1 <= currentWordList.Length-1)
         {
             currentWordIndex++;
-            currentWord = currentWordList[currentWordIndex];
+            Debug.Log("Increased index to " + currentWordIndex);
         }
        
 
-        UpdateReciteText();
+        UpdateReciteTextToCurrentWord();
 
         // Activate Wit again
         wit.Activate();
     }
     void RepeatSameWord()
     {
-        UpdateReciteText();
+        UpdateReciteTextToCurrentWord();
 
         // Activate Wit again
         wit.Activate();
@@ -72,6 +75,7 @@ public class WordReciteManager : MonoBehaviour
         //
         // This function is called from wit (callback).
         // Launches CheckRecitedWord so that we can use IEnumerators for pausing 
+
         StartCoroutine(CheckRecitedWord(values));
     }
     public IEnumerator CheckRecitedWord(string[] values)
@@ -86,54 +90,99 @@ public class WordReciteManager : MonoBehaviour
            yield return null;
         }
 
-        wordAnsweredCorrectly = values[0].ToLower() == currentWord;
+        // does their answer match the current word?
+        wordAnsweredCorrectly = values[0].ToLower() == currentWordList[currentWordIndex];
 
         // Change text to reflect correct / incorrect 
 
         reciteText.text = wordAnsweredCorrectly ? "Correct! :D " : "Incorrect :(";
-        // --> they can try again maybe in future?
         yield return new WaitForSeconds(2);
 
         // TODO - track user's scores here in a manager / text export somewhere
         Debug.Log("currentindex: " + currentWordIndex);
         Debug.Log("currentWordList.length: " + currentWordList.Length);
-        if (currentWordIndex >= currentWordList.Length-1)
+
+        
+        if (currentWordIndex >= currentWordList.Length - 1)
         {
-            GameOver();
+            Debug.Log("Got to inside conditional.");
+            if (currentWordList == changPaperWordList) { changComplete = true; }
+            if (currentWordList == uiControlsWordList) { uiComplete = true; }
+            StartCoroutine(CheckWordListStatus());
             yield return null;
         }
-        Debug.Log("This shouldn't print if game is over");
+        else
+        {
+            StartCoroutine(HandleWordCorrectOrIncorrect(wordAnsweredCorrectly));
+        }
 
-       
+        
+    }
+
+    IEnumerator HandleWordCorrectOrIncorrect(bool wordAnsweredCorrectly)
+    {
+        Debug.Log("Inside handle word");
         if (wordAnsweredCorrectly)
         {
             isLastAttemptAtWord = false;
             GoToNextWord();
-        } else
+        }
+        else
         {
             Debug.Log("Wrong, is last att? " + isLastAttemptAtWord);
             reciteText.text = isLastAttemptAtWord ? "Moving on..." : "Try again...";
             yield return new WaitForSeconds(1);
 
             // If they still have 1 chance to answer
+
             if (!isLastAttemptAtWord)
             {
                 isLastAttemptAtWord = true;
                 RepeatSameWord();
-            } else
+            }
+            else
+
             // Move onto next one
             {
                 isLastAttemptAtWord = false;
                 GoToNextWord();
             }
-           
+
         }
-        
+    }
+
+    IEnumerator CheckWordListStatus()
+    {
+
+        // Either proceed to next word list, or end the game.
+
+        if (changComplete && !uiComplete)
+        {
+            
+            currentWordList = uiControlsWordList;
+            currentWordIndex = 0;
+            Debug.Log("Chang complete, should move to ui. current word is " + currentWordIndex);
+            reciteText.text = "Great! Moving onto UI word list.";
+            yield return new WaitForSeconds(2);
+            UpdateReciteTextToCurrentWord();
+            wit.Activate();
+            
+        }
+        else if (changComplete && uiComplete)
+        {
+            currentWordIndex = 0;
+            reciteText.text = "Finished!";
+            GameOver();
+        }
+
+        else
+        {
+            Debug.Log("Something went wrong in conditional for list changing.");
+        }
     }
 
     void GameOver()
     {
         reciteText.text = "Word list finished";
-        gameIsRunning = false;
     }
 }
