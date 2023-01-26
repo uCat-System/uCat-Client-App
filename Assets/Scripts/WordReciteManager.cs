@@ -16,6 +16,7 @@ public class WordReciteManager : MonoBehaviour
     bool changComplete;
     string[] uiControlsWordList = new string[] { "one", "two", "three", "proceed", "next", "repeat", "back", "pause", "menu", "help" };
 
+    public ScoreManager _scoreManager;
 
     bool uiComplete;
 
@@ -115,21 +116,23 @@ public class WordReciteManager : MonoBehaviour
         {
             StartCoroutine(HandleWordCorrectOrIncorrect(wordAnsweredCorrectly));
         }
-
-        
+    
     }
-
+    void AddScoreToScoreManager()
+    {
+        _scoreManager.Level1CurrentScore = _scoreManager.Level1CurrentScore + 1;
+    }
     IEnumerator HandleWordCorrectOrIncorrect(bool wordAnsweredCorrectly)
     {
-        Debug.Log("Inside handle word");
         if (wordAnsweredCorrectly)
         {
+            AddScoreToScoreManager();
+
             isLastAttemptAtWord = false;
             GoToNextWord();
         }
         else
         {
-            Debug.Log("Wrong, is last att? " + isLastAttemptAtWord);
             reciteText.text = isLastAttemptAtWord ? "Moving on..." : "Try again...";
             yield return new WaitForSeconds(1);
 
@@ -157,11 +160,9 @@ public class WordReciteManager : MonoBehaviour
         // Either proceed to next word list, or end the game.
 
         if (changComplete && !uiComplete)
-        {
-            
+        { 
             currentWordList = uiControlsWordList;
             currentWordIndex = 0;
-            Debug.Log("Chang complete, should move to ui. current word is " + currentWordIndex);
             reciteText.text = "Great! Moving onto UI word list.";
             yield return new WaitForSeconds(2);
             UpdateReciteTextToCurrentWord();
