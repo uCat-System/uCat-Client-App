@@ -7,16 +7,22 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 0
     path: 
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
+    guid: 00000000000000000000000000000000
+  - enabled: 0
     path: Assets/Scenes/JammoScene.unity
     guid: 14889cd92e9623f499691c7aa113523a
   - enabled: 1
     path: Assets/Scenes/menu.unity
     guid: afc00b714cffa8a4aa92884b0c826d2c
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/one.unity
-    guid: 7352a96ff01badd4eada9e8d0b6eba9e
+    path: Assets/Scenes/Levels/Level1.unity
+    guid: f07ac48b6b1c7534f88197e6d3d7c206
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level2.unity
+    guid: f954c7fb04fdff448bb3ed26c8bf8040
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfd339ae94797324b9b221432741be17, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: bbf721aae3597e64c82e4895233f3073, type: 2}
