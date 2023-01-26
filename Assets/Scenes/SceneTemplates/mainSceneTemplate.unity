@@ -1992,6 +1992,9 @@ MonoBehaviour:
     - OnRequestOptionSetup
     - OnStartListening
     - OnStoppedListening
+    - OnMinimumWakeThresholdHit
+    - OnStoppedListeningDueToTimeout
+    - OnStoppedListeningDueToInactivity
     OnResponse:
       m_PersistentCalls:
         m_Calls:
@@ -2066,10 +2069,34 @@ MonoBehaviour:
           m_CallState: 2
     OnStoppedListeningDueToInactivity:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 863806887}
+          m_TargetAssemblyTypeName: WordReciteManager, Assembly-CSharp
+          m_MethodName: OnMicrophoneInactivity
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     OnStoppedListeningDueToTimeout:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 863806887}
+          m_TargetAssemblyTypeName: WordReciteManager, Assembly-CSharp
+          m_MethodName: OnMicrophoneTimeOut
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     OnStoppedListeningDueToDeactivation:
       m_PersistentCalls:
         m_Calls: []
@@ -2096,7 +2123,7 @@ MonoBehaviour:
     minKeepAliveVolume: 0.0005
     minKeepAliveTimeInSeconds: 2
     minTranscriptionKeepAliveTimeInSeconds: 1
-    maxRecordingTime: 20
+    maxRecordingTime: 10
     soundWakeThreshold: 0.0005
     sampleLengthInMs: 10
     micBufferLengthInSeconds: 1

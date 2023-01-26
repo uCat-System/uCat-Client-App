@@ -45,6 +45,26 @@ public class WordReciteManager : MonoBehaviour
         reciteText.text = "Word to recite: " + currentWordList[currentWordIndex];
     }
 
+    public void OnMicrophoneTimeOut()
+    {
+        Debug.Log("timed out due to time reached");
+        // Do not add to score
+        StartCoroutine(ChangeTimeOutText());
+    }
+
+    IEnumerator ChangeTimeOutText()
+    {
+        reciteText.text = "Timed out! Moving on...";
+        yield return new WaitForSeconds(2);
+        GoToNextWord();
+
+    }
+
+    public void OnMicrophoneInactivity()
+    {
+        Debug.Log("timed out due to inactivity");
+    }
+
     void GoToNextWord()
     {
         // If the next word does not exceed the limit
