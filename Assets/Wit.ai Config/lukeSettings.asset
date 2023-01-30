@@ -20,9 +20,9 @@ MonoBehaviour:
     isPrivate: 1
     createdAt: 2022-12-02T06:19:46-0800
     trainingStatus: 1
-    lastTrainDuration: 26
-    lastTrainedAt: 2022-12-10T03:42:27-0800
-    nextTrainAt: 2022-12-10T03:42:01-0800
+    lastTrainDuration: 43
+    lastTrainedAt: 2023-01-30T23:30:55-0800
+    nextTrainAt: 2023-01-30T23:30:12-0800
     intents:
     - id: 679256240444239
       name: change_color
@@ -49,11 +49,21 @@ MonoBehaviour:
         id: 681143736970473
       - name: createdObject:createdObject
         id: 623323219541076
+    - id: 708158937641749
+      name: recite_sentence
+      entities:
+      - name: recitedSentence:recitedSentence
+        id: 6103131989771334
     - id: 3409923722626246
       name: recite_word
       entities:
       - name: recitedWord:recitedWord
         id: 1219978745618552
+      - name: scene:scene
+        id: 673595771149324
+    - id: 1334716460649365
+      name: ui_control
+      entities: []
     entities:
     - name: change
       id: 917370602786007
@@ -111,6 +121,32 @@ MonoBehaviour:
         synonyms:
         - ball
         - sphere
+    - name: recitedSentence
+      id: 905627437316985
+      lookups:
+      - keywords
+      roles:
+      - name: recitedSentence
+        id: 6103131989771334
+      keywords:
+      - keyword: hello how are you
+        synonyms:
+        - hello how are you
+      - keyword: how do you like my music
+        synonyms:
+        - how do you like my music
+      - keyword: i do not feel comfortable
+        synonyms:
+        - i do not feel comfortable
+      - keyword: i hope it is clean
+        synonyms:
+        - i hope it is clean
+      - keyword: i like my nurse
+        synonyms:
+        - i like my nurse
+      - keyword: my glasses are comfortable
+        synonyms:
+        - my glasses are comfortable
     - name: recitedWord
       id: 5571946462923585
       lookups:
@@ -125,12 +161,69 @@ MonoBehaviour:
       - keyword: are
         synonyms:
         - are
+      - keyword: are you going outside
+        synonyms:
+        - are you going outside
+      - keyword: back
+        synonyms:
+        - back
+      - keyword: computer
+        synonyms:
+        - computer
+      - keyword: emergency stop
+        synonyms:
+        - emergency stop
+      - keyword: goodbye
+        synonyms:
+        - goodbye
+      - keyword: hello
+        synonyms:
+        - hello
+      - keyword: help
+        synonyms:
+        - help
+      - keyword: hope
+        synonyms:
+        - hope
+      - keyword: menu
+        synonyms:
+        - menu
+      - keyword: music
+        synonyms:
+        - music
+      - keyword: next
+        synonyms:
+        - next
+      - keyword: nurse
+        synonyms:
+        - nurse
+      - keyword: one
+        synonyms:
+        - one
+      - keyword: pause
+        synonyms:
+        - pause
+      - keyword: proceed
+        synonyms:
+        - proceed
+      - keyword: repeat
+        synonyms:
+        - repeat
+      - keyword: they
+        synonyms:
+        - they
       - keyword: thirsty
         synonyms:
         - thirsty
+      - keyword: three
+        synonyms:
+        - three
       - keyword: tired
         synonyms:
         - tired
+      - keyword: two
+        synonyms:
+        - two
       - keyword: up
         synonyms:
         - up
@@ -219,7 +312,7 @@ MonoBehaviour:
       - formal
       - fast
       - projected
-  _configurationId: 
+  _configurationId: 30cb3f9a-e906-4fab-98ce-225f17174e21
   timeoutMS: 10000
   endpointConfiguration:
     uriScheme: 

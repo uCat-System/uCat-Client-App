@@ -1382,6 +1382,54 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &483751552
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 483751553}
+  - component: {fileID: 483751554}
+  m_Layer: 0
+  m_Name: SentenceReciteManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &483751553
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 483751552}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1951320424}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &483751554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 483751552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6bb290d4f36db5458daf75fce3de018, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scoreManager: {fileID: 803375946}
+  _levelManager: {fileID: 1949416657}
+  reciteText: {fileID: 2125899832}
+  wit: {fileID: 723296576}
 --- !u!1 &632283886
 GameObject:
   m_ObjectHideFlags: 0
@@ -2127,7 +2175,7 @@ GameObject:
   - component: {fileID: 723296576}
   - component: {fileID: 723296575}
   m_Layer: 0
-  m_Name: LevelOneWit
+  m_Name: LevelTwoWit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2795,7 +2843,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &863806886
 Transform:
   m_ObjectHideFlags: 0
@@ -4244,7 +4292,7 @@ GameObject:
   - component: {fileID: 1218636427}
   - component: {fileID: 1218636428}
   m_Layer: 0
-  m_Name: WordReciteHandler
+  m_Name: SentenceReciteHandler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4279,10 +4327,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Voice: {fileID: 723296576}
   ValidateEarly: 0
-  intent: recite_word
+  intent: recite_sentence
   confidenceThreshold: 0.605
   valueMatchers:
-  - path: entities.recitedWord:recitedWord[0].value
+  - path: entities.recitedSentence:recitedSentence[0].value
     witValueReference: {fileID: 0}
     contentRequired: 1
     matchMethod: 0
@@ -4295,8 +4343,8 @@ MonoBehaviour:
   onMultiValueEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 863806887}
-        m_TargetAssemblyTypeName: WordReciteManager, Assembly-CSharp
+      - m_Target: {fileID: 483751554}
+        m_TargetAssemblyTypeName: SentenceReciteManager, Assembly-CSharp
         m_MethodName: StartWordCheck
         m_Mode: 0
         m_Arguments:
@@ -5620,6 +5668,7 @@ Transform:
   - {fileID: 863806886}
   - {fileID: 803375945}
   - {fileID: 1949416656}
+  - {fileID: 483751553}
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

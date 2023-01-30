@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using Meta.WitAi;
 
-public class WordReciteManager : MonoBehaviour
+public class SentenceReciteManager : MonoBehaviour
 {
     // For tracking if the user is repeating a word currently
     private bool isLastAttemptAtWord;
@@ -12,7 +12,9 @@ public class WordReciteManager : MonoBehaviour
 
     // Word lists
     string[] currentWordList;
-    string[] changPaperWordList = new string[] { "hello","thirsty", "they", "hope", "up", "goodbye", "music", "tired", "nurse", "computer" };
+    string[] changPaperSentenceList = new string[] { 
+        "how do you like my music", "my glasses are comfortable", "i hope it is clean", "i do not feel comfortable", "i like my nurse"
+    };
     bool changComplete;
     string[] uiControlsWordList = new string[] { "one", "two", "three", "proceed", "next", "repeat", "back", "pause", "menu", "help" };
     string emergencyStopWord = "emergency stop";
@@ -35,7 +37,7 @@ public class WordReciteManager : MonoBehaviour
         isLastAttemptAtWord = false;
 
         // Start with the first chang word
-        currentWordList = changPaperWordList;
+        currentWordList = changPaperSentenceList;
 
         UpdateReciteTextToCurrentWord();
 
@@ -71,12 +73,12 @@ public class WordReciteManager : MonoBehaviour
     void GoToNextWord()
     {
         // If the next word does not exceed the limit
-        if (currentWordIndex < currentWordList.Length-1)
+        if (currentWordIndex < currentWordList.Length - 1)
         {
             currentWordIndex++;
             Debug.Log("Increased index to " + currentWordIndex);
         }
-       
+
 
         UpdateReciteTextToCurrentWord();
 
@@ -114,7 +116,7 @@ public class WordReciteManager : MonoBehaviour
             wit.Deactivate();
             reciteText.text = "Emergency Stop Called";
             yield break;
-            
+
         }
         // Does their answer match the current word?
         wordAnsweredCorrectly = values[0].ToLower() == currentWordList[currentWordIndex];
@@ -160,7 +162,7 @@ public class WordReciteManager : MonoBehaviour
         }
     }
 
-    void MoveOnIfMoreWordsInList ()
+    void MoveOnIfMoreWordsInList()
     {
         if (currentWordIndex < currentWordList.Length - 1)
         {
@@ -171,7 +173,7 @@ public class WordReciteManager : MonoBehaviour
         else
         {
             Debug.Log("NO MORE words in this list");
-            if (currentWordList == changPaperWordList) { changComplete = true; }
+            if (currentWordList == changPaperSentenceList) { changComplete = true; }
             if (currentWordList == uiControlsWordList) { uiComplete = true; }
             StartCoroutine(CheckWordListStatus());
         }
@@ -194,14 +196,14 @@ public class WordReciteManager : MonoBehaviour
         // Either proceed to next word list, or end the game.
 
         if (changComplete && !uiComplete)
-        { 
+        {
             currentWordList = uiControlsWordList;
             currentWordIndex = 0;
             reciteText.text = "Great! Moving onto UI word list.";
             yield return new WaitForSeconds(2);
             UpdateReciteTextToCurrentWord();
             wit.Activate();
-            
+
         }
         else if (changComplete && uiComplete)
         {
