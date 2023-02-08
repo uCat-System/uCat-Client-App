@@ -13,10 +13,12 @@ public class SentenceReciteManager : MonoBehaviour
     // Word lists
     string[] currentWordList;
     string[] changPaperSentenceList = new string[] { 
-        "how do you like my music", "my glasses are comfortable", "i hope it is clean", "i do not feel comfortable", "i like my nurse"
-    };
+        "How do you like my music", "My glasses are comfortable", "What do you do", "I do not feel comfortable", "Bring my glasses here",
+        "You are not right", "That is very clean", "My family is here"
+   };
+    
     bool changComplete;
-    string[] uiControlsWordList = new string[] { "one", "two", "three", "proceed", "next", "repeat", "back", "pause", "menu", "help" };
+    string[] uiControlsWordList = new string[] { "go to main menu", "I would like to repeat sentences" };
     string emergencyStopWord = "emergency stop";
 
     public ScoreManager _scoreManager;
@@ -47,7 +49,7 @@ public class SentenceReciteManager : MonoBehaviour
 
     void UpdateReciteTextToCurrentWord()
     {
-        reciteText.text = "Word to recite: " + currentWordList[currentWordIndex];
+        reciteText.text = "Sentence: " + currentWordList[currentWordIndex];
     }
 
     public void OnMicrophoneTimeOut()
@@ -95,6 +97,7 @@ public class SentenceReciteManager : MonoBehaviour
 
     public void StartWordCheck(string[] values)
     {
+        Debug.Log("start word");
         // This function is called from wit (callback).
         // Launches CheckRecitedWord so that we can use IEnumerators for pausing 
 
@@ -102,6 +105,8 @@ public class SentenceReciteManager : MonoBehaviour
     }
     public IEnumerator CheckRecitedWord(string[] values)
     {
+        Debug.Log("Checking sentence with values");
+        Debug.Log(values);
         bool wordAnsweredCorrectly;
 
         if (values.Length > 1)
@@ -119,7 +124,7 @@ public class SentenceReciteManager : MonoBehaviour
 
         }
         // Does their answer match the current word?
-        wordAnsweredCorrectly = values[0].ToLower() == currentWordList[currentWordIndex];
+        wordAnsweredCorrectly = values[0].ToLower() == currentWordList[currentWordIndex].ToLower();
 
         // Change text to reflect correct / incorrect 
 

@@ -117,7 +117,7 @@ public class WordReciteManager : MonoBehaviour
             
         }
         // Does their answer match the current word?
-        wordAnsweredCorrectly = values[0].ToLower() == currentWordList[currentWordIndex];
+        wordAnsweredCorrectly = values[0].ToLower() == currentWordList[currentWordIndex].ToLower();
 
         // Change text to reflect correct / incorrect 
 
