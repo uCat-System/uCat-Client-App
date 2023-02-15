@@ -18,7 +18,7 @@ public class SentenceReciteManager : MonoBehaviour
         "How do you like my music", "My glasses are comfortable", "What do you do", "I do not feel comfortable", "Bring my glasses here",
         "You are not right", "That is very clean", "My family is here"
    };
-    
+
     bool changComplete;
     string[] uiControlsWordList = new string[] { "go to main menu", "I would like to repeat sentences" };
     string emergencyStopWord = "emergency stop";
@@ -147,44 +147,7 @@ public class SentenceReciteManager : MonoBehaviour
         }
 
     }
-    //public IEnumerator CheckRecitedWord(string[] values)
-    //{
-    //    Debug.Log("Checking sentence with values");
-    //    Debug.Log(values);
-    //    bool wordAnsweredCorrectly;
-
-    //    if (values.Length > 1)
-    //    {
-    //        // In case of misinterpretation / wit error
-    //        yield break;
-    //    }
-
-    //    if (values[0].ToLower() == emergencyStopWord)
-    //    {
-    //        Debug.Log("Emergency stop");
-    //        wit.Deactivate();
-    //        reciteText.text = "Emergency Stop Called";
-    //        yield break;
-
-    //    }
-    //    // Does their answer match the current word?
-    //    wordAnsweredCorrectly = values[0].ToLower() == currentWordList[currentWordIndex].ToLower();
-
-    //    // Change text to reflect correct / incorrect 
-
-    //    reciteText.text = wordAnsweredCorrectly ? "Correct! :D " : "Incorrect :(";
-    //    yield return new WaitForSeconds(2);
-
-    //    if (wordAnsweredCorrectly)
-    //    {
-    //        WordAnsweredCorrectly();
-    //    }
-    //    else
-    //    {
-    //        StartCoroutine(WordAnsweredIncorrectly());
-    //    }
-
-    //}
+   
     void AddScoreToScoreManager()
     {
         _scoreManager.Level1CurrentScore = _scoreManager.Level1CurrentScore + 1;

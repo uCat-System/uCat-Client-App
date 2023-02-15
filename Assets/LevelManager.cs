@@ -5,21 +5,21 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    public static int CurrentLevel;
     public ScoreManager _scoreManager;
 
     public void LevelComplete()
     {
-        Debug.Log("Ended level " + CurrentLevel);
         _scoreManager.ShowScoreAtEndOfLevel();
         // Switch scenes based on score
+        Scene scene = SceneManager.GetActiveScene();
+        Debug.Log("Ended level " + scene.name);
 
-        switch (CurrentLevel)
+        switch (scene.name)
         {
-            case 1:
+            case "Level1":
                 if (_scoreManager.Level1CurrentScore == _scoreManager.Level1MaxScore)
                 {
-                    // Change to level 2
+                    // Change to level 2 if 100% score
                     SceneManager.LoadScene("Level2");
                 }
 
@@ -29,26 +29,12 @@ public class LevelManager : MonoBehaviour
                     SceneManager.LoadScene("Level1");
                 }
                 break;
-            case 2:
-                //
-                break;
-            case 3:
-                //
+            case "Level2":
+                    // Change to level 3, no matter the score
+                    SceneManager.LoadScene("Level3");
                 break;
 
         }
 
-        CurrentLevel++;
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        CurrentLevel = 1;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
