@@ -1,6 +1,8 @@
 using System.Collections;
 using UnityEngine;
 using Meta.WitAi;
+using Meta.WitAi.Data;
+using Meta.WitAi.Json;
 
 public class SentenceReciteManager : MonoBehaviour
 {
@@ -95,27 +97,31 @@ public class SentenceReciteManager : MonoBehaviour
         wit.Activate();
     }
 
-    public void StartWordCheck(string[] values)
-    {
-        Debug.Log("start word");
-        // This function is called from wit (callback).
-        // Launches CheckRecitedWord so that we can use IEnumerators for pausing 
+   
 
-        StartCoroutine(CheckRecitedWord(values));
+    // This MatchIntent function is called from wit (callback).
+    // It is not registered in the GUI, but is called from wit.
+    [MatchIntent("recite_sentence")] 
+    public void StartSentenceCheck(WitResponseNode response) {
+        var transcription = response.GetTranscription();
+        Debug.Log("Transcription");
+        Debug.Log(transcription);
+        StartCoroutine(CheckRecitedSentence(transcription));
     }
-    public IEnumerator CheckRecitedWord(string[] values)
+
+    public IEnumerator CheckRecitedSentence(string transcription)
     {
-        Debug.Log("Checking sentence with values");
-        Debug.Log(values);
+        Debug.Log("Checking sentence with transcription");
+        Debug.Log(transcription);
         bool wordAnsweredCorrectly;
 
-        if (values.Length > 1)
+        if (transcription.Length == 0)
         {
             // In case of misinterpretation / wit error
             yield break;
         }
 
-        if (values[0].ToLower() == emergencyStopWord)
+        if (transcription.ToLower() == emergencyStopWord)
         {
             Debug.Log("Emergency stop");
             wit.Deactivate();
@@ -124,7 +130,7 @@ public class SentenceReciteManager : MonoBehaviour
 
         }
         // Does their answer match the current word?
-        wordAnsweredCorrectly = values[0].ToLower() == currentWordList[currentWordIndex].ToLower();
+        wordAnsweredCorrectly = transcription.ToLower() == currentWordList[currentWordIndex].ToLower();
 
         // Change text to reflect correct / incorrect 
 
@@ -141,6 +147,44 @@ public class SentenceReciteManager : MonoBehaviour
         }
 
     }
+    //public IEnumerator CheckRecitedWord(string[] values)
+    //{
+    //    Debug.Log("Checking sentence with values");
+    //    Debug.Log(values);
+    //    bool wordAnsweredCorrectly;
+
+    //    if (values.Length > 1)
+    //    {
+    //        // In case of misinterpretation / wit error
+    //        yield break;
+    //    }
+
+    //    if (values[0].ToLower() == emergencyStopWord)
+    //    {
+    //        Debug.Log("Emergency stop");
+    //        wit.Deactivate();
+    //        reciteText.text = "Emergency Stop Called";
+    //        yield break;
+
+    //    }
+    //    // Does their answer match the current word?
+    //    wordAnsweredCorrectly = values[0].ToLower() == currentWordList[currentWordIndex].ToLower();
+
+    //    // Change text to reflect correct / incorrect 
+
+    //    reciteText.text = wordAnsweredCorrectly ? "Correct! :D " : "Incorrect :(";
+    //    yield return new WaitForSeconds(2);
+
+    //    if (wordAnsweredCorrectly)
+    //    {
+    //        WordAnsweredCorrectly();
+    //    }
+    //    else
+    //    {
+    //        StartCoroutine(WordAnsweredIncorrectly());
+    //    }
+
+    //}
     void AddScoreToScoreManager()
     {
         _scoreManager.Level1CurrentScore = _scoreManager.Level1CurrentScore + 1;
