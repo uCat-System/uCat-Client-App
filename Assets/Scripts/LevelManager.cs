@@ -7,6 +7,11 @@ public class LevelManager : MonoBehaviour
 {
     public ScoreManager _scoreManager;
 
+    public void RepeatLevel() {
+        Scene scene = SceneManager.GetActiveScene();
+        Debug.Log("Repeating level " + scene.name);
+        SceneManager.LoadScene(scene.name);
+    }
     public void LevelComplete()
     {
         _scoreManager.ShowScoreAtEndOfLevel();

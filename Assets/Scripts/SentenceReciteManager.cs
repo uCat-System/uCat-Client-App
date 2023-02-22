@@ -6,6 +6,8 @@ using Meta.WitAi.Json;
 
 public class SentenceReciteManager : MonoBehaviour
 {
+
+    private bool isDeciding = false;
     // For tracking if the user is repeating a word currently
     private bool isLastAttemptAtWord;
 
@@ -14,10 +16,12 @@ public class SentenceReciteManager : MonoBehaviour
 
     // Word lists
     string[] currentWordList;
-    string[] changPaperSentenceList = new string[] { 
-        "How do you like my music", "My glasses are comfortable", "What do you do", "I do not feel comfortable", "Bring my glasses here",
-        "You are not right", "That is very clean", "My family is here"
-   };
+    // string[] changPaperSentenceList = new string[] { 
+    //     "How do you like my music", "My glasses are comfortable", "What do you do", "I do not feel comfortable", "Bring my glasses here",
+    //     "You are not right", "That is very clean", "My family is here"
+    //};
+
+    string[] changPaperSentenceList = new string[] { "How do you like my music" };
 
     bool changComplete;
     string[] uiControlsWordList = new string[] { "go to main menu", "I would like to repeat sentences" };
@@ -104,8 +108,6 @@ public class SentenceReciteManager : MonoBehaviour
     [MatchIntent("recite_sentence")] 
     public void StartSentenceCheck(WitResponseNode response) {
         var transcription = response.GetTranscription();
-        Debug.Log("Transcription");
-        Debug.Log(transcription);
         StartCoroutine(CheckRecitedSentence(transcription));
     }
 
@@ -114,6 +116,20 @@ public class SentenceReciteManager : MonoBehaviour
         Debug.Log("Checking sentence with transcription");
         Debug.Log(transcription);
         bool wordAnsweredCorrectly;
+
+        if (isDeciding) {
+            if (transcription.ToLower() == "next")
+            {
+                Debug.Log("Going to next level");
+                _levelManager.LevelComplete();
+
+            }
+            else if (transcription.ToLower() == "repeat")
+            {
+                Debug.Log("Repeating this level");
+                _levelManager.RepeatLevel();
+            }
+        }
 
         if (transcription.Length == 0)
         {
@@ -232,7 +248,8 @@ public class SentenceReciteManager : MonoBehaviour
 
     void GameOver()
     {
-        reciteText.text = "Word list finished";
-        _levelManager.LevelComplete();
+        reciteText.text = "Say 'next' to proceed.\nOr 'repeat' to repeat sentences.";
+        wit.Activate();
+        isDeciding = true;
     }
 }
