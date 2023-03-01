@@ -20,9 +20,9 @@ MonoBehaviour:
     isPrivate: 1
     createdAt: 2022-12-02T06:19:46-0800
     trainingStatus: 1
-    lastTrainDuration: 43
-    lastTrainedAt: 2023-01-30T23:30:55-0800
-    nextTrainAt: 2023-01-30T23:30:12-0800
+    lastTrainDuration: 31
+    lastTrainedAt: 2023-02-22T23:48:36-0800
+    nextTrainAt: 2023-02-22T23:48:05-0800
     intents:
     - id: 679256240444239
       name: change_color
@@ -52,8 +52,8 @@ MonoBehaviour:
     - id: 708158937641749
       name: recite_sentence
       entities:
-      - name: recitedSentence:recitedSentence
-        id: 6103131989771334
+      - name: recitedWord:recitedWord
+        id: 1219978745618552
     - id: 3409923722626246
       name: recite_word
       entities:
@@ -121,32 +121,6 @@ MonoBehaviour:
         synonyms:
         - ball
         - sphere
-    - name: recitedSentence
-      id: 905627437316985
-      lookups:
-      - keywords
-      roles:
-      - name: recitedSentence
-        id: 6103131989771334
-      keywords:
-      - keyword: hello how are you
-        synonyms:
-        - hello how are you
-      - keyword: how do you like my music
-        synonyms:
-        - how do you like my music
-      - keyword: i do not feel comfortable
-        synonyms:
-        - i do not feel comfortable
-      - keyword: i hope it is clean
-        synonyms:
-        - i hope it is clean
-      - keyword: i like my nurse
-        synonyms:
-        - i like my nurse
-      - keyword: my glasses are comfortable
-        synonyms:
-        - my glasses are comfortable
     - name: recitedWord
       id: 5571946462923585
       lookups:
