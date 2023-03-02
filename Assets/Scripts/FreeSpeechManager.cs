@@ -39,6 +39,12 @@ public class FreeSpeechManager : MonoBehaviour
     {
         Debug.Log("Stopped!");
         debugText.text = "Stopped listening";
+        StartCoroutine(StartListeningAgain());
+    }
+
+    public IEnumerator StartListeningAgain()
+    {
+        yield return new WaitForSeconds(0.00001f);
         wit.Activate();
     }
 

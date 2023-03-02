@@ -15,13 +15,13 @@ public class SentenceReciteManager : MonoBehaviour
     int currentWordIndex = 0;
 
     // Word lists
-    string[] currentWordList;
-    // string[] changPaperSentenceList = new string[] { 
-    //     "How do you like my music", "My glasses are comfortable", "What do you do", "I do not feel comfortable", "Bring my glasses here",
-    //     "You are not right", "That is very clean", "My family is here"
-    //};
+     string[] currentWordList;
+     string[] changPaperSentenceList = new string[] { 
+         "How do you like my music", "My glasses are comfortable", "What do you do", "I do not feel comfortable", "Bring my glasses here",
+         "You are not right", "That is very clean", "My family is here"
+    };
 
-    string[] changPaperSentenceList = new string[] { "How do you like my music" };
+    //string[] changPaperSentenceList = new string[] { "How do you like my music" };
 
     bool changComplete;
     string[] uiControlsWordList = new string[] { "go to main menu", "I would like to repeat sentences" };
@@ -50,7 +50,7 @@ public class SentenceReciteManager : MonoBehaviour
         UpdateReciteTextToCurrentWord();
 
         // Activate microphone
-        wit.Activate();
+        // wit.Activate();
     }
 
     void UpdateReciteTextToCurrentWord()
@@ -91,14 +91,14 @@ public class SentenceReciteManager : MonoBehaviour
         UpdateReciteTextToCurrentWord();
 
         // Activate Wit again
-        wit.Activate();
+        // wit.Activate();
     }
     void RepeatSameWord()
     {
         UpdateReciteTextToCurrentWord();
 
         // Activate Wit again
-        wit.Activate();
+        // wit.Activate();
     }
 
    
@@ -230,7 +230,7 @@ public class SentenceReciteManager : MonoBehaviour
             reciteText.text = "Great! Moving onto UI word list.";
             yield return new WaitForSeconds(2);
             UpdateReciteTextToCurrentWord();
-            wit.Activate();
+            // wit.Activate();
 
         }
         else if (changComplete && uiComplete)
@@ -249,7 +249,7 @@ public class SentenceReciteManager : MonoBehaviour
     void GameOver()
     {
         reciteText.text = "Say 'next' to proceed.\nOr 'repeat' to repeat sentences.";
-        wit.Activate();
+        // wit.Activate();
         isDeciding = true;
     }
 }
