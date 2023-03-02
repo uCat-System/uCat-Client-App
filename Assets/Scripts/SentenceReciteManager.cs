@@ -49,8 +49,6 @@ public class SentenceReciteManager : MonoBehaviour
 
         UpdateReciteTextToCurrentWord();
 
-        // Activate microphone
-        // wit.Activate();
     }
 
     void UpdateReciteTextToCurrentWord()
@@ -90,15 +88,10 @@ public class SentenceReciteManager : MonoBehaviour
 
         UpdateReciteTextToCurrentWord();
 
-        // Activate Wit again
-        // wit.Activate();
     }
     void RepeatSameWord()
     {
         UpdateReciteTextToCurrentWord();
-
-        // Activate Wit again
-        // wit.Activate();
     }
 
    
@@ -230,7 +223,6 @@ public class SentenceReciteManager : MonoBehaviour
             reciteText.text = "Great! Moving onto UI word list.";
             yield return new WaitForSeconds(2);
             UpdateReciteTextToCurrentWord();
-            // wit.Activate();
 
         }
         else if (changComplete && uiComplete)
@@ -249,7 +241,6 @@ public class SentenceReciteManager : MonoBehaviour
     void GameOver()
     {
         reciteText.text = "Say 'next' to proceed.\nOr 'repeat' to repeat sentences.";
-        // wit.Activate();
         isDeciding = true;
     }
 }
