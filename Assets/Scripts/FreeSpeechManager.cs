@@ -2,11 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Meta.WitAi;
-using Meta.WitAi.Data;
-using Meta.WitAi.Json;
 using Meta.WitAi.Lib;
 using Meta.WitAi.Configuration;
-using Meta.WitAi.Interfaces;
 using Meta.WitAi.Inspectors;
 using UnityEngine.SceneManagement;
 
@@ -30,18 +27,16 @@ public class FreeSpeechManager : MonoBehaviour
 
     Scene scene;
 
-    // Start is called before the first frame update
     void Start()
     {
         scene = SceneManager.GetActiveScene();
         runtimeConfig = wit.RuntimeConfiguration;
-        wit.Activate();
+        partialText.text = "(Listening)";
+        StartCoroutine(StartListeningAgain());
     }
     public void MicActivityDetected()
     {
-
-        // Wit should already be activated if mic is detected
-  
+        Debug.Log("Mic activity!");
     }
     
     public void StoppedListeningDueToInactivity()
@@ -58,7 +53,6 @@ public class FreeSpeechManager : MonoBehaviour
     public void StoppedListening()
     {
         Debug.Log("Stopped!");
-        //debugText.text = "Stopped listening";
         StartCoroutine(StartListeningAgain());
     }
 
@@ -72,7 +66,6 @@ public class FreeSpeechManager : MonoBehaviour
     {
         Debug.Log("Started!");
         debugText.text = "Started listening";
-        //wit.Activate();
     }
 
     public void HandlePartialTranscription(string text)
@@ -96,7 +89,7 @@ public class FreeSpeechManager : MonoBehaviour
                 wordReciteManager.StartWordCheck(text);
                 break;
             case "Level2":
-                //sentenceReciteManager.StartSentenceCheck(text);
+                sentenceReciteManager.StartSentenceCheck(text);
                 break;
             default:
                 break;
@@ -132,24 +125,5 @@ public class FreeSpeechManager : MonoBehaviour
         wit.Activate();
 
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //Debug.Log(wit.MicActive);
-
-    }
-
-    //[MatchIntent("recite_sentence")]
-    //public void StartSentenceCheck(WitResponseNode response)
-    //{
-    //    Debug.Log(response);
-    //    var transcription = response.GetTranscription();
-    //    Debug.Log("Transcription");
-    //    Debug.Log(transcription);
-
-    //    speechText.text = transcription.ToString();
-    //    wit.Activate();
-    //    //StartCoroutine(CheckRecitedSentence(transcription));
-    //}
+   
 }

@@ -94,14 +94,10 @@ public class SentenceReciteManager : MonoBehaviour
         UpdateReciteTextToCurrentWord();
     }
 
-   
-
-    // This MatchIntent function is called from wit (callback).
-    // It is not registered in the GUI, but is called from wit.
-    [MatchIntent("recite_sentence")] 
-    public void StartSentenceCheck(WitResponseNode response) {
-        var transcription = response.GetTranscription();
-        StartCoroutine(CheckRecitedSentence(transcription));
+  
+    public void StartSentenceCheck(string text) {
+        Debug.Log("Start sentece check");
+        StartCoroutine(CheckRecitedSentence(text));
     }
 
     public IEnumerator CheckRecitedSentence(string transcription)
