@@ -8,10 +8,15 @@ using Meta.WitAi.Lib;
 using Meta.WitAi.Configuration;
 using Meta.WitAi.Interfaces;
 using Meta.WitAi.Inspectors;
+using UnityEngine.SceneManagement;
 
 public class FreeSpeechManager : MonoBehaviour
 {
     [SerializeField] private Wit wit;
+
+    public WordReciteManager wordReciteManager;
+    public SentenceReciteManager sentenceReciteManager;
+
 
     public TMPro.TextMeshPro partialText;
     public TMPro.TextMeshPro fullText;
@@ -22,9 +27,13 @@ public class FreeSpeechManager : MonoBehaviour
     private WitInspector inspector;
 
     private Mic micInfo;
+
+    Scene scene;
+
     // Start is called before the first frame update
     void Start()
     {
+        scene = SceneManager.GetActiveScene();
         runtimeConfig = wit.RuntimeConfiguration;
         wit.Activate();
     }
@@ -35,6 +44,17 @@ public class FreeSpeechManager : MonoBehaviour
   
     }
     
+    public void StoppedListeningDueToInactivity()
+    {
+        Debug.Log("Stopped due to inactivity!");
+        HandleInactivityFailure();
+    }
+
+    public void StoppedListeningDueToTimeout()
+    {
+        Debug.Log("Stopped due to timeout!");
+        HandleInactivityFailure();
+    }
     public void StoppedListening()
     {
         Debug.Log("Stopped!");
@@ -67,10 +87,44 @@ public class FreeSpeechManager : MonoBehaviour
         StartCoroutine(HandleTranscriptionThenWait(text));
     }
 
+    void ActivateReciteTask(string text)
+    {
+        Scene scene = SceneManager.GetActiveScene();
+        switch (scene.name)
+        {
+            case "Level1":
+                wordReciteManager.StartWordCheck(text);
+                break;
+            case "Level2":
+                //sentenceReciteManager.StartSentenceCheck(text);
+                break;
+            default:
+                break;
+        }
+    }
+
+    void HandleInactivityFailure()
+    {
+        switch (scene.name)
+        {
+            case "Level1":
+                wordReciteManager.OnMicrophoneTimeOut();
+                break;
+            case "Level2":
+                sentenceReciteManager.OnMicrophoneTimeOut();
+                break;
+            default:
+                break;
+        }
+    }
+
     public IEnumerator HandleTranscriptionThenWait(string text)
     {
         Debug.Log("Full");
         Debug.Log(text);
+        
+        // If Level 1 or 2, start checking the appropriate task
+        ActivateReciteTask(text);
         fullText.text = fullText.text + '\n' + ' ' + text;
         yield return new WaitForSeconds(0.000001f);
         Debug.Log("Full");

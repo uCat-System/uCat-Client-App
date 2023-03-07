@@ -1,6 +1,8 @@
 using System.Collections;
 using UnityEngine;
 using Meta.WitAi;
+using Meta.WitAi.Data;
+using Meta.WitAi.Json;
 
 public class WordReciteManager : MonoBehaviour
 {
@@ -40,7 +42,6 @@ public class WordReciteManager : MonoBehaviour
         UpdateReciteTextToCurrentWord();
 
         // Activate microphone
-        wit.Activate();
     }
 
     void UpdateReciteTextToCurrentWord()
@@ -76,49 +77,40 @@ public class WordReciteManager : MonoBehaviour
             currentWordIndex++;
             Debug.Log("Increased index to " + currentWordIndex);
         }
-       
 
         UpdateReciteTextToCurrentWord();
 
-        // Activate Wit again
-        wit.Activate();
     }
     void RepeatSameWord()
     {
         UpdateReciteTextToCurrentWord();
-
-        // Activate Wit again
-        wit.Activate();
     }
-
-    public void StartWordCheck(string[] values)
+    public void StartWordCheck(string transcription)
     {
-        // This function is called from wit (callback).
-        // Launches CheckRecitedWord so that we can use IEnumerators for pausing 
-
-        StartCoroutine(CheckRecitedWord(values));
+        Debug.Log("recieved " + transcription);
+        StartCoroutine(CheckRecitedWord(transcription));
     }
-    public IEnumerator CheckRecitedWord(string[] values)
+   
+    public IEnumerator CheckRecitedWord(string text)
     {
+        Debug.Log("Coroutine " + text);
         bool wordAnsweredCorrectly;
 
-        if (values.Length > 1)
+        if (text.ToLower() == emergencyStopWord)
         {
-            // In case of misinterpretation / wit error
-            yield break;
-        }
 
-        if (values[0].ToLower() == emergencyStopWord)
-        {
             Debug.Log("Emergency stop");
             wit.Deactivate();
             reciteText.text = "Emergency Stop Called";
             yield break;
             
         }
-        // Does their answer match the current word?
-        wordAnsweredCorrectly = values[0].ToLower() == currentWordList[currentWordIndex].ToLower();
 
+        // Does their answer match the current word?
+        wordAnsweredCorrectly = text.ToLower() == currentWordList[currentWordIndex].ToLower();
+        Debug.Log(wordAnsweredCorrectly);
+       // Debug.Log("Word answered correctly? " + wordAnsweredCorrectly);
+        Debug.Log("current: " + currentWordList[currentWordIndex] + " answer: " + text.ToLower() + " " + wordAnsweredCorrectly);
         // Change text to reflect correct / incorrect 
 
         reciteText.text = wordAnsweredCorrectly ? "Correct! :D " : "Incorrect :(";
@@ -200,7 +192,6 @@ public class WordReciteManager : MonoBehaviour
             reciteText.text = "Great! Moving onto UI word list.";
             yield return new WaitForSeconds(2);
             UpdateReciteTextToCurrentWord();
-            wit.Activate();
             
         }
         else if (changComplete && uiComplete)
