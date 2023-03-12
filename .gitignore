@@ -70,3 +70,11 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+Assets/AutoHand/Packages (Setup)/FinalIK.unitypackage.meta
+Assets/AutoHand/Packages (Setup)/Oculus Integration.unitypackage.meta
+Assets/AutoHand/Packages (Setup)/OpenXR.unitypackage.meta
+Assets/AutoHand/Packages (Setup)/SteamVR.unitypackage.meta
+Assets/XR/Settings/OpenXR Package Settings.asset
+ProjectSettings/DynamicsManager.asset
+ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json
+ProjectSettings/ProjectSettings.asset
