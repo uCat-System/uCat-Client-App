@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Meta.WitAi;
+using MText;
 using Meta.WitAi.Lib;
 using Meta.WitAi.Configuration;
 using Meta.WitAi.Inspectors;
@@ -46,7 +47,7 @@ namespace MText //necessary for the 3D text to work
         }
         public void MicActivityDetected()
         {
-            Debug.Log("Mic activity!");
+            //Debug.Log("Mic activity!");
         }
     
         public void StoppedListeningDueToInactivity()

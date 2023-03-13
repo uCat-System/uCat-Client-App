@@ -3,6 +3,7 @@ using UnityEngine;
 using Meta.WitAi;
 using Meta.WitAi.Data;
 using Meta.WitAi.Json;
+using MText;
 
 public class SentenceReciteManager : MonoBehaviour
 {
@@ -34,6 +35,7 @@ public class SentenceReciteManager : MonoBehaviour
 
     // UI elements
     public TMPro.TextMeshPro reciteText;
+    public Modular3DText reciteText3D;
 
 
     [SerializeField] private Wit wit;
@@ -53,7 +55,9 @@ public class SentenceReciteManager : MonoBehaviour
 
     void UpdateReciteTextToCurrentWord()
     {
-        reciteText.text = "Sentence: " + currentWordList[currentWordIndex];
+        reciteText3D.UpdateText("Sentence: " + currentWordList[currentWordIndex]);
+
+        //reciteText.text = "Sentence: " + currentWordList[currentWordIndex];
     }
 
     public void OnMicrophoneTimeOut()
@@ -64,7 +68,9 @@ public class SentenceReciteManager : MonoBehaviour
 
     IEnumerator ChangeTimeOutText()
     {
-        reciteText.text = "Timed out! Moving on...";
+        reciteText3D.UpdateText("Timed out! Moving on...");
+
+       // reciteText.text = "Timed out! Moving on...";
         yield return new WaitForSeconds(2);
         GoToNextWord();
     }
@@ -130,7 +136,8 @@ public class SentenceReciteManager : MonoBehaviour
         {
             Debug.Log("Emergency stop");
             wit.Deactivate();
-            reciteText.text = "Emergency Stop Called";
+            reciteText3D.UpdateText("Emergency Stop Called");
+            //reciteText.text = "Emergency Stop Called";
             yield break;
 
         }
@@ -139,7 +146,9 @@ public class SentenceReciteManager : MonoBehaviour
 
         // Change text to reflect correct / incorrect 
 
-        reciteText.text = wordAnsweredCorrectly ? "Correct! :D " : "Incorrect :(";
+        reciteText3D.UpdateText(wordAnsweredCorrectly ? "Correct! :D " : "Incorrect :(");
+
+        //reciteText.text = wordAnsweredCorrectly ? "Correct! :D " : "Incorrect :(";
         yield return new WaitForSeconds(2);
 
         if (wordAnsweredCorrectly)
@@ -161,7 +170,9 @@ public class SentenceReciteManager : MonoBehaviour
     IEnumerator WordAnsweredIncorrectly()
     {
 
-        reciteText.text = isLastAttemptAtWord ? "Moving on..." : "Try again...";
+        reciteText3D.UpdateText(isLastAttemptAtWord ? "Moving on..." : "Try again...");
+
+        //reciteText.text = isLastAttemptAtWord ? "Moving on..." : "Try again...";
         yield return new WaitForSeconds(1);
 
         // If they still have 1 chance to answer

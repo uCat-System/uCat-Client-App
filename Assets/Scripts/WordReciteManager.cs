@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using Meta.WitAi;
 using Meta.WitAi.Data;
+using MText;
 using Meta.WitAi.Json;
 
 public class WordReciteManager : MonoBehaviour
@@ -26,6 +27,8 @@ public class WordReciteManager : MonoBehaviour
 
     // UI elements
     public TMPro.TextMeshPro reciteText;
+    public Modular3DText reciteText3D;
+
 
 
     [SerializeField] private Wit wit;
@@ -46,7 +49,9 @@ public class WordReciteManager : MonoBehaviour
 
     void UpdateReciteTextToCurrentWord()
     {
-        reciteText.text = "Word to recite: " + currentWordList[currentWordIndex];
+        reciteText3D.UpdateText("Word to recite: " + currentWordList[currentWordIndex]);
+
+        //reciteText.text = "Word to recite: " + currentWordList[currentWordIndex];
     }
 
     public void OnMicrophoneTimeOut()
@@ -57,7 +62,8 @@ public class WordReciteManager : MonoBehaviour
 
     IEnumerator ChangeTimeOutText()
     {
-        reciteText.text = "Timed out! Moving on...";
+        //reciteText.text = "Timed out! Moving on...";
+        reciteText3D.UpdateText("Timed out! Moving on...");
         yield return new WaitForSeconds(2);
         GoToNextWord();
     }
@@ -101,7 +107,8 @@ public class WordReciteManager : MonoBehaviour
 
             Debug.Log("Emergency stop");
             wit.Deactivate();
-            reciteText.text = "Emergency Stop Called";
+            reciteText3D.UpdateText("Emergency Stop Called");
+          //  reciteText.text = "Emergency Stop Called";
             yield break;
             
         }
@@ -113,7 +120,9 @@ public class WordReciteManager : MonoBehaviour
         Debug.Log("current: " + currentWordList[currentWordIndex] + " answer: " + text.ToLower() + " " + wordAnsweredCorrectly);
         // Change text to reflect correct / incorrect 
 
-        reciteText.text = wordAnsweredCorrectly ? "Correct! :D " : "Incorrect :(";
+        reciteText3D.UpdateText(wordAnsweredCorrectly ? "Correct! :D " : "Incorrect :(");
+
+       // reciteText.text = wordAnsweredCorrectly ? "Correct! :D " : "Incorrect :(";
         yield return new WaitForSeconds(2);
 
         if (wordAnsweredCorrectly)
@@ -134,7 +143,9 @@ public class WordReciteManager : MonoBehaviour
     IEnumerator WordAnsweredIncorrectly()
     {
 
-        reciteText.text = isLastAttemptAtWord ? "Moving on..." : "Try again...";
+        reciteText3D.UpdateText(isLastAttemptAtWord ? "Moving on..." : "Try again...");
+
+       // reciteText.text = isLastAttemptAtWord ? "Moving on..." : "Try again...";
         yield return new WaitForSeconds(1);
 
         // If they still have 1 chance to answer
@@ -189,7 +200,9 @@ public class WordReciteManager : MonoBehaviour
         { 
             currentWordList = uiControlsWordList;
             currentWordIndex = 0;
-            reciteText.text = "Great! Moving onto UI word list.";
+            reciteText3D.UpdateText("Great! Moving onto UI word list.");
+
+            //reciteText.text = "Great! Moving onto UI word list.";
             yield return new WaitForSeconds(2);
             UpdateReciteTextToCurrentWord();
             
@@ -197,7 +210,9 @@ public class WordReciteManager : MonoBehaviour
         else if (changComplete && uiComplete)
         {
             currentWordIndex = 0;
-            reciteText.text = "Finished!";
+            reciteText3D.UpdateText("Finished!");
+
+            //reciteText.text = "Finished!";
             GameOver();
         }
 
@@ -209,7 +224,8 @@ public class WordReciteManager : MonoBehaviour
 
     void GameOver()
     {
-        reciteText.text = "Word list finished";
+        reciteText3D.UpdateText("Word list finished");
+        //reciteText.text = "Word list finished";
         _levelManager.LevelComplete();
     }
 }
