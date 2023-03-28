@@ -12,7 +12,11 @@ namespace MText //necessary for the 3D text to work
 { 
     public class FreeSpeechManager : MonoBehaviour
     {
+
+
         [SerializeField] private Wit wit;
+        [SerializeField] private UIManager uiManager;
+
 
         public WordReciteManager wordReciteManager;
         public SentenceReciteManager sentenceReciteManager;
@@ -81,8 +85,8 @@ namespace MText //necessary for the 3D text to work
 
         public void HandlePartialTranscription(string text)
         {
-            Debug.Log("Partial");
-            Debug.Log(text);
+           // Debug.Log("Partial");
+           // Debug.Log(text);
             //partialText.text = text;
             partialText3D.UpdateText(text);
         }
@@ -125,9 +129,19 @@ namespace MText //necessary for the 3D text to work
 
         public IEnumerator HandleTranscriptionThenWait(string text)
         {
+
+            wit.Deactivate();
             Debug.Log("Full");
-            Debug.Log(text);
+            Debug.Log(text.ToLower());
+
+            if (text.ToLower() == "hey ucat" || text.ToLower() == "hey you cat" || text.ToLower() == "hey you kat")
+            {
+                Debug.Log("MENU ACTIVATE");
+                uiManager.ActivateMenu();
+                yield break;
+            }
         
+            Debug.Log("Continuing");
             // If Level 1 or 2, start checking the appropriate task
             ActivateReciteTask(text);
             //fullText.text = fullText.text + '\n' + ' ' + text;

@@ -1,9 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using Meta.WitAi;
-using Meta.WitAi.Data;
 using MText;
-using Meta.WitAi.Json;
 
 public class WordReciteManager : MonoBehaviour
 {
@@ -28,8 +26,6 @@ public class WordReciteManager : MonoBehaviour
     // UI elements
     public TMPro.TextMeshPro reciteText;
     public Modular3DText reciteText3D;
-
-
 
     [SerializeField] private Wit wit;
 
@@ -145,7 +141,6 @@ public class WordReciteManager : MonoBehaviour
 
         reciteText3D.UpdateText(isLastAttemptAtWord ? "Moving on..." : "Try again...");
 
-       // reciteText.text = isLastAttemptAtWord ? "Moving on..." : "Try again...";
         yield return new WaitForSeconds(1);
 
         // If they still have 1 chance to answer
@@ -212,7 +207,6 @@ public class WordReciteManager : MonoBehaviour
             currentWordIndex = 0;
             reciteText3D.UpdateText("Finished!");
 
-            //reciteText.text = "Finished!";
             GameOver();
         }
 
