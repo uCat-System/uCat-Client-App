@@ -17,13 +17,9 @@ public class SentenceReciteManager : MonoBehaviour
 
     // Word lists
      string[] currentWordList;
-    //  string[] changPaperSentenceList = new string[] { 
-    //      "How do you like my music", "My glasses are comfortable", "What do you do", "I do not feel comfortable", "Bring my glasses here",
-    //      "You are not right", "That is very clean", "My family is here"
-    // };
-
-         string[] changPaperSentenceList = new string[] { 
-          "My family is here"
+     string[] changPaperSentenceList = new string[] { 
+         "How do you like my music", "My glasses are comfortable", "What do you do", "I do not feel comfortable", "Bring my glasses here",
+         "You are not right", "That is very clean", "My family is here"
     };
 
     //string[] changPaperSentenceList = new string[] { "How do you like my music" };
@@ -39,8 +35,7 @@ public class SentenceReciteManager : MonoBehaviour
 
     // UI elements
     public TMPro.TextMeshPro reciteText;
-    public Modular3DText reciteText3D;
-
+    private Modular3DText reciteText3D;
 
     [SerializeField] private Wit wit;
 
@@ -49,6 +44,9 @@ public class SentenceReciteManager : MonoBehaviour
         uiComplete = false;
         changComplete = false;
         isLastAttemptAtWord = false;
+        _scoreManager.SetMaxScoreBasedOnWordListCount(changPaperSentenceList.Length + uiControlsWordList.Length);
+
+        reciteText3D = GameObject.Find("ReciteText3D").GetComponent<Modular3DText>();
 
         // Start with the first chang word
         currentWordList = changPaperSentenceList;

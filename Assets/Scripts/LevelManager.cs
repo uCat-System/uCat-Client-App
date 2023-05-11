@@ -18,9 +18,9 @@ public class LevelManager : MonoBehaviour
         // Switch scenes based on score
         Scene scene = SceneManager.GetActiveScene();
         Debug.Log("Ended level " + scene.name);
-
         switch (scene.name)
         {
+
             case "Level1":
                 if (_scoreManager.Level1CurrentScore == _scoreManager.Level1MaxScore)
                 {

@@ -5,9 +5,11 @@ using MText;
 
 public class WordReciteManager : MonoBehaviour
 {
+    private bool isDeciding = false;
+
     // For tracking if the user is repeating a word currently
     private bool isLastAttemptAtWord;
-
+    
     // Current word tracking
     int currentWordIndex;
 
@@ -15,6 +17,7 @@ public class WordReciteManager : MonoBehaviour
     string[] currentWordList;
     string[] changPaperWordList = new string[] { "hello","thirsty", "they", "hope", "up", "goodbye", "music", "tired", "nurse", "computer" };
     bool changComplete;
+
     string[] uiControlsWordList = new string[] { "one", "two", "three", "proceed", "next", "repeat", "back", "pause", "menu", "help" };
     string emergencyStopWord = "emergency stop";
 
@@ -35,6 +38,8 @@ public class WordReciteManager : MonoBehaviour
         changComplete = false;
         isLastAttemptAtWord = false;
 
+        _scoreManager.Level1MaxScore = (changPaperWordList.Length + uiControlsWordList.Length);
+        // _scoreManager.SetMaxScoreBasedOnWordListCount(changPaperWordList.Length + uiControlsWordList.Length);
         reciteText3D = GameObject.Find("ReciteText3D").GetComponent<Modular3DText>();
 
         // Start with the first chang word
@@ -46,11 +51,7 @@ public class WordReciteManager : MonoBehaviour
 
     void UpdateReciteTextToCurrentWord()
     {
-        // reciteText3D.UpdateText("Word to recite: " + currentWordList[currentWordIndex]);
-        Debug.Log("Word to recite: " + currentWordList);
-        Debug.Log("Word to recite: " + currentWordIndex);
-        reciteText3D.UpdateText("Word to recite: " );
-        //reciteText.text = "Word to recite: " + currentWordList[currentWordIndex];
+        reciteText3D.UpdateText("Word to recite: " + currentWordList[currentWordIndex]);
     }
 
     public void OnMicrophoneTimeOut()
@@ -101,16 +102,30 @@ public class WordReciteManager : MonoBehaviour
         Debug.Log("Coroutine " + text);
         bool wordAnsweredCorrectly;
 
-        if (text.ToLower() == emergencyStopWord)
-        {
+         if (isDeciding) {
+            if (text.ToLower() == "next")
+            {
+                Debug.Log("Going to next level");
+                _levelManager.LevelComplete();
 
-            Debug.Log("Emergency stop");
-            wit.Deactivate();
-            reciteText3D.UpdateText("Emergency Stop Called");
-          //  reciteText.text = "Emergency Stop Called";
-            yield break;
-            
+            }
+            else if (text.ToLower() == "repeat")
+            {
+                Debug.Log("Repeating this level");
+                _levelManager.RepeatLevel();
+            }
         }
+
+        // if (text.ToLower() == emergencyStopWord)
+        // {
+
+        //     Debug.Log("Emergency stop");
+        //     wit.Deactivate();
+        //     reciteText3D.UpdateText("Emergency Stop Called");
+        //   //  reciteText.text = "Emergency Stop Called";
+        //     yield break;
+            
+        // }
 
         // Does their answer match the current word?
         wordAnsweredCorrectly = text.ToLower() == currentWordList[currentWordIndex].ToLower();
@@ -221,8 +236,7 @@ public class WordReciteManager : MonoBehaviour
 
     void GameOver()
     {
-        reciteText3D.UpdateText("Word list finished");
-        //reciteText.text = "Word list finished";
-        _levelManager.LevelComplete();
+        reciteText3D.UpdateText("Say 'next' to proceed.\nOr 'repeat' to repeat sentences.");
+        isDeciding = true;
     }
 }

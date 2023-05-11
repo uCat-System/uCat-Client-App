@@ -10,8 +10,19 @@ public class ScoreManager : MonoBehaviour
     private int level1CurrentScore = 0;
     private int level2CurrentScore = 0;
     
-    public int Level1MaxScore = 20;
-    public int Level2MaxScore = 10;
+    private int level1MaxScore = 20;
+    public int level2MaxScore = 10;
+
+    public int Level1MaxScore
+    {
+        get { return level1MaxScore; }
+        set
+        {
+            level1MaxScore = value;
+            Debug.Log("Just set level 1 max to " + value.ToString());
+
+        }
+    }
 
     public int Level1CurrentScore
     {
@@ -19,7 +30,15 @@ public class ScoreManager : MonoBehaviour
         set
         {
             level1CurrentScore = value;
-            UpdateScoreBasedOnCurrentLevel();
+        }
+    }
+
+    public int Level2MaxScore
+    {
+        get { return level2MaxScore; }
+        set
+        {
+            level2MaxScore = value;
         }
     }
 
@@ -30,7 +49,23 @@ public class ScoreManager : MonoBehaviour
         set
         {
             level1CurrentScore = value;
-            UpdateScoreBasedOnCurrentLevel();
+            UpdateScoreUIBasedOnCurrentLevel();
+        }
+    }
+
+    public void SetMaxScoreBasedOnWordListCount(int count) {
+        Debug.Log("Setting max score to " + count.ToString());
+        Scene scene = SceneManager.GetActiveScene();
+        switch (scene.name)
+        {
+            case "Level1":
+                Level1MaxScore = count;
+                break;
+            case "Level2":
+                 Level2MaxScore = count;
+                 break;
+            default:
+                break;
         }
     }
 
@@ -44,10 +79,10 @@ public class ScoreManager : MonoBehaviour
     // Eventually include database storage as well.
     void Start()
     {
-        UpdateScoreBasedOnCurrentLevel();
+        UpdateScoreUIBasedOnCurrentLevel();
     }
 
-    void UpdateScoreBasedOnCurrentLevel()
+    void UpdateScoreUIBasedOnCurrentLevel()
     {
         Scene scene = SceneManager.GetActiveScene();
         switch (scene.name)
