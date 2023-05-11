@@ -9,7 +9,7 @@ public class WordReciteManager : MonoBehaviour
     private bool isLastAttemptAtWord;
 
     // Current word tracking
-    int currentWordIndex = 0;
+    int currentWordIndex;
 
     // Word lists
     string[] currentWordList;
@@ -25,7 +25,7 @@ public class WordReciteManager : MonoBehaviour
 
     // UI elements
     public TMPro.TextMeshPro reciteText;
-    public Modular3DText reciteText3D;
+    private Modular3DText reciteText3D;
 
     [SerializeField] private Wit wit;
 
@@ -35,18 +35,21 @@ public class WordReciteManager : MonoBehaviour
         changComplete = false;
         isLastAttemptAtWord = false;
 
+        reciteText3D = GameObject.Find("ReciteText3D").GetComponent<Modular3DText>();
+
         // Start with the first chang word
+        currentWordIndex = 0;
         currentWordList = changPaperWordList;
 
         UpdateReciteTextToCurrentWord();
-
-        // Activate microphone
     }
 
     void UpdateReciteTextToCurrentWord()
     {
-        reciteText3D.UpdateText("Word to recite: " + currentWordList[currentWordIndex]);
-
+        // reciteText3D.UpdateText("Word to recite: " + currentWordList[currentWordIndex]);
+        Debug.Log("Word to recite: " + currentWordList);
+        Debug.Log("Word to recite: " + currentWordIndex);
+        reciteText3D.UpdateText("Word to recite: " );
         //reciteText.text = "Word to recite: " + currentWordList[currentWordIndex];
     }
 

@@ -17,9 +17,13 @@ public class SentenceReciteManager : MonoBehaviour
 
     // Word lists
      string[] currentWordList;
-     string[] changPaperSentenceList = new string[] { 
-         "How do you like my music", "My glasses are comfortable", "What do you do", "I do not feel comfortable", "Bring my glasses here",
-         "You are not right", "That is very clean", "My family is here"
+    //  string[] changPaperSentenceList = new string[] { 
+    //      "How do you like my music", "My glasses are comfortable", "What do you do", "I do not feel comfortable", "Bring my glasses here",
+    //      "You are not right", "That is very clean", "My family is here"
+    // };
+
+         string[] changPaperSentenceList = new string[] { 
+          "My family is here"
     };
 
     //string[] changPaperSentenceList = new string[] { "How do you like my music" };
@@ -148,7 +152,6 @@ public class SentenceReciteManager : MonoBehaviour
 
         reciteText3D.UpdateText(wordAnsweredCorrectly ? "Correct! :D " : "Incorrect :(");
 
-        //reciteText.text = wordAnsweredCorrectly ? "Correct! :D " : "Incorrect :(";
         yield return new WaitForSeconds(2);
 
         if (wordAnsweredCorrectly)
@@ -208,6 +211,7 @@ public class SentenceReciteManager : MonoBehaviour
     }
     void WordAnsweredCorrectly()
     {
+        Debug.Log("Word answered correctly function");
         AddScoreToScoreManager();
 
         // Reset last word check, as moving on to next word
@@ -220,22 +224,26 @@ public class SentenceReciteManager : MonoBehaviour
     IEnumerator CheckWordListStatus()
     {
         Debug.Log("Checking word list ");
+        Debug.Log("Chang complete: " + changComplete);
+        Debug.Log("UI complete: " + uiComplete);
 
         // Either proceed to next word list, or end the game.
 
         if (changComplete && !uiComplete)
         {
+            Debug.Log("Chang complete, moving onto UI word list.");
             currentWordList = uiControlsWordList;
             currentWordIndex = 0;
-            reciteText.text = "Great! Moving onto UI word list.";
+            reciteText3D.UpdateText("Great! Moving onto UI word list.");
             yield return new WaitForSeconds(2);
             UpdateReciteTextToCurrentWord();
 
         }
         else if (changComplete && uiComplete)
         {
+            Debug.Log("Both lists complete, ending game.");
             currentWordIndex = 0;
-            reciteText.text = "Finished!";
+            reciteText3D.UpdateText("Finished!");
             GameOver();
         }
 
@@ -247,7 +255,7 @@ public class SentenceReciteManager : MonoBehaviour
 
     void GameOver()
     {
-        reciteText.text = "Say 'next' to proceed.\nOr 'repeat' to repeat sentences.";
+        reciteText3D.UpdateText("Say 'next' to proceed.\nOr 'repeat' to repeat sentences.");
         isDeciding = true;
     }
 }

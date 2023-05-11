@@ -512,6 +512,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wit: {fileID: 723296576}
+  uiManager: {fileID: 0}
   wordReciteManager: {fileID: 863806887}
   sentenceReciteManager: {fileID: 0}
   partialText3D: {fileID: 760428953}
@@ -2390,7 +2391,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &723296575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4728,7 +4729,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1218636427
 Transform:
   m_ObjectHideFlags: 0
@@ -6239,7 +6240,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1951320424
 Transform:
   m_ObjectHideFlags: 0
