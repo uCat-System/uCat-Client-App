@@ -16,49 +16,33 @@ MonoBehaviour:
   tabSelectedColor: {r: 0.6886792, g: 0.6854307, b: 0.6854307, a: 1}
   tabUnselectedColor: {r: 0.4716981, g: 0.45612317, b: 0.45612317, a: 1}
   gridItemColor: {r: 0.7254902, g: 0.72156864, b: 0.72156864, a: 1}
-  defaultFont: {fileID: 11400000, guid: db77b938927bd344182b9b966d4e7172, type: 2}
+  defaultFont: {fileID: 11400000, guid: f9b81179112c6a34c894068127884f79, type: 2}
   defaultTextSize: {x: 8, y: 8, z: 8}
   defaultTextMaterial: {fileID: 2100000, guid: 323309279f3626a4ba74c611555546c5, type: 2}
   defaultButtonNormalTextSize: {x: 8, y: 8, z: 8}
-  defaultButtonNormalTextMaterial: {fileID: 2100000, guid: 323309279f3626a4ba74c611555546c5,
-    type: 2}
-  defaultButtonNormalBackgroundMaterial: {fileID: 2100000, guid: 36ed2e46e752ade4e80ac1daa11593ce,
-    type: 2}
+  defaultButtonNormalTextMaterial: {fileID: 2100000, guid: 323309279f3626a4ba74c611555546c5, type: 2}
+  defaultButtonNormalBackgroundMaterial: {fileID: 2100000, guid: 36ed2e46e752ade4e80ac1daa11593ce, type: 2}
   defaultButtonSelectedTextSize: {x: 8.2, y: 8.2, z: 8.2}
-  defaultButtonSelectedTextMaterial: {fileID: 2100000, guid: 323309279f3626a4ba74c611555546c5,
-    type: 2}
-  defaultButtonSelectedBackgroundMaterial: {fileID: 2100000, guid: b2b6c5f04ab123a49941855cbdf9a358,
-    type: 2}
+  defaultButtonSelectedTextMaterial: {fileID: 2100000, guid: 323309279f3626a4ba74c611555546c5, type: 2}
+  defaultButtonSelectedBackgroundMaterial: {fileID: 2100000, guid: b2b6c5f04ab123a49941855cbdf9a358, type: 2}
   defaultButtonPressedTextSize: {x: 8.5, y: 8.5, z: 8.5}
-  defaultButtonPressedTextMaterial: {fileID: 2100000, guid: 323309279f3626a4ba74c611555546c5,
-    type: 2}
-  defaultButtonPressedBackgroundMaterial: {fileID: 2100000, guid: 3d8563705655a4245b274398956f938f,
-    type: 2}
+  defaultButtonPressedTextMaterial: {fileID: 2100000, guid: 323309279f3626a4ba74c611555546c5, type: 2}
+  defaultButtonPressedBackgroundMaterial: {fileID: 2100000, guid: 3d8563705655a4245b274398956f938f, type: 2}
   defaultButtonDisabledTextSize: {x: 8, y: 8, z: 8}
-  defaultButtonDisabledTextMaterial: {fileID: 2100000, guid: c958ce690de9a0841b7b2d7f597ac79a,
-    type: 2}
-  defaultButtonDisabledBackgroundMaterial: {fileID: 2100000, guid: b1b4721719ff98b4abf45943c7e47451,
-    type: 2}
+  defaultButtonDisabledTextMaterial: {fileID: 2100000, guid: c958ce690de9a0841b7b2d7f597ac79a, type: 2}
+  defaultButtonDisabledBackgroundMaterial: {fileID: 2100000, guid: b1b4721719ff98b4abf45943c7e47451, type: 2}
   defaultListNormalTextSize: {x: 8, y: 8, z: 8}
-  defaultListNormalTextMaterial: {fileID: 2100000, guid: 323309279f3626a4ba74c611555546c5,
-    type: 2}
-  defaultListNormalBackgroundMaterial: {fileID: 2100000, guid: 36ed2e46e752ade4e80ac1daa11593ce,
-    type: 2}
+  defaultListNormalTextMaterial: {fileID: 2100000, guid: 323309279f3626a4ba74c611555546c5, type: 2}
+  defaultListNormalBackgroundMaterial: {fileID: 2100000, guid: 36ed2e46e752ade4e80ac1daa11593ce, type: 2}
   defaultListSelectedTextSize: {x: 8.2, y: 8.2, z: 8.2}
-  defaultListSelectedTextMaterial: {fileID: 2100000, guid: 323309279f3626a4ba74c611555546c5,
-    type: 2}
-  defaultListSelectedBackgroundMaterial: {fileID: 2100000, guid: b2b6c5f04ab123a49941855cbdf9a358,
-    type: 2}
+  defaultListSelectedTextMaterial: {fileID: 2100000, guid: 323309279f3626a4ba74c611555546c5, type: 2}
+  defaultListSelectedBackgroundMaterial: {fileID: 2100000, guid: b2b6c5f04ab123a49941855cbdf9a358, type: 2}
   defaultListPressedTextSize: {x: 8.5, y: 8.5, z: 8.5}
-  defaultListPressedTextMaterial: {fileID: 2100000, guid: 323309279f3626a4ba74c611555546c5,
-    type: 2}
-  defaultListPressedBackgroundMaterial: {fileID: 2100000, guid: 3d8563705655a4245b274398956f938f,
-    type: 2}
+  defaultListPressedTextMaterial: {fileID: 2100000, guid: 323309279f3626a4ba74c611555546c5, type: 2}
+  defaultListPressedBackgroundMaterial: {fileID: 2100000, guid: 3d8563705655a4245b274398956f938f, type: 2}
   defaultListDisabledTextSize: {x: 8, y: 8, z: 8}
-  defaultListDisabledTextMaterial: {fileID: 2100000, guid: c958ce690de9a0841b7b2d7f597ac79a,
-    type: 2}
-  defaultListDisabledBackgroundMaterial: {fileID: 2100000, guid: b1b4721719ff98b4abf45943c7e47451,
-    type: 2}
+  defaultListDisabledTextMaterial: {fileID: 2100000, guid: c958ce690de9a0841b7b2d7f597ac79a, type: 2}
+  defaultListDisabledBackgroundMaterial: {fileID: 2100000, guid: b1b4721719ff98b4abf45943c7e47451, type: 2}
   smallHorizontalFieldSize: 72.5
   normalltHorizontalFieldSize: 100
   largeHorizontalFieldSize: 132.5
@@ -75,3 +59,4 @@ MonoBehaviour:
   sizeZ: 1
   smoothingAngle: 30
   meshExportStyle: 0
+  inputActionAsset: {fileID: 0}

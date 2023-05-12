@@ -5,7 +5,6 @@ using Meta.WitAi;
 using MText;
 using Meta.WitAi.Lib;
 using Meta.WitAi.Configuration;
-using Meta.WitAi.Inspectors;
 using UnityEngine.SceneManagement;
 
 namespace MText //necessary for the 3D text to work
@@ -32,12 +31,11 @@ namespace MText //necessary for the 3D text to work
         public TMPro.TextMeshPro debugText;
 
         private WitRuntimeConfiguration runtimeConfig;
-        private WitInspector inspector;
 
         private Mic micInfo;
 
         //Quick hack while I figure out if you can add text to the 3D text
-        private string cachedText = "";
+        public string cachedText = "";
 
         Scene scene;
 
@@ -45,7 +43,6 @@ namespace MText //necessary for the 3D text to work
         {
             scene = SceneManager.GetActiveScene();
             runtimeConfig = wit.RuntimeConfiguration;
-            //partialText.text = "(Listening)";
             partialText3D.UpdateText("(Listening)");
             StartCoroutine(StartListeningAgain());
         }
@@ -77,12 +74,6 @@ namespace MText //necessary for the 3D text to work
             wit.Activate();
         }
 
-        public void StartedListening()
-        {
-            Debug.Log("Started!");
-            debugText.text = "Started listening";
-        }
-
         public void HandlePartialTranscription(string text)
         {
            // Debug.Log("Partial");
@@ -98,7 +89,6 @@ namespace MText //necessary for the 3D text to work
 
         void ActivateReciteTask(string text)
         {
-            Scene scene = SceneManager.GetActiveScene();
             switch (scene.name)
             {
                 case "Level1":
@@ -144,17 +134,42 @@ namespace MText //necessary for the 3D text to work
             Debug.Log("Continuing");
             // If Level 1 or 2, start checking the appropriate task
             ActivateReciteTask(text);
-            //fullText.text = fullText.text + '\n' + ' ' + text;
-            cachedText = cachedText + '\n' + ' ' + text;
+            CalculateCachedText(text);
             fullText3D.UpdateText(cachedText);
             yield return new WaitForSeconds(0.000001f);
             Debug.Log("Full");
-            //partialText.text = "(Listening)";
             partialText3D.UpdateText("(Listening)");
             wit.Activate();
-
         }
-   
+
+     void CalculateCachedText(string newText) {
+        // Prevent the text log becoming too long
+        int maxLengthBasedOnScene = 0;
+        Scene scene = SceneManager.GetActiveScene();
+        switch (scene.name)
+        {
+            case "Level1":
+                maxLengthBasedOnScene = 40;
+                break;
+            case "Level2":
+                 maxLengthBasedOnScene = 70;
+                 break;
+            case "Level3":
+                maxLengthBasedOnScene = 120;
+                break;
+            default:
+                maxLengthBasedOnScene = 30;
+                break;
+        }
+
+        if (cachedText.Length > maxLengthBasedOnScene) {
+            cachedText = newText;
+        } else {
+            cachedText = cachedText + '\n' + ' ' + newText;
+        }
     }
+    }
+
+   
 
 }
