@@ -10,7 +10,7 @@ public class SentenceReciteManager : MonoBehaviour
 
     private bool isDeciding = false;
     // For tracking if the user is repeating a word currently
-    private bool isLastAttemptAtWord;
+    // private bool isLastAttemptAtWord;
 
     // Current word tracking
     int currentWordIndex = 0;
@@ -43,7 +43,7 @@ public class SentenceReciteManager : MonoBehaviour
     {
         uiComplete = false;
         changComplete = false;
-        isLastAttemptAtWord = false;
+        // isLastAttemptAtWord = false;
         _scoreManager.SetMaxScoreBasedOnWordListCount(changPaperSentenceList.Length + uiControlsWordList.Length);
 
         reciteText3D = GameObject.Find("ReciteText3D").GetComponent<Modular3DText>();
@@ -148,7 +148,7 @@ public class SentenceReciteManager : MonoBehaviour
 
         // Change text to reflect correct / incorrect 
 
-        reciteText3D.UpdateText(wordAnsweredCorrectly ? "Correct! :D " : "Incorrect :(");
+        reciteText3D.UpdateText(wordAnsweredCorrectly ? "Correct! " : "Incorrect.");
 
         yield return new WaitForSeconds(2);
 
@@ -165,30 +165,18 @@ public class SentenceReciteManager : MonoBehaviour
    
     void AddScoreToScoreManager()
     {
-        _scoreManager.Level1CurrentScore = _scoreManager.Level1CurrentScore + 1;
+        _scoreManager.Level2CurrentScore = _scoreManager.Level2CurrentScore + 1;
     }
 
     IEnumerator WordAnsweredIncorrectly()
     {
 
-        reciteText3D.UpdateText(isLastAttemptAtWord ? "Moving on..." : "Try again...");
+        reciteText3D.UpdateText("Try again!");
 
         //reciteText.text = isLastAttemptAtWord ? "Moving on..." : "Try again...";
         yield return new WaitForSeconds(1);
 
-        // If they still have 1 chance to answer
-        if (!isLastAttemptAtWord)
-        {
-            isLastAttemptAtWord = true;
-            RepeatSameWord();
-        }
-        else
-
-        // Move onto next one
-        {
-            isLastAttemptAtWord = false;
-            MoveOnIfMoreWordsInList();
-        }
+        RepeatSameWord();
     }
 
     void MoveOnIfMoreWordsInList()
@@ -213,7 +201,7 @@ public class SentenceReciteManager : MonoBehaviour
         AddScoreToScoreManager();
 
         // Reset last word check, as moving on to next word
-        isLastAttemptAtWord = false;
+        // isLastAttemptAtWord = false;
 
         MoveOnIfMoreWordsInList();
     }

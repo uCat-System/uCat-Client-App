@@ -52,7 +52,7 @@ public class ScoreManager : MonoBehaviour
         get { return level2CurrentScore; }
         set
         {
-            level1CurrentScore = value;
+            level2CurrentScore = value;
             UpdateScoreUIBasedOnCurrentLevel();
         }
     }
@@ -96,7 +96,7 @@ public class ScoreManager : MonoBehaviour
                 scoreText.text = "Score: " + level1CurrentScore.ToString() + " / " + Level1MaxScore.ToString();
                 break;
             case "Level2":
-                 scoreText.text = "Score: " + Level2CurrentScore.ToString() + "/ " + Level2MaxScore.ToString();
+                 scoreText.text = "Score: " + Level2CurrentScore.ToString() + " / " + Level2MaxScore.ToString();
                  break;
             default:
                 break;
