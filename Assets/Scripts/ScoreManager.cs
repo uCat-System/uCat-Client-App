@@ -29,7 +29,11 @@ public class ScoreManager : MonoBehaviour
         get { return level1CurrentScore; }
         set
         {
+                    Debug.Log("Adding score in score manager to " + level1CurrentScore.ToString());
+
             level1CurrentScore = value;
+            UpdateScoreUIBasedOnCurrentLevel();
+
         }
     }
 
@@ -84,6 +88,7 @@ public class ScoreManager : MonoBehaviour
 
     void UpdateScoreUIBasedOnCurrentLevel()
     {
+        Debug.Log("Updating score UI");
         Scene scene = SceneManager.GetActiveScene();
         switch (scene.name)
         {
