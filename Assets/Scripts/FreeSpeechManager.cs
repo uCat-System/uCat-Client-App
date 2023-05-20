@@ -14,7 +14,7 @@ namespace MText //necessary for the 3D text to work
 
 
         [SerializeField] private Wit wit;
-        [SerializeField] private UIManager uiManager;
+        private UIManager uiManager;
 
 
         public WordReciteManager wordReciteManager;
@@ -41,6 +41,7 @@ namespace MText //necessary for the 3D text to work
 
         void Start()
         {
+            uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
             scene = SceneManager.GetActiveScene();
             runtimeConfig = wit.RuntimeConfiguration;
             partialText3D.UpdateText("(Listening)");
@@ -124,12 +125,7 @@ namespace MText //necessary for the 3D text to work
             Debug.Log("Full");
             Debug.Log(text.ToLower());
 
-            if (text.ToLower() == "hey ucat" || text.ToLower() == "hey you cat" || text.ToLower() == "hey you kat")
-            {
-                Debug.Log("MENU ACTIVATE");
-                uiManager.ActivateMenu();
-                yield break;
-            }
+            uiManager.ListenForMenuCommands(text.ToLower());
         
             Debug.Log("Continuing");
             // If Level 1 or 2, start checking the appropriate task
