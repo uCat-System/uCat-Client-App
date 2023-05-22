@@ -165,6 +165,7 @@ public class SentenceReciteManager : MonoBehaviour
    
     void AddScoreToScoreManager()
     {
+        Debug.Log("Adding score in score manager to " + _scoreManager.Level2CurrentScore.ToString());
         _scoreManager.Level2CurrentScore = _scoreManager.Level2CurrentScore + 1;
     }
 

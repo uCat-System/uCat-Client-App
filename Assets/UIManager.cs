@@ -54,6 +54,9 @@ if (menu.activeInHierarchy)
         case "restart":
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             break;
+        case "resume": 
+            menu.SetActive(false);
+            break;
         case ("level one"):
             SceneManager.LoadScene("Level1"); // Replace "Level1" with the name of your scene
             break;
