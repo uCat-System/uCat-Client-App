@@ -7,6 +7,8 @@ public class UIManager : MonoBehaviour
 {
      private static UIManager instance;
 
+     public Animator animator;
+
     private void Awake()
     {
         if (instance == null)
@@ -55,7 +57,8 @@ if (menu.activeInHierarchy)
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             break;
         case "resume": 
-            menu.SetActive(false);
+            animator.Play("CloseClip");
+            StartCoroutine(WaitForAnimationToEnd());
             break;
         case ("level one"):
             SceneManager.LoadScene("Level1"); // Replace "Level1" with the name of your scene
@@ -72,6 +75,18 @@ if (menu.activeInHierarchy)
 }
         
         
+    }
+
+     private System.Collections.IEnumerator WaitForAnimationToEnd()
+    {
+        Debug.Log("Waiting for animation to end");
+        while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1)
+        {
+            Debug.Log("Animation playing");
+            yield return null;
+        }
+        Debug.Log("Animation ended");
+        menu.SetActive(false);
     }
 
     public void ActivateMenu() 
