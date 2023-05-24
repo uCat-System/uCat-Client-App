@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Meta.WitAi;
 using MText;
@@ -7,11 +6,16 @@ using Meta.WitAi.Lib;
 using Meta.WitAi.Configuration;
 using UnityEngine.SceneManagement;
 
-namespace MText //necessary for the 3D text to work
+namespace MText
 { 
     public class FreeSpeechManager : MonoBehaviour
     {
 
+
+/*
+
+    1) 
+*/
 
         [SerializeField] private Wit wit;
         private UIManager uiManager;
@@ -20,21 +24,9 @@ namespace MText //necessary for the 3D text to work
         public WordReciteManager wordReciteManager;
         public SentenceReciteManager sentenceReciteManager;
 
-        //Legacy. When TextMeshPro was used as a proof of concept.
-        //public TMPro.TextMeshPro partialText;
-        //public TMPro.TextMeshPro fullText;
-
-        //Modular 3D Text objects.
         public Modular3DText partialText3D;
         public Modular3DText fullText3D;
 
-        public TMPro.TextMeshPro debugText;
-
-        private WitRuntimeConfiguration runtimeConfig;
-
-        private Mic micInfo;
-
-        //Quick hack while I figure out if you can add text to the 3D text
         public string cachedText = "";
 
         Scene scene;
@@ -43,7 +35,6 @@ namespace MText //necessary for the 3D text to work
         {
             uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
             scene = SceneManager.GetActiveScene();
-            runtimeConfig = wit.RuntimeConfiguration;
             partialText3D.UpdateText("(Listening)");
             StartCoroutine(StartListeningAgain());
         }
@@ -66,7 +57,8 @@ namespace MText //necessary for the 3D text to work
         public void StoppedListening()
         {
             Debug.Log("Stopped!");
-            StartCoroutine(StartListeningAgain());
+            // partialText3D.UpdateText("(Stopped)");
+            // StartCoroutine(StartListeningAgain());
         }
 
         public IEnumerator StartListeningAgain()
@@ -77,9 +69,6 @@ namespace MText //necessary for the 3D text to work
 
         public void HandlePartialTranscription(string text)
         {
-           // Debug.Log("Partial");
-           // Debug.Log(text);
-            //partialText.text = text;
             partialText3D.UpdateText(text);
         }
 
@@ -120,20 +109,16 @@ namespace MText //necessary for the 3D text to work
 
         public IEnumerator HandleTranscriptionThenWait(string text)
         {
-
             wit.Deactivate();
-            Debug.Log("Full");
-            Debug.Log(text.ToLower());
-
-            uiManager.ListenForMenuCommands(text.ToLower());
+            partialText3D.UpdateText("(Stopped)");
+            uiManager.CheckIfUICommandsWereSpoken(text.ToLower());
         
-            Debug.Log("Continuing");
             // If Level 1 or 2, start checking the appropriate task
             ActivateReciteTask(text);
             CalculateCachedText(text);
             fullText3D.UpdateText(cachedText);
-            yield return new WaitForSeconds(0.000001f);
-            Debug.Log("Full");
+
+            yield return new WaitForSeconds(2);
             partialText3D.UpdateText("(Listening)");
             wit.Activate();
         }

@@ -34,7 +34,8 @@ public class UIManager : MonoBehaviour
     }
     public GameObject menu;
 
-    public void ListenForMenuCommands(string text) {
+    public void CheckIfUICommandsWereSpoken(string text) {
+        // text is input as lower case from FreeSpeechManager
         Debug.Log("Listening for menu commands: " + text);
 
         // Listen for any of the wake phrases
