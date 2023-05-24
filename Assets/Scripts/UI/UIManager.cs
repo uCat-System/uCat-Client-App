@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+using System.IO;
 using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
@@ -8,6 +10,15 @@ public class UIManager : MonoBehaviour
      private static UIManager instance;
 
      public Animator animator;
+
+     List<string> acceptableWakeWords = new List<string>()
+    {
+        "activate menu",
+        "hey you cat",
+        "hey you kat",
+        "hey, you cat",
+        "hey, you kat"
+    };
 
     private void Awake()
     {
@@ -26,9 +37,10 @@ public class UIManager : MonoBehaviour
     public void ListenForMenuCommands(string text) {
         Debug.Log("Listening for menu commands: " + text);
 
-        if (!menu.activeInHierarchy && text.Contains("activate menu") || text.Contains("hey you cat") 
-            || text.Contains("hey you kat")) {
-             menu.SetActive(true);
+        // Listen for any of the wake phrases
+        if (!menu.activeInHierarchy && acceptableWakeWords.Any(text.Contains))
+        {
+            menu.SetActive(true);
         }
 
 if (menu.activeInHierarchy)
