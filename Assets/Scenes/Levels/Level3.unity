@@ -3069,9 +3069,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1442449950}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e5f069524d6b0240a68a3e2c21e6861, type: 3}
+  m_Script: {fileID: 11500000, guid: fc45d88a8119af14aa4ebaaf255ce6c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 4943968628018621655}
   menu: {fileID: 489178538}
 --- !u!1 &1531630141
 GameObject:
@@ -4663,6 +4664,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: e362d1674f584914b87a4d1946ba53e9, type: 3}
+--- !u!95 &4943968628018621655 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4943968627529476473, guid: e362d1674f584914b87a4d1946ba53e9, type: 3}
+  m_PrefabInstance: {fileID: 4943968628018621654}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6135878457411951733
 PrefabInstance:
   m_ObjectHideFlags: 0
