@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using System.Collections.Generic;
 using Meta.WitAi;
 using MText;
 
@@ -17,6 +18,13 @@ public class WordReciteManager : MonoBehaviour
     string[] currentWordList;
     string[] changPaperWordList = new string[] { "hello","thirsty", "they", "hope", "up", "goodbye", "music", "tired", "nurse", "computer" };
     bool changComplete;
+
+    // Text colours
+
+    public Material correctColour;
+    public Material incorrectColour;
+    public Material defaultColour;
+    public Material listeningColour;
 
     string[] uiControlsWordList = new string[] { "one", "two", "three", "proceed", "next", "repeat", "back", "pause", "menu", "help" };
     string emergencyStopWord = "emergency stop";
@@ -36,22 +44,28 @@ public class WordReciteManager : MonoBehaviour
     {
         uiComplete = false;
         changComplete = false;
-        // isLastAttemptAtWord = false;
 
-        _scoreManager.Level1MaxScore = (changPaperWordList.Length + uiControlsWordList.Length);
-        // _scoreManager.SetMaxScoreBasedOnWordListCount(changPaperWordList.Length + uiControlsWordList.Length);
+        _scoreManager.Level1MaxScore = (changPaperWordList.Length + uiControlsWordList.Length); // TODO set dynamically based on level
         reciteText3D = GameObject.Find("ReciteText3D").GetComponent<Modular3DText>();
+        reciteText3D.Material = defaultColour;
 
         // Start with the first chang word
         currentWordIndex = 0;
-        currentWordList = changPaperWordList;
+        currentWordList = changPaperWordList; // TODO set dynamically based on level
 
-        UpdateReciteTextToCurrentWord();
+        StartCoroutine(StartCurrentWordCountdown());
     }
 
-    void UpdateReciteTextToCurrentWord()
+    private IEnumerator StartCurrentWordCountdown()
     {
-        reciteText3D.UpdateText("Word to recite: " + currentWordList[currentWordIndex]);
+        reciteText3D.UpdateText("..." + currentWordList[currentWordIndex] + "...");
+        yield return new WaitForSeconds(1);
+        reciteText3D.UpdateText(".." + currentWordList[currentWordIndex] + "..");
+        yield return new WaitForSeconds(1);
+        reciteText3D.UpdateText("." + currentWordList[currentWordIndex] + ".");
+        yield return new WaitForSeconds(1);
+        reciteText3D.UpdateText(currentWordList[currentWordIndex]);
+        reciteText3D.Material = listeningColour;
     }
 
     public void OnMicrophoneTimeOut()
@@ -84,12 +98,12 @@ public class WordReciteManager : MonoBehaviour
             Debug.Log("Increased index to " + currentWordIndex);
         }
 
-        UpdateReciteTextToCurrentWord();
+        StartCoroutine(StartCurrentWordCountdown());
 
     }
     void RepeatSameWord()
     {
-        UpdateReciteTextToCurrentWord();
+        StartCoroutine(StartCurrentWordCountdown());
     }
     public void StartWordCheck(string transcription)
     {
@@ -115,17 +129,6 @@ public class WordReciteManager : MonoBehaviour
                 _levelManager.RepeatLevel();
             }
         }
-
-        // if (text.ToLower() == emergencyStopWord)
-        // {
-
-        //     Debug.Log("Emergency stop");
-        //     wit.Deactivate();
-        //     reciteText3D.UpdateText("Emergency Stop Called");
-        //   //  reciteText.text = "Emergency Stop Called";
-        //     yield break;
-            
-        // }
 
         // Does their answer match the current word?
         wordAnsweredCorrectly = text.ToLower() == currentWordList[currentWordIndex].ToLower();
@@ -158,23 +161,9 @@ public class WordReciteManager : MonoBehaviour
     IEnumerator WordAnsweredIncorrectly()
     {
 
-        // reciteText3D.UpdateText(isLastAttemptAtWord ? "Moving on..." : "Try again...");
         reciteText3D.UpdateText("Try again!");
         yield return new WaitForSeconds(1);
-
         RepeatSameWord();
-        // // If they still have 1 chance to answer
-        // if (!isLastAttemptAtWord)
-        // {
-        //     isLastAttemptAtWord = true;
-        //     RepeatSameWord();
-        // }
-        // else
-
-        // // Move onto next one
-        // {
-        //     isLastAttemptAtWord = false;
-        // }
     }
 
     void MoveOnIfMoreWordsInList ()
@@ -196,10 +185,6 @@ public class WordReciteManager : MonoBehaviour
     void WordAnsweredCorrectly()
     {
         AddScoreToScoreManager();
-
-        // Reset last word check, as moving on to next word
-        // isLastAttemptAtWord = false;
-
         MoveOnIfMoreWordsInList();
     }
 
@@ -218,7 +203,7 @@ public class WordReciteManager : MonoBehaviour
 
             //reciteText.text = "Great! Moving onto UI word list.";
             yield return new WaitForSeconds(2);
-            UpdateReciteTextToCurrentWord();
+            StartCoroutine(StartCurrentWordCountdown());
             
         }
         else if (changComplete && uiComplete)

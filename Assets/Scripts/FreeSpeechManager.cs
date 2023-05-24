@@ -14,12 +14,23 @@ namespace MText
 
 /*
 
-    1) 
+    1) Word 'hello' appears on screen (reciteText) in grey, with ... on the left and 
+        right of it ("...hello...")
+
+    2) Every second, the dots either side disappear
+
+    3) When the dots are all gone, the word turns yello and the microphone activates
+
+    4) The user says the word
+
+    5) The microphone deactivates and the word turns red if wrong, green if correct
+
+    6) Next word starts from step 1
+
 */
 
         [SerializeField] private Wit wit;
         private UIManager uiManager;
-
 
         public WordReciteManager wordReciteManager;
         public SentenceReciteManager sentenceReciteManager;
@@ -57,8 +68,6 @@ namespace MText
         public void StoppedListening()
         {
             Debug.Log("Stopped!");
-            // partialText3D.UpdateText("(Stopped)");
-            // StartCoroutine(StartListeningAgain());
         }
 
         public IEnumerator StartListeningAgain()

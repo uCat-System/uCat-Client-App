@@ -301,7 +301,6 @@ MonoBehaviour:
   sentenceReciteManager: {fileID: 0}
   partialText3D: {fileID: 760428953}
   fullText3D: {fileID: 2110937588}
-  debugText: {fileID: 480871094}
   cachedText: 
 --- !u!114 &126268229 stripped
 MonoBehaviour:
@@ -358,10 +357,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2a118f7b54db0b4483cf032a15f567f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  createdCube: {fileID: 2418990838047371235, guid: 067d5fd9d7ae93447b7b153df6f49552, type: 3}
-  createdSphere: {fileID: 7926749473406123922, guid: 47fe4130f1204784e8683107f18e96ee, type: 3}
-  spawnDistance: 2
-  player: {fileID: 0}
 --- !u!1 &369620723
 GameObject:
   m_ObjectHideFlags: 0
@@ -503,17 +498,6 @@ Transform:
   m_Father: {fileID: 1951320424}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &480871094 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5679632974876391347, guid: 7de4a9e7ce2cf424e9e77acca7673856, type: 3}
-  m_PrefabInstance: {fileID: 5679632975356212485}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!43 &533664659
 Mesh:
   m_ObjectHideFlags: 0
@@ -1590,6 +1574,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8f78cde7c696394ea1e5fe99e32c7b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  correctColour: {fileID: 2100000, guid: 5562c698b21c8924a84fa2abb367f9cd, type: 2}
+  incorrectColour: {fileID: 2100000, guid: dfa4872a000de054bb0c1c830a263904, type: 2}
+  defaultColour: {fileID: 2100000, guid: ac605445953bb8d448dde47a525d047f, type: 2}
+  listeningColour: {fileID: 2100000, guid: f8f321e22bea45a49bb0a21221efaa58, type: 2}
   _scoreManager: {fileID: 803375946}
   _levelManager: {fileID: 1949416657}
   reciteText: {fileID: 0}
@@ -3033,6 +3021,22 @@ PrefabInstance:
     - target: {fileID: 5679632974449892121, guid: 7de4a9e7ce2cf424e9e77acca7673856, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5679632975711472796, guid: 7de4a9e7ce2cf424e9e77acca7673856, type: 3}
+      propertyPath: _text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5679632975711472796, guid: 7de4a9e7ce2cf424e9e77acca7673856, type: 3}
+      propertyPath: oldText
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5679632975711472796, guid: 7de4a9e7ce2cf424e9e77acca7673856, type: 3}
+      propertyPath: wordArray.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8573452034154006925, guid: 7de4a9e7ce2cf424e9e77acca7673856, type: 3}
+      propertyPath: m_Mesh
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
