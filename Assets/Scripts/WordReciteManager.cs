@@ -7,9 +7,6 @@ using MText;
 public class WordReciteManager : MonoBehaviour
 {
     private bool isDeciding = false;
-
-    // For tracking if the user is repeating a word currently
-    // private bool isLastAttemptAtWord;
     
     // Current word tracking
     int currentWordIndex;
@@ -28,6 +25,10 @@ public class WordReciteManager : MonoBehaviour
 
     string[] uiControlsWordList = new string[] { "one", "two", "three", "proceed", "next", "repeat", "back", "pause", "menu", "help" };
     string emergencyStopWord = "emergency stop";
+
+    // External Managers
+
+    public FreeSpeechManager _freeSpeechManager;
 
     public ScoreManager _scoreManager;
     public LevelManager _levelManager;
@@ -64,6 +65,7 @@ public class WordReciteManager : MonoBehaviour
         yield return new WaitForSeconds(1);
         reciteText3D.UpdateText("." + currentWordList[currentWordIndex] + ".");
         yield return new WaitForSeconds(1);
+        _freeSpeechManager.ToggleListening(true);
         reciteText3D.UpdateText(currentWordList[currentWordIndex]);
         reciteText3D.Material = listeningColour;
     }
@@ -97,7 +99,6 @@ public class WordReciteManager : MonoBehaviour
             currentWordIndex++;
             Debug.Log("Increased index to " + currentWordIndex);
         }
-
         StartCoroutine(StartCurrentWordCountdown());
 
     }
@@ -113,6 +114,7 @@ public class WordReciteManager : MonoBehaviour
    
     public IEnumerator CheckRecitedWord(string text)
     {
+        _freeSpeechManager.ToggleListening(false);
         Debug.Log("Coroutine " + text);
         bool wordAnsweredCorrectly;
 
@@ -132,14 +134,10 @@ public class WordReciteManager : MonoBehaviour
 
         // Does their answer match the current word?
         wordAnsweredCorrectly = text.ToLower() == currentWordList[currentWordIndex].ToLower();
-        Debug.Log(wordAnsweredCorrectly);
-       // Debug.Log("Word answered correctly? " + wordAnsweredCorrectly);
-        Debug.Log("current: " + currentWordList[currentWordIndex] + " answer: " + text.ToLower() + " " + wordAnsweredCorrectly);
-        // Change text to reflect correct / incorrect 
 
+        // Change text to reflect correct / incorrect 
         reciteText3D.UpdateText(wordAnsweredCorrectly ? "Correct! :D " : "Incorrect :(");
 
-       // reciteText.text = wordAnsweredCorrectly ? "Correct! :D " : "Incorrect :(";
         yield return new WaitForSeconds(2);
 
         if (wordAnsweredCorrectly)
@@ -150,6 +148,7 @@ public class WordReciteManager : MonoBehaviour
         {
             StartCoroutine(WordAnsweredIncorrectly());
         }
+
 
     }
     void AddScoreToScoreManager()

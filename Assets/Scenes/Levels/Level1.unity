@@ -1578,6 +1578,7 @@ MonoBehaviour:
   incorrectColour: {fileID: 2100000, guid: dfa4872a000de054bb0c1c830a263904, type: 2}
   defaultColour: {fileID: 2100000, guid: ac605445953bb8d448dde47a525d047f, type: 2}
   listeningColour: {fileID: 2100000, guid: f8f321e22bea45a49bb0a21221efaa58, type: 2}
+  _freeSpeechManager: {fileID: 124211043}
   _scoreManager: {fileID: 803375946}
   _levelManager: {fileID: 1949416657}
   reciteText: {fileID: 0}

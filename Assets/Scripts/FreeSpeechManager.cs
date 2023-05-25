@@ -19,13 +19,17 @@ namespace MText
 
     2) Every second, the dots either side disappear
 
-    3) When the dots are all gone, the word turns yello and the microphone activates
+    3) When the dots are all gone, the word turns yellow and the microphone activates
+        --> Fire event to start listening and update text
 
     4) The user says the word
 
     5) The microphone deactivates and the word turns red if wrong, green if correct
+        --> Fire event to stop listening and update text
 
-    6) Next word starts from step 1
+
+
+    6) Next word starts from step 1 After a brief delay (1-2 sec?)
 
 */
 
@@ -46,7 +50,6 @@ namespace MText
         {
             uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
             scene = SceneManager.GetActiveScene();
-            partialText3D.UpdateText("(Listening)");
             StartCoroutine(StartListeningAgain());
         }
         public void MicActivityDetected()
@@ -70,6 +73,16 @@ namespace MText
             Debug.Log("Stopped!");
         }
 
+        public void ToggleListening (bool listening) {
+            if (listening) {
+                wit.Activate();
+                partialText3D.UpdateText("(Listening)");
+            } else {
+                wit.Deactivate();
+                partialText3D.UpdateText("(Stopped)");
+
+            }
+        }
         public IEnumerator StartListeningAgain()
         {
             yield return new WaitForSeconds(0.00001f);
@@ -83,7 +96,8 @@ namespace MText
 
         public void HandleFullTranscription(string text)
         {
-            StartCoroutine(HandleTranscriptionThenWait(text));
+            // StartCoroutine(ActivateTasksBasedOnTranscription(text));
+            ActivateTasksBasedOnTranscription(text);
         }
 
         void ActivateReciteTask(string text)
@@ -116,20 +130,21 @@ namespace MText
             }
         }
 
-        public IEnumerator HandleTranscriptionThenWait(string text)
+        public void ActivateTasksBasedOnTranscription(string text)
         {
-            wit.Deactivate();
-            partialText3D.UpdateText("(Stopped)");
+            ToggleListening(false);
             uiManager.CheckIfUICommandsWereSpoken(text.ToLower());
         
             // If Level 1 or 2, start checking the appropriate task
             ActivateReciteTask(text);
+
+            // Update the spoken text
             CalculateCachedText(text);
             fullText3D.UpdateText(cachedText);
 
-            yield return new WaitForSeconds(2);
-            partialText3D.UpdateText("(Listening)");
-            wit.Activate();
+            // yield return new WaitForSeconds(2);
+            // partialText3D.UpdateText("(Listening)");
+            // wit.Activate();
         }
 
      void CalculateCachedText(string newText) {
