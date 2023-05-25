@@ -9,12 +9,20 @@ public class WordReciteManager : MonoBehaviour
     private bool isDeciding = false;
     
     // Current word tracking
-    int currentWordIndex;
+    int currentWordOrSentenceIndex;
 
     // Word lists
-    string[] currentWordList;
+    string[] currentWordOrSentenceList;
     string[] changPaperWordList = new string[] { "hello","thirsty", "they", "hope", "up", "goodbye", "music", "tired", "nurse", "computer" };
+    string[] changPaperSentenceList = new string[] { 
+         "How do you like my music", "My glasses are comfortable", "What do you do", "I do not feel comfortable", "Bring my glasses here",
+         "You are not right", "That is very clean", "My family is here"
+    };
+
+    // Track if the lists have been completed
     bool changComplete;
+    
+    bool uiComplete;
 
     // Text colours
 
@@ -24,7 +32,8 @@ public class WordReciteManager : MonoBehaviour
     public Material listeningColour;
 
     string[] uiControlsWordList = new string[] { "one", "two", "three", "proceed", "next", "repeat", "back", "pause", "menu", "help" };
-    string emergencyStopWord = "emergency stop";
+    
+    string[] uiControlsSentenceList = new string[] { "go to main menu", "I would like to repeat sentences" };
 
     // External Managers
 
@@ -33,11 +42,7 @@ public class WordReciteManager : MonoBehaviour
     public ScoreManager _scoreManager;
     public LevelManager _levelManager;
 
-    bool uiComplete;
-
-    // UI elements
-    public TMPro.TextMeshPro reciteText;
-    private Modular3DText reciteText3D;
+    public Modular3DText reciteText3D;
 
     [SerializeField] private Wit wit;
 
@@ -46,29 +51,41 @@ public class WordReciteManager : MonoBehaviour
         uiComplete = false;
         changComplete = false;
 
-        _scoreManager.Level1MaxScore = (changPaperWordList.Length + uiControlsWordList.Length); // TODO set dynamically based on level
-        reciteText3D = GameObject.Find("ReciteText3D").GetComponent<Modular3DText>();
+Debug.Log(_levelManager.currentLevel);
+        if (_levelManager.currentLevel == "Level1")
+        {
+            _scoreManager.SetMaxScoreBasedOnWordListCount(changPaperWordList.Length + uiControlsWordList.Length);
+            currentWordOrSentenceList = changPaperWordList; 
+
+        }
+        else if (_levelManager.currentLevel == "Level2")
+        {
+            _scoreManager.SetMaxScoreBasedOnWordListCount(changPaperSentenceList.Length + uiControlsSentenceList.Length);
+            currentWordOrSentenceList = changPaperSentenceList;
+        }
+
         reciteText3D.Material = defaultColour;
 
         // Start with the first chang word
-        currentWordIndex = 0;
-        currentWordList = changPaperWordList; // TODO set dynamically based on level
+        currentWordOrSentenceIndex = 0;
 
         StartCoroutine(StartCurrentWordCountdown());
     }
 
     private IEnumerator StartCurrentWordCountdown()
     {
+        Debug.Log("in countdown");
         reciteText3D.Material = defaultColour;
+                Debug.Log("in countdown2");
+        reciteText3D.UpdateText("..." + currentWordOrSentenceList[currentWordOrSentenceIndex] + "...");
 
-        reciteText3D.UpdateText("..." + currentWordList[currentWordIndex] + "...");
         yield return new WaitForSeconds(1);
-        reciteText3D.UpdateText(".." + currentWordList[currentWordIndex] + "..");
+        reciteText3D.UpdateText(".." + currentWordOrSentenceList[currentWordOrSentenceIndex] + "..");
         yield return new WaitForSeconds(1);
-        reciteText3D.UpdateText("." + currentWordList[currentWordIndex] + ".");
+        reciteText3D.UpdateText("." + currentWordOrSentenceList[currentWordOrSentenceIndex] + ".");
         yield return new WaitForSeconds(1);
         _freeSpeechManager.ToggleListening(true);
-        reciteText3D.UpdateText(currentWordList[currentWordIndex]);
+        reciteText3D.UpdateText(currentWordOrSentenceList[currentWordOrSentenceIndex]);
         reciteText3D.Material = listeningColour;
     }
 
@@ -80,7 +97,6 @@ public class WordReciteManager : MonoBehaviour
 
     IEnumerator ChangeTimeOutText()
     {
-        //reciteText.text = "Timed out! Moving on...";
         reciteText3D.UpdateText("Timed out! Moving on...");
         yield return new WaitForSeconds(2);
         GoToNextWord();
@@ -96,9 +112,9 @@ public class WordReciteManager : MonoBehaviour
     void GoToNextWord()
     {
         // If the next word does not exceed the limit
-        if (currentWordIndex < currentWordList.Length-1)
+        if (currentWordOrSentenceIndex < currentWordOrSentenceList.Length-1)
         {
-            currentWordIndex++;
+            currentWordOrSentenceIndex++;
         }
         
         StartCoroutine(StartCurrentWordCountdown());
@@ -135,7 +151,7 @@ public class WordReciteManager : MonoBehaviour
         }
 
         // Does their answer match the current word?
-        wordAnsweredCorrectly = text.ToLower() == currentWordList[currentWordIndex].ToLower();
+        wordAnsweredCorrectly = text.ToLower() == currentWordOrSentenceList[currentWordOrSentenceIndex].ToLower();
 
         // Change text to reflect correct / incorrect 
         reciteText3D.UpdateText(wordAnsweredCorrectly ? "Correct! " : "Incorrect.");
@@ -157,7 +173,15 @@ public class WordReciteManager : MonoBehaviour
     void AddScoreToScoreManager()
     {
         Debug.Log("Adding score in word manager");
-        _scoreManager.Level1CurrentScore = _scoreManager.Level1CurrentScore + 1;
+         if (_levelManager.currentLevel == "Level1")
+        {
+            _scoreManager.Level1CurrentScore = _scoreManager.Level1CurrentScore + 1;
+
+        }
+        else if (_levelManager.currentLevel == "Level2")
+        {
+            _scoreManager.Level2CurrentScore = _scoreManager.Level2CurrentScore + 1;
+        }
     }
 
     IEnumerator WordAnsweredIncorrectly()
@@ -170,17 +194,15 @@ public class WordReciteManager : MonoBehaviour
 
     void MoveOnIfMoreWordsInList ()
     {
-        if (currentWordIndex < currentWordList.Length - 1)
+        if (currentWordOrSentenceIndex < currentWordOrSentenceList.Length - 1)
         {
-            Debug.Log("There are more words in this list");
             GoToNextWord();
         }
 
         else
         {
-            Debug.Log("NO MORE words in this list");
-            if (currentWordList == changPaperWordList) { changComplete = true; }
-            if (currentWordList == uiControlsWordList) { uiComplete = true; }
+            if (currentWordOrSentenceList == changPaperWordList) { changComplete = true; }
+            if (currentWordOrSentenceList == uiControlsWordList) { uiComplete = true; }
             StartCoroutine(CheckWordListStatus());
         }
     }
@@ -193,24 +215,21 @@ public class WordReciteManager : MonoBehaviour
 
     IEnumerator CheckWordListStatus()
     {
-        Debug.Log("Checking word list ");
-
         // Either proceed to next word list, or end the game.
 
         if (changComplete && !uiComplete)
         { 
-            currentWordList = uiControlsWordList;
-            currentWordIndex = 0;
+            currentWordOrSentenceList = uiControlsWordList;
+            currentWordOrSentenceIndex = 0;
             reciteText3D.UpdateText("Great! Moving onto UI word list.");
 
-            //reciteText.text = "Great! Moving onto UI word list.";
             yield return new WaitForSeconds(2);
             StartCoroutine(StartCurrentWordCountdown());
             
         }
         else if (changComplete && uiComplete)
         {
-            currentWordIndex = 0;
+            currentWordOrSentenceIndex = 0;
             reciteText3D.UpdateText("Finished!");
 
             GameOver();

@@ -1263,7 +1263,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &483751553
 Transform:
   m_ObjectHideFlags: 0
@@ -1379,7 +1379,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &613630358
 Transform:
   m_ObjectHideFlags: 0
@@ -1407,9 +1407,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8f78cde7c696394ea1e5fe99e32c7b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  correctColour: {fileID: 2100000, guid: 5562c698b21c8924a84fa2abb367f9cd, type: 2}
+  incorrectColour: {fileID: 2100000, guid: dfa4872a000de054bb0c1c830a263904, type: 2}
+  defaultColour: {fileID: 2100000, guid: ac605445953bb8d448dde47a525d047f, type: 2}
+  listeningColour: {fileID: 2100000, guid: f8f321e22bea45a49bb0a21221efaa58, type: 2}
+  _freeSpeechManager: {fileID: 1967914793}
   _scoreManager: {fileID: 803375946}
   _levelManager: {fileID: 1949416657}
-  reciteText: {fileID: 395237420}
+  reciteText3D: {fileID: 1492968593}
   wit: {fileID: 723296576}
 --- !u!1 &698143170
 GameObject:
@@ -2931,6 +2936,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45d100e06f4a0744c8728e86700b5472, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1492968593 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6031666213536457141, guid: 7de4a9e7ce2cf424e9e77acca7673856, type: 3}
+  m_PrefabInstance: {fileID: 1492968590}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45d100e06f4a0744c8728e86700b5472, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1531630141
 GameObject:
   m_ObjectHideFlags: 0
@@ -3887,6 +3903,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scoreManager: {fileID: 803375946}
+  currentLevel: 
 --- !u!1 &1951320423
 GameObject:
   m_ObjectHideFlags: 0
@@ -4139,7 +4156,6 @@ MonoBehaviour:
   sentenceReciteManager: {fileID: 483751554}
   partialText3D: {fileID: 1492968592}
   fullText3D: {fileID: 1492968591}
-  debugText: {fileID: 480871094}
   cachedText: 
 --- !u!1 &1981672987
 GameObject:

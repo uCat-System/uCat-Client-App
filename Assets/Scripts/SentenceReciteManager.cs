@@ -9,9 +9,7 @@ public class SentenceReciteManager : MonoBehaviour
 {
 
     private bool isDeciding = false;
-    // For tracking if the user is repeating a word currently
-    // private bool isLastAttemptAtWord;
-
+    
     // Current word tracking
     int currentWordIndex = 0;
 
@@ -21,8 +19,6 @@ public class SentenceReciteManager : MonoBehaviour
          "How do you like my music", "My glasses are comfortable", "What do you do", "I do not feel comfortable", "Bring my glasses here",
          "You are not right", "That is very clean", "My family is here"
     };
-
-    //string[] changPaperSentenceList = new string[] { "How do you like my music" };
 
     bool changComplete;
     string[] uiControlsWordList = new string[] { "go to main menu", "I would like to repeat sentences" };

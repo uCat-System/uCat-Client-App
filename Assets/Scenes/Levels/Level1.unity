@@ -1581,7 +1581,7 @@ MonoBehaviour:
   _freeSpeechManager: {fileID: 124211043}
   _scoreManager: {fileID: 803375946}
   _levelManager: {fileID: 1949416657}
-  reciteText: {fileID: 0}
+  reciteText3D: {fileID: 2099836998}
   wit: {fileID: 723296576}
 --- !u!43 &969816865
 Mesh:
@@ -2676,6 +2676,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scoreManager: {fileID: 803375946}
+  currentLevel: 
 --- !u!1 &1951320423
 GameObject:
   m_ObjectHideFlags: 0
@@ -2777,6 +2778,17 @@ LightingSettings:
   m_PVRFilteringAtrousPositionSigmaAO: 1
   m_PVRTiledBaking: 0
   m_NumRaysToShootPerTexel: -1
+--- !u!114 &2099836998 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6031666213536457141, guid: 7de4a9e7ce2cf424e9e77acca7673856, type: 3}
+  m_PrefabInstance: {fileID: 5679632975356212485}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45d100e06f4a0744c8728e86700b5472, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2110937588 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5679632974360997105, guid: 7de4a9e7ce2cf424e9e77acca7673856, type: 3}

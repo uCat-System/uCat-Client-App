@@ -37,8 +37,6 @@ namespace MText
         private UIManager uiManager;
 
         public WordReciteManager wordReciteManager;
-        public SentenceReciteManager sentenceReciteManager;
-
         public Modular3DText partialText3D;
         public Modular3DText fullText3D;
 
@@ -102,32 +100,12 @@ namespace MText
 
         void ActivateReciteTask(string text)
         {
-            switch (scene.name)
-            {
-                case "Level1":
-                    wordReciteManager.StartWordCheck(text);
-                    break;
-                case "Level2":
-                    sentenceReciteManager.StartSentenceCheck(text);
-                    break;
-                default:
-                    break;
-            }
+             wordReciteManager.StartWordCheck(text);
         }
 
         void HandleInactivityFailure()
         {
-            switch (scene.name)
-            {
-                case "Level1":
-                    wordReciteManager.OnMicrophoneTimeOut();
-                    break;
-                case "Level2":
-                    sentenceReciteManager.OnMicrophoneTimeOut();
-                    break;
-                default:
-                    break;
-            }
+            wordReciteManager.OnMicrophoneTimeOut();
         }
 
         public void ActivateTasksBasedOnTranscription(string text)

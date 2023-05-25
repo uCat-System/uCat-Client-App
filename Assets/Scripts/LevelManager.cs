@@ -7,6 +7,17 @@ public class LevelManager : MonoBehaviour
 {
     public ScoreManager _scoreManager;
 
+    public string currentLevel;
+
+    public void Awake()
+    {
+        Scene scene = SceneManager.GetActiveScene();
+        currentLevel = scene.name;
+                Debug.Log("Level manager started");
+        Debug.Log("Current level is " + currentLevel);
+
+    }
+
     public void RepeatLevel() {
         Scene scene = SceneManager.GetActiveScene();
         Debug.Log("Repeating level " + scene.name);
