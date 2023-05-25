@@ -59,6 +59,8 @@ public class WordReciteManager : MonoBehaviour
 
     private IEnumerator StartCurrentWordCountdown()
     {
+        reciteText3D.Material = defaultColour;
+
         reciteText3D.UpdateText("..." + currentWordList[currentWordIndex] + "...");
         yield return new WaitForSeconds(1);
         reciteText3D.UpdateText(".." + currentWordList[currentWordIndex] + "..");
@@ -97,8 +99,8 @@ public class WordReciteManager : MonoBehaviour
         if (currentWordIndex < currentWordList.Length-1)
         {
             currentWordIndex++;
-            Debug.Log("Increased index to " + currentWordIndex);
         }
+        
         StartCoroutine(StartCurrentWordCountdown());
 
     }
@@ -136,7 +138,8 @@ public class WordReciteManager : MonoBehaviour
         wordAnsweredCorrectly = text.ToLower() == currentWordList[currentWordIndex].ToLower();
 
         // Change text to reflect correct / incorrect 
-        reciteText3D.UpdateText(wordAnsweredCorrectly ? "Correct! :D " : "Incorrect :(");
+        reciteText3D.UpdateText(wordAnsweredCorrectly ? "Correct! " : "Incorrect.");
+        reciteText3D.Material = wordAnsweredCorrectly ? correctColour : incorrectColour;
 
         yield return new WaitForSeconds(2);
 
