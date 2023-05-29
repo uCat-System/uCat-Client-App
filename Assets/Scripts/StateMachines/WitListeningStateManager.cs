@@ -15,7 +15,6 @@ public class WitListeningStateManager : MonoBehaviour
     {
         witModule = GameObject.FindWithTag("Wit").GetComponent<Wit>();
         listeningText3D = GameObject.FindWithTag("ListeningText3D").GetComponent<Modular3DText>();
-        listeningText3D.UpdateText("Initializing...");
         if (witListeningStateMachine == null)
         {
             Debug.LogError("WitListeningStateMachine is not assigned.");
