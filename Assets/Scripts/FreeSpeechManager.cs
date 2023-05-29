@@ -113,16 +113,17 @@ namespace MText
             ToggleListening(false);
             uiManager.CheckIfUICommandsWereSpoken(text.ToLower());
         
-            // If Level 1 or 2, start checking the appropriate task
-            ActivateReciteTask(text);
+            if (SceneManager.GetActiveScene().name != "Level3")
+            {
+                ActivateReciteTask(text);
+            } else {
+                ToggleListening(true);
+            }
+
 
             // Update the spoken text
             CalculateCachedText(text);
             fullText3D.UpdateText(cachedText);
-
-            // yield return new WaitForSeconds(2);
-            // partialText3D.UpdateText("(Listening)");
-            // wit.Activate();
         }
 
      void CalculateCachedText(string newText) {

@@ -523,9 +523,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2a118f7b54db0b4483cf032a15f567f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  createdCube: {fileID: 2418990838047371235, guid: 067d5fd9d7ae93447b7b153df6f49552, type: 3}
-  createdSphere: {fileID: 7926749473406123922, guid: 47fe4130f1204784e8683107f18e96ee, type: 3}
-  spawnDistance: 2
 --- !u!1 &369620723
 GameObject:
   m_ObjectHideFlags: 0
@@ -2150,9 +2147,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8f78cde7c696394ea1e5fe99e32c7b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  correctColour: {fileID: 2100000, guid: 5562c698b21c8924a84fa2abb367f9cd, type: 2}
+  incorrectColour: {fileID: 2100000, guid: dfa4872a000de054bb0c1c830a263904, type: 2}
+  defaultColour: {fileID: 2100000, guid: ac605445953bb8d448dde47a525d047f, type: 2}
+  listeningColour: {fileID: 2100000, guid: f8f321e22bea45a49bb0a21221efaa58, type: 2}
+  _freeSpeechManager: {fileID: 1265131502}
   _scoreManager: {fileID: 803375946}
   _levelManager: {fileID: 1949416657}
-  reciteText: {fileID: 2125899832}
+  reciteText3D: {fileID: 1607878584}
   wit: {fileID: 723296576}
 --- !u!43 &1000156068
 Mesh:
@@ -2926,10 +2928,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wit: {fileID: 723296576}
   wordReciteManager: {fileID: 863806887}
-  sentenceReciteManager: {fileID: 483751554}
   partialText3D: {fileID: 1607878582}
   fullText3D: {fileID: 1607878583}
-  debugText: {fileID: 480871094}
   cachedText: 
 --- !u!1 &1285427756
 GameObject:
@@ -3420,6 +3420,17 @@ MonoBehaviour:
 --- !u!114 &1607878583 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5679632974360997105, guid: 7de4a9e7ce2cf424e9e77acca7673856, type: 3}
+  m_PrefabInstance: {fileID: 1607878581}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45d100e06f4a0744c8728e86700b5472, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1607878584 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6031666213536457141, guid: 7de4a9e7ce2cf424e9e77acca7673856, type: 3}
   m_PrefabInstance: {fileID: 1607878581}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -4103,6 +4114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scoreManager: {fileID: 803375946}
+  currentLevel: 
 --- !u!1 &1951320423
 GameObject:
   m_ObjectHideFlags: 0
