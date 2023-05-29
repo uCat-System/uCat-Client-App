@@ -44,6 +44,7 @@ public class WordReciteManager : MonoBehaviour
 
     public FreeSpeechManager _freeSpeechManager;
 
+    WitListeningStateManager _witListeningStateManager;
     public ScoreManager _scoreManager;
     public LevelManager _levelManager;
 
@@ -53,10 +54,11 @@ public class WordReciteManager : MonoBehaviour
 
     void Start()
     {
+        _witListeningStateManager = GameObject.FindWithTag("WitListeningStateManager").GetComponent<WitListeningStateManager>();
         uiComplete = false;
         changComplete = false;
 
-Debug.Log(_levelManager.currentLevel);
+        Debug.Log(_levelManager.currentLevel);
         if (_levelManager.currentLevel == "Level1")
         {
             _scoreManager.SetMaxScoreBasedOnWordListCount(changPaperWordList.Length + uiControlsWordList.Length);
@@ -88,7 +90,8 @@ Debug.Log(_levelManager.currentLevel);
         yield return new WaitForSeconds(1);
         reciteText3D.UpdateText("." + currentWordOrSentenceList[currentWordOrSentenceIndex] + ".");
         yield return new WaitForSeconds(1);
-        _freeSpeechManager.ToggleListening(true);
+        // _freeSpeechManager.ToggleListening(true);
+        _witListeningStateManager.ChangeState("ListeningForMenuCommandsOnly");
         reciteText3D.UpdateText(currentWordOrSentenceList[currentWordOrSentenceIndex]);
         reciteText3D.Material = listeningColour;
     }
@@ -136,7 +139,7 @@ Debug.Log(_levelManager.currentLevel);
    
     public IEnumerator CheckRecitedWord(string text)
     {
-        _freeSpeechManager.ToggleListening(false);
+        // _freeSpeechManager.ToggleListening(false);
         Debug.Log("Coroutine " + text);
         bool wordAnsweredCorrectly;
 
