@@ -13,7 +13,10 @@ public class WordReciteManager : MonoBehaviour
 
     // Word lists
     string[] currentWordOrSentenceList;
-    string[] changPaperWordList = new string[] { "hello","thirsty", "they", "hope", "up", "goodbye", "music", "tired", "nurse", "computer" };
+    // string[] changPaperWordList = new string[] { "hello","thirsty", "they", "hope", "up", "goodbye", "music", "tired", "nurse", "computer" };
+
+    string[] changPaperWordList = new string[] { "hello" };
+
     string[] changPaperSentenceList = new string[] { 
          "How do you like my music", "My glasses are comfortable", "What do you do", "I do not feel comfortable", "Bring my glasses here",
          "You are not right", "That is very clean", "My family is here"
@@ -31,7 +34,9 @@ public class WordReciteManager : MonoBehaviour
     public Material defaultColour;
     public Material listeningColour;
 
-    string[] uiControlsWordList = new string[] { "one", "two", "three", "proceed", "next", "repeat", "back", "pause", "menu", "help" };
+    // string[] uiControlsWordList = new string[] { "one", "two", "three", "proceed", "next", "repeat", "back", "pause", "menu", "help" };
+        string[] uiControlsWordList = new string[] { "one" };
+
     
     string[] uiControlsSentenceList = new string[] { "go to main menu", "I would like to repeat sentences" };
 
@@ -76,7 +81,6 @@ Debug.Log(_levelManager.currentLevel);
     {
         Debug.Log("in countdown");
         reciteText3D.Material = defaultColour;
-                Debug.Log("in countdown2");
         reciteText3D.UpdateText("..." + currentWordOrSentenceList[currentWordOrSentenceIndex] + "...");
 
         yield return new WaitForSeconds(1);
@@ -243,6 +247,7 @@ Debug.Log(_levelManager.currentLevel);
 
     void GameOver()
     {
+        _scoreManager.DisplayScoreInPartialTextSection();
         reciteText3D.UpdateText("Say 'next' to proceed.\nOr 'repeat' to repeat sentences.");
         isDeciding = true;
     }

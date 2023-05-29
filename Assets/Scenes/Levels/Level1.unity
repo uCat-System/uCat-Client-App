@@ -298,21 +298,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wit: {fileID: 723296576}
   wordReciteManager: {fileID: 863806887}
-  sentenceReciteManager: {fileID: 0}
   partialText3D: {fileID: 760428953}
   fullText3D: {fileID: 2110937588}
   cachedText: 
---- !u!114 &126268229 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5679632975264024128, guid: 7de4a9e7ce2cf424e9e77acca7673856, type: 3}
-  m_PrefabInstance: {fileID: 5679632975356212485}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &283760246
 GameObject:
   m_ObjectHideFlags: 0
@@ -1259,7 +1247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54ff313620fffe440bc118de614e78c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreText: {fileID: 126268229}
+  partialText3D: {fileID: 0}
   level2MaxScore: 10
 --- !u!1 &815290690
 GameObject:
@@ -2991,6 +2979,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5001781797526397808, guid: 7de4a9e7ce2cf424e9e77acca7673856, type: 3}
+      propertyPath: m_TagString
+      value: ReciteText3D
+      objectReference: {fileID: 0}
     - target: {fileID: 5679632974449892121, guid: 7de4a9e7ce2cf424e9e77acca7673856, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -3046,6 +3038,10 @@ PrefabInstance:
     - target: {fileID: 5679632975711472796, guid: 7de4a9e7ce2cf424e9e77acca7673856, type: 3}
       propertyPath: wordArray.Array.data[0]
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8172365575194481798, guid: 7de4a9e7ce2cf424e9e77acca7673856, type: 3}
+      propertyPath: m_TagString
+      value: PartialText3D
       objectReference: {fileID: 0}
     - target: {fileID: 8573452034154006925, guid: 7de4a9e7ce2cf424e9e77acca7673856, type: 3}
       propertyPath: m_Mesh

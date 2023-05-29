@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using MText;
+
 
 
 public class ScoreManager : MonoBehaviour
 {
-    public TMPro.TextMeshPro scoreText;
+    public Modular3DText partialText3D;
     private int level1CurrentScore = 0;
     private int level2CurrentScore = 0;
     
@@ -19,8 +21,6 @@ public class ScoreManager : MonoBehaviour
         set
         {
             level1MaxScore = value;
-            Debug.Log("Just set level 1 max to " + value.ToString());
-
         }
     }
 
@@ -29,10 +29,7 @@ public class ScoreManager : MonoBehaviour
         get { return level1CurrentScore; }
         set
         {
-                    Debug.Log("Adding score in score manager to " + level1CurrentScore.ToString());
-
             level1CurrentScore = value;
-            UpdateScoreUIBasedOnCurrentLevel();
 
         }
     }
@@ -53,7 +50,6 @@ public class ScoreManager : MonoBehaviour
         set
         {
             level2CurrentScore = value;
-            UpdateScoreUIBasedOnCurrentLevel();
         }
     }
 
@@ -73,30 +69,25 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-
-    public void ShowScoreAtEndOfLevel()
-    {
-        scoreText.gameObject.SetActive(true);
-    }
-
     // Mange the score globally accross all scenes for the current player.
     // Eventually include database storage as well.
     void Start()
     {
-        UpdateScoreUIBasedOnCurrentLevel();
+        partialText3D = GameObject.FindWithTag("PartialText3D").GetComponent<Modular3DText>();
     }
 
-    void UpdateScoreUIBasedOnCurrentLevel()
+    public void DisplayScoreInPartialTextSection()
     {
         Debug.Log("Updating score UI");
         Scene scene = SceneManager.GetActiveScene();
         switch (scene.name)
         {
             case "Level1":
-                scoreText.text = "Score: " + level1CurrentScore.ToString() + " / " + Level1MaxScore.ToString();
+                partialText3D.UpdateText("Level 1 Score: " + level1CurrentScore.ToString() + " / " + Level1MaxScore.ToString());
                 break;
             case "Level2":
-                 scoreText.text = "Score: " + Level2CurrentScore.ToString() + " / " + Level2MaxScore.ToString();
+                partialText3D.UpdateText("Level 2 Score: " + level2CurrentScore.ToString() + " / " + Level2MaxScore.ToString());
+
                  break;
             default:
                 break;
