@@ -11,6 +11,9 @@ public class UIManager : MonoBehaviour
 
      public Animator animator;
 
+     public WitListeningStateManager _witListeningStateManager;
+    public WordReciteManager _wordReciteManager;
+
      List<string> acceptableWakeWords = new List<string>()
     {
         "activate menu",
@@ -36,11 +39,14 @@ public class UIManager : MonoBehaviour
 
     public void CheckIfUICommandsWereSpoken(string text) {
         // text is input as lower case from FreeSpeechManager
-        Debug.Log("Listening for menu commands: " + text);
 
         // Listen for any of the wake phrases
         if (!menu.activeInHierarchy && acceptableWakeWords.Any(text.Contains))
         {
+            _wordReciteManager.isCountdownPaused = true;
+            _wordReciteManager.StopAllCoroutines();
+
+            // _witListeningStateManager.ChangeState("ListeningForMenuCommandsOnly");
             menu.SetActive(true);
         }
 
@@ -92,20 +98,22 @@ public class UIManager : MonoBehaviour
 
      private System.Collections.IEnumerator WaitForAnimationToEnd()
     {
-        Debug.Log("Waiting for animation to end");
         while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1)
         {
-            Debug.Log("Animation playing");
             yield return null;
         }
-        Debug.Log("Animation ended");
+        // _witListeningStateManager.ChangeState("ListeningForEverything");
+        _wordReciteManager.isCountdownPaused = false;
+
+        // if the current level is "Level1" or "Level2":
+        // if (SceneManager.GetActiveScene().name == "Level1" || SceneManager.GetActiveScene().name == "Level2") {
+        //     // unpause the countdown
+        //     Debug.Log("Menu Closed. repeating word");
+        //     _wordReciteManager.RepeatSameWord();
+        // }
         menu.SetActive(false);
     }
 
-    public void ActivateMenu() 
-    {
-        menu.SetActive(true);
-    }
     void Start()
     {
         menu.SetActive(false);

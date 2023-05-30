@@ -18,13 +18,13 @@ public class WitActivation : MonoBehaviour
 
    public void TriggerPressed(InputAction.CallbackContext context){
         if (context.performed){
-            WitActivate();
+            // WitActivate();
         }
 
    }
    public void WitActivate()
    {
-        wit.Activate();   
+        // wit.Activate();   
    }
 
     // Use space to debug (luke)

@@ -40,6 +40,8 @@ namespace MText
         public Modular3DText partialText3D;
         public Modular3DText fullText3D;
 
+        public WitListeningStateManager _witListeningStateManager;
+
         public string cachedText = "";
 
         Scene scene;
@@ -48,7 +50,6 @@ namespace MText
         {
             uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
             scene = SceneManager.GetActiveScene();
-            StartCoroutine(StartListeningAgain());
         }
         public void MicActivityDetected()
         {
@@ -57,35 +58,23 @@ namespace MText
     
         public void StoppedListeningDueToInactivity()
         {
-            Debug.Log("Stopped due to inactivity!");
             HandleInactivityFailure();
         }
 
         public void StoppedListeningDueToTimeout()
         {
-            Debug.Log("Stopped due to timeout!");
             HandleInactivityFailure();
         }
         public void StoppedListening()
         {
-            Debug.Log("Stopped!");
+            // Debug.Log("Stopped!");
         }
 
-        public void ToggleListening (bool listening) {
-            if (listening) {
-                wit.Activate();
-                partialText3D.UpdateText("(Listening)");
-            } else {
-                wit.Deactivate();
-                partialText3D.UpdateText("(Stopped)");
-
-            }
-        }
-        public IEnumerator StartListeningAgain()
-        {
-            yield return new WaitForSeconds(0.00001f);
-            wit.Activate();
-        }
+        // public IEnumerator StartListeningAgain()
+        // {
+        //     yield return new WaitForSeconds(0.00001f);
+        //     wit.Activate();
+        // }
 
         public void HandlePartialTranscription(string text)
         {
@@ -110,14 +99,14 @@ namespace MText
 
         public void ActivateTasksBasedOnTranscription(string text)
         {
-            ToggleListening(false);
             uiManager.CheckIfUICommandsWereSpoken(text.ToLower());
         
             if (SceneManager.GetActiveScene().name != "Level3")
             {
                 ActivateReciteTask(text);
             } else {
-                ToggleListening(true);
+                // _witListeningStateManager.ChangeState("ListeningForEverything");
+                // ToggleListening(true);
             }
 
 

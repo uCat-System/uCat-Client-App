@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 22967359}
   m_Layer: 0
   m_Name: UIManager
-  m_TagString: Untagged
+  m_TagString: UIManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -168,6 +168,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 858645786}
+  _witListeningStateManager: {fileID: 1143570482}
+  _wordReciteManager: {fileID: 863806887}
   menu: {fileID: 858645785}
 --- !u!1 &107773043
 GameObject:
@@ -300,6 +302,7 @@ MonoBehaviour:
   wordReciteManager: {fileID: 863806887}
   partialText3D: {fileID: 760428953}
   fullText3D: {fileID: 2110937588}
+  _witListeningStateManager: {fileID: 1143570482}
   cachedText: 
 --- !u!1 &283760246
 GameObject:
@@ -900,10 +903,10 @@ MonoBehaviour:
     OnStoppedListening:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
-          m_MethodName: set_text
-          m_Mode: 5
+        - m_Target: {fileID: 1143570482}
+          m_TargetAssemblyTypeName: WitListeningStateManager, Assembly-CSharp
+          m_MethodName: StoppedListening
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -985,6 +988,18 @@ MonoBehaviour:
           m_TargetAssemblyTypeName: FreeSpeechManager, Assembly-CSharp
           m_MethodName: HandleFullTranscription
           m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1143570482}
+          m_TargetAssemblyTypeName: WitListeningStateManager, Assembly-CSharp
+          m_MethodName: DetectUICommandsInWitListeningStateManager
+          m_Mode: 5
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1567,6 +1582,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8f78cde7c696394ea1e5fe99e32c7b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isCountdownPaused: 0
   correctColour: {fileID: 2100000, guid: 5562c698b21c8924a84fa2abb367f9cd, type: 2}
   incorrectColour: {fileID: 2100000, guid: dfa4872a000de054bb0c1c830a263904, type: 2}
   defaultColour: {fileID: 2100000, guid: ac605445953bb8d448dde47a525d047f, type: 2}
@@ -1998,6 +2014,17 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!114 &1143570482 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7628463447719289227, guid: aeef7c9b1dabd6f4bb2121a6b3e0abf2, type: 3}
+  m_PrefabInstance: {fileID: 7628463448192343632}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60a6e82f4bf988941b65bbe8ceb9c213, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1218636426
 GameObject:
   m_ObjectHideFlags: 0
@@ -3024,6 +3051,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7628463447719289227, guid: aeef7c9b1dabd6f4bb2121a6b3e0abf2, type: 3}
+      propertyPath: witModule
+      value: 
+      objectReference: {fileID: 723296576}
+    - target: {fileID: 7628463447719289227, guid: aeef7c9b1dabd6f4bb2121a6b3e0abf2, type: 3}
+      propertyPath: _uiManager
+      value: 
+      objectReference: {fileID: 22967359}
     - target: {fileID: 7628463447719289227, guid: aeef7c9b1dabd6f4bb2121a6b3e0abf2, type: 3}
       propertyPath: listeningText3D
       value: 

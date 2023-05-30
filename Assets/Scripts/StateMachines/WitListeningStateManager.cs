@@ -2,17 +2,24 @@ using System;
 using UnityEngine;
 using MText;
 using Meta.WitAi;
+using UnityEngine.SceneManagement;
+using System.Collections;
+using System.Collections.Generic;
+
 
 
 public class WitListeningStateManager : MonoBehaviour
 {
     public Modular3DText listeningText3D;
+    public UIManager _uiManager;
 
     public WitListeningStateMachine witListeningStateMachine;
     public Wit witModule;
 
-    private void Awake()
+    private void Start()
     {
+        ChangeState("ListeningForEverything");
+        _uiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
         witModule = GameObject.FindWithTag("Wit").GetComponent<Wit>();
         listeningText3D = GameObject.FindWithTag("ListeningText3D").GetComponent<Modular3DText>();
         if (witListeningStateMachine == null)
@@ -24,14 +31,36 @@ public class WitListeningStateManager : MonoBehaviour
 
        public void ActivateWit()
         {
+            Debug.Log("Wit activated.");
+            witModule.Deactivate();
             witModule.Activate();
         }
 
         public void DeactivateWit()
         {
+            Debug.Log("Wit deactivated.");
             witModule.Deactivate();
         }
 
+    public void DetectUICommandsInWitListeningStateManager(string text) {
+        // if the state is ListeningForMenuCommandsOnly OR ListeningForEverything,
+        // check if the spoken text is in the menuCommandPhrases list:
+        if (witListeningStateMachine.currentState == WitListeningStateMachine.State.ListeningForMenuCommandsOnly ||
+            witListeningStateMachine.currentState == WitListeningStateMachine.State.ListeningForEverything)
+        {
+            _uiManager.CheckIfUICommandsWereSpoken(text);
+        }
+    }
+
+    public void StoppedListening() {
+        Debug.Log("Stopped!");
+        StartCoroutine(StartListeningAgain());
+    }
+
+    private IEnumerator StartListeningAgain() {
+        yield return new WaitForSeconds(0.00001f);
+        ChangeState("ListeningForEverything");
+    }
 
     // This is called from the WitListeningStateMachine script using actual enum values.
 

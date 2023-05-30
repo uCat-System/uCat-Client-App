@@ -54,7 +54,6 @@ public class ScoreManager : MonoBehaviour
     }
 
     public void SetMaxScoreBasedOnWordListCount(int count) {
-        Debug.Log("Setting max score to " + count.ToString());
         Scene scene = SceneManager.GetActiveScene();
         switch (scene.name)
         {
@@ -78,7 +77,6 @@ public class ScoreManager : MonoBehaviour
 
     public void DisplayScoreInPartialTextSection()
     {
-        Debug.Log("Updating score UI");
         Scene scene = SceneManager.GetActiveScene();
         switch (scene.name)
         {
