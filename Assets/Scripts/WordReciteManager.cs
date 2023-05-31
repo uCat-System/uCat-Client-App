@@ -7,8 +7,9 @@ using MText;
 public class WordReciteManager : MonoBehaviour
 {
     private bool isDeciding = false;
+    public bool resuming = false;
 
-    public bool isCountdownPaused = false;
+    // public bool isCountdownPaused = false;
     
     // Current word tracking
     int currentWordOrSentenceIndex;
@@ -52,11 +53,13 @@ public class WordReciteManager : MonoBehaviour
     public LevelManager _levelManager;
 
     public Modular3DText reciteText3D;
+    public Modular3DText partialText3D;
 
     [SerializeField] private Wit wit;
 
     void Start()
     {
+        partialText3D = GameObject.FindWithTag("PartialText3D").GetComponent<Modular3DText>();
         _witListeningStateManager = GameObject.FindWithTag("WitListeningStateManager").GetComponent<WitListeningStateManager>();
         uiComplete = false;
         changComplete = false;
@@ -82,12 +85,8 @@ public class WordReciteManager : MonoBehaviour
 
     public IEnumerator StartCurrentWordCountdown()
     {
-        if (isCountdownPaused)
-        {
-            Debug.Log("Countdown paused, breaking");
-            yield break;
-        }
-        Debug.Log("in countdown");
+        partialText3D.UpdateText("");
+
         reciteText3D.Material = defaultColour;
         string word = currentWordOrSentenceList[currentWordOrSentenceIndex];
         
@@ -109,10 +108,6 @@ public class WordReciteManager : MonoBehaviour
            
             yield return new WaitForSeconds(1);
         }
-
-        // _witListeningStateManager.ChangeState("ListeningForRecitedWordsOnly");
-        // yield return new WaitUntil(() => !isCountdownPaused); // Wait until countdown is not paused
-
         reciteText3D.UpdateText(word);
         reciteText3D.Material = listeningColour;
     }
@@ -145,7 +140,7 @@ public class WordReciteManager : MonoBehaviour
         }
         
         // TODO re-enable
-        // StartCoroutine(StartCurrentWordCountdown());
+        StartCoroutine(StartCurrentWordCountdown());
 
     }
     public void RepeatSameWord()
@@ -164,11 +159,13 @@ public class WordReciteManager : MonoBehaviour
    
     public IEnumerator CheckRecitedWord(string text)
     {
-        Debug.Log("Checking recited word while paused is" +isCountdownPaused.ToString());
-        if (isCountdownPaused) {
-            Debug.Log("Countdown paused (RECITE CHECK), breaking");
-            string word = currentWordOrSentenceList[currentWordOrSentenceIndex];
-            reciteText3D.UpdateText("..." + word + "...");
+        // If the user just resumed, repeat the word countdown from the start   
+        if (resuming) {
+            Debug.Log("Resuming, breaking");
+            // StartCoroutine(StartCurrentWordCountdown());
+            resuming = false;
+                    Debug.Log("RESUMING IS FALSE");
+
             yield break;
         }
         bool wordAnsweredCorrectly;
@@ -187,7 +184,7 @@ public class WordReciteManager : MonoBehaviour
         // Does their answer match the current word?
         wordAnsweredCorrectly = text.ToLower() == currentWordOrSentenceList[currentWordOrSentenceIndex].ToLower();
 
-        Debug.Log("Continued on to correct stuff");
+
         // Change text to reflect correct / incorrect 
         reciteText3D.UpdateText(wordAnsweredCorrectly ? "Correct! " : "Incorrect.");
         reciteText3D.Material = wordAnsweredCorrectly ? correctColour : incorrectColour;

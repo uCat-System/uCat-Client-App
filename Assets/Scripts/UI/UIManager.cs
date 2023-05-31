@@ -43,7 +43,7 @@ public class UIManager : MonoBehaviour
         // Listen for any of the wake phrases
         if (!menu.activeInHierarchy && acceptableWakeWords.Any(text.Contains))
         {
-            _wordReciteManager.isCountdownPaused = true;
+            // _wordReciteManager.isCountdownPaused = true;
             _wordReciteManager.StopAllCoroutines();
 
             // _witListeningStateManager.ChangeState("ListeningForMenuCommandsOnly");
@@ -78,6 +78,8 @@ public class UIManager : MonoBehaviour
                 case "resume": 
                     animator.Play("CloseClip");
                     StartCoroutine(WaitForAnimationToEnd());
+                    _wordReciteManager.resuming = true;
+                    Debug.Log("RESUMING IS TRUE");
                     break;
                 case ("level one"):
                     SceneManager.LoadScene("Level1"); // Replace "Level1" with the name of your scene
@@ -103,7 +105,7 @@ public class UIManager : MonoBehaviour
             yield return null;
         }
         // _witListeningStateManager.ChangeState("ListeningForEverything");
-        _wordReciteManager.isCountdownPaused = false;
+        // _wordReciteManager.isCountdownPaused = false;
 
         // if the current level is "Level1" or "Level2":
         // if (SceneManager.GetActiveScene().name == "Level1" || SceneManager.GetActiveScene().name == "Level2") {
