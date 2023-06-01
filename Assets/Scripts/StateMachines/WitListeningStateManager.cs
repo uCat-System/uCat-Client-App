@@ -66,6 +66,8 @@ public class WitListeningStateManager : MonoBehaviour
 
     public void TransitionToState(WitListeningStateMachine.State nextState)
         {
+            listeningText3D.UpdateText(nextState.ToString());
+
             switch (nextState)
             {
                 case WitListeningStateMachine.State.NotListening:
@@ -89,7 +91,6 @@ public class WitListeningStateManager : MonoBehaviour
             }
 
             witListeningStateMachine.currentState = nextState;
-            listeningText3D.UpdateText(nextState.ToString());
 
             Debug.Log("WitListeningStateMachine transitioned to state: " + nextState);
         }

@@ -43,10 +43,7 @@ public class UIManager : MonoBehaviour
         // Listen for any of the wake phrases
         if (!menu.activeInHierarchy && acceptableWakeWords.Any(text.Contains))
         {
-            // _wordReciteManager.isCountdownPaused = true;
             _wordReciteManager.StopAllCoroutines();
-
-            // _witListeningStateManager.ChangeState("ListeningForMenuCommandsOnly");
             menu.SetActive(true);
         }
 

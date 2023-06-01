@@ -99,20 +99,21 @@ namespace MText
 
         public void ActivateTasksBasedOnTranscription(string text)
         {
+            _witListeningStateManager.ChangeState("NotListening");
             uiManager.CheckIfUICommandsWereSpoken(text.ToLower());
         
+            // Update the spoken text
+            CalculateCachedText(text);
+            fullText3D.UpdateText(cachedText);
+
             if (SceneManager.GetActiveScene().name != "Level3")
             {
                 ActivateReciteTask(text);
             } else {
-                // _witListeningStateManager.ChangeState("ListeningForEverything");
-                // ToggleListening(true);
+                _witListeningStateManager.ChangeState("ListeningForEverything");
             }
 
 
-            // Update the spoken text
-            CalculateCachedText(text);
-            fullText3D.UpdateText(cachedText);
         }
 
      void CalculateCachedText(string newText) {

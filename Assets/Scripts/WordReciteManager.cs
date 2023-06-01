@@ -161,11 +161,7 @@ public class WordReciteManager : MonoBehaviour
     {
         // If the user just resumed, repeat the word countdown from the start   
         if (resuming) {
-            Debug.Log("Resuming, breaking");
-            // StartCoroutine(StartCurrentWordCountdown());
             resuming = false;
-                    Debug.Log("RESUMING IS FALSE");
-
             yield break;
         }
         bool wordAnsweredCorrectly;
