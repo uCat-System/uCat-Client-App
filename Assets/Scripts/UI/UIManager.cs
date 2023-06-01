@@ -41,14 +41,20 @@ public class UIManager : MonoBehaviour
 
     public void CheckIfUICommandsWereSpoken(string text) {
         // text is input as lower case from FreeSpeechManager
-
+    Debug.Log("1");
         // Listen for any of the wake phrases
         if (!menu.activeInHierarchy && acceptableWakeWords.Any(text.Contains))
         {
             // TODO - hide recite board
+                Debug.Log("2");
+
             textElements.SetActive(false);
+                Debug.Log("3");
+
             _wordReciteManager.StopAllCoroutines();
+                Debug.Log("4");
             menu.SetActive(true);
+                Debug.Log("5");
         }
 
         if (menu.activeInHierarchy)
