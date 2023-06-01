@@ -140,6 +140,7 @@ public class WordReciteManager : MonoBehaviour
         }
         
         // TODO re-enable
+        _witListeningStateManager.ChangeState("ListeningForEverything");
         StartCoroutine(StartCurrentWordCountdown());
 
     }
@@ -150,6 +151,8 @@ public class WordReciteManager : MonoBehaviour
         // reciteText3D.UpdateText("..." + word + "...");
 
         // StopCoroutine(StartCurrentWordCountdown());
+        _witListeningStateManager.ChangeState("ListeningForEverything");
+    
         StartCoroutine(StartCurrentWordCountdown());
     }
     public void StartWordCheck(string transcription)
@@ -159,6 +162,7 @@ public class WordReciteManager : MonoBehaviour
    
     public IEnumerator CheckRecitedWord(string text)
     {
+        // Mic should be disabled / only listening for recite words here.
         // If the user just resumed, repeat the word countdown from the start   
         if (resuming) {
             resuming = false;
@@ -189,6 +193,7 @@ public class WordReciteManager : MonoBehaviour
 
         if (wordAnsweredCorrectly)
         {
+            Debug.Log("Word answered correctly");
             WordAnsweredCorrectly();
         }
         else
@@ -221,8 +226,11 @@ public class WordReciteManager : MonoBehaviour
 
     void MoveOnIfMoreWordsInList ()
     {
+        Debug.Log("checking if more words in list" + currentWordOrSentenceIndex + " " + currentWordOrSentenceList.Length);
         if (currentWordOrSentenceIndex < currentWordOrSentenceList.Length - 1)
         {
+                                Debug.Log("going to next word because index valid");
+
             GoToNextWord();
         }
 
@@ -236,6 +244,8 @@ public class WordReciteManager : MonoBehaviour
     void WordAnsweredCorrectly()
     {
         AddScoreToScoreManager();
+                    Debug.Log("moving on");
+
         MoveOnIfMoreWordsInList();
     }
 
