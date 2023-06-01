@@ -1111,7 +1111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resuming: 0
-  countingDown: 0
+  micDisabled: 0
   correctColour: {fileID: 2100000, guid: 5562c698b21c8924a84fa2abb367f9cd, type: 2}
   incorrectColour: {fileID: 2100000, guid: dfa4872a000de054bb0c1c830a263904, type: 2}
   defaultColour: {fileID: 2100000, guid: ac605445953bb8d448dde47a525d047f, type: 2}
@@ -1120,8 +1120,8 @@ MonoBehaviour:
   _scoreManager: {fileID: 803375946}
   _levelManager: {fileID: 1949416657}
   reciteText3D: {fileID: 2099836998}
-  partialText3D: {fileID: 0}
-  wit: {fileID: 723296576}
+  partialText3D: {fileID: 760428953}
+  wit: {fileID: 0}
 --- !u!43 &969816865
 Mesh:
   m_ObjectHideFlags: 0
@@ -2120,6 +2120,10 @@ PrefabInstance:
       propertyPath: listeningText3D
       value: 
       objectReference: {fileID: 1454543186}
+    - target: {fileID: 7628463447719289227, guid: aeef7c9b1dabd6f4bb2121a6b3e0abf2, type: 3}
+      propertyPath: _wordReciteManager
+      value: 
+      objectReference: {fileID: 863806887}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: aeef7c9b1dabd6f4bb2121a6b3e0abf2, type: 3}

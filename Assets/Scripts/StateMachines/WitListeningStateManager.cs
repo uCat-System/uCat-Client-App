@@ -22,7 +22,6 @@ public class WitListeningStateManager : MonoBehaviour
         _wordReciteManager = GameObject.FindWithTag("WordReciteManager").GetComponent<WordReciteManager>();
         ChangeState("NotListening");
         _uiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
-        witModule = GameObject.FindWithTag("Wit").GetComponent<Wit>();
         listeningText3D = GameObject.FindWithTag("ListeningText3D").GetComponent<Modular3DText>();
         if (witListeningStateMachine == null)
         {
@@ -33,15 +32,35 @@ public class WitListeningStateManager : MonoBehaviour
 
        public void ActivateWit()
         {
+            // Have to manually check if it exists since we turn Wit on and off 
+            GameObject witGameObject = GameObject.FindWithTag("Wit");
+            if (witGameObject != null && witGameObject.activeSelf)
+            {
+                witModule = witGameObject.GetComponent<Wit>();
+                
+                if (witModule != null)
+                {
+                    witModule.Activate();
+                }
+            }
+
             Debug.Log("Wit activated.");
-            witModule.Deactivate();
-            witModule.Activate();
         }
 
         public void DeactivateWit()
         {
-            Debug.Log("Wit deactivated.");
-            witModule.Deactivate();
+           GameObject witGameObject = GameObject.FindWithTag("Wit");
+            if (witGameObject != null && witGameObject.activeSelf)
+            {
+                witModule = witGameObject.GetComponent<Wit>();
+                
+                if (witModule != null)
+                {
+                    witModule.Deactivate();
+                }
+            }
+
+            Debug.Log("Wit dectivated.");
         }
 
     public void DetectUICommandsInWitListeningStateManager(string text) {
