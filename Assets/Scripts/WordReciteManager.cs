@@ -10,8 +10,6 @@ public class WordReciteManager : MonoBehaviour
     public bool resuming = false;
     public bool micDisabled = false;
 
-    // public bool isCountdownPaused = false;
-    
     // Current word tracking
     int currentWordOrSentenceIndex;
 
@@ -56,10 +54,11 @@ public class WordReciteManager : MonoBehaviour
     public Modular3DText reciteText3D;
     public Modular3DText partialText3D;
 
-    [SerializeField] private Wit wit;
+    [SerializeField] private GameObject wit;
 
     void Start()
     {
+        wit = GameObject.FindWithTag("Wit");
         partialText3D = GameObject.FindWithTag("PartialText3D").GetComponent<Modular3DText>();
         _witListeningStateManager = GameObject.FindWithTag("WitListeningStateManager").GetComponent<WitListeningStateManager>();
         uiComplete = false;
@@ -87,6 +86,8 @@ public class WordReciteManager : MonoBehaviour
     public IEnumerator StartCurrentWordCountdown()
     {
         micDisabled = true;
+        wit.gameObject.SetActive(false);
+
         partialText3D.UpdateText("");
         _witListeningStateManager.ChangeState("NotListening");
         reciteText3D.Material = defaultColour;
@@ -113,6 +114,8 @@ public class WordReciteManager : MonoBehaviour
 
         // Countdown finished, start listening for the word
         micDisabled = false;
+        wit.gameObject.SetActive(true);
+
         _witListeningStateManager.ChangeState("ListeningForEverything");
         reciteText3D.UpdateText(word);
         reciteText3D.Material = listeningColour;
@@ -170,6 +173,8 @@ public class WordReciteManager : MonoBehaviour
     public IEnumerator CheckRecitedWord(string text)
     {
         micDisabled = true;
+        wit.gameObject.SetActive(false);
+
 
         // Mic should be disabled / only listening for recite words here.
         // If the user just resumed, repeat the word countdown from the start   

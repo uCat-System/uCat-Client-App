@@ -78,12 +78,13 @@ namespace MText
 
         public void HandlePartialTranscription(string text)
         {
+            Debug.Log("Receiving partial text of " + text);
             partialText3D.UpdateText(text);
         }
 
         public void HandleFullTranscription(string text)
         {
-            // StartCoroutine(ActivateTasksBasedOnTranscription(text));
+            Debug.Log("Receiving full text of " + text);
             ActivateTasksBasedOnTranscription(text);
         }
 
