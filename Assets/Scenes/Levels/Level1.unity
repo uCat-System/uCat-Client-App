@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 858645786}
-  reciteBoard: {fileID: 0}
+  textElements: {fileID: 0}
   _witListeningStateManager: {fileID: 1143570482}
   _wordReciteManager: {fileID: 863806887}
   menu: {fileID: 858645785}
@@ -1078,7 +1078,7 @@ GameObject:
   - component: {fileID: 863806887}
   m_Layer: 0
   m_Name: WordReciteManager
-  m_TagString: Untagged
+  m_TagString: WordReciteManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1111,6 +1111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resuming: 0
+  countingDown: 0
   correctColour: {fileID: 2100000, guid: 5562c698b21c8924a84fa2abb367f9cd, type: 2}
   incorrectColour: {fileID: 2100000, guid: dfa4872a000de054bb0c1c830a263904, type: 2}
   defaultColour: {fileID: 2100000, guid: ac605445953bb8d448dde47a525d047f, type: 2}

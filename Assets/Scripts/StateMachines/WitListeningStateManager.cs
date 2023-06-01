@@ -12,13 +12,15 @@ public class WitListeningStateManager : MonoBehaviour
 {
     public Modular3DText listeningText3D;
     public UIManager _uiManager;
+    public WordReciteManager _wordReciteManager;
 
     public WitListeningStateMachine witListeningStateMachine;
     public Wit witModule;
 
     private void Start()
     {
-        ChangeState("ListeningForEverything");
+        _wordReciteManager = GameObject.FindWithTag("WordReciteManager").GetComponent<WordReciteManager>();
+        ChangeState("NotListening");
         _uiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
         witModule = GameObject.FindWithTag("Wit").GetComponent<Wit>();
         listeningText3D = GameObject.FindWithTag("ListeningText3D").GetComponent<Modular3DText>();
@@ -58,8 +60,15 @@ public class WitListeningStateManager : MonoBehaviour
     }
 
     private IEnumerator StartListeningAgain() {
-        yield return new WaitForSeconds(0.00001f);
-        ChangeState("ListeningForEverything");
+        if (_wordReciteManager.micDisabled) {
+            Debug.Log("Mic disabled so didn't do it.");
+        } else {
+            // Turn it back on again
+            // TODO - improve this - I don't know why it doesn't work without the delay
+            yield return new WaitForSeconds(0.00001f);
+            Debug.Log("Starting again, listening for everything.");
+            ChangeState("ListeningForEverything");
+        }
     }
 
     // This is called from the WitListeningStateMachine script using actual enum values.

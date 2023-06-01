@@ -8,6 +8,7 @@ public class WordReciteManager : MonoBehaviour
 {
     private bool isDeciding = false;
     public bool resuming = false;
+    public bool micDisabled = false;
 
     // public bool isCountdownPaused = false;
     
@@ -85,8 +86,9 @@ public class WordReciteManager : MonoBehaviour
 
     public IEnumerator StartCurrentWordCountdown()
     {
+        micDisabled = true;
         partialText3D.UpdateText("");
-
+        _witListeningStateManager.ChangeState("NotListening");
         reciteText3D.Material = defaultColour;
         string word = currentWordOrSentenceList[currentWordOrSentenceIndex];
         
@@ -108,6 +110,10 @@ public class WordReciteManager : MonoBehaviour
            
             yield return new WaitForSeconds(1);
         }
+
+        // Countdown finished, start listening for the word
+        micDisabled = false;
+        _witListeningStateManager.ChangeState("ListeningForEverything");
         reciteText3D.UpdateText(word);
         reciteText3D.Material = listeningColour;
     }
@@ -140,6 +146,7 @@ public class WordReciteManager : MonoBehaviour
         }
         
         // TODO re-enable
+        Debug.Log("GOING TO NEXT WORD, re-enable");
         _witListeningStateManager.ChangeState("ListeningForEverything");
         StartCoroutine(StartCurrentWordCountdown());
 
@@ -153,7 +160,6 @@ public class WordReciteManager : MonoBehaviour
 
         // StopCoroutine(StartCurrentWordCountdown());
         _witListeningStateManager.ChangeState("ListeningForEverything");
-    
         StartCoroutine(StartCurrentWordCountdown());
     }
     public void StartWordCheck(string transcription)
@@ -163,6 +169,8 @@ public class WordReciteManager : MonoBehaviour
    
     public IEnumerator CheckRecitedWord(string text)
     {
+        micDisabled = true;
+
         // Mic should be disabled / only listening for recite words here.
         // If the user just resumed, repeat the word countdown from the start   
         if (resuming) {

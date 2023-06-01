@@ -112,15 +112,7 @@ public class UIManager : MonoBehaviour
         {
             yield return null;
         }
-        // _witListeningStateManager.ChangeState("ListeningForEverything");
-        // _wordReciteManager.isCountdownPaused = false;
 
-        // if the current level is "Level1" or "Level2":
-        // if (SceneManager.GetActiveScene().name == "Level1" || SceneManager.GetActiveScene().name == "Level2") {
-        //     // unpause the countdown
-        //     Debug.Log("Menu Closed. repeating word");
-        //     _wordReciteManager.RepeatSameWord();
-        // }
         menu.SetActive(false);
     }
 
