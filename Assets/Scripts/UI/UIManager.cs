@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
      private static UIManager instance;
 
      public Animator animator;
+     public GameObject textElements;
 
      public WitListeningStateManager _witListeningStateManager;
     public WordReciteManager _wordReciteManager;
@@ -25,6 +26,7 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
+        textElements = GameObject.FindWithTag("TextElements");
         if (instance == null)
         {
             instance = this;
@@ -43,6 +45,8 @@ public class UIManager : MonoBehaviour
         // Listen for any of the wake phrases
         if (!menu.activeInHierarchy && acceptableWakeWords.Any(text.Contains))
         {
+            // TODO - hide recite board
+            textElements.SetActive(false);
             _wordReciteManager.StopAllCoroutines();
             menu.SetActive(true);
         }
@@ -76,6 +80,7 @@ public class UIManager : MonoBehaviour
                     animator.Play("CloseClip");
                     StartCoroutine(WaitForAnimationToEnd());
                     _wordReciteManager.resuming = true;
+                    textElements.SetActive(true);
                     Debug.Log("RESUMING IS TRUE");
                     break;
                 case ("level one"):

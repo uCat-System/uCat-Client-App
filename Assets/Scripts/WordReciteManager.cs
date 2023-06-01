@@ -146,6 +146,7 @@ public class WordReciteManager : MonoBehaviour
     }
     public void RepeatSameWord()
     {
+        Debug.Log("REPEATING SAME WORD");
         // If it was halfway through a countdown, stop it
         // string word = currentWordOrSentenceList[currentWordOrSentenceIndex];
         // reciteText3D.UpdateText("..." + word + "...");
@@ -165,7 +166,8 @@ public class WordReciteManager : MonoBehaviour
         // Mic should be disabled / only listening for recite words here.
         // If the user just resumed, repeat the word countdown from the start   
         if (resuming) {
-            resuming = false;
+            // resuming = false;
+            RepeatSameWord();
             yield break;
         }
         bool wordAnsweredCorrectly;

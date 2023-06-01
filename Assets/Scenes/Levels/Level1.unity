@@ -168,6 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 858645786}
+  reciteBoard: {fileID: 0}
   _witListeningStateManager: {fileID: 1143570482}
   _wordReciteManager: {fileID: 863806887}
   menu: {fileID: 858645785}
@@ -2015,6 +2016,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerAndBoard
       objectReference: {fileID: 0}
+    - target: {fileID: 3211107782010876300, guid: 74ce51154cf56e14db799fe9c14bb97f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3211107783098718910, guid: 74ce51154cf56e14db799fe9c14bb97f, type: 3}
+      propertyPath: m_Name
+      value: ReciteBoard
+      objectReference: {fileID: 0}
+    - target: {fileID: 3211107783098718910, guid: 74ce51154cf56e14db799fe9c14bb97f, type: 3}
+      propertyPath: m_TagString
+      value: ReciteBoard
+      objectReference: {fileID: 0}
     - target: {fileID: 7497548650100249515, guid: 74ce51154cf56e14db799fe9c14bb97f, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -2031,6 +2044,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1125530572}
+    - target: {fileID: 8890741824738465098, guid: 74ce51154cf56e14db799fe9c14bb97f, type: 3}
+      propertyPath: m_TagString
+      value: TextElements
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 74ce51154cf56e14db799fe9c14bb97f, type: 3}
