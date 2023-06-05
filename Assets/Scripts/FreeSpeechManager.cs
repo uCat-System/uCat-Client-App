@@ -59,7 +59,7 @@ namespace MText
             // 2) Activate Tasks if in recite mode
             if (isInReciteMode)
                 {
-                    Debug.Log("activating word task");
+                    Debug.Log("activating word task or free recite");
                     ActivateTasksBasedOnTranscription(text);
                 }
                 else {
@@ -74,16 +74,17 @@ namespace MText
 
         public void ActivateTasksBasedOnTranscription(string text)
         {        
-            // Update the spoken text
-            CalculateCachedText(text);
-            fullText3D.UpdateText(cachedText);
-
             if (SceneManager.GetActiveScene().name != "Level3") 
             {
                 Debug.Log("activating word task");
                 wordReciteManager.StartWordCheck(text);
           
             } else {
+                Debug.Log("should be transcribing");
+                 // Update the spoken text
+                CalculateCachedText(text);
+                fullText3D.UpdateText(cachedText);
+                StartCoroutine(_witListeningStateManager.StartListeningAgain());
                 _witListeningStateManager.ChangeState("ListeningForEverything");
             }
 

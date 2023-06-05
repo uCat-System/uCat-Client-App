@@ -30,7 +30,7 @@ public class WitListeningStateManager : MonoBehaviour
 
         string scene = SceneManager.GetActiveScene().name;
         if (scene == "Level3") {
-            //  ChangeState("ListeningForEverything");
+             ChangeState("ListeningForEverything");
         } else {
             ChangeState("ListeningForMenuCommandsOnly");
         }
