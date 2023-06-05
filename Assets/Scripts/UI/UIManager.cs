@@ -17,6 +17,7 @@ public class UIManager : MonoBehaviour
 
      List<string> acceptableWakeWords = new List<string>()
     {
+        "menu",
         "activate menu",
         "hey you cat",
         "hey you kat",

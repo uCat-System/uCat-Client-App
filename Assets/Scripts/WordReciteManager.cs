@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using System.Collections.Generic;
 using Meta.WitAi;
 using MText;
 
@@ -86,10 +85,8 @@ public class WordReciteManager : MonoBehaviour
     {
         if (_witListeningStateManager.currentListeningState == "ListeningForNavigationCommandsOnly")
         {
-            Debug.Log("Breaking out of countdown");
             yield break;
         }
-        Debug.Log("continuing with coutndown, not breaking ");
 
         partialText3D.UpdateText("");
         reciteText3D.Material = defaultColour;
@@ -98,12 +95,8 @@ public class WordReciteManager : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
 
-        if (_witListeningStateManager.currentListeningState == "ListeningForNavigationCommandsOnly")
-            {
-                Debug.Log("Breaking out of countdown during loop");
-                yield break;
-            }
-            Debug.Log("COUNTING DOWN - " + i);
+        if (_witListeningStateManager.currentListeningState == "ListeningForNavigationCommandsOnly") {yield break;}
+        
             switch (i)
             {
                 case 0:
@@ -114,6 +107,7 @@ public class WordReciteManager : MonoBehaviour
                     break;
                 case 2:
                     reciteText3D.UpdateText("." + word + ".");
+                    // Discard anything said during countdown and start fresh
                     _witListeningStateManager.ChangeState("NotListening");
                     break;
             }
@@ -122,7 +116,6 @@ public class WordReciteManager : MonoBehaviour
         }
 
         // Countdown finished, start listening for the word
-        // Discard anything said during countdown and start fresh
         _witListeningStateManager.ChangeState("ListeningForEverything");
 
         reciteText3D.UpdateText(word);
@@ -163,26 +156,16 @@ public class WordReciteManager : MonoBehaviour
             currentWordOrSentenceIndex++;
         }
         
-        Debug.Log("GOING TO NEXT WORD, re-enable");
         StartCoroutine(StartCurrentWordCountdown());
 
     }
     public void RepeatSameWord()
     {
         _witListeningStateManager.ChangeState("ListeningForMenuCommandsOnly");
-
-        Debug.Log("REPEATING SAME WORD");
-        // If it was halfway through a countdown, stop it
-        // string word = currentWordOrSentenceList[currentWordOrSentenceIndex];
-        // reciteText3D.UpdateText("..." + word + "...");
-
-        // StopCoroutine(StartCurrentWordCountdown());
-        // _witListeningStateManager.ChangeState("ListeningForEverything");
         StartCoroutine(StartCurrentWordCountdown());
     }
     public void StartWordCheck(string transcription)
     {
-        Debug.Log  ("START WORD CHECK");
         StartCoroutine(CheckRecitedWord(transcription));
     }
    

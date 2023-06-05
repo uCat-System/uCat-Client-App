@@ -1,9 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using Meta.WitAi;
-using MText;
-using Meta.WitAi.Lib;
-using Meta.WitAi.Configuration;
 using UnityEngine.SceneManagement;
 
 namespace MText
@@ -118,7 +115,4 @@ namespace MText
         }
     }
     }
-
-   
-
 }
