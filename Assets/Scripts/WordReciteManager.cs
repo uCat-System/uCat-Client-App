@@ -53,11 +53,11 @@ public class WordReciteManager : MonoBehaviour
     public Modular3DText reciteText3D;
     public Modular3DText partialText3D;
 
-    [SerializeField] private GameObject wit;
+    [SerializeField] private Wit wit;
 
     void Start()
     {
-        wit = GameObject.FindWithTag("Wit");
+        wit = GameObject.FindWithTag("Wit").GetComponent<Wit>();
         partialText3D = GameObject.FindWithTag("PartialText3D").GetComponent<Modular3DText>();
         _witListeningStateManager = GameObject.FindWithTag("WitListeningStateManager").GetComponent<WitListeningStateManager>();
         uiComplete = false;
@@ -84,8 +84,6 @@ public class WordReciteManager : MonoBehaviour
 
     public IEnumerator StartCurrentWordCountdown()
     {
-        // wit.gameObject.SetActive(false);
-
         if (_witListeningStateManager.currentListeningState == "ListeningForNavigationCommandsOnly")
         {
             Debug.Log("Breaking out of countdown");
@@ -94,7 +92,6 @@ public class WordReciteManager : MonoBehaviour
         Debug.Log("continuing with coutndown, not breaking ");
 
         partialText3D.UpdateText("");
-        // _witListeningStateManager.ChangeState("NotListening");
         reciteText3D.Material = defaultColour;
         string word = currentWordOrSentenceList[currentWordOrSentenceIndex];
         
@@ -117,6 +114,7 @@ public class WordReciteManager : MonoBehaviour
                     break;
                 case 2:
                     reciteText3D.UpdateText("." + word + ".");
+                    _witListeningStateManager.ChangeState("NotListening");
                     break;
             }
            
@@ -124,9 +122,9 @@ public class WordReciteManager : MonoBehaviour
         }
 
         // Countdown finished, start listening for the word
-        // wit.gameObject.SetActive(true);
-
+        // Discard anything said during countdown and start fresh
         _witListeningStateManager.ChangeState("ListeningForEverything");
+
         reciteText3D.UpdateText(word);
         reciteText3D.Material = listeningColour;
     }
@@ -158,20 +156,21 @@ public class WordReciteManager : MonoBehaviour
 
     void GoToNextWord()
     {
+        _witListeningStateManager.ChangeState("ListeningForMenuCommandsOnly");
         // If the next word does not exceed the limit
         if (currentWordOrSentenceIndex < currentWordOrSentenceList.Length-1)
         {
             currentWordOrSentenceIndex++;
         }
         
-        // TODO re-enable
         Debug.Log("GOING TO NEXT WORD, re-enable");
-        // _witListeningStateManager.ChangeState("ListeningForEverything");
         StartCoroutine(StartCurrentWordCountdown());
 
     }
     public void RepeatSameWord()
     {
+        _witListeningStateManager.ChangeState("ListeningForMenuCommandsOnly");
+
         Debug.Log("REPEATING SAME WORD");
         // If it was halfway through a countdown, stop it
         // string word = currentWordOrSentenceList[currentWordOrSentenceIndex];
@@ -191,9 +190,10 @@ public class WordReciteManager : MonoBehaviour
     {
         Debug.Log("CHECKING RECITED WORD: " + text);
 
-        if (_witListeningStateManager.currentListeningState == "ListeningForNavigationCommandsOnly")
+        if (_witListeningStateManager.currentListeningState == "ListeningForNavigationCommandsOnly"
+        || _witListeningStateManager.currentListeningState == "ListeningForMenuCommandsOnly")
         {
-            Debug.Log("Breaking out of recited word because menu active");
+            Debug.Log("Breaking out of recited word because menu active or in command mode" + _witListeningStateManager.currentListeningState);
             yield break;
         }
 
@@ -248,7 +248,6 @@ public class WordReciteManager : MonoBehaviour
 
     IEnumerator WordAnsweredIncorrectly()
     {
-
         reciteText3D.UpdateText("Try again!");
         yield return new WaitForSeconds(1);
         RepeatSameWord();
@@ -259,8 +258,7 @@ public class WordReciteManager : MonoBehaviour
         Debug.Log("checking if more words in list" + currentWordOrSentenceIndex + " " + currentWordOrSentenceList.Length);
         if (currentWordOrSentenceIndex < currentWordOrSentenceList.Length - 1)
         {
-                                Debug.Log("going to next word because index valid");
-
+            Debug.Log("going to next word because index valid");
             GoToNextWord();
         }
 
@@ -274,7 +272,7 @@ public class WordReciteManager : MonoBehaviour
     void WordAnsweredCorrectly()
     {
         AddScoreToScoreManager();
-                    Debug.Log("moving on");
+        Debug.Log("moving on");
 
         MoveOnIfMoreWordsInList();
     }

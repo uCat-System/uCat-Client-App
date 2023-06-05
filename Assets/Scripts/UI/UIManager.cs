@@ -79,8 +79,13 @@ public class UIManager : MonoBehaviour
                 case "resume": 
                     animator.Play("CloseClip");
                     StartCoroutine(WaitForAnimationToEnd());
-                    _witListeningStateManager.ChangeState("ListeningForMenuCommandsOnly");
-                    _wordReciteManager.RepeatSameWord();
+                    string scene = SceneManager.GetActiveScene().name;
+                    if (scene == "Level3") {
+                        _witListeningStateManager.ChangeState("ListeningForEverything");
+                    } else {
+                        _witListeningStateManager.ChangeState("ListeningForMenuCommandsOnly");
+                        _wordReciteManager.RepeatSameWord();
+                    }
                     textElements.SetActive(true);
                     break;
                 case ("level one"):

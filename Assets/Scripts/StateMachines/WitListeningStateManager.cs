@@ -69,7 +69,7 @@ public class WitListeningStateManager : MonoBehaviour
                 
                 if (witModule != null)
                 {
-                    // witModule.Deactivate();
+                    witModule.Deactivate();
                 }
             }
 
@@ -91,7 +91,7 @@ public class WitListeningStateManager : MonoBehaviour
         StartCoroutine(StartListeningAgain());
     }
 
-    private IEnumerator StartListeningAgain() {
+    public IEnumerator StartListeningAgain() {
            
         // Turn it back on again
         // TODO - improve this - I don't know why it doesn't work without the delay

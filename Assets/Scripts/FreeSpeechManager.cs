@@ -10,29 +10,6 @@ namespace MText
 { 
     public class FreeSpeechManager : MonoBehaviour
     {
-
-
-/*
-
-    1) Word 'hello' appears on screen (reciteText) in grey, with ... on the left and 
-        right of it ("...hello...")
-
-    2) Every second, the dots either side disappear
-
-    3) When the dots are all gone, the word turns yellow and the microphone activates
-        --> Fire event to start listening and update text
-
-    4) The user says the word
-
-    5) The microphone deactivates and the word turns red if wrong, green if correct
-        --> Fire event to stop listening and update text
-
-
-
-    6) Next word starts from step 1 After a brief delay (1-2 sec?)
-
-*/
-
         [SerializeField] private Wit wit;
         private UIManager uiManager;
 
@@ -51,10 +28,6 @@ namespace MText
             uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
             scene = SceneManager.GetActiveScene();
         }
-        public void MicActivityDetected()
-        {
-            //Debug.Log("Mic activity!");
-        }
     
         public void StoppedListeningDueToInactivity()
         {
@@ -65,20 +38,9 @@ namespace MText
         {
             HandleInactivityFailure();
         }
-        public void StoppedListening()
-        {
-            // Debug.Log("Stopped!");
-        }
-
-        // public IEnumerator StartListeningAgain()
-        // {
-        //     yield return new WaitForSeconds(0.00001f);
-        //     wit.Activate();
-        // }
 
         public void HandlePartialTranscription(string text)
         {
-            Debug.Log("Receiving partial text of " + text);
             if (_witListeningStateManager.currentListeningState == "ListeningForEverything") {
                 partialText3D.UpdateText(text);
             }
