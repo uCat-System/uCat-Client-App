@@ -45,19 +45,13 @@ public class UIManager : MonoBehaviour
         // Listen for any of the wake phrases
         if (!menu.activeInHierarchy && acceptableWakeWords.Any(text.Contains))
         {
-            // TODO - hide recite board
-                Debug.Log("2");
-
             textElements.SetActive(false);
-                Debug.Log("3");
-
             _wordReciteManager.StopAllCoroutines();
-                Debug.Log("4");
             menu.SetActive(true);
-                Debug.Log("5");
+            _witListeningStateManager.ChangeState("ListeningForNavigationCommandsOnly");
         }
 
-        if (menu.activeInHierarchy)
+        if (menu.activeInHierarchy && _witListeningStateManager.currentListeningState == "ListeningForNavigationCommandsOnly")
         {
             switch (text)
             {
@@ -85,9 +79,9 @@ public class UIManager : MonoBehaviour
                 case "resume": 
                     animator.Play("CloseClip");
                     StartCoroutine(WaitForAnimationToEnd());
-                    _wordReciteManager.resuming = true;
+                    _witListeningStateManager.ChangeState("ListeningForMenuCommandsOnly");
+                    _wordReciteManager.RepeatSameWord();
                     textElements.SetActive(true);
-                    Debug.Log("RESUMING IS TRUE");
                     break;
                 case ("level one"):
                     SceneManager.LoadScene("Level1"); // Replace "Level1" with the name of your scene

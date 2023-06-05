@@ -8,7 +8,6 @@ public class WordReciteManager : MonoBehaviour
 {
     private bool isDeciding = false;
     public bool resuming = false;
-    public bool micDisabled = false;
 
     // Current word tracking
     int currentWordOrSentenceIndex;
@@ -85,16 +84,28 @@ public class WordReciteManager : MonoBehaviour
 
     public IEnumerator StartCurrentWordCountdown()
     {
-        micDisabled = true;
-        wit.gameObject.SetActive(false);
+        // wit.gameObject.SetActive(false);
+
+        if (_witListeningStateManager.currentListeningState == "ListeningForNavigationCommandsOnly")
+        {
+            Debug.Log("Breaking out of countdown");
+            yield break;
+        }
+        Debug.Log("continuing with coutndown, not breaking ");
 
         partialText3D.UpdateText("");
-        _witListeningStateManager.ChangeState("NotListening");
+        // _witListeningStateManager.ChangeState("NotListening");
         reciteText3D.Material = defaultColour;
         string word = currentWordOrSentenceList[currentWordOrSentenceIndex];
         
         for (int i = 0; i < 3; i++)
         {
+
+        if (_witListeningStateManager.currentListeningState == "ListeningForNavigationCommandsOnly")
+            {
+                Debug.Log("Breaking out of countdown during loop");
+                yield break;
+            }
             Debug.Log("COUNTING DOWN - " + i);
             switch (i)
             {
@@ -113,8 +124,7 @@ public class WordReciteManager : MonoBehaviour
         }
 
         // Countdown finished, start listening for the word
-        micDisabled = false;
-        wit.gameObject.SetActive(true);
+        // wit.gameObject.SetActive(true);
 
         _witListeningStateManager.ChangeState("ListeningForEverything");
         reciteText3D.UpdateText(word);
@@ -139,6 +149,12 @@ public class WordReciteManager : MonoBehaviour
         // Do not add to score
         StartCoroutine(ChangeTimeOutText());
     }
+    void Update() {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            GoToNextWord();
+        }
+    }
 
     void GoToNextWord()
     {
@@ -150,7 +166,7 @@ public class WordReciteManager : MonoBehaviour
         
         // TODO re-enable
         Debug.Log("GOING TO NEXT WORD, re-enable");
-        _witListeningStateManager.ChangeState("ListeningForEverything");
+        // _witListeningStateManager.ChangeState("ListeningForEverything");
         StartCoroutine(StartCurrentWordCountdown());
 
     }
@@ -162,29 +178,28 @@ public class WordReciteManager : MonoBehaviour
         // reciteText3D.UpdateText("..." + word + "...");
 
         // StopCoroutine(StartCurrentWordCountdown());
-        _witListeningStateManager.ChangeState("ListeningForEverything");
+        // _witListeningStateManager.ChangeState("ListeningForEverything");
         StartCoroutine(StartCurrentWordCountdown());
     }
     public void StartWordCheck(string transcription)
     {
+        Debug.Log  ("START WORD CHECK");
         StartCoroutine(CheckRecitedWord(transcription));
     }
    
     public IEnumerator CheckRecitedWord(string text)
     {
-        micDisabled = true;
-        wit.gameObject.SetActive(false);
+        Debug.Log("CHECKING RECITED WORD: " + text);
 
-
-        // Mic should be disabled / only listening for recite words here.
-        // If the user just resumed, repeat the word countdown from the start   
-        if (resuming) {
-            // resuming = false;
-            RepeatSameWord();
+        if (_witListeningStateManager.currentListeningState == "ListeningForNavigationCommandsOnly")
+        {
+            Debug.Log("Breaking out of recited word because menu active");
             yield break;
         }
+
         bool wordAnsweredCorrectly;
 
+        Debug.Log("CHECKING RECITED WORD ( not resuming ): " + text);
          if (isDeciding) {
             if (text.ToLower() == "next")
             {
@@ -198,7 +213,7 @@ public class WordReciteManager : MonoBehaviour
 
         // Does their answer match the current word?
         wordAnsweredCorrectly = text.ToLower() == currentWordOrSentenceList[currentWordOrSentenceIndex].ToLower();
-
+        Debug.Log("WORD ANSWERED CORRECTLY: " + wordAnsweredCorrectly);
 
         // Change text to reflect correct / incorrect 
         reciteText3D.UpdateText(wordAnsweredCorrectly ? "Correct! " : "Incorrect.");

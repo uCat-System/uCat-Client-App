@@ -12,6 +12,7 @@ public class WitListeningStateManager : MonoBehaviour
 {
     public Modular3DText listeningText3D;
     public UIManager _uiManager;
+    public string currentListeningState;
     public WordReciteManager _wordReciteManager;
 
     public WitListeningStateMachine witListeningStateMachine;
@@ -29,9 +30,9 @@ public class WitListeningStateManager : MonoBehaviour
 
         string scene = SceneManager.GetActiveScene().name;
         if (scene == "Level3") {
-             ChangeState("ListeningForEverything");
+            //  ChangeState("ListeningForEverything");
         } else {
-            ChangeState("NotListening");
+            ChangeState("ListeningForMenuCommandsOnly");
         }
         _uiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
         listeningText3D = GameObject.FindWithTag("ListeningText3D").GetComponent<Modular3DText>();
@@ -68,11 +69,11 @@ public class WitListeningStateManager : MonoBehaviour
                 
                 if (witModule != null)
                 {
-                    witModule.Deactivate();
+                    // witModule.Deactivate();
                 }
             }
 
-            Debug.Log("Wit dectivated.");
+            Debug.Log("Wit dectivate called, but still active");
         }
 
     public void DetectUICommandsInWitListeningStateManager(string text) {
@@ -91,15 +92,14 @@ public class WitListeningStateManager : MonoBehaviour
     }
 
     private IEnumerator StartListeningAgain() {
-        if (_wordReciteManager.micDisabled) {
-            Debug.Log("Mic disabled so didn't do it.");
-        } else {
-            // Turn it back on again
-            // TODO - improve this - I don't know why it doesn't work without the delay
-            yield return new WaitForSeconds(0.00001f);
-            Debug.Log("Starting again, listening for everything.");
-            ChangeState("ListeningForEverything");
-        }
+           
+        // Turn it back on again
+        // TODO - improve this - I don't know why it doesn't work without the delay
+        yield return new WaitForSeconds(0.00001f);
+        Debug.Log("Starting again, listening for ." + currentListeningState);
+        // change to the previous state (either menu only or all)
+        ChangeState(currentListeningState);
+        
     }
 
     // This is called from the WitListeningStateMachine script using actual enum values.
@@ -125,8 +125,12 @@ public class WitListeningStateManager : MonoBehaviour
                     ActivateWit();
                     // Additional logic specific to this state
                     break;
+                case WitListeningStateMachine.State.ListeningForNavigationCommandsOnly:
+                    ActivateWit();
+                    // Additional logic specific to this state
+                    break;
                 default:
-                    Debug.LogError("Invalid state transition.");
+                    Debug.LogError("Invalid state transition." + nextState);
                     return;
             }
 
@@ -141,6 +145,7 @@ public class WitListeningStateManager : MonoBehaviour
         if (Enum.TryParse(state, out WitListeningStateMachine.State newState))
         {
             TransitionToState(newState);
+            currentListeningState = state;
         }
         else
         {
@@ -165,6 +170,10 @@ public class WitListeningStateManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             ChangeState("ListeningForRecitedWordsOnly");
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            ChangeState("ListeningForNavigationCommandsOnly");
         }
     }
 }

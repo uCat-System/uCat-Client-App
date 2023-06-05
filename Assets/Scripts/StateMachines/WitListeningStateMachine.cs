@@ -9,7 +9,8 @@ public class WitListeningStateMachine : ScriptableObject
         NotListening,
         ListeningForMenuCommandsOnly,
         ListeningForEverything,
-        ListeningForRecitedWordsOnly
+        ListeningForRecitedWordsOnly,
+        ListeningForNavigationCommandsOnly
     }
 
     public enum Transition
@@ -17,7 +18,8 @@ public class WitListeningStateMachine : ScriptableObject
         TransitionNotListeningToMenuCommandsOnly,
         TransitionMenuCommandsOnlyToListeningForEverything,
         TransitionListeningForEverythingToListeningForRecitedWordsOnly,
-        TransitionListeningForRecitedWordsOnlyToNotListening
+        TransitionListeningForRecitedWordsOnlyToNotListening,
+        TransitionListeningForRecitedWordsOnlyToListeningForNavigationCommandsOnly,
     }
 
     public State currentState;

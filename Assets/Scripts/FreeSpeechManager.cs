@@ -79,18 +79,30 @@ namespace MText
         public void HandlePartialTranscription(string text)
         {
             Debug.Log("Receiving partial text of " + text);
-            partialText3D.UpdateText(text);
+            if (_witListeningStateManager.currentListeningState == "ListeningForEverything") {
+                partialText3D.UpdateText(text);
+            }
         }
 
         public void HandleFullTranscription(string text)
         {
             Debug.Log("Receiving full text of " + text);
-            ActivateTasksBasedOnTranscription(text);
-        }
 
-        void ActivateReciteTask(string text)
-        {
-             wordReciteManager.StartWordCheck(text);
+            // 1) Always listen for menu
+            uiManager.CheckIfUICommandsWereSpoken(text.ToLower());
+
+            bool isInReciteMode = _witListeningStateManager.currentListeningState == "ListeningForEverything" ||
+            _witListeningStateManager.currentListeningState == "ListeningForRecitedWordsOnly";
+
+            // 2) Activate Tasks if in recite mode
+            if (isInReciteMode)
+                {
+                    Debug.Log("activating word task");
+                    ActivateTasksBasedOnTranscription(text);
+                }
+                else {
+                    Debug.Log("WRONG state - did not activate word task");
+                }
         }
 
         void HandleInactivityFailure()
@@ -99,17 +111,16 @@ namespace MText
         }
 
         public void ActivateTasksBasedOnTranscription(string text)
-        {
-            _witListeningStateManager.ChangeState("NotListening");
-            uiManager.CheckIfUICommandsWereSpoken(text.ToLower());
-        
+        {        
             // Update the spoken text
             CalculateCachedText(text);
             fullText3D.UpdateText(cachedText);
 
-            if (SceneManager.GetActiveScene().name != "Level3")
+            if (SceneManager.GetActiveScene().name != "Level3") 
             {
-                ActivateReciteTask(text);
+                Debug.Log("activating word task");
+                wordReciteManager.StartWordCheck(text);
+          
             } else {
                 _witListeningStateManager.ChangeState("ListeningForEverything");
             }
