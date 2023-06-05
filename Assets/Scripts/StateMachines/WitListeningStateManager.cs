@@ -19,8 +19,20 @@ public class WitListeningStateManager : MonoBehaviour
 
     private void Start()
     {
-        _wordReciteManager = GameObject.FindWithTag("WordReciteManager").GetComponent<WordReciteManager>();
-        ChangeState("NotListening");
+        _wordReciteManager = GameObject.FindWithTag("WordReciteManager")?.GetComponent<WordReciteManager>();
+
+        if (_wordReciteManager == null)
+        {
+            _wordReciteManager = null;
+        }
+
+
+        string scene = SceneManager.GetActiveScene().name;
+        if (scene == "Level3") {
+             ChangeState("ListeningForEverything");
+        } else {
+            ChangeState("NotListening");
+        }
         _uiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
         listeningText3D = GameObject.FindWithTag("ListeningText3D").GetComponent<Modular3DText>();
         if (witListeningStateMachine == null)
