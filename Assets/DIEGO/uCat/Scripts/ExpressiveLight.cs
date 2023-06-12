@@ -6,8 +6,10 @@ using static Emotes;
 
 public class ExpressiveLight : MonoBehaviour
 {
+    // We're using one single material for the neck and for the visor rim. Emission must be enabled for it to work.
     public Material expressiveMaterial;
 
+    // We'll have a range of options to choose colors.
     public enum ExpressiveColor
     {
         Red,
@@ -37,6 +39,7 @@ public class ExpressiveLight : MonoBehaviour
         }
     }
 
+    // And let's allow people to set the intensity manually, just in case.
     [SerializeField]
     private float _EmissiveIntensity = 4f;
 
@@ -53,10 +56,15 @@ public class ExpressiveLight : MonoBehaviour
         }
     }
 
+    // Emissive intensity can't just be plugged into color. You have to lower it a bit and multiply it by the power of two.
+    // No idea why, Unity has very bad documentation on that regard.
+    // Check these forum posts to see where I got the idea from: https://forum.unity.com/threads/setting-material-emission-intensity-in-script-to-match-ui-value.661624/
+    // Anyway, we'll use this variable to store the number.
+    private float intensityPrepared;
+
+    //We'll be using the following section to allow updates to happen not only while we play but also on the editor.
     private ExpressiveColor colorCache;
     private float intensityCache;
-
-    private float intensityPrepared;
 
     private void OnValidate()
     {
@@ -70,17 +78,24 @@ public class ExpressiveLight : MonoBehaviour
         colorChange(_currentExpressiveColor, _EmissiveIntensity);
     }
 
+    // Here's where the magic happens.
     public void colorChange(ExpressiveColor newColor, float newEmissiveIntensity)
     {
+        // Let's cut this section short if, during the update, there has been no changes to the exposed values.
         if (colorCache == newColor && intensityCache == newEmissiveIntensity)
         {
             return;
         }
-
+        // Let's make sure the cache is updated so the check above can do its job on the next update.
         colorCache = newColor;
+        intensityCache = newEmissiveIntensity;
 
+        // Here's where we prepare the intensity we're given to plug it into the new emissive color properly. 
+        // The user should see no difference between the color they give and the Intensity value shown.
         intensityPrepared = Mathf.Pow(2.0f, (newEmissiveIntensity - 0.4169f));
 
+        // Self explanatory, really. 
+        // Tweak color values in a range from 0 to 1. Otherwise you'll have very intense colors if you go from 0 to 255.
         if(newColor == ExpressiveColor.Red)
         {
             expressiveMaterial.SetColor("_EmissionColor", Color.red * intensityPrepared);
@@ -111,7 +126,7 @@ public class ExpressiveLight : MonoBehaviour
         }
         else if (newColor == ExpressiveColor.Purple)
         {
-            expressiveMaterial.SetColor("_EmissionColor", new Color(0.05f, 0f, 1f) * intensityPrepared);
+            expressiveMaterial.SetColor("_EmissionColor", new Color(0.15f, 0f, 1f) * intensityPrepared);
         }
         else if (newColor == ExpressiveColor.White)
         {
@@ -119,7 +134,10 @@ public class ExpressiveLight : MonoBehaviour
         }
         else 
         {
-            expressiveMaterial.SetColor("_EmissionColor", Color.red * 100);
+            // This color is left intentionally bright to show something has gone horribly wrong.
+            // Or that a new color that has not yet been assigned a color value has been selected.
+            // Maybe we should be using switches at this point....? Or a Dictionnary?
+            expressiveMaterial.SetColor("_EmissionColor", Color.red * 1000);
         }
 
     }

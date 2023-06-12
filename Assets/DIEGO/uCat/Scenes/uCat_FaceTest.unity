@@ -475,8 +475,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expressiveMaterial: {fileID: 2100000, guid: 2035bf523c8c2dc4cb6d9f88c9752fcb, type: 2}
-  _currentExpressiveColor: 8
-  _EmissiveIntensity: 4
+  _currentExpressiveColor: 0
+  _EmissiveIntensity: 2
 --- !u!1001 &881545283
 PrefabInstance:
   m_ObjectHideFlags: 0
