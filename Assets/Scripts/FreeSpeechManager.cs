@@ -15,6 +15,9 @@ namespace MText
         public Modular3DText subtitleText3D;
         public Modular3DText fullText3D;
 
+        // Used to cache the text when we are in a confirmation state
+        private string originallyUtteredText;
+
         public WitListeningStateManager _witListeningStateManager;
 
         public string cachedText = "";
@@ -70,18 +73,54 @@ namespace MText
             // 1) Always listen for menu
             uiManager.CheckIfUICommandsWereSpoken(text.ToLower());
 
+            bool isInConfirmationMode = _witListeningStateManager.currentListeningState == "ListeningForConfirmation";
+
             bool isInReciteMode = _witListeningStateManager.currentListeningState == "ListeningForEverything" ||
             _witListeningStateManager.currentListeningState == "ListeningForRecitedWordsOnly";
 
+            if (isInConfirmationMode) {
+                StartCoroutine(CheckIfConfirmationWasSpoken(text.ToLower()));
+            }
             // 2) Activate Tasks if in recite mode
-            if (isInReciteMode)
+            else if (isInReciteMode)
                 {
                     Debug.Log("activating word task or free recite");
                     ActivateTasksBasedOnTranscription(text);
                 }
-                else {
-                    Debug.Log("WRONG state - did not activate word task");
-                }
+            else {
+                Debug.Log("WRONG state - did not activate word task. You are robably in the menu.");
+            }
+
+            // at the end:
+
+            //  StartCoroutine(_witListeningStateManager.ResetToCurrentListeningState());
+            //     _witListeningStateManager.ChangeState("ListeningForEverything");
+        }
+
+         public IEnumerator CheckIfConfirmationWasSpoken(string text) {
+            // text is input as lower case from FreeSpeechManager
+            Debug.Log("Checking for confirmation: " + text);
+            switch (text)
+            {
+                case "yes":
+                    Debug.Log("Yes was spoken");
+                    partialText3D.UpdateText("Cool!");
+                    yield return new WaitForSeconds(1);
+                    wordReciteManager.GoToNextWord();
+                    break;
+                case "no":
+                    Debug.Log("No was spoken");
+                    partialText3D.UpdateText("Oops, let's try again.");
+                    yield return new WaitForSeconds(1);
+                    wordReciteManager.RepeatSameWord();
+                    break;
+                default:
+                    Debug.Log("Something else was spoken");
+                    partialText3D.UpdateText("Sorry, I didn't understand that. Please say yes or no.");
+                    yield return new WaitForSeconds(2);
+                    ConfirmWhatUserSaid(originallyUtteredText);
+                    break;
+            }
         }
 
         public void HandleInactivityFailure()
@@ -100,12 +139,24 @@ namespace MText
                 Debug.Log("should be transcribing");
                  // Update the spoken text
                 CalculateCachedText(text);
-                fullText3D.UpdateText(cachedText);
-                StartCoroutine(_witListeningStateManager.ResetToCurrentListeningState());
-                _witListeningStateManager.ChangeState("ListeningForEverything");
+                ConfirmWhatUserSaid(text.ToLower());
+                // fullText3D.UpdateText(cachedText);
             }
 
+        }
 
+         void ConfirmWhatUserSaid(string text) {
+            Debug.Log("Confirming what user said" + text);
+            originallyUtteredText = text;
+            _witListeningStateManager.ChangeState("ListeningForConfirmation");
+            // Display what they said on screen
+            // partialText3D.UpdateText(text);
+
+            // Ask them to confirm
+            partialText3D.UpdateText("Did you say " + text + "?");
+
+            // Change state to listening for confirmation
+            // this state should only accept yes or no
         }
 
      void CalculateCachedText(string newText) {

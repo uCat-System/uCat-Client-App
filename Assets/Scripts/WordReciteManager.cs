@@ -24,6 +24,9 @@ public class WordReciteManager : MonoBehaviour
          "You are not right", "That is very clean", "My family is here"
     };
 
+    string[] openQuestionsList = new string[] { "What is your name", "What is your favourite colour",
+     "What is your favourite food", "What is your favourite animal", "What is your favourite movie" };
+
     // Track if the lists have been completed
     bool changComplete;
     
@@ -81,6 +84,13 @@ public class WordReciteManager : MonoBehaviour
             _scoreManager.SetMaxScoreBasedOnWordListCount(changPaperSentenceList.Length + uiControlsSentenceList.Length);
             currentWordOrSentenceList = changPaperSentenceList;
         }
+
+        else if (_levelManager.currentLevel == "Level3")
+        {
+            currentWordOrSentenceList = openQuestionsList;
+        }
+
+        // Do not need to set max score for lv 3 as there is no right or wrong
 
         reciteText3D.Material = defaultColour;
 
@@ -167,7 +177,7 @@ public class WordReciteManager : MonoBehaviour
         }
     }
 
-    void GoToNextWord()
+    public void GoToNextWord()
     {
         _witListeningStateManager.ChangeState("ListeningForMenuCommandsOnly");
         // If the next word does not exceed the limit
@@ -191,8 +201,6 @@ public class WordReciteManager : MonoBehaviour
    
     public IEnumerator CheckRecitedWord(string text)
     {
-        Debug.Log("CHECKING RECITED WORD: " + text);
-
         if (_witListeningStateManager.currentListeningState == "ListeningForNavigationCommandsOnly"
         || _witListeningStateManager.currentListeningState == "ListeningForMenuCommandsOnly")
         {
@@ -202,7 +210,6 @@ public class WordReciteManager : MonoBehaviour
 
         bool wordAnsweredCorrectly;
 
-        Debug.Log("CHECKING RECITED WORD ( not resuming ): " + text);
          if (isDeciding) {
             if (text.ToLower() == "next")
             {
@@ -216,7 +223,6 @@ public class WordReciteManager : MonoBehaviour
 
         // Does their answer match the current word?
         wordAnsweredCorrectly = text.ToLower() == currentWordOrSentenceList[currentWordOrSentenceIndex].ToLower();
-        Debug.Log("WORD ANSWERED CORRECTLY: " + wordAnsweredCorrectly);
 
         // Change text to reflect correct / incorrect 
         reciteText3D.UpdateText(wordAnsweredCorrectly ? "Correct! " : "Incorrect.");
@@ -233,9 +239,8 @@ public class WordReciteManager : MonoBehaviour
         {
             StartCoroutine(WordAnsweredIncorrectly());
         }
-
-
     }
+
     void AddScoreToScoreManager()
     {
          if (_levelManager.currentLevel == "Level1")

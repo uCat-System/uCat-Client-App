@@ -122,25 +122,22 @@ public class WitListeningStateManager : MonoBehaviour
             {
                 case WitListeningStateMachine.State.NotListening:
                     DeactivateWit();
-
                     break;
                 case WitListeningStateMachine.State.ListeningForMenuCommandsOnly:
                     ActivateWit();
-                    // Additional logic specific to this state
                     break;
                 case WitListeningStateMachine.State.ListeningForEverything:
                     ActivateWit();
-                    // Additional logic specific to this state
                     break;
                 case WitListeningStateMachine.State.ListeningForRecitedWordsOnly:
                     ActivateWit();
-                    // Additional logic specific to this state
                     break;
                 case WitListeningStateMachine.State.ListeningForNavigationCommandsOnly:
                     Debug.Log("In state machine, tryign to nav " + nextState);
-
                     StartCoroutine(TurnWitOffAndOn());
-                    // Additional logic specific to this state
+                    break;
+                case WitListeningStateMachine.State.ListeningForConfirmation:
+                    StartCoroutine(TurnWitOffAndOn());
                     break;
                 default:
                     Debug.LogError("Invalid state transition." + nextState);
