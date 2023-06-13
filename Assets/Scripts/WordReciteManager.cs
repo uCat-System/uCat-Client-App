@@ -13,9 +13,11 @@ public class WordReciteManager : MonoBehaviour
 
     // Word lists
     string[] currentWordOrSentenceList;
-    string[] changPaperWordList = new string[] { "hello","thirsty", "they", "hope", "up", "goodbye", "music", "tired", "nurse", "computer" };
+    // This word list combines some from Chang paper and some from Willet
+    string[] changAndWilletPaperWordList = new string[] { "hello", "computer", "choice", "day", "kite", "though", "veto", "were", "tired", "nurse" };
+    
 
-    // string[] changPaperWordList = new string[] { "hello" };
+    // string[] changAndWilletPaperWordList = new string[] { "hello" };
 
     string[] changPaperSentenceList = new string[] { 
          "How do you like my music", "My glasses are comfortable", "What do you do", "I do not feel comfortable", "Bring my glasses here",
@@ -52,20 +54,26 @@ public class WordReciteManager : MonoBehaviour
     public Modular3DText reciteText3D;
     public Modular3DText partialText3D;
 
+    public Modular3DText subtitleText3D;
+
     [SerializeField] private Wit wit;
 
     void Start()
     {
+        // Assigning gameobjects
         wit = GameObject.FindWithTag("Wit").GetComponent<Wit>();
+        subtitleText3D = GameObject.FindWithTag("SubtitleText3D").GetComponent<Modular3DText>();
         partialText3D = GameObject.FindWithTag("PartialText3D").GetComponent<Modular3DText>();
         _witListeningStateManager = GameObject.FindWithTag("WitListeningStateManager").GetComponent<WitListeningStateManager>();
+       
+        // Game state variables
         uiComplete = false;
         changComplete = false;
 
         if (_levelManager.currentLevel == "Level1")
         {
-            _scoreManager.SetMaxScoreBasedOnWordListCount(changPaperWordList.Length + uiControlsWordList.Length);
-            currentWordOrSentenceList = changPaperWordList; 
+            _scoreManager.SetMaxScoreBasedOnWordListCount(changAndWilletPaperWordList.Length + uiControlsWordList.Length);
+            currentWordOrSentenceList = changAndWilletPaperWordList; 
 
         }
         else if (_levelManager.currentLevel == "Level2")
@@ -83,6 +91,8 @@ public class WordReciteManager : MonoBehaviour
 
     public IEnumerator StartCurrentWordCountdown()
     {
+        subtitleText3D.UpdateText("");
+
         if (_witListeningStateManager.currentListeningState == "ListeningForNavigationCommandsOnly")
         {
             Debug.Log("Breaking out of countdown because in navigation state");
@@ -92,18 +102,14 @@ public class WordReciteManager : MonoBehaviour
         partialText3D.UpdateText("");
         reciteText3D.Material = defaultColour;
         string word = currentWordOrSentenceList[currentWordOrSentenceIndex];
-        
-        for (int i = 0; i < 3; i++)
+    
+        for (float i = 0; i < 3; i++)
         {
 
         if (_witListeningStateManager.currentListeningState == "ListeningForNavigationCommandsOnly") {
-            
             Debug.Log("Breaking out of countdown because in navigation state");
             yield break;
-        } else {
-            Debug.Log("COUNTDOWN CONTINUED, STATE IS " + _witListeningStateManager.currentListeningState);
         }
-        
             switch (i)
             {
                 case 0:
@@ -114,7 +120,6 @@ public class WordReciteManager : MonoBehaviour
                     break;
                 case 2:
                     reciteText3D.UpdateText("." + word + ".");
-                    Debug.Log("1 second left, current state is " + _witListeningStateManager.currentListeningState);
                     // Discard anything said during countdown and start fresh
                     _witListeningStateManager.ChangeState("NotListening");
                     break;
@@ -128,6 +133,7 @@ public class WordReciteManager : MonoBehaviour
              Debug.Log("EXITING OUT BECAUSE WE ARE IN MENU STATE " + _witListeningStateManager.currentListeningState);
             yield break;
         } else {
+            subtitleText3D.UpdateText("");
             Debug.Log("CONTINUING, STATE IS " + _witListeningStateManager.currentListeningState);
             _witListeningStateManager.ChangeState("ListeningForEverything");
             reciteText3D.UpdateText(word);
@@ -261,7 +267,7 @@ public class WordReciteManager : MonoBehaviour
 
         else
         {
-            if (currentWordOrSentenceList == changPaperWordList) { changComplete = true; }
+            if (currentWordOrSentenceList == changAndWilletPaperWordList) { changComplete = true; }
             if (currentWordOrSentenceList == uiControlsWordList) { uiComplete = true; }
             StartCoroutine(CheckWordListStatus());
         }

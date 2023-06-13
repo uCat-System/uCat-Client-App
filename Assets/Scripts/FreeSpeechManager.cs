@@ -34,6 +34,12 @@ namespace MText
             HandleInactivityFailure();
         }
 
+        public void StoppedListeningDueToDeactivation()
+        {
+            Debug.Log("Stopped listening due to Deactivation");
+            // HandleInactivityFailure();
+        }
+
         public void StoppedListeningDueToTimeout()
         {
             Debug.Log("Stopped listening due to timeout");
@@ -61,7 +67,6 @@ namespace MText
             Debug.Log("Receiving full text of " + text);
 
             // Clear subtitle speech
-            subtitleText3D.UpdateText("");
             // 1) Always listen for menu
             uiManager.CheckIfUICommandsWereSpoken(text.ToLower());
 

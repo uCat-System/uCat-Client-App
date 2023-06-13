@@ -19,6 +19,11 @@ public class UIManager : MonoBehaviour
     {
         "menu",
         "activate menu",
+        "hey cat",
+        "hey kat",
+        "hey cap",
+        "hey you cap",
+        "hey you can't",
         "hey you cat",
         "hey you kat",
         "hey, you cat",

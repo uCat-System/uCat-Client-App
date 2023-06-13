@@ -90,7 +90,7 @@ public class WitListeningStateManager : MonoBehaviour
     }
 
     public void StoppedListening() {
-        Debug.Log("Stopped!");
+        Debug.Log("Stopped! Reactivating");
         StartCoroutine(ResetToCurrentListeningState());
     }
 
