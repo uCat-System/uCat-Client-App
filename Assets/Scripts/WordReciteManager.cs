@@ -85,6 +85,7 @@ public class WordReciteManager : MonoBehaviour
     {
         if (_witListeningStateManager.currentListeningState == "ListeningForNavigationCommandsOnly")
         {
+            Debug.Log("Breaking out of countdown because in navigation state");
             yield break;
         }
 
@@ -95,7 +96,13 @@ public class WordReciteManager : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
 
-        if (_witListeningStateManager.currentListeningState == "ListeningForNavigationCommandsOnly") {yield break;}
+        if (_witListeningStateManager.currentListeningState == "ListeningForNavigationCommandsOnly") {
+            
+            Debug.Log("Breaking out of countdown because in navigation state");
+            yield break;
+        } else {
+            Debug.Log("COUNTDOWN CONTINUED, STATE IS " + _witListeningStateManager.currentListeningState);
+        }
         
             switch (i)
             {
@@ -107,6 +114,7 @@ public class WordReciteManager : MonoBehaviour
                     break;
                 case 2:
                     reciteText3D.UpdateText("." + word + ".");
+                    Debug.Log("1 second left, current state is " + _witListeningStateManager.currentListeningState);
                     // Discard anything said during countdown and start fresh
                     _witListeningStateManager.ChangeState("NotListening");
                     break;
@@ -116,10 +124,16 @@ public class WordReciteManager : MonoBehaviour
         }
 
         // Countdown finished, start listening for the word
-        _witListeningStateManager.ChangeState("ListeningForEverything");
+        if (_witListeningStateManager.currentListeningState == "ListeningForNavigationCommandsOnly") {
+             Debug.Log("EXITING OUT BECAUSE WE ARE IN MENU STATE " + _witListeningStateManager.currentListeningState);
+            yield break;
+        } else {
+            Debug.Log("CONTINUING, STATE IS " + _witListeningStateManager.currentListeningState);
+            _witListeningStateManager.ChangeState("ListeningForEverything");
+            reciteText3D.UpdateText(word);
+            reciteText3D.Material = listeningColour;
+        }
 
-        reciteText3D.UpdateText(word);
-        reciteText3D.Material = listeningColour;
     }
 
     public void OnMicrophoneTimeOut()

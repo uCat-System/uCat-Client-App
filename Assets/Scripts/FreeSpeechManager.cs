@@ -12,6 +12,7 @@ namespace MText
 
         public WordReciteManager wordReciteManager;
         public Modular3DText partialText3D;
+        public Modular3DText subtitleText3D;
         public Modular3DText fullText3D;
 
         public WitListeningStateManager _witListeningStateManager;
@@ -22,22 +23,28 @@ namespace MText
 
         void Start()
         {
+            subtitleText3D = GameObject.FindWithTag("SubtitleText3D").GetComponent<Modular3DText>();
             uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
             scene = SceneManager.GetActiveScene();
         }
     
         public void StoppedListeningDueToInactivity()
         {
+            Debug.Log("Stopped listening due to inactivity");
             HandleInactivityFailure();
         }
 
         public void StoppedListeningDueToTimeout()
         {
+            Debug.Log("Stopped listening due to timeout");
             HandleInactivityFailure();
         }
 
         public void HandlePartialTranscription(string text)
         {
+            Debug.Log("Partial received: " + text);
+            // Always update subtitles when attempting speech
+            subtitleText3D.UpdateText(text);
             if (_witListeningStateManager.currentListeningState == "ListeningForEverything") {
                 partialText3D.UpdateText(text);
             }
@@ -47,6 +54,8 @@ namespace MText
         {
             Debug.Log("Receiving full text of " + text);
 
+            // Clear subtitle speech
+            subtitleText3D.UpdateText("");
             // 1) Always listen for menu
             uiManager.CheckIfUICommandsWereSpoken(text.ToLower());
 
@@ -64,7 +73,7 @@ namespace MText
                 }
         }
 
-        void HandleInactivityFailure()
+        public void HandleInactivityFailure()
         {
             wordReciteManager.OnMicrophoneTimeOut();
         }
@@ -81,7 +90,7 @@ namespace MText
                  // Update the spoken text
                 CalculateCachedText(text);
                 fullText3D.UpdateText(cachedText);
-                StartCoroutine(_witListeningStateManager.StartListeningAgain());
+                StartCoroutine(_witListeningStateManager.ResetToCurrentListeningState());
                 _witListeningStateManager.ChangeState("ListeningForEverything");
             }
 

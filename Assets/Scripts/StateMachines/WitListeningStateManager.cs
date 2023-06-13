@@ -18,7 +18,7 @@ public class WitListeningStateManager : MonoBehaviour
     public WitListeningStateMachine witListeningStateMachine;
     public Wit witModule;
 
-    private void Start()
+    private void Awake()
     {
         _wordReciteManager = GameObject.FindWithTag("WordReciteManager")?.GetComponent<WordReciteManager>();
 
@@ -34,6 +34,7 @@ public class WitListeningStateManager : MonoBehaviour
         } else {
             ChangeState("ListeningForMenuCommandsOnly");
         }
+
         _uiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
         listeningText3D = GameObject.FindWithTag("ListeningText3D").GetComponent<Modular3DText>();
         if (witListeningStateMachine == null)
@@ -53,15 +54,17 @@ public class WitListeningStateManager : MonoBehaviour
                 
                 if (witModule != null)
                 {
+                    Debug.Log("Wit module found, activating");
                     witModule.Activate();
                 }
             }
 
-            Debug.Log("Wit activated.");
         }
 
         public void DeactivateWit()
-        {
+        {   
+            Debug.Log("Wit dectivate called");
+
            GameObject witGameObject = GameObject.FindWithTag("Wit");
             if (witGameObject != null && witGameObject.activeSelf)
             {
@@ -70,10 +73,10 @@ public class WitListeningStateManager : MonoBehaviour
                 if (witModule != null)
                 {
                     witModule.Deactivate();
+                    
                 }
             }
 
-            Debug.Log("Wit dectivate called, but still active");
         }
 
     public void DetectUICommandsInWitListeningStateManager(string text) {
@@ -88,10 +91,10 @@ public class WitListeningStateManager : MonoBehaviour
 
     public void StoppedListening() {
         Debug.Log("Stopped!");
-        StartCoroutine(StartListeningAgain());
+        StartCoroutine(ResetToCurrentListeningState());
     }
 
-    public IEnumerator StartListeningAgain() {
+    public IEnumerator ResetToCurrentListeningState() {
            
         // Turn it back on again
         // TODO - improve this - I don't know why it doesn't work without the delay
@@ -100,6 +103,13 @@ public class WitListeningStateManager : MonoBehaviour
         // change to the previous state (either menu only or all)
         ChangeState(currentListeningState);
         
+    }
+    
+    public IEnumerator TurnWitOffAndOn() {
+        Debug.Log("Turning Wit off and on");
+        DeactivateWit();
+        yield return new WaitForSeconds(0.00001f);
+        ActivateWit();
     }
 
     // This is called from the WitListeningStateMachine script using actual enum values.
@@ -112,6 +122,7 @@ public class WitListeningStateManager : MonoBehaviour
             {
                 case WitListeningStateMachine.State.NotListening:
                     DeactivateWit();
+
                     break;
                 case WitListeningStateMachine.State.ListeningForMenuCommandsOnly:
                     ActivateWit();
@@ -126,7 +137,9 @@ public class WitListeningStateManager : MonoBehaviour
                     // Additional logic specific to this state
                     break;
                 case WitListeningStateMachine.State.ListeningForNavigationCommandsOnly:
-                    ActivateWit();
+                    Debug.Log("In state machine, tryign to nav " + nextState);
+
+                    StartCoroutine(TurnWitOffAndOn());
                     // Additional logic specific to this state
                     break;
                 default:

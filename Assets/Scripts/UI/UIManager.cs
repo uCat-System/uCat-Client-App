@@ -42,18 +42,19 @@ public class UIManager : MonoBehaviour
 
     public void CheckIfUICommandsWereSpoken(string text) {
         // text is input as lower case from FreeSpeechManager
-    Debug.Log("1");
+    Debug.Log("Checking for UI commands: " + text);
         // Listen for any of the wake phrases
         if (!menu.activeInHierarchy && acceptableWakeWords.Any(text.Contains))
         {
             textElements.SetActive(false);
-            _wordReciteManager.StopAllCoroutines();
+            // _wordReciteManager.StopAllCoroutines();
             menu.SetActive(true);
             _witListeningStateManager.ChangeState("ListeningForNavigationCommandsOnly");
         }
 
         if (menu.activeInHierarchy && _witListeningStateManager.currentListeningState == "ListeningForNavigationCommandsOnly")
         {
+            Debug.Log("Menu is active and listening for navigation commands only: " + text);
             switch (text)
             {
                 case "repeat level":

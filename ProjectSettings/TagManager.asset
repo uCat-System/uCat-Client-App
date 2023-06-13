@@ -3,7 +3,18 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - UIManager
+  - Wit
+  - WordReciteManager
+  - PartialText3D
+  - ReciteText3D
+  - ListeningText3D
+  - uCatMenu
+  - TextElements
+  - ReciteBoard
+  - WitListeningStateManager
+  - SubtitleText3D
   layers:
   - Default
   - TransparentFX
