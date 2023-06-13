@@ -1,5 +1,68 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &292504749
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 292504752}
+  - component: {fileID: 292504751}
+  - component: {fileID: 292504750}
+  m_Layer: 10
+  m_Name: Post-process Volume
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &292504752
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 292504749}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.722192, y: 0.90588355, z: 3.711812}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1010642675882665962}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &292504751
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 292504749}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &292504750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 292504749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sharedProfile: {fileID: 11400000, guid: 28853652e4f73624c9adb2cfd973f1a2, type: 2}
+  isGlobal: 1
+  blendDistance: 0
+  weight: 1
+  priority: 100
 --- !u!1 &1010642675882665961
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,7 +74,8 @@ GameObject:
   - component: {fileID: 1010642675882665962}
   - component: {fileID: 1010642675882665963}
   - component: {fileID: 1010642675882665877}
-  m_Layer: 0
+  - component: {fileID: 860615617}
+  m_Layer: 10
   m_Name: uCat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30,6 +94,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 292504752}
   - {fileID: 687994480668435453}
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -68,6 +133,26 @@ MonoBehaviour:
   expressiveMaterial: {fileID: 2100000, guid: 2035bf523c8c2dc4cb6d9f88c9752fcb, type: 2}
   _currentExpressiveColor: 8
   _EmissiveIntensity: 2
+--- !u!95 &860615617
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1010642675882665961}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e5a9f0a25b05a4c4eb47162e4c1b50ab, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1010642675920438294
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -164,9 +249,37 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: 2035bf523c8c2dc4cb6d9f88c9752fcb, type: 2}
+    - target: {fileID: -2321293741481134508, guid: ec2a8d1f36d0b6547aeb57d624055a5c, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -2113728007872615254, guid: ec2a8d1f36d0b6547aeb57d624055a5c, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -1484917709808193929, guid: ec2a8d1f36d0b6547aeb57d624055a5c, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 635547659545568360, guid: ec2a8d1f36d0b6547aeb57d624055a5c, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ec2a8d1f36d0b6547aeb57d624055a5c, type: 3}
       propertyPath: m_Name
       value: uCat_Mesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ec2a8d1f36d0b6547aeb57d624055a5c, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2775157117712668571, guid: ec2a8d1f36d0b6547aeb57d624055a5c, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4167280743394806330, guid: ec2a8d1f36d0b6547aeb57d624055a5c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4167280743394806330, guid: ec2a8d1f36d0b6547aeb57d624055a5c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -204,6 +317,22 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 10a971e3908f54449839b260d4a2ef84, type: 2}
+    - target: {fileID: 6268203014766219681, guid: ec2a8d1f36d0b6547aeb57d624055a5c, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6522404435437967424, guid: ec2a8d1f36d0b6547aeb57d624055a5c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6522404435437967424, guid: ec2a8d1f36d0b6547aeb57d624055a5c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.4667565
+      objectReference: {fileID: 0}
+    - target: {fileID: 6854142472036155408, guid: ec2a8d1f36d0b6547aeb57d624055a5c, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 9055664858536610015, guid: ec2a8d1f36d0b6547aeb57d624055a5c, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
