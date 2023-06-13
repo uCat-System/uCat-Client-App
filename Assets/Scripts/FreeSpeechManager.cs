@@ -90,11 +90,6 @@ namespace MText
             else {
                 Debug.Log("WRONG state - did not activate word task. You are robably in the menu.");
             }
-
-            // at the end:
-
-            //  StartCoroutine(_witListeningStateManager.ResetToCurrentListeningState());
-            //     _witListeningStateManager.ChangeState("ListeningForEverything");
         }
 
          public IEnumerator CheckIfConfirmationWasSpoken(string text) {
@@ -106,7 +101,7 @@ namespace MText
                     Debug.Log("Yes was spoken");
                     partialText3D.UpdateText("Cool!");
                     yield return new WaitForSeconds(1);
-                    wordReciteManager.GoToNextWord();
+                    wordReciteManager.MoveOnIfMoreWordsInList();
                     break;
                 case "no":
                     Debug.Log("No was spoken");
@@ -139,8 +134,13 @@ namespace MText
                 Debug.Log("should be transcribing");
                  // Update the spoken text
                 CalculateCachedText(text);
-                ConfirmWhatUserSaid(text.ToLower());
-                // fullText3D.UpdateText(cachedText);
+                // Only confirm yes/no if the 'next/proceed' prompt is not active
+                if (wordReciteManager.isDeciding) {
+                    Debug.Log("going to check recited word");
+                    StartCoroutine(wordReciteManager.CheckRecitedWord(text));
+                } else {
+                    ConfirmWhatUserSaid(text.ToLower());
+                }
             }
 
         }

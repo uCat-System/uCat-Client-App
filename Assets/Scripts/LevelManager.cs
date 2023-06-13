@@ -45,6 +45,10 @@ public class LevelManager : MonoBehaviour
                     SceneManager.LoadScene("Level3");
                 break;
 
+            case "Level3":
+                SceneManager.LoadScene("Lobby");
+                break;
+
         }
 
     }

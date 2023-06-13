@@ -5,7 +5,7 @@ using MText;
 
 public class WordReciteManager : MonoBehaviour
 {
-    private bool isDeciding = false;
+    public bool isDeciding = false;
     public bool resuming = false;
 
     // Current word tracking
@@ -24,13 +24,17 @@ public class WordReciteManager : MonoBehaviour
          "You are not right", "That is very clean", "My family is here"
     };
 
-    string[] openQuestionsList = new string[] { "What is your name", "What is your favourite colour",
-     "What is your favourite food", "What is your favourite animal", "What is your favourite movie" };
+    // string[] openQuestionsList = new string[] { "What is your name", "What is your favourite colour",
+    //  "What is your favourite food", "What is your favourite animal", "What is your favourite movie" };
+
+     string[] openQuestionsList = new string[] { "What is your name" };
 
     // Track if the lists have been completed
     bool changComplete;
     
     bool uiComplete;
+
+    bool openQuestionsComplete;
 
     // Text colours
 
@@ -207,17 +211,28 @@ public class WordReciteManager : MonoBehaviour
             Debug.Log("Breaking out of recited word because menu active or in command mode" + _witListeningStateManager.currentListeningState);
             yield break;
         }
-
         bool wordAnsweredCorrectly;
 
          if (isDeciding) {
+            Debug.Log("TRUE isDeciding");
             if (text.ToLower() == "next")
             {
                 _levelManager.LevelComplete();
+                yield break;
             }
             else if (text.ToLower() == "repeat")
             {
                 _levelManager.RepeatLevel();
+                yield break;
+
+            }
+
+            else {
+                Debug.Log("Not next or repeat");
+                partialText3D.UpdateText("I didn't understand that, please try again.");
+                GameOver();
+                yield break;
+
             }
         }
 
@@ -261,7 +276,7 @@ public class WordReciteManager : MonoBehaviour
         RepeatSameWord();
     }
 
-    void MoveOnIfMoreWordsInList ()
+    public void MoveOnIfMoreWordsInList ()
     {
         Debug.Log("checking if more words in list" + currentWordOrSentenceIndex + " " + currentWordOrSentenceList.Length);
         if (currentWordOrSentenceIndex < currentWordOrSentenceList.Length - 1)
@@ -272,8 +287,11 @@ public class WordReciteManager : MonoBehaviour
 
         else
         {
+            _witListeningStateManager.ChangeState("ListeningForEverything");
+            Debug.Log("Proceeding?" + currentWordOrSentenceList);
             if (currentWordOrSentenceList == changAndWilletPaperWordList) { changComplete = true; }
             if (currentWordOrSentenceList == uiControlsWordList) { uiComplete = true; }
+            if (currentWordOrSentenceList == openQuestionsList) { openQuestionsComplete = true; }
             StartCoroutine(CheckWordListStatus());
         }
     }
@@ -288,8 +306,8 @@ public class WordReciteManager : MonoBehaviour
 
     IEnumerator CheckWordListStatus()
     {
+        Debug.Log("Checking word list status");
         // Either proceed to next word list, or end the game.
-
         if (changComplete && !uiComplete)
         { 
             currentWordOrSentenceList = uiControlsWordList;
@@ -300,7 +318,8 @@ public class WordReciteManager : MonoBehaviour
             StartCoroutine(StartCurrentWordCountdown());
             
         }
-        else if (changComplete && uiComplete)
+        // If level 1/2 have both lists done, or level 3 has open questions done, end the game.
+        else if (changComplete && uiComplete || openQuestionsComplete)
         {
             currentWordOrSentenceIndex = 0;
             reciteText3D.UpdateText("Finished!");
@@ -318,6 +337,7 @@ public class WordReciteManager : MonoBehaviour
     {
         _scoreManager.DisplayScoreInPartialTextSection();
         reciteText3D.UpdateText("Say 'next' to proceed.\nOr 'repeat' to repeat sentences.");
+        StartCoroutine(_witListeningStateManager.TurnWitOffAndOn());
         isDeciding = true;
     }
 }
