@@ -24,10 +24,8 @@ public class WordReciteManager : MonoBehaviour
          "You are not right", "That is very clean", "My family is here"
     };
 
-    // string[] openQuestionsList = new string[] { "What is your name", "What is your favourite colour",
-    //  "What is your favourite food", "What is your favourite animal", "What is your favourite movie" };
-
-     string[] openQuestionsList = new string[] { "What is your name" };
+    string[] openQuestionsList = new string[] { "What is your name", "What is your favourite colour",
+     "What is your favourite food", "What is your favourite animal", "What is your favourite movie" };
 
     // Track if the lists have been completed
     bool changComplete;
