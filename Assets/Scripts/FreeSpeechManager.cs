@@ -50,6 +50,12 @@ namespace MText
             }
         }
 
+         public void MinimumWakeThresholdHit()
+        {
+            Debug.Log("HIT MINIMUM: ");
+            
+        }
+
         public void HandleFullTranscription(string text)
         {
             Debug.Log("Receiving full text of " + text);
