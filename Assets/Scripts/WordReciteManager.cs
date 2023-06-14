@@ -13,22 +13,14 @@ public class WordReciteManager : MonoBehaviour
 
     // Word lists
     string[] currentWordOrSentenceList;
-    // This word list combines some from Chang paper and some from Willet
-    string[] changAndWilletPaperWordList = new string[] { "hello", "computer", "choice", "day", "kite", "though", "veto", "were", "tired", "nurse" };
-    
 
-    // string[] changAndWilletPaperWordList = new string[] { "hello" };
+    string[] currentUiList;
 
-    string[] changPaperSentenceList = new string[] { 
-         "How do you like my music", "My glasses are comfortable", "What do you do", "I do not feel comfortable", "Bring my glasses here",
-         "You are not right", "That is very clean", "My family is here"
-    };
-
-    string[] openQuestionsList = new string[] { "What is your name", "What is your favourite colour",
-     "What is your favourite food", "What is your favourite animal", "What is your favourite movie" };
+    // This is the list that is active, either words/sentences OR UI list
+    string[] activeList;
 
     // Track if the lists have been completed
-    bool changComplete;
+    bool wordListComplete;
     
     bool uiComplete;
 
@@ -40,12 +32,6 @@ public class WordReciteManager : MonoBehaviour
     public Material incorrectColour;
     public Material defaultColour;
     public Material listeningColour;
-
-    string[] uiControlsWordList = new string[] { "one", "two", "three", "proceed", "next", "repeat", "back", "pause", "menu", "help" };
-    //  string[] uiControlsWordList = new string[] { "one" };
-
-    
-    string[] uiControlsSentenceList = new string[] { "go to main menu", "I would like to repeat sentences" };
 
     // External Managers
 
@@ -73,32 +59,66 @@ public class WordReciteManager : MonoBehaviour
        
         // Game state variables
         uiComplete = false;
-        changComplete = false;
+        wordListComplete = false;
 
-        if (_levelManager.currentLevel == "Level1")
-        {
-            _scoreManager.SetMaxScoreBasedOnWordListCount(changAndWilletPaperWordList.Length + uiControlsWordList.Length);
-            currentWordOrSentenceList = changAndWilletPaperWordList; 
-
-        }
-        else if (_levelManager.currentLevel == "Level2")
-        {
-            _scoreManager.SetMaxScoreBasedOnWordListCount(changPaperSentenceList.Length + uiControlsSentenceList.Length);
-            currentWordOrSentenceList = changPaperSentenceList;
-        }
-
-        else if (_levelManager.currentLevel == "Level3")
-        {
-            currentWordOrSentenceList = openQuestionsList;
-        }
-
-        // Do not need to set max score for lv 3 as there is no right or wrong
-
-        reciteText3D.Material = defaultColour;
-
-        // Start with the first chang word
+        // Word Lists
+        SetWordAndUiListsBasedOnLevel();
+        activeList = currentWordOrSentenceList;
         currentWordOrSentenceIndex = 0;
+
+        // Set score based on amount of words in lists
+        if (_levelManager.currentLevel != "Level3")
+        {
+            _scoreManager.SetMaxScoreBasedOnWordListCount(currentWordOrSentenceList.Length + currentUiList.Length);
+        }
+
+        // Start the first word
+        reciteText3D.Material = defaultColour;
         StartCoroutine(StartCurrentWordCountdown());
+    }
+
+    void SetWordAndUiListsBasedOnLevel() {
+        // TODO - store these externally
+
+        string[] level1WordList = new string[] {
+            "hello", "computer", "choice", "day", "kite", "though", "veto", "were", "tired", "nurse" 
+        };
+
+        string[] level2SentenceList = new string[] { 
+            "How do you like my music", "My glasses are comfortable", "What do you do", "I do not feel comfortable", "Bring my glasses here",
+            "You are not right", "That is very clean", "My family is here"
+        };
+
+        // string[] level2SentenceList = new string[] { 
+        //      "How do you like my music"
+        // };
+
+        string[] level3OpenQuestionsList = new string[] { "What is your name", "What is your favourite colour",
+        "What is your favourite food", "What is your favourite animal", "What is your favourite movie" 
+        };
+
+        // UI Lists
+
+        string[] level1UiList = new string[] { "one", "two", "three", "proceed", "next", "repeat", "back", "pause", "settings", "help" };
+        //  string[] level1UiList = new string[] { "one" };
+
+        
+        string[] level2UiList = new string[] { "hey there", "look at that black cat", "I would like to repeat sentences" };
+        // string[] level2UiList = new string[] { "hey there" };
+
+        switch (_levelManager.currentLevel) {
+            case "Level1":
+                currentWordOrSentenceList = level1WordList;
+                currentUiList = level1UiList;
+                break;
+            case "Level2":
+                currentWordOrSentenceList = level2SentenceList;
+                currentUiList = level2UiList;
+                break;
+            case "Level3":
+                currentWordOrSentenceList = level3OpenQuestionsList;
+                break;
+        }
     }
 
     public IEnumerator StartCurrentWordCountdown()
@@ -259,7 +279,6 @@ public class WordReciteManager : MonoBehaviour
          if (_levelManager.currentLevel == "Level1")
         {
             _scoreManager.Level1CurrentScore = _scoreManager.Level1CurrentScore + 1;
-
         }
         else if (_levelManager.currentLevel == "Level2")
         {
@@ -276,8 +295,8 @@ public class WordReciteManager : MonoBehaviour
 
     public void MoveOnIfMoreWordsInList ()
     {
-        Debug.Log("checking if more words in list" + currentWordOrSentenceIndex + " " + currentWordOrSentenceList.Length);
-        if (currentWordOrSentenceIndex < currentWordOrSentenceList.Length - 1)
+        Debug.Log("checking if more words in list" + currentWordOrSentenceIndex + " " + activeList.Length);
+        if (currentWordOrSentenceIndex < activeList.Length - 1)
         {
             Debug.Log("going to next word because index valid");
             GoToNextWord();
@@ -285,11 +304,11 @@ public class WordReciteManager : MonoBehaviour
 
         else
         {
+            // Mark the current list as complete, and move on to the next (if any) via changing booleans
             _witListeningStateManager.ChangeState("ListeningForEverything");
-            Debug.Log("Proceeding?" + currentWordOrSentenceList);
-            if (currentWordOrSentenceList == changAndWilletPaperWordList) { changComplete = true; }
-            if (currentWordOrSentenceList == uiControlsWordList) { uiComplete = true; }
-            if (currentWordOrSentenceList == openQuestionsList) { openQuestionsComplete = true; }
+            if (activeList == currentWordOrSentenceList) { wordListComplete = true; }
+            if (activeList == currentUiList) { uiComplete = true; }
+            if (_levelManager.currentLevel == "Level3") { openQuestionsComplete = true; }
             StartCoroutine(CheckWordListStatus());
         }
     }
@@ -305,10 +324,14 @@ public class WordReciteManager : MonoBehaviour
     IEnumerator CheckWordListStatus()
     {
         Debug.Log("Checking word list status");
-        // Either proceed to next word list, or end the game.
-        if (changComplete && !uiComplete)
+        Debug.Log("Chang complete: " + wordListComplete);
+        Debug.Log("UI complete: " + uiComplete);
+        Debug.Log("openQuestionsComplete: " + openQuestionsComplete);
+
+        // Either proceed to next word list (ui), or end the game.
+        if (wordListComplete && !uiComplete)
         { 
-            currentWordOrSentenceList = uiControlsWordList;
+            activeList = currentUiList;
             currentWordOrSentenceIndex = 0;
             reciteText3D.UpdateText("Great! Moving onto UI word list.");
 
@@ -317,7 +340,7 @@ public class WordReciteManager : MonoBehaviour
             
         }
         // If level 1/2 have both lists done, or level 3 has open questions done, end the game.
-        else if (changComplete && uiComplete || openQuestionsComplete)
+        else if (wordListComplete && uiComplete || openQuestionsComplete)
         {
             currentWordOrSentenceIndex = 0;
             reciteText3D.UpdateText("Finished!");

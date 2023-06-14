@@ -22,7 +22,6 @@ public class SentenceReciteManager : MonoBehaviour
 
     bool changComplete;
     string[] uiControlsWordList = new string[] { "go to main menu", "I would like to repeat sentences" };
-    string emergencyStopWord = "emergency stop";
 
     public ScoreManager _scoreManager;
     public LevelManager _levelManager;
@@ -104,6 +103,31 @@ public class SentenceReciteManager : MonoBehaviour
         StartCoroutine(CheckRecitedSentence(text));
     }
 
+    void DisplayScoreAtEndOfLevel() {
+        string scene = _levelManager.currentLevel;
+        switch (scene) {
+            case "Level1":
+                reciteText3D.UpdateText("Score: " + _scoreManager.Level1CurrentScore.ToString() + "/" + _scoreManager.Level1MaxScore.ToString());
+                break;
+            case "Level2":
+                reciteText3D.UpdateText("Score: " + _scoreManager.Level2CurrentScore.ToString() + "/" + _scoreManager.Level2MaxScore.ToString());
+                break;
+        }
+    }
+
+    void CheckIfNextOrProceedSpoken(string transcription) {
+        if (transcription.ToLower() == "next")
+                {
+                    Debug.Log("Going to next level");
+                    _levelManager.LevelComplete();
+
+                }
+                else if (transcription.ToLower() == "repeat")
+                {
+                    Debug.Log("Repeating this level");
+                    _levelManager.RepeatLevel();
+                }
+    }
     public IEnumerator CheckRecitedSentence(string transcription)
     {
         Debug.Log("Checking sentence with transcription");
@@ -111,17 +135,7 @@ public class SentenceReciteManager : MonoBehaviour
         bool wordAnsweredCorrectly;
 
         if (isDeciding) {
-            if (transcription.ToLower() == "next")
-            {
-                Debug.Log("Going to next level");
-                _levelManager.LevelComplete();
-
-            }
-            else if (transcription.ToLower() == "repeat")
-            {
-                Debug.Log("Repeating this level");
-                _levelManager.RepeatLevel();
-            }
+           CheckIfNextOrProceedSpoken(transcription);
         }
 
         if (transcription.Length == 0)
@@ -130,15 +144,6 @@ public class SentenceReciteManager : MonoBehaviour
             yield break;
         }
 
-        if (transcription.ToLower() == emergencyStopWord)
-        {
-            Debug.Log("Emergency stop");
-            wit.Deactivate();
-            reciteText3D.UpdateText("Emergency Stop Called");
-            //reciteText.text = "Emergency Stop Called";
-            yield break;
-
-        }
         // Does their answer match the current word?
         wordAnsweredCorrectly = transcription.ToLower() == currentWordList[currentWordIndex].ToLower();
 

@@ -1352,6 +1352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8f78cde7c696394ea1e5fe99e32c7b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDeciding: 0
   resuming: 0
   correctColour: {fileID: 2100000, guid: 5562c698b21c8924a84fa2abb367f9cd, type: 2}
   incorrectColour: {fileID: 2100000, guid: dfa4872a000de054bb0c1c830a263904, type: 2}
@@ -2206,6 +2207,10 @@ PrefabInstance:
     - target: {fileID: 430649741665148685, guid: 74ce51154cf56e14db799fe9c14bb97f, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1587077661852141822, guid: 74ce51154cf56e14db799fe9c14bb97f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.04
       objectReference: {fileID: 0}
     - target: {fileID: 2726010395621157703, guid: 74ce51154cf56e14db799fe9c14bb97f, type: 3}
       propertyPath: m_TagString
