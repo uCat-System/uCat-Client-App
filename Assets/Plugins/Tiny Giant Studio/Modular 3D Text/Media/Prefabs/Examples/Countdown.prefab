@@ -1,0 +1,136 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6410492937242293903
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6410492937242293896}
+  - component: {fileID: 6410492937242293902}
+  - component: {fileID: 6410492937242293897}
+  - component: {fileID: 4760291871501305525}
+  - component: {fileID: 7035884676583615099}
+  m_Layer: 0
+  m_Name: Countdown
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6410492937242293896
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6410492937242293903}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6410492937242293902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6410492937242293903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 564494fa003cb044e83a3ad81d005262, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startCountdownOnStart: 1
+  modular3DText: {fileID: 6410492937242293897}
+  textAfterCountdownEnds: 
+  duration: 10
+  timeStep: 1
+--- !u!114 &6410492937242293897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6410492937242293903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45d100e06f4a0744c8728e86700b5472, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _text: 
+  oldText: 
+  wordArray:
+  - 
+  characterObjectList: []
+  _allcharacterObjectList: []
+  autoSaveMesh: 0
+  _font: {fileID: 11400000, guid: bb2a57af50b6840409677a8bc6779871, type: 2}
+  _material: {fileID: 2100000, guid: 3d8563705655a4245b274398956f938f, type: 2}
+  _fontSize: {x: 1, y: 1, z: 0.5}
+  _capitalize: 0
+  _lowercase: 0
+  _autoLetterSize: 0
+  _wordSpacing: 1
+  useModules: 1
+  addingModules: []
+  deletingModules: []
+  customDeleteAfterDuration: 0
+  deleteAfter: 1
+  destroyChildObjectsWithGameObject: 1
+  repositionOldCharacters: 1
+  reApplyModulesToOldCharacters: 0
+  combineMeshInEditor: 0
+  singleInPrefab: 1
+  combineMeshDuringRuntime: 0
+  hideLettersInHierarchyInPlayMode: 0
+  hideLettersInHierarchyInEditMode: 0
+  canBreakOutermostPrefab: 0
+  assetPath: 
+  meshPaths: []
+  updatedAfterStyleUpdateOnPrefabInstances: 0
+  debugLogs: 0
+  hideOverwrittenVariablesFromInspector: 1
+  updateTextOncePerFrame: 1
+  extraLinesCreatedBecauseOfTooManyVerticies: []
+--- !u!114 &4760291871501305525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6410492937242293903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1b69eb3f1c55974bb1bcc1dbc547a11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  openTime: 4
+--- !u!114 &7035884676583615099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6410492937242293903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d022da6541fe6144a0948571cfad5a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  autoItemSize: 0
+  bounds: []
+  _anchor: 4
+  _justiceHorizontal: 0
+  _justiceHorizontalPercent: 70
+  _justiceVertical: 0
+  _justiceVerticalPercent: 70
+  _spacing: {x: 0.01, y: 0}
+  _width: 5
+  _height: 0
+  lines: []
