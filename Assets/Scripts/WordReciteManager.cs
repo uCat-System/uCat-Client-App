@@ -47,12 +47,16 @@ public class WordReciteManager : MonoBehaviour
 
     public Modular3DText subtitleText3D;
 
+    public AudioSource reciteBoardAudioSource;
+
     [SerializeField] private Wit wit;
+    public AudioClip[] wordSounds;
 
     void Start()
     {
         // Assigning gameobjects
         wit = GameObject.FindWithTag("Wit").GetComponent<Wit>();
+        reciteBoardAudioSource = GameObject.FindWithTag("ReciteBoard").GetComponent<AudioSource>();
         subtitleText3D = GameObject.FindWithTag("SubtitleText3D").GetComponent<Modular3DText>();
         partialText3D = GameObject.FindWithTag("PartialText3D").GetComponent<Modular3DText>();
         _witListeningStateManager = GameObject.FindWithTag("WitListeningStateManager").GetComponent<WitListeningStateManager>();
@@ -123,9 +127,15 @@ public class WordReciteManager : MonoBehaviour
 
     public IEnumerator StartCurrentWordCountdown()
     {
+        // Clear text
         subtitleText3D.UpdateText("");
 
-        if (_witListeningStateManager.currentListeningState == "ListeningForNavigationCommandsOnly")
+        // Play sound
+
+        reciteBoardAudioSource.clip = wordSounds[0];
+        reciteBoardAudioSource.Play();
+
+        if (_witListeningStateManager.currentListeningState == "ListeningForTaskMenuCommandsOnly")
         {
             Debug.Log("Breaking out of countdown because in navigation state");
             yield break;
@@ -138,7 +148,7 @@ public class WordReciteManager : MonoBehaviour
         for (float i = 0; i < 3; i++)
         {
 
-        if (_witListeningStateManager.currentListeningState == "ListeningForNavigationCommandsOnly") {
+        if (_witListeningStateManager.currentListeningState == "ListeningForTaskMenuCommandsOnly") {
             Debug.Log("Breaking out of countdown because in navigation state");
             yield break;
         }
@@ -161,7 +171,7 @@ public class WordReciteManager : MonoBehaviour
         }
 
         // Countdown finished, start listening for the word
-        if (_witListeningStateManager.currentListeningState == "ListeningForNavigationCommandsOnly") {
+        if (_witListeningStateManager.currentListeningState == "ListeningForTaskMenuCommandsOnly") {
              Debug.Log("EXITING OUT BECAUSE WE ARE IN MENU STATE " + _witListeningStateManager.currentListeningState);
             yield break;
         } else {
@@ -201,7 +211,7 @@ public class WordReciteManager : MonoBehaviour
 
     public void GoToNextWord()
     {
-        _witListeningStateManager.ChangeState("ListeningForMenuCommandsOnly");
+        _witListeningStateManager.ChangeState("ListeningForMenuActivationCommandsOnly");
         // If the next word does not exceed the limit
         if (currentWordOrSentenceIndex < currentWordOrSentenceList.Length-1)
         {
@@ -213,7 +223,7 @@ public class WordReciteManager : MonoBehaviour
     }
     public void RepeatSameWord()
     {
-        _witListeningStateManager.ChangeState("ListeningForMenuCommandsOnly");
+        _witListeningStateManager.ChangeState("ListeningForMenuActivationCommandsOnly");
         StartCoroutine(StartCurrentWordCountdown());
     }
     public void StartWordCheck(string transcription)
@@ -223,8 +233,8 @@ public class WordReciteManager : MonoBehaviour
    
     public IEnumerator CheckRecitedWord(string text)
     {
-        if (_witListeningStateManager.currentListeningState == "ListeningForNavigationCommandsOnly"
-        || _witListeningStateManager.currentListeningState == "ListeningForMenuCommandsOnly")
+        if (_witListeningStateManager.currentListeningState == "ListeningForTaskMenuCommandsOnly"
+        || _witListeningStateManager.currentListeningState == "ListeningForMenuActivationCommandsOnly")
         {
             Debug.Log("Breaking out of recited word because menu active or in command mode" + _witListeningStateManager.currentListeningState);
             yield break;
@@ -258,8 +268,19 @@ public class WordReciteManager : MonoBehaviour
         wordAnsweredCorrectly = text.ToLower() == currentWordOrSentenceList[currentWordOrSentenceIndex].ToLower();
 
         // Change text to reflect correct / incorrect 
-        reciteText3D.UpdateText(wordAnsweredCorrectly ? "Correct! " : "Incorrect.");
-        reciteText3D.Material = wordAnsweredCorrectly ? correctColour : incorrectColour;
+
+        if (wordAnsweredCorrectly) {
+            reciteText3D.UpdateText("Correct!");
+            reciteText3D.Material = correctColour;
+            reciteBoardAudioSource.clip = wordSounds[1];
+        } else {
+            reciteText3D.UpdateText("Incorrect.");
+            reciteText3D.Material = incorrectColour;
+            reciteBoardAudioSource.clip = wordSounds[2];
+        }
+
+        // Play sound
+        reciteBoardAudioSource.Play();
 
         yield return new WaitForSeconds(2);
 

@@ -32,7 +32,7 @@ public class WitListeningStateManager : MonoBehaviour
         if (scene == "Level3") {
              ChangeState("ListeningForEverything");
         } else {
-            ChangeState("ListeningForMenuCommandsOnly");
+            ChangeState("ListeningForMenuActivationCommandsOnly");
         }
 
         _uiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
@@ -80,9 +80,9 @@ public class WitListeningStateManager : MonoBehaviour
         }
 
     public void DetectUICommandsInWitListeningStateManager(string text) {
-        // if the state is ListeningForMenuCommandsOnly OR ListeningForEverything,
+        // if the state is ListeningForMenuActivationCommandsOnly OR ListeningForEverything,
         // check if the spoken text is in the menuCommandPhrases list:
-        if (witListeningStateMachine.currentState == WitListeningStateMachine.State.ListeningForMenuCommandsOnly ||
+        if (witListeningStateMachine.currentState == WitListeningStateMachine.State.ListeningForMenuActivationCommandsOnly ||
             witListeningStateMachine.currentState == WitListeningStateMachine.State.ListeningForEverything)
         {
             _uiManager.CheckIfUICommandsWereSpoken(text);
@@ -123,7 +123,7 @@ public class WitListeningStateManager : MonoBehaviour
                 case WitListeningStateMachine.State.NotListening:
                     DeactivateWit();
                     break;
-                case WitListeningStateMachine.State.ListeningForMenuCommandsOnly:
+                case WitListeningStateMachine.State.ListeningForMenuActivationCommandsOnly:
                     ActivateWit();
                     break;
                 case WitListeningStateMachine.State.ListeningForEverything:
@@ -132,12 +132,15 @@ public class WitListeningStateManager : MonoBehaviour
                 case WitListeningStateMachine.State.ListeningForRecitedWordsOnly:
                     ActivateWit();
                     break;
-                case WitListeningStateMachine.State.ListeningForNavigationCommandsOnly:
+                case WitListeningStateMachine.State.ListeningForTaskMenuCommandsOnly:
                     Debug.Log("In state machine, tryign to nav " + nextState);
                     StartCoroutine(TurnWitOffAndOn());
                     break;
                 case WitListeningStateMachine.State.ListeningForConfirmation:
                     StartCoroutine(TurnWitOffAndOn());
+                    break;
+                case WitListeningStateMachine.State.ListeningForLobbyMenuCommandsOnly:
+                    ActivateWit();
                     break;
                 default:
                     Debug.LogError("Invalid state transition." + nextState);
@@ -171,7 +174,7 @@ public class WitListeningStateManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            ChangeState("ListeningForMenuCommandsOnly");
+            ChangeState("ListeningForMenuActivationCommandsOnly");
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
@@ -183,7 +186,7 @@ public class WitListeningStateManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Alpha5))
         {
-            ChangeState("ListeningForNavigationCommandsOnly");
+            ChangeState("ListeningForTaskMenuCommandsOnly");
         }
     }
 }

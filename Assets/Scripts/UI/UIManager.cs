@@ -54,10 +54,10 @@ public class UIManager : MonoBehaviour
             textElements.SetActive(false);
             // _wordReciteManager.StopAllCoroutines();
             menu.SetActive(true);
-            _witListeningStateManager.ChangeState("ListeningForNavigationCommandsOnly");
+            _witListeningStateManager.ChangeState("ListeningForTaskMenuCommandsOnly");
         }
 
-        if (menu.activeInHierarchy && _witListeningStateManager.currentListeningState == "ListeningForNavigationCommandsOnly")
+        if (menu.activeInHierarchy && _witListeningStateManager.currentListeningState == "ListeningForTaskMenuCommandsOnly")
         {
             Debug.Log("Menu is active and listening for navigation commands only: " + text);
             switch (text)
@@ -90,7 +90,7 @@ public class UIManager : MonoBehaviour
                     if (scene == "Level3") {
                         _witListeningStateManager.ChangeState("ListeningForEverything");
                     } else {
-                        _witListeningStateManager.ChangeState("ListeningForMenuCommandsOnly");
+                        _witListeningStateManager.ChangeState("ListeningForMenuActivationCommandsOnly");
                         _wordReciteManager.RepeatSameWord();
                     }
                     textElements.SetActive(true);
