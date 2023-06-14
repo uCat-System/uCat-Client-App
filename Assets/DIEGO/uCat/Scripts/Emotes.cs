@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static AnimationDriver;
 
 public class Emotes : MonoBehaviour
 {
@@ -53,36 +54,34 @@ public class Emotes : MonoBehaviour
 
         emoteCache = faceName;
 
-        if (faceName == Emote.Blink)
+        switch (faceName)
         {
-            faceMaterial.mainTexture = faceBlink ;
-            faceMaterial.SetTexture("_EmissionMap", faceBlink);
+            case Emote.Blink:
+                faceMaterial.mainTexture = faceBlink;
+                faceMaterial.SetTexture("_EmissionMap", faceBlink);
+                break;
+            case Emote.Happy:
+                faceMaterial.mainTexture = faceHappy;
+                faceMaterial.SetTexture("_EmissionMap", faceHappy);
+                break;
+            case Emote.Normal:
+                faceMaterial.mainTexture = faceNormal;
+                faceMaterial.SetTexture("_EmissionMap", faceNormal);
+                break;
+            case Emote.Sad:
+                faceMaterial.mainTexture = faceSad;
+                faceMaterial.SetTexture("_EmissionMap", faceSad);
+                break;
+            case Emote.Surprised:
+                faceMaterial.mainTexture = faceSurprised;
+                faceMaterial.SetTexture("_EmissionMap", faceSurprised);
+                break;
+            default:
+                faceMaterial.mainTexture = faceNormal;
+                faceMaterial.SetTexture("_EmissionMap", faceNormal);
+                break;
         }
-        else if (faceName == Emote.Happy)
-        {
-            faceMaterial.mainTexture = faceHappy;
-            faceMaterial.SetTexture("_EmissionMap", faceHappy);
-        }
-        else if (faceName == Emote.Normal)
-        {
-            faceMaterial.mainTexture = faceNormal;
-            faceMaterial.SetTexture("_EmissionMap", faceNormal);
-        }
-        else if (faceName == Emote.Sad)
-        {
-            faceMaterial.mainTexture = faceSad;
-            faceMaterial.SetTexture("_EmissionMap", faceSad);
-        }
-        else if (faceName == Emote.Surprised)
-        {
-            faceMaterial.mainTexture = faceSurprised;
-            faceMaterial.SetTexture("_EmissionMap", faceSurprised);
-        }
-        else 
-        { 
-            faceMaterial.mainTexture = faceNormal;
-            faceMaterial.SetTexture("_EmissionMap", faceNormal);
-        }
+
     }
 
 

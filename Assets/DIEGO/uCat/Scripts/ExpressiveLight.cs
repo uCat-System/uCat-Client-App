@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Emotes;
 
 public class ExpressiveLight : MonoBehaviour
 {
@@ -22,18 +23,18 @@ public class ExpressiveLight : MonoBehaviour
     }
 
     [SerializeField]
-    private ExpressiveColor _currentExpressiveColor;
+    private ExpressiveColor _expressiveColor;
 
-    public ExpressiveColor currentExpressiveColor
+    public ExpressiveColor expressiveColor
     {
         get
         {
-            return _currentExpressiveColor;
+            return _expressiveColor;
         }
         set
         {
-            _currentExpressiveColor = value;
-            colorChange(_currentExpressiveColor, _EmissiveIntensity);
+            _expressiveColor = value;
+            colorChange(_expressiveColor, _EmissiveIntensity);
         }
     }
 
@@ -50,7 +51,7 @@ public class ExpressiveLight : MonoBehaviour
         set
         {
             _EmissiveIntensity = value;
-            colorChange(_currentExpressiveColor, _EmissiveIntensity);
+            colorChange(_expressiveColor, _EmissiveIntensity);
         }
     }
 
@@ -66,14 +67,14 @@ public class ExpressiveLight : MonoBehaviour
 
     private void OnValidate()
     {
-        currentExpressiveColor = _currentExpressiveColor;
+        expressiveColor = _expressiveColor;
         EmissiveIntensity = _EmissiveIntensity;
-        colorChange(_currentExpressiveColor, _EmissiveIntensity);
+        colorChange(_expressiveColor, _EmissiveIntensity);
     }
 
     private void Update()
     {
-        colorChange(_currentExpressiveColor, _EmissiveIntensity);
+        colorChange(_expressiveColor, _EmissiveIntensity);
     }
 
     // Here's where the magic happens.
@@ -94,48 +95,41 @@ public class ExpressiveLight : MonoBehaviour
 
         // Self explanatory, really. 
         // Tweak color values in a range from 0 to 1. Otherwise you'll have very intense colors if you go from 0 to 255.
-        if(newColor == ExpressiveColor.Red)
+        switch (newColor)
         {
-            expressiveMaterial.SetColor("_EmissionColor", Color.red * intensityPrepared);
-        }
-        else if (newColor == ExpressiveColor.Pink)
-        {
-            expressiveMaterial.SetColor("_EmissionColor", Color.magenta * intensityPrepared);
-        }
-        else if (newColor == ExpressiveColor.Orange)
-        {
-            expressiveMaterial.SetColor("_EmissionColor", new Color(0.9f, 0.4f, 0.2f) * intensityPrepared);
-        }
-        else if (newColor == ExpressiveColor.Yellow)
-        {
-            expressiveMaterial.SetColor("_EmissionColor", new Color(0.8f, 0.7f, 0.1f) * intensityPrepared);
-        }
-        else if (newColor == ExpressiveColor.Green)
-        {
-            expressiveMaterial.SetColor("_EmissionColor", new Color(0.7f, 0.8f, 0.1f) * intensityPrepared);
-        }
-        else if (newColor == ExpressiveColor.Cyan)
-        {
-            expressiveMaterial.SetColor("_EmissionColor", new Color(0.01f, 0.7f, 0.7f) * intensityPrepared);
-        }
-        else if (newColor == ExpressiveColor.Blue)
-        {
-            expressiveMaterial.SetColor("_EmissionColor", new Color(0.01f, 0.05f, 0.9f) * intensityPrepared);
-        }
-        else if (newColor == ExpressiveColor.Purple)
-        {
-            expressiveMaterial.SetColor("_EmissionColor", new Color(0.15f, 0f, 1f) * intensityPrepared);
-        }
-        else if (newColor == ExpressiveColor.White)
-        {
-            expressiveMaterial.SetColor("_EmissionColor", new Color(0.6f, 0.6f, 0.6f) * intensityPrepared);
-        }
-        else 
-        {
-            // This color is left intentionally bright to show something has gone horribly wrong.
-            // Or that a new color that has not yet been assigned a color value has been selected.
-            // Maybe we should be using switches at this point....? Or a Dictionnary?
-            expressiveMaterial.SetColor("_EmissionColor", Color.red * 1000);
+            case ExpressiveColor.Red:
+                expressiveMaterial.SetColor("_EmissionColor", Color.red * intensityPrepared);
+                break;
+            case ExpressiveColor.Pink:
+                expressiveMaterial.SetColor("_EmissionColor", Color.magenta * intensityPrepared);
+                break;
+            case ExpressiveColor.Orange:
+                expressiveMaterial.SetColor("_EmissionColor", new Color(0.9f, 0.4f, 0.2f) * intensityPrepared);
+                break;
+            case ExpressiveColor.Yellow:
+                expressiveMaterial.SetColor("_EmissionColor", new Color(0.8f, 0.7f, 0.1f) * intensityPrepared);
+                break;
+            case ExpressiveColor.Green:
+                expressiveMaterial.SetColor("_EmissionColor", new Color(0.7f, 0.8f, 0.1f) * intensityPrepared);
+                break;
+            case ExpressiveColor.Cyan:
+                expressiveMaterial.SetColor("_EmissionColor", new Color(0.01f, 0.7f, 0.7f) * intensityPrepared);
+                break;
+            case ExpressiveColor.Blue:
+                expressiveMaterial.SetColor("_EmissionColor", new Color(0.01f, 0.05f, 0.9f) * intensityPrepared);
+                break;
+            case ExpressiveColor.Purple:
+                expressiveMaterial.SetColor("_EmissionColor", new Color(0.15f, 0f, 1f) * intensityPrepared);
+                break;
+            case ExpressiveColor.White:
+                expressiveMaterial.SetColor("_EmissionColor", new Color(0.6f, 0.6f, 0.6f) * intensityPrepared);
+                break;
+            default:
+                // This color is left intentionally bright to show something has gone horribly wrong.
+                // Or that a new color that has not yet been assigned a color value has been selected.
+                // Maybe we should be using switches at this point....? Or a Dictionnary?
+                expressiveMaterial.SetColor("_EmissionColor", Color.red * 1000);
+                break;
         }
 
     }
