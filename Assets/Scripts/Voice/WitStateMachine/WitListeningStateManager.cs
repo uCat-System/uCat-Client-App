@@ -65,23 +65,23 @@ public class WitListeningStateManager : MonoBehaviour
 
         }
 
-        public void DeactivateWit()
-        {   
-            Debug.Log("Wit dectivate called");
+        // public void DeactivateWit()
+        // {   
+        //     Debug.Log("Wit dectivate called");
 
-           GameObject witGameObject = GameObject.FindWithTag("Wit");
-            if (witGameObject != null && witGameObject.activeSelf)
-            {
-                _everythingWit = witGameObject.GetComponent<Wit>();
+        //    GameObject witGameObject = GameObject.FindWithTag("Wit");
+        //     if (witGameObject != null && witGameObject.activeSelf)
+        //     {
+        //         _everythingWit = witGameObject.GetComponent<Wit>();
                 
-                if (_everythingWit != null)
-                {
-                    _everythingWit.Deactivate();
+        //         if (_everythingWit != null)
+        //         {
+        //             _everythingWit.Deactivate();
                     
-                }
-            }
+        //         }
+        //     }
 
-        }
+        // }
 
     public void DetectUICommandsInWitListeningStateManager(string text) {
         // if the state is ListeningForMenuActivationCommandsOnly OR ListeningForEverything,
@@ -109,12 +109,12 @@ public class WitListeningStateManager : MonoBehaviour
         
     }
     
-    public IEnumerator TurnWitOffAndOn() {
-        Debug.Log("Turning Wit off and on");
-        DeactivateWit();
-        yield return new WaitForSeconds(0.00001f);
-        ActivateWit();
-    }
+    // public IEnumerator TurnWitOffAndOn() {
+    //     Debug.Log("Turning Wit off and on");
+    //     DeactivateWit();
+    //     yield return new WaitForSeconds(0.00001f);
+    //     ActivateWit();
+    // }
 
     void DisableOtherWitsAndEnableThisOne(string witToEnable) {
         Debug.Log("Disabling other wits and enabling " + witToEnable);

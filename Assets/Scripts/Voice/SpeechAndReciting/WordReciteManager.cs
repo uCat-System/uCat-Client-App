@@ -382,7 +382,7 @@ public class WordReciteManager : MonoBehaviour
     {
         _scoreManager.DisplayScoreInPartialTextSection();
         reciteText3D.UpdateText("Say 'next' to proceed.\nOr 'repeat' to repeat sentences.");
-        StartCoroutine(_witListeningStateManager.TurnWitOffAndOn());
+        // StartCoroutine(_witListeningStateManager.TurnWitOffAndOn());
         isDeciding = true;
     }
 }
