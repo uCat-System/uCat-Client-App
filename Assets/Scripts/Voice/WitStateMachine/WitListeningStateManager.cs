@@ -16,7 +16,11 @@ public class WitListeningStateManager : MonoBehaviour
     public WordReciteManager _wordReciteManager;
 
     public WitListeningStateMachine witListeningStateMachine;
-    public Wit witModule;
+    public Wit _everythingWit;
+    public Wit _menuListeningWit;
+
+    public GameObject[] wits;
+
 
     private void Awake()
     {
@@ -50,12 +54,12 @@ public class WitListeningStateManager : MonoBehaviour
             GameObject witGameObject = GameObject.FindWithTag("Wit");
             if (witGameObject != null && witGameObject.activeSelf)
             {
-                witModule = witGameObject.GetComponent<Wit>();
+                _everythingWit = witGameObject.GetComponent<Wit>();
                 
-                if (witModule != null)
+                if (_everythingWit != null)
                 {
                     Debug.Log("Wit module found, activating");
-                    witModule.Activate();
+                    _everythingWit.Activate();
                 }
             }
 
@@ -68,11 +72,11 @@ public class WitListeningStateManager : MonoBehaviour
            GameObject witGameObject = GameObject.FindWithTag("Wit");
             if (witGameObject != null && witGameObject.activeSelf)
             {
-                witModule = witGameObject.GetComponent<Wit>();
+                _everythingWit = witGameObject.GetComponent<Wit>();
                 
-                if (witModule != null)
+                if (_everythingWit != null)
                 {
-                    witModule.Deactivate();
+                    _everythingWit.Deactivate();
                     
                 }
             }
@@ -112,6 +116,23 @@ public class WitListeningStateManager : MonoBehaviour
         ActivateWit();
     }
 
+    void DisableOtherWitsAndEnableThisOne(string witToEnable) {
+        Debug.Log("Disabling other wits and enabling " + witToEnable);
+         for (int i = 0; i < wits.Length; i++)
+            {  
+                Debug.Log("Checking " + wits[i].name);
+                Wit wit = wits[i].GetComponent<Wit>();
+                 if (wits[i].name == witToEnable) {
+                    Debug.Log("Enabling " + witToEnable);
+                      wits[i].SetActive(true);
+                      wit.ActivateImmediately();
+                 } else {
+                      wits[i].SetActive(false);
+                 }       
+
+            }
+    }
+ 
     // This is called from the WitListeningStateMachine script using actual enum values.
 
     public void TransitionToState(WitListeningStateMachine.State nextState)
@@ -121,26 +142,27 @@ public class WitListeningStateManager : MonoBehaviour
             switch (nextState)
             {
                 case WitListeningStateMachine.State.NotListening:
-                    DeactivateWit();
+                    // DeactivateWit();
                     break;
                 case WitListeningStateMachine.State.ListeningForMenuActivationCommandsOnly:
-                    ActivateWit();
+                    DisableOtherWitsAndEnableThisOne("MenuListeningWit");
                     break;
                 case WitListeningStateMachine.State.ListeningForEverything:
-                    ActivateWit();
+                    DisableOtherWitsAndEnableThisOne("EverythingWit");
+                    // ActivateWit();
                     break;
                 case WitListeningStateMachine.State.ListeningForRecitedWordsOnly:
-                    ActivateWit();
+                    // ActivateWit();
                     break;
                 case WitListeningStateMachine.State.ListeningForTaskMenuCommandsOnly:
-                    Debug.Log("In state machine, tryign to nav " + nextState);
-                    StartCoroutine(TurnWitOffAndOn());
+                    // Debug.Log("In state machine, tryign to nav " + nextState);
+                    // StartCoroutine(TurnWitOffAndOn());
                     break;
                 case WitListeningStateMachine.State.ListeningForConfirmation:
-                    StartCoroutine(TurnWitOffAndOn());
+                    // StartCoroutine(TurnWitOffAndOn());
                     break;
                 case WitListeningStateMachine.State.ListeningForLobbyMenuCommandsOnly:
-                    ActivateWit();
+                    // ActivateWit();
                     break;
                 default:
                     Debug.LogError("Invalid state transition." + nextState);

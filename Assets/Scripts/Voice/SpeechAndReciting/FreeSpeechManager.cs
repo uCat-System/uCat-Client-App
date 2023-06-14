@@ -61,6 +61,7 @@ namespace MText
 
          public void MinimumWakeThresholdHit()
         {
+            partialText3D.UpdateText("Heard something");
             Debug.Log("HIT MINIMUM: ");
             
         }

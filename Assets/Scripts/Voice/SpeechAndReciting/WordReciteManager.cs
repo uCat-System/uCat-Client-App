@@ -163,7 +163,7 @@ public class WordReciteManager : MonoBehaviour
                 case 2:
                     reciteText3D.UpdateText("." + word + ".");
                     // Discard anything said during countdown and start fresh
-                    _witListeningStateManager.ChangeState("NotListening");
+                    // _witListeningStateManager.ChangeState("NotListening");
                     break;
             }
            
@@ -272,15 +272,15 @@ public class WordReciteManager : MonoBehaviour
         if (wordAnsweredCorrectly) {
             reciteText3D.UpdateText("Correct!");
             reciteText3D.Material = correctColour;
-            reciteBoardAudioSource.clip = wordSounds[1];
+            // reciteBoardAudioSource.clip = wordSounds[1];
         } else {
             reciteText3D.UpdateText("Incorrect.");
             reciteText3D.Material = incorrectColour;
-            reciteBoardAudioSource.clip = wordSounds[2];
+            // reciteBoardAudioSource.clip = wordSounds[2];
         }
 
         // Play sound
-        reciteBoardAudioSource.Play();
+        // reciteBoardAudioSource.Play();
 
         yield return new WaitForSeconds(2);
 
