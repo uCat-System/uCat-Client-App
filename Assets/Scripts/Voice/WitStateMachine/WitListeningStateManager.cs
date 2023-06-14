@@ -125,8 +125,10 @@ public class WitListeningStateManager : MonoBehaviour
                  if (wits[i].name == witToEnable) {
                     Debug.Log("Enabling " + witToEnable);
                       wits[i].SetActive(true);
-                      wit.ActivateImmediately();
+                      wit.Activate();
                  } else {
+                     Debug.Log("Disabling " + wits[i].name);
+                      wit.Deactivate();
                       wits[i].SetActive(false);
                  }       
 
@@ -155,8 +157,8 @@ public class WitListeningStateManager : MonoBehaviour
                     // ActivateWit();
                     break;
                 case WitListeningStateMachine.State.ListeningForTaskMenuCommandsOnly:
-                    // Debug.Log("In state machine, tryign to nav " + nextState);
-                    // StartCoroutine(TurnWitOffAndOn());
+                    Debug.Log("Should be disabling/enableing");
+                    DisableOtherWitsAndEnableThisOne("TaskMenuNavigationWit");
                     break;
                 case WitListeningStateMachine.State.ListeningForConfirmation:
                     // StartCoroutine(TurnWitOffAndOn());
