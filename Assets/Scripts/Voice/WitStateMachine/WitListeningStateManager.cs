@@ -121,6 +121,7 @@ public class WitListeningStateManager : MonoBehaviour
          for (int i = 0; i < wits.Length; i++)
             {  
                 Debug.Log("Checking " + wits[i].name);
+                Debug.Log("witToEnable is " + witToEnable);
                 Wit wit = wits[i].GetComponent<Wit>();
                  if (wits[i].name == witToEnable) {
                     Debug.Log("Enabling " + witToEnable);
