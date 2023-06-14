@@ -9,10 +9,10 @@ EditorBuildSettings:
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 0
-    path: Assets/Scenes/JammoScene.unity
+    path: Assets/Scenes/BackupsOldScenes/JammoScene.unity
     guid: 14889cd92e9623f499691c7aa113523a
   - enabled: 0
-    path: Assets/Scenes/menu.unity
+    path: Assets/Scenes/BackupsOldScenes/menu.unity
     guid: afc00b714cffa8a4aa92884b0c826d2c
   - enabled: 0
     path: 
