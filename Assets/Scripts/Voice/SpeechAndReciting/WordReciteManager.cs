@@ -14,10 +14,10 @@ public class WordReciteManager : MonoBehaviour
     // Word lists
     string[] currentWordOrSentenceList;
 
-    string[] currentUiList;
+    public string[] currentUiList;
 
     // This is the list that is active, either words/sentences OR UI list
-    string[] activeList;
+    public string[] activeList;
 
     // Track if the lists have been completed
     bool wordListComplete;
@@ -104,8 +104,6 @@ public class WordReciteManager : MonoBehaviour
         // UI Lists
 
         string[] level1UiList = new string[] { "one", "two", "three", "proceed", "next", "repeat", "back", "pause", "settings", "help" };
-        //  string[] level1UiList = new string[] { "one" };
-
         
         string[] level2UiList = new string[] { "hey there", "look at that black cat", "I would like to repeat sentences" };
         // string[] level2UiList = new string[] { "hey there" };
@@ -143,7 +141,8 @@ public class WordReciteManager : MonoBehaviour
 
         partialText3D.UpdateText("");
         reciteText3D.Material = defaultColour;
-        string word = currentWordOrSentenceList[currentWordOrSentenceIndex];
+        Debug.Log("Abnoput to display index " + currentWordOrSentenceIndex + " of " + currentWordOrSentenceList);
+        string word = activeList[currentWordOrSentenceIndex];
     
         for (float i = 0; i < 3; i++)
         {
@@ -163,7 +162,7 @@ public class WordReciteManager : MonoBehaviour
                 case 2:
                     reciteText3D.UpdateText("." + word + ".");
                     // Discard anything said during countdown and start fresh
-                    // _witListeningStateManager.ChangeState("NotListening");
+                    _witListeningStateManager.ChangeState("NotListening");
                     break;
             }
            
@@ -265,7 +264,7 @@ public class WordReciteManager : MonoBehaviour
         }
 
         // Does their answer match the current word?
-        wordAnsweredCorrectly = text.ToLower() == currentWordOrSentenceList[currentWordOrSentenceIndex].ToLower();
+        wordAnsweredCorrectly = text.ToLower() == activeList[currentWordOrSentenceIndex].ToLower();
 
         // Change text to reflect correct / incorrect 
 
@@ -357,6 +356,10 @@ public class WordReciteManager : MonoBehaviour
             reciteText3D.UpdateText("Great! Moving onto UI word list.");
 
             yield return new WaitForSeconds(2);
+            Debug.Log("Changing to UI list");
+            Debug.Log("fierst word should be " + currentUiList[0]);
+                        Debug.Log("actual first:  " + activeList[0]);
+
             StartCoroutine(StartCurrentWordCountdown());
             
         }

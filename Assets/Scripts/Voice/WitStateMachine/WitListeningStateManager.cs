@@ -144,7 +144,6 @@ public class WitListeningStateManager : MonoBehaviour
             switch (nextState)
             {
                 case WitListeningStateMachine.State.NotListening:
-                    // DeactivateWit();
                     break;
                 case WitListeningStateMachine.State.ListeningForMenuActivationCommandsOnly:
                     DisableOtherWitsAndEnableThisOne("MenuListeningWit");
@@ -153,15 +152,12 @@ public class WitListeningStateManager : MonoBehaviour
                     DisableOtherWitsAndEnableThisOne("EverythingWit");
                     // ActivateWit();
                     break;
-                case WitListeningStateMachine.State.ListeningForRecitedWordsOnly:
-                    // ActivateWit();
-                    break;
                 case WitListeningStateMachine.State.ListeningForTaskMenuCommandsOnly:
                     Debug.Log("Should be disabling/enableing");
                     DisableOtherWitsAndEnableThisOne("TaskMenuNavigationWit");
                     break;
                 case WitListeningStateMachine.State.ListeningForConfirmation:
-                    // StartCoroutine(TurnWitOffAndOn());
+                     DisableOtherWitsAndEnableThisOne("ConfirmationWit");
                     break;
                 case WitListeningStateMachine.State.ListeningForLobbyMenuCommandsOnly:
                     // ActivateWit();
