@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: ec2a8d1f36d0b6547aeb57d624055a5c
 ModelImporter:
-  serializedVersion: 22200
+  serializedVersion: 22102
   internalIDToNameTable: []
   externalObjects:
   - first:
@@ -131,7 +131,6 @@ ModelImporter:
   avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   importBlendShapeDeformPercent: 1
-  remapMaterialsIfMaterialImportModeIsNone: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

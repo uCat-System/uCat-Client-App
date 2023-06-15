@@ -69,10 +69,10 @@ public class AnimationDriver : MonoBehaviour
             case CatAnimations.Happy:
                 catAnimator.SetTrigger("Happy");
                 break;
-            case CatAnimations.Surprised:
-                catAnimator.SetTrigger("Error");
-                break;
             case CatAnimations.Sad:
+                catAnimator.SetTrigger("Sad");
+                break;
+            case CatAnimations.Surprised:
                 catAnimator.SetTrigger("Error");
                 break;
             case CatAnimations.Confused:
