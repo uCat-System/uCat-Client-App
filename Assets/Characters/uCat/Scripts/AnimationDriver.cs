@@ -77,7 +77,7 @@ public class AnimationDriver : MonoBehaviour
                 break;
             case CatAnimations.Surprised:
                 catAnimator.SetTrigger("StopBobbing");
-                catAnimator.SetTrigger("Error");
+                catAnimator.SetTrigger("Surprised");
                 break;
             case CatAnimations.Confused:
                 catAnimator.SetTrigger("SlowBobbing");
