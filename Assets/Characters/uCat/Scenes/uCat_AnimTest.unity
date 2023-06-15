@@ -859,6 +859,10 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1010642675882665877, guid: ff06e8c045ec47642aa5fdd8d613db86, type: 3}
+      propertyPath: _EmissiveIntensity
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1010642675882665877, guid: ff06e8c045ec47642aa5fdd8d613db86, type: 3}
       propertyPath: _currentExpressiveColor
       value: 8
       objectReference: {fileID: 0}
