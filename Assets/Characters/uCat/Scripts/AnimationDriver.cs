@@ -15,6 +15,7 @@ public class AnimationDriver : MonoBehaviour
         Surprised,
         Sad,
         Confused,
+        Peeking,
         Error
 
     }
@@ -82,6 +83,10 @@ public class AnimationDriver : MonoBehaviour
             case CatAnimations.Confused:
                 catAnimator.SetTrigger("SlowBobbing");
                 catAnimator.SetTrigger("Confused");
+                break;
+            case CatAnimations.Peeking:
+                catAnimator.SetTrigger("SlowBobbing");
+                catAnimator.SetTrigger("Peeking");
                 break;
             case CatAnimations.Error:
                 catAnimator.SetTrigger("StopBobbing");
