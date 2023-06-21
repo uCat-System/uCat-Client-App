@@ -15,7 +15,7 @@ public class WitListeningStateManager : MonoBehaviour
     public string currentListeningState;
     public WordReciteManager _wordReciteManager;
 
-    public WitListeningStateMachine witListeningStateMachine;
+    public WitListeningStateMachine _witListeningStateMachine;
     public Wit _everythingWit;
     public Wit _menuListeningWit;
 
@@ -41,7 +41,7 @@ public class WitListeningStateManager : MonoBehaviour
 
         _uiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
         listeningText3D = GameObject.FindWithTag("ListeningText3D").GetComponent<Modular3DText>();
-        if (witListeningStateMachine == null)
+        if (_witListeningStateMachine == null)
         {
             Debug.LogError("WitListeningStateMachine is not assigned.");
             return;
@@ -86,8 +86,8 @@ public class WitListeningStateManager : MonoBehaviour
     public void DetectUICommandsInWitListeningStateManager(string text) {
         // if the state is ListeningForMenuActivationCommandsOnly OR ListeningForEverything,
         // check if the spoken text is in the menuCommandPhrases list:
-        if (witListeningStateMachine.currentState == WitListeningStateMachine.State.ListeningForMenuActivationCommandsOnly ||
-            witListeningStateMachine.currentState == WitListeningStateMachine.State.ListeningForEverything)
+        if (_witListeningStateMachine.currentState == WitListeningStateMachine.State.ListeningForMenuActivationCommandsOnly ||
+            _witListeningStateMachine.currentState == WitListeningStateMachine.State.ListeningForEverything)
         {
             _uiManager.CheckIfUICommandsWereSpoken(text);
         }
@@ -169,7 +169,7 @@ public class WitListeningStateManager : MonoBehaviour
                     return;
             }
 
-            witListeningStateMachine.currentState = nextState;
+            _witListeningStateMachine.currentState = nextState;
 
             Debug.Log("WitListeningStateMachine transitioned to state: " + nextState);
         }

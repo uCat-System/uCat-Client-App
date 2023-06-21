@@ -8,9 +8,9 @@ namespace MText
     public class FreeSpeechManager : MonoBehaviour
     {
         [SerializeField] private Wit wit;
-        private UIManager uiManager;
+        private UIManager _uiManager;
 
-        public WordReciteManager wordReciteManager;
+        public WordReciteManager _wordReciteManager;
         public Modular3DText partialText3D;
         public Modular3DText subtitleText3D;
         public Modular3DText fullText3D;
@@ -27,7 +27,7 @@ namespace MText
         void Start()
         {
             subtitleText3D = GameObject.FindWithTag("SubtitleText3D").GetComponent<Modular3DText>();
-            uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
+            _uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
             scene = SceneManager.GetActiveScene();
         }
     
@@ -72,7 +72,7 @@ namespace MText
 
             // Clear subtitle speech
             // 1) Always listen for menu
-            uiManager.CheckIfUICommandsWereSpoken(text.ToLower());
+            _uiManager.CheckIfUICommandsWereSpoken(text.ToLower());
 
             bool isInConfirmationMode = _witListeningStateManager.currentListeningState == "ListeningForConfirmation";
 
@@ -102,13 +102,13 @@ namespace MText
                     Debug.Log("Yes was spoken");
                     partialText3D.UpdateText("Cool!");
                     yield return new WaitForSeconds(1);
-                    wordReciteManager.MoveOnIfMoreWordsInList();
+                    _wordReciteManager.MoveOnIfMoreWordsInList();
                     break;
                 case "no":
                     Debug.Log("No was spoken");
                     partialText3D.UpdateText("Oops, let's try again.");
                     yield return new WaitForSeconds(1);
-                    wordReciteManager.RepeatSameWord();
+                    _wordReciteManager.RepeatSameWord();
                     break;
                 default:
                     Debug.Log("Something else was spoken");
@@ -121,7 +121,7 @@ namespace MText
 
         public void HandleInactivityFailure()
         {
-            wordReciteManager.OnMicrophoneTimeOut();
+            _wordReciteManager.OnMicrophoneTimeOut();
         }
 
         public void ActivateTasksBasedOnTranscription(string text)
@@ -129,7 +129,7 @@ namespace MText
             if (SceneManager.GetActiveScene().name != "Level3") 
             {
                 Debug.Log("activating word task");
-                wordReciteManager.StartWordCheck(text);
+                _wordReciteManager.StartWordCheck(text);
           
             } else {
                 // Run level 3 task
@@ -137,9 +137,9 @@ namespace MText
                  // Update the spoken text
                 CalculateCachedText(text);
                 // Only confirm yes/no if the 'next/proceed' prompt is not active
-                if (wordReciteManager.isDeciding) {
+                if (_wordReciteManager.isDeciding) {
                     Debug.Log("going to check recited word");
-                    StartCoroutine(wordReciteManager.CheckRecitedWord(text));
+                    StartCoroutine(_wordReciteManager.CheckRecitedWord(text));
                 } else {
                     ConfirmWhatUserSaid(text.ToLower());
                 }
