@@ -2079,6 +2079,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 306037186}
     - target: {fileID: 4027328797377393528, guid: e07c7b432e125e44793373eb70347580, type: 3}
+      propertyPath: wordLists
+      value: 
+      objectReference: {fileID: 11400000, guid: a3a83d047afb6c943a61e130941a77f0, type: 2}
+    - target: {fileID: 4027328797377393528, guid: e07c7b432e125e44793373eb70347580, type: 3}
       propertyPath: reciteText3D
       value: 
       objectReference: {fileID: 782238179}

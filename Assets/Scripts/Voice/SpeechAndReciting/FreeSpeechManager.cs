@@ -132,6 +132,7 @@ namespace MText
                 wordReciteManager.StartWordCheck(text);
           
             } else {
+                // Run level 3 task
                 Debug.Log("should be transcribing");
                  // Update the spoken text
                 CalculateCachedText(text);

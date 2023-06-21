@@ -1411,6 +1411,10 @@ PrefabInstance:
       value: Managers
       objectReference: {fileID: 0}
     - target: {fileID: 9147203543982327224, guid: 032bc2bee59f71342a8d808c53e86951, type: 3}
+      propertyPath: wordLists
+      value: 
+      objectReference: {fileID: 11400000, guid: a3a83d047afb6c943a61e130941a77f0, type: 2}
+    - target: {fileID: 9147203543982327224, guid: 032bc2bee59f71342a8d808c53e86951, type: 3}
       propertyPath: reciteText3D
       value: 
       objectReference: {fileID: 360268100}
@@ -2290,8 +2294,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDeciding: 0
   resuming: 0
-  currentUiList: []
-  activeList: []
+  wordLists: {fileID: 0}
   correctColour: {fileID: 2100000, guid: 5562c698b21c8924a84fa2abb367f9cd, type: 2}
   incorrectColour: {fileID: 2100000, guid: dfa4872a000de054bb0c1c830a263904, type: 2}
   defaultColour: {fileID: 2100000, guid: ac605445953bb8d448dde47a525d047f, type: 2}

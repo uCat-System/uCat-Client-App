@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0be5a1666715533478e3fcde2906ab54, type: 3}
+  m_Name: WordListsAsset
+  m_EditorClassIdentifier: 
+  level1WordList:
+  - Hello
+  - Computer
+  - Choice
+  - Day
+  - Kite
+  - Though
+  - Veto
+  - Were
+  - Tired
+  - Nurse
+  level2SentenceList:
+  - How do you like my music
+  - My glasses are comfortable
+  - What do you do
+  - You are not right
+  - That is very clean
+  - I do not feel comfortable
+  - Bring my glasses here
+  - My family is here
+  level3OpenQuestionsList:
+  - What is your name?
+  - What is your favourite colour?
+  - What is your favourite food?
+  - What is your favourite animal?
+  - What is your favourite movie?
+  level1UiList:
+  - One
+  - Two
+  - Three
+  - Proceed
+  - Next
+  - Repeat
+  - Back
+  - Pause
+  - Settings
+  - Help
+  level2UiList:
+  - Hey there.
+  - Look at that black cat.
+  - I would like to repeat sentences.

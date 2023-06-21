@@ -6,6 +6,7 @@ public class LevelManager : MonoBehaviour
 {
     public ScoreManager _scoreManager;
 
+    // TODO set this to be read-only (private)
     public string currentLevel;
 
     public void Awake()

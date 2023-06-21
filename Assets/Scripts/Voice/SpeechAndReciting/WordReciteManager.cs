@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using Meta.WitAi;
 using MText;
@@ -12,12 +13,15 @@ public class WordReciteManager : MonoBehaviour
     int currentWordOrSentenceIndex;
 
     // Word lists
-    string[] currentWordOrSentenceList;
+    private List<string> currentWordOrSentenceList;
 
-    public string[] currentUiList;
+    private List<string> currentUiList;
 
     // This is the list that is active, either words/sentences OR UI list
-    public string[] activeList;
+    private List<string> activeList;
+
+    // Scriptable asset for externally stored word lists
+    public WordLists wordLists;
 
     // Track if the lists have been completed
     bool wordListComplete;
@@ -65,7 +69,7 @@ public class WordReciteManager : MonoBehaviour
         uiComplete = false;
         wordListComplete = false;
 
-        // Word Lists
+        // Initialise Word Lists
         SetWordAndUiListsBasedOnLevel();
         activeList = currentWordOrSentenceList;
         currentWordOrSentenceIndex = 0;
@@ -73,7 +77,7 @@ public class WordReciteManager : MonoBehaviour
         // Set score based on amount of words in lists
         if (_levelManager.currentLevel != "Level3")
         {
-            _scoreManager.SetMaxScoreBasedOnWordListCount(currentWordOrSentenceList.Length + currentUiList.Length);
+            _scoreManager.SetMaxScoreBasedOnWordListCount(currentWordOrSentenceList.Count + currentUiList.Count);
         }
 
         // Start the first word
@@ -82,43 +86,17 @@ public class WordReciteManager : MonoBehaviour
     }
 
     void SetWordAndUiListsBasedOnLevel() {
-        // TODO - store these externally
-
-        string[] level1WordList = new string[] {
-            "hello", "computer", "choice", "day", "kite", "though", "veto", "were", "tired", "nurse" 
-        };
-
-        string[] level2SentenceList = new string[] { 
-            "How do you like my music", "My glasses are comfortable", "What do you do", "I do not feel comfortable", "Bring my glasses here",
-            "You are not right", "That is very clean", "My family is here"
-        };
-
-        // string[] level2SentenceList = new string[] { 
-        //      "How do you like my music"
-        // };
-
-        string[] level3OpenQuestionsList = new string[] { "What is your name", "What is your favourite colour",
-        "What is your favourite food", "What is your favourite animal", "What is your favourite movie" 
-        };
-
-        // UI Lists
-
-        string[] level1UiList = new string[] { "one", "two", "three", "proceed", "next", "repeat", "back", "pause", "settings", "help" };
-        
-        string[] level2UiList = new string[] { "hey there", "look at that black cat", "I would like to repeat sentences" };
-        // string[] level2UiList = new string[] { "hey there" };
-
         switch (_levelManager.currentLevel) {
             case "Level1":
-                currentWordOrSentenceList = level1WordList;
-                currentUiList = level1UiList;
+                currentWordOrSentenceList = wordLists.level1WordList;
+                currentUiList = wordLists.level1UiList;
                 break;
             case "Level2":
-                currentWordOrSentenceList = level2SentenceList;
-                currentUiList = level2UiList;
+                currentWordOrSentenceList = wordLists.level2SentenceList;
+                currentUiList = wordLists.level2UiList;
                 break;
             case "Level3":
-                currentWordOrSentenceList = level3OpenQuestionsList;
+                currentWordOrSentenceList = wordLists.level3OpenQuestionsList;
                 break;
         }
     }
@@ -143,6 +121,7 @@ public class WordReciteManager : MonoBehaviour
         reciteText3D.Material = defaultColour;
         Debug.Log("Abnoput to display index " + currentWordOrSentenceIndex + " of " + currentWordOrSentenceList);
         string word = activeList[currentWordOrSentenceIndex];
+        // word == "Hello"
     
         for (float i = 0; i < 3; i++)
         {
@@ -161,6 +140,7 @@ public class WordReciteManager : MonoBehaviour
                     break;
                 case 2:
                     reciteText3D.UpdateText("." + word + ".");
+
                     // Discard anything said during countdown and start fresh
                     _witListeningStateManager.ChangeState("NotListening");
                     break;
@@ -212,7 +192,7 @@ public class WordReciteManager : MonoBehaviour
     {
         _witListeningStateManager.ChangeState("ListeningForMenuActivationCommandsOnly");
         // If the next word does not exceed the limit
-        if (currentWordOrSentenceIndex < currentWordOrSentenceList.Length-1)
+        if (currentWordOrSentenceIndex < currentWordOrSentenceList.Count-1)
         {
             currentWordOrSentenceIndex++;
         }
@@ -241,7 +221,7 @@ public class WordReciteManager : MonoBehaviour
         bool wordAnsweredCorrectly;
 
          if (isDeciding) {
-            Debug.Log("TRUE isDeciding");
+            // Are they saying 'next' or 'repeat'
             if (text.ToLower() == "next")
             {
                 _levelManager.LevelComplete();
@@ -315,8 +295,8 @@ public class WordReciteManager : MonoBehaviour
 
     public void MoveOnIfMoreWordsInList ()
     {
-        Debug.Log("checking if more words in list" + currentWordOrSentenceIndex + " " + activeList.Length);
-        if (currentWordOrSentenceIndex < activeList.Length - 1)
+        Debug.Log("checking if more words in list" + currentWordOrSentenceIndex + " " + activeList.Count);
+        if (currentWordOrSentenceIndex < activeList.Count - 1)
         {
             Debug.Log("going to next word because index valid");
             GoToNextWord();

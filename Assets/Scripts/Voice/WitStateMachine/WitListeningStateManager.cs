@@ -140,6 +140,7 @@ public class WitListeningStateManager : MonoBehaviour
 
     public void TransitionToState(WitListeningStateMachine.State nextState)
         {
+            //TODO Use import statements to call enum values
             listeningText3D.UpdateText(nextState.ToString());
 
             switch (nextState)

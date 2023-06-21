@@ -8,9 +8,9 @@ public class WitListeningStateMachine : ScriptableObject
     {
         NotListening,
         ListeningForEverything,
-        ListeningForMenuActivationCommandsOnly,
+        ListeningForMenuActivationCommandsOnly, // brings up menu
         ListeningForRecitedWordsOnly,
-        ListeningForTaskMenuCommandsOnly,
+        ListeningForTaskMenuCommandsOnly, // navigates within the menu
         ListeningForConfirmation,
 
         ListeningForLobbyMenuCommandsOnly,

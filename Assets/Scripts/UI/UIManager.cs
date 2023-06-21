@@ -63,6 +63,7 @@ public class UIManager : MonoBehaviour
             switch (text)
             {
                 case "repeat level":
+                    // TODO move to levelmanager
                     SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                     break;
                 case "next level":
