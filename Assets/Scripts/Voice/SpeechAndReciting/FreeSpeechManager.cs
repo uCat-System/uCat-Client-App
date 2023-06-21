@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using Meta.WitAi;
 using UnityEngine.SceneManagement;
+using EState = WitListeningStateMachine.State;
 
 namespace MText
 { 
@@ -40,7 +41,6 @@ namespace MText
         public void StoppedListeningDueToDeactivation()
         {
             Debug.Log("Stopped listening due to Deactivation");
-            // HandleInactivityFailure();
         }
 
         public void StoppedListeningDueToTimeout()
@@ -54,7 +54,7 @@ namespace MText
             Debug.Log("Partial received: " + text);
             // Always update subtitles when attempting speech
             subtitleText3D.UpdateText(text);
-            if (_witListeningStateManager.currentListeningState == "ListeningForEverything") {
+            if (_witListeningStateManager.currentListeningState == EState.ListeningForEverything) {
                 partialText3D.UpdateText(text);
             }
         }
@@ -74,10 +74,10 @@ namespace MText
             // 1) Always listen for menu
             _uiManager.CheckIfUICommandsWereSpoken(text.ToLower());
 
-            bool isInConfirmationMode = _witListeningStateManager.currentListeningState == "ListeningForConfirmation";
+            bool isInConfirmationMode = _witListeningStateManager.currentListeningState == EState.ListeningForConfirmation;
 
-            bool isInReciteMode = _witListeningStateManager.currentListeningState == "ListeningForEverything" ||
-            _witListeningStateManager.currentListeningState == "ListeningForRecitedWordsOnly";
+            bool isInReciteMode = _witListeningStateManager.currentListeningState == EState.ListeningForEverything ||
+            _witListeningStateManager.currentListeningState == EState.ListeningForRecitedWordsOnly;
 
             if (isInConfirmationMode) {
                 StartCoroutine(CheckIfConfirmationWasSpoken(text.ToLower()));
@@ -89,7 +89,7 @@ namespace MText
                     ActivateTasksBasedOnTranscription(text);
                 }
             else {
-                Debug.Log("WRONG state - did not activate word task. You are robably in the menu.");
+                Debug.Log("WRONG state - did not activate word task. You are robably in the menu." + _witListeningStateManager.currentListeningState);
             }
         }
 
@@ -150,7 +150,7 @@ namespace MText
          void ConfirmWhatUserSaid(string text) {
             Debug.Log("Confirming what user said" + text);
             originallyUtteredText = text;
-            _witListeningStateManager.ChangeState("ListeningForConfirmation");
+            _witListeningStateManager.TransitionToState(EState.ListeningForConfirmation);
             // Display what they said on screen
             // partialText3D.UpdateText(text);
 

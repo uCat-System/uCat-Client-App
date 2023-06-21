@@ -1442,6 +1442,10 @@ PrefabInstance:
       propertyPath: wits.Array.data[3]
       value: 
       objectReference: {fileID: 1091831722}
+    - target: {fileID: 9147203544144420804, guid: 032bc2bee59f71342a8d808c53e86951, type: 3}
+      propertyPath: _witListeningStateMachine
+      value: 
+      objectReference: {fileID: 11400000, guid: 3cfa5133b49dc9140b90489fae67f72b, type: 2}
     - target: {fileID: 9147203544721993596, guid: 032bc2bee59f71342a8d808c53e86951, type: 3}
       propertyPath: fullText3D
       value: 
@@ -1806,7 +1810,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wit: {fileID: 723296576}
-  wordReciteManager: {fileID: 2082858892}
+  _wordReciteManager: {fileID: 0}
   partialText3D: {fileID: 1683794367}
   subtitleText3D: {fileID: 0}
   fullText3D: {fileID: 1040836013}

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Meta.WitAi;
 using MText;
+using EState = WitListeningStateMachine.State;
 
 public class WordReciteManager : MonoBehaviour
 {
@@ -41,7 +42,7 @@ public class WordReciteManager : MonoBehaviour
 
     public FreeSpeechManager _freeSpeechManager;
 
-    WitListeningStateManager _witListeningStateManager;
+    public  WitListeningStateManager _witListeningStateManager;
 
     public ScoreManager _scoreManager;
     public LevelManager _levelManager;
@@ -63,7 +64,6 @@ public class WordReciteManager : MonoBehaviour
         reciteBoardAudioSource = GameObject.FindWithTag("ReciteBoard").GetComponent<AudioSource>();
         subtitleText3D = GameObject.FindWithTag("SubtitleText3D").GetComponent<Modular3DText>();
         partialText3D = GameObject.FindWithTag("PartialText3D").GetComponent<Modular3DText>();
-        _witListeningStateManager = GameObject.FindWithTag("WitListeningStateManager").GetComponent<WitListeningStateManager>();
        
         // Game state variables
         uiComplete = false;
@@ -111,7 +111,7 @@ public class WordReciteManager : MonoBehaviour
         reciteBoardAudioSource.clip = wordSounds[0];
         reciteBoardAudioSource.Play();
 
-        if (_witListeningStateManager.currentListeningState == "ListeningForTaskMenuCommandsOnly")
+        if (_witListeningStateManager.currentListeningState == EState.ListeningForTaskMenuCommandsOnly)
         {
             Debug.Log("Breaking out of countdown because in navigation state");
             yield break;
@@ -126,7 +126,7 @@ public class WordReciteManager : MonoBehaviour
         for (float i = 0; i < 3; i++)
         {
 
-        if (_witListeningStateManager.currentListeningState == "ListeningForTaskMenuCommandsOnly") {
+        if (_witListeningStateManager.currentListeningState == EState.ListeningForTaskMenuCommandsOnly) {
             Debug.Log("Breaking out of countdown because in navigation state");
             yield break;
         }
@@ -142,7 +142,7 @@ public class WordReciteManager : MonoBehaviour
                     reciteText3D.UpdateText("." + word + ".");
 
                     // Discard anything said during countdown and start fresh
-                    _witListeningStateManager.ChangeState("NotListening");
+                    // _witListeningStateManager.TransitionToState(EState.NotListening);
                     break;
             }
            
@@ -150,13 +150,13 @@ public class WordReciteManager : MonoBehaviour
         }
 
         // Countdown finished, start listening for the word
-        if (_witListeningStateManager.currentListeningState == "ListeningForTaskMenuCommandsOnly") {
+        if (_witListeningStateManager.currentListeningState == EState.ListeningForTaskMenuCommandsOnly) {
              Debug.Log("EXITING OUT BECAUSE WE ARE IN MENU STATE " + _witListeningStateManager.currentListeningState);
             yield break;
         } else {
             subtitleText3D.UpdateText("");
             Debug.Log("CONTINUING, STATE IS " + _witListeningStateManager.currentListeningState);
-            _witListeningStateManager.ChangeState("ListeningForEverything");
+            _witListeningStateManager.TransitionToState(EState.ListeningForEverything);
             reciteText3D.UpdateText(word);
             reciteText3D.Material = listeningColour;
         }
@@ -190,7 +190,7 @@ public class WordReciteManager : MonoBehaviour
 
     public void GoToNextWord()
     {
-        _witListeningStateManager.ChangeState("ListeningForMenuActivationCommandsOnly");
+        _witListeningStateManager.TransitionToState(EState.ListeningForMenuActivationCommandsOnly);
         // If the next word does not exceed the limit
         if (currentWordOrSentenceIndex < currentWordOrSentenceList.Count-1)
         {
@@ -202,7 +202,7 @@ public class WordReciteManager : MonoBehaviour
     }
     public void RepeatSameWord()
     {
-        _witListeningStateManager.ChangeState("ListeningForMenuActivationCommandsOnly");
+        _witListeningStateManager.TransitionToState(EState.ListeningForMenuActivationCommandsOnly);
         StartCoroutine(StartCurrentWordCountdown());
     }
     public void StartWordCheck(string transcription)
@@ -212,8 +212,8 @@ public class WordReciteManager : MonoBehaviour
    
     public IEnumerator CheckRecitedWord(string text)
     {
-        if (_witListeningStateManager.currentListeningState == "ListeningForTaskMenuCommandsOnly"
-        || _witListeningStateManager.currentListeningState == "ListeningForMenuActivationCommandsOnly")
+        if (_witListeningStateManager.currentListeningState == EState.ListeningForTaskMenuCommandsOnly
+        || _witListeningStateManager.currentListeningState == EState.ListeningForMenuActivationCommandsOnly)
         {
             Debug.Log("Breaking out of recited word because menu active or in command mode" + _witListeningStateManager.currentListeningState);
             yield break;
@@ -305,7 +305,7 @@ public class WordReciteManager : MonoBehaviour
         else
         {
             // Mark the current list as complete, and move on to the next (if any) via changing booleans
-            _witListeningStateManager.ChangeState("ListeningForEverything");
+            _witListeningStateManager.TransitionToState(EState.ListeningForEverything);
             if (activeList == currentWordOrSentenceList) { wordListComplete = true; }
             if (activeList == currentUiList) { uiComplete = true; }
             if (_levelManager.currentLevel == "Level3") { openQuestionsComplete = true; }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System.IO;
+using EState = WitListeningStateMachine.State;
 using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
@@ -46,18 +47,15 @@ public class UIManager : MonoBehaviour
     public GameObject menu;
 
     public void CheckIfUICommandsWereSpoken(string text) {
-        // text is input as lower case from FreeSpeechManager
-    Debug.Log("Checking for UI commands: " + text);
         // Listen for any of the wake phrases
         if (!menu.activeInHierarchy && acceptableWakeWords.Any(text.Contains))
         {
             textElements.SetActive(false);
-            // _wordReciteManager.StopAllCoroutines();
             menu.SetActive(true);
-            _witListeningStateManager.ChangeState("ListeningForTaskMenuCommandsOnly");
+            _witListeningStateManager.TransitionToState(EState.ListeningForTaskMenuCommandsOnly);
         }
 
-        if (menu.activeInHierarchy && _witListeningStateManager.currentListeningState == "ListeningForTaskMenuCommandsOnly")
+        if (menu.activeInHierarchy && _witListeningStateManager.currentListeningState == EState.ListeningForTaskMenuCommandsOnly)
         {
             Debug.Log("Menu is active and listening for navigation commands only: " + text);
             switch (text)
@@ -89,21 +87,21 @@ public class UIManager : MonoBehaviour
                     StartCoroutine(WaitForAnimationToEnd());
                     string scene = SceneManager.GetActiveScene().name;
                     if (scene == "Level3") {
-                        _witListeningStateManager.ChangeState("ListeningForEverything");
+                        _witListeningStateManager.TransitionToState(EState.ListeningForEverything);
                     } else {
-                        _witListeningStateManager.ChangeState("ListeningForMenuActivationCommandsOnly");
+                        _witListeningStateManager.TransitionToState(EState.ListeningForMenuActivationCommandsOnly);
                         _wordReciteManager.RepeatSameWord();
                     }
                     textElements.SetActive(true);
                     break;
                 case ("level one"):
-                    SceneManager.LoadScene("Level1"); // Replace "Level1" with the name of your scene
+                    SceneManager.LoadScene("Level1"); 
                     break;
                 case "level two":
-                    SceneManager.LoadScene("Level2"); // Replace "Level2" with the name of your scene
+                    SceneManager.LoadScene("Level2"); 
                     break;
                 case "level three":
-                    SceneManager.LoadScene("Level3"); // Replace "Level3" with the name of your scene
+                    SceneManager.LoadScene("Level3");
                     break;
                 default:
                     break;
