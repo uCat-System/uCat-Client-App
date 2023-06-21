@@ -1328,6 +1328,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1699241967 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2856879304656754166, guid: e07c7b432e125e44793373eb70347580, type: 3}
+  m_PrefabInstance: {fileID: 4027328797658175199}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1728152886
 Mesh:
   m_ObjectHideFlags: 0
@@ -1994,6 +1999,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1454543186}
     - target: {fileID: 4027328797200066820, guid: e07c7b432e125e44793373eb70347580, type: 3}
+      propertyPath: wits.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4027328797200066820, guid: e07c7b432e125e44793373eb70347580, type: 3}
+      propertyPath: wits.Array.data[3]
+      value: 
+      objectReference: {fileID: 1699241967}
+    - target: {fileID: 4027328797200066820, guid: e07c7b432e125e44793373eb70347580, type: 3}
       propertyPath: currentListeningState
       value: 1
       objectReference: {fileID: 0}
@@ -2088,6 +2101,10 @@ PrefabInstance:
     - target: {fileID: 4027328798534082488, guid: e07c7b432e125e44793373eb70347580, type: 3}
       propertyPath: m_Name
       value: Managers
+      objectReference: {fileID: 0}
+    - target: {fileID: 4513077262539243633, guid: e07c7b432e125e44793373eb70347580, type: 3}
+      propertyPath: events._onFullTranscription.m_PersistentCalls.m_Calls.Array.size
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []

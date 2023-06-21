@@ -212,6 +212,7 @@ public class WordReciteManager : MonoBehaviour
    
     public IEnumerator CheckRecitedWord(string text)
     {
+        Debug.Log("Checking recited word with state of " + _witListeningStateManager.currentListeningState);
         if (_witListeningStateManager.currentListeningState == EState.ListeningForTaskMenuCommandsOnly
         || _witListeningStateManager.currentListeningState == EState.ListeningForMenuActivationCommandsOnly)
         {

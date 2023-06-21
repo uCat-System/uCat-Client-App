@@ -23,7 +23,7 @@ public class WitListeningStateManager : MonoBehaviour
     public GameObject[] wits;
 
 
-    private void Awake()
+    private void Start()
     {
         _wordReciteManager = GameObject.FindWithTag("WordReciteManager")?.GetComponent<WordReciteManager>();
 
@@ -95,14 +95,22 @@ public class WitListeningStateManager : MonoBehaviour
     void DisableOtherWitsAndEnableThisOne(string witToEnable) {
          for (int i = 0; i < wits.Length; i++)
             {  
+                Debug.Log("wits[i].name " + wits[i].name);
+                Debug.Log("witToEnable " + witToEnable);
                 Wit wit = wits[i].GetComponent<Wit>();
                  if (wits[i].name == witToEnable) {
                       wits[i].SetActive(true);
                       wit.Activate();
                  } else {
-                      wit.Deactivate();
                       wits[i].SetActive(false);
                  } 
+            }
+    }
+
+    void DisableAllWits() {
+         for (int i = 0; i < wits.Length; i++)
+            {  
+                wits[i].SetActive(false);
             }
     }
  
@@ -116,6 +124,7 @@ public class WitListeningStateManager : MonoBehaviour
             switch (nextState)
             {
                 case WitListeningStateMachine.State.NotListening:
+                    DisableAllWits();
                     break;
                 case WitListeningStateMachine.State.ListeningForMenuActivationCommandsOnly:
                     DisableOtherWitsAndEnableThisOne("MenuListeningWit");
@@ -124,7 +133,7 @@ public class WitListeningStateManager : MonoBehaviour
                     DisableOtherWitsAndEnableThisOne("EverythingWit");
                     break;
                 case WitListeningStateMachine.State.ListeningForTaskMenuCommandsOnly:
-                    Debug.Log("Should be disabling/enableing");
+                    Debug.Log("Should be disabling/enabling");
                     DisableOtherWitsAndEnableThisOne("TaskMenuNavigationWit");
                     break;
                 case WitListeningStateMachine.State.ListeningForConfirmation:
