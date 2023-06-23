@@ -57,7 +57,7 @@ public class WordReciteManager : MonoBehaviour
     [SerializeField] private Wit wit;
     public AudioClip[] wordSounds;
 
-    void Start()
+    void Awake()
     {
         // Assigning gameobjects
         wit = GameObject.FindWithTag("Wit").GetComponent<Wit>();

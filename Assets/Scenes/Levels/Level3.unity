@@ -1430,6 +1430,10 @@ PrefabInstance:
       propertyPath: reciteBoardAudioSource
       value: 
       objectReference: {fileID: 899594003}
+    - target: {fileID: 9147203543982327224, guid: 032bc2bee59f71342a8d808c53e86951, type: 3}
+      propertyPath: _witListeningStateManager
+      value: 
+      objectReference: {fileID: 1905898872}
     - target: {fileID: 9147203544144420804, guid: 032bc2bee59f71342a8d808c53e86951, type: 3}
       propertyPath: listeningText3D
       value: 
@@ -1458,6 +1462,10 @@ PrefabInstance:
       propertyPath: subtitleText3D
       value: 
       objectReference: {fileID: 360268101}
+    - target: {fileID: 9147203544721993596, guid: 032bc2bee59f71342a8d808c53e86951, type: 3}
+      propertyPath: _wordReciteManager
+      value: 
+      objectReference: {fileID: 1982124369}
     - target: {fileID: 9147203544755999776, guid: 032bc2bee59f71342a8d808c53e86951, type: 3}
       propertyPath: menu
       value: 
@@ -2106,6 +2114,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60a6e82f4bf988941b65bbe8ceb9c213, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1905898872 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9147203544144420804, guid: 032bc2bee59f71342a8d808c53e86951, type: 3}
+  m_PrefabInstance: {fileID: 1017210024}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60a6e82f4bf988941b65bbe8ceb9c213, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1949416655
 GameObject:
   m_ObjectHideFlags: 0
@@ -2189,6 +2208,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1982124369 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9147203543982327224, guid: 032bc2bee59f71342a8d808c53e86951, type: 3}
+  m_PrefabInstance: {fileID: 1017210024}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8f78cde7c696394ea1e5fe99e32c7b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!850595691 &1983238411
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -2304,6 +2334,7 @@ MonoBehaviour:
   defaultColour: {fileID: 2100000, guid: ac605445953bb8d448dde47a525d047f, type: 2}
   listeningColour: {fileID: 2100000, guid: f8f321e22bea45a49bb0a21221efaa58, type: 2}
   _freeSpeechManager: {fileID: 1265131502}
+  _witListeningStateManager: {fileID: 0}
   _scoreManager: {fileID: 803375946}
   _levelManager: {fileID: 1949416657}
   reciteText3D: {fileID: 360268100}

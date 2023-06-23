@@ -26,6 +26,5 @@ public class WitListeningStateMachine : ScriptableObject
         TransitionListeningForRecitedWordsOnlyToListeningForTaskMenuCommandsOnly,
     }
 
-    public State currentState;
     public List<string> menuCommandPhrases; // List of phrases for MenuCommandsOnly state
 }

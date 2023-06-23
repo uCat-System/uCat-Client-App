@@ -69,8 +69,8 @@ public class WitListeningStateManager : MonoBehaviour
     public void DetectUICommandsInWitListeningStateManager(string text) {
         // if the state is ListeningForMenuActivationCommandsOnly OR ListeningForEverything,
         // check if the spoken text is in the menuCommandPhrases list:
-        if (_witListeningStateMachine.currentState == WitListeningStateMachine.State.ListeningForMenuActivationCommandsOnly ||
-            _witListeningStateMachine.currentState == WitListeningStateMachine.State.ListeningForEverything)
+        if (currentListeningState == WitListeningStateMachine.State.ListeningForMenuActivationCommandsOnly ||
+            currentListeningState == WitListeningStateMachine.State.ListeningForEverything)
         {
             _uiManager.CheckIfUICommandsWereSpoken(text);
         }
@@ -87,7 +87,6 @@ public class WitListeningStateManager : MonoBehaviour
         // TODO - improve this - I don't know why it doesn't work without the delay
         yield return new WaitForSeconds(0.00001f);
         // change to the previous state (either menu only or all)
-        // TODO change currentState to enum
         TransitionToState(currentListeningState);
         
     }
@@ -124,7 +123,7 @@ public class WitListeningStateManager : MonoBehaviour
             switch (nextState)
             {
                 case WitListeningStateMachine.State.NotListening:
-                    DisableAllWits();
+                    // DisableAllWits();
                     break;
                 case WitListeningStateMachine.State.ListeningForMenuActivationCommandsOnly:
                     DisableOtherWitsAndEnableThisOne("MenuListeningWit");
@@ -146,7 +145,7 @@ public class WitListeningStateManager : MonoBehaviour
                     return;
             }
 
-            _witListeningStateMachine.currentState = nextState;
+            currentListeningState = nextState;
 
             Debug.Log("WitListeningStateMachine transitioned to state: " + nextState);
         }

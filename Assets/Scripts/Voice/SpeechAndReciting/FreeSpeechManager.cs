@@ -80,7 +80,9 @@ namespace MText
             _witListeningStateManager.currentListeningState == EState.ListeningForRecitedWordsOnly;
 
             if (isInConfirmationMode) {
-                StartCoroutine(CheckIfConfirmationWasSpoken(text.ToLower()));
+                ConfirmationHandler confirmationHandler = new ConfirmationHandler();
+                confirmationHandler.CheckIfConfirmationWasSpoken(text, partialText3D, _wordReciteManager, this, originallyUtteredText);
+                // StartCoroutine(CheckIfConfirmationWasSpoken(text.ToLower()));
             }
             // 2) Activate Tasks if in recite mode
             else if (isInReciteMode)
@@ -90,32 +92,6 @@ namespace MText
                 }
             else {
                 Debug.Log("WRONG state - did not activate word task. You are robably in the menu." + _witListeningStateManager.currentListeningState);
-            }
-        }
-
-         public IEnumerator CheckIfConfirmationWasSpoken(string text) {
-            // text is input as lower case from FreeSpeechManager
-            Debug.Log("Checking for confirmation: " + text);
-            switch (text)
-            {
-                case "yes":
-                    Debug.Log("Yes was spoken");
-                    partialText3D.UpdateText("Cool!");
-                    yield return new WaitForSeconds(1);
-                    _wordReciteManager.MoveOnIfMoreWordsInList();
-                    break;
-                case "no":
-                    Debug.Log("No was spoken");
-                    partialText3D.UpdateText("Oops, let's try again.");
-                    yield return new WaitForSeconds(1);
-                    _wordReciteManager.RepeatSameWord();
-                    break;
-                default:
-                    Debug.Log("Something else was spoken");
-                    partialText3D.UpdateText("Sorry, I didn't understand that. Please say yes or no.");
-                    yield return new WaitForSeconds(2);
-                    ConfirmWhatUserSaid(originallyUtteredText);
-                    break;
             }
         }
 
@@ -147,7 +123,7 @@ namespace MText
 
         }
 
-         void ConfirmWhatUserSaid(string text) {
+        public void ConfirmWhatUserSaid(string text) {
             Debug.Log("Confirming what user said" + text);
             originallyUtteredText = text;
             _witListeningStateManager.TransitionToState(EState.ListeningForConfirmation);
