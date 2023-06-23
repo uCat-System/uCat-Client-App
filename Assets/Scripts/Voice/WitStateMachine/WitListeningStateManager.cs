@@ -22,7 +22,6 @@ public class WitListeningStateManager : MonoBehaviour
 
     public GameObject[] wits;
 
-
     private void Start()
     {
         _wordReciteManager = GameObject.FindWithTag("WordReciteManager")?.GetComponent<WordReciteManager>();

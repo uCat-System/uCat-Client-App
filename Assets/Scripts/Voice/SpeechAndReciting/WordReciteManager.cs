@@ -182,10 +182,10 @@ public class WordReciteManager : MonoBehaviour
         StartCoroutine(ChangeTimeOutText());
     }
     void Update() {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            GoToNextWord();
-        }
+        // if (Input.GetKeyDown(KeyCode.Space))
+        // {
+        //     GoToNextWord();
+        // }
     }
 
     public void GoToNextWord()

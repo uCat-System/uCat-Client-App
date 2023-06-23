@@ -26,11 +26,12 @@ namespace MText
         Scene scene;
 
         void Start()
-        {
+        {      
             subtitleText3D = GameObject.FindWithTag("SubtitleText3D").GetComponent<Modular3DText>();
             _uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
             scene = SceneManager.GetActiveScene();
         }
+
     
         public void StoppedListeningDueToInactivity()
         {
@@ -82,7 +83,6 @@ namespace MText
             if (isInConfirmationMode) {
                 ConfirmationHandler confirmationHandler = new ConfirmationHandler();
                 confirmationHandler.CheckIfConfirmationWasSpoken(text, partialText3D, _wordReciteManager, this, originallyUtteredText);
-                // StartCoroutine(CheckIfConfirmationWasSpoken(text.ToLower()));
             }
             // 2) Activate Tasks if in recite mode
             else if (isInReciteMode)

@@ -17,6 +17,9 @@ namespace MText
 
         public float amountOfTimeToWaitBeforeRepeatingWord = 2f;
 
+        // Reference to the ConfirmationHandlerSO asset
+        public ConfirmationHandlerSO confirmationHandlerSO;
+
         public enum ConfirmationResponseType
         {
             POSITIVE_CONFIRMATION_RESPONSE,
@@ -42,6 +45,19 @@ namespace MText
 
         public void CheckIfConfirmationWasSpoken(string text, Modular3DText partialText3D, WordReciteManager _wordReciteManager, FreeSpeechManager _freeSpeechManager, string originallyUtteredText)
         {
+            // check if any of the arguments are null
+            if (text == null || partialText3D == null || _wordReciteManager == null || _freeSpeechManager == null || originallyUtteredText == null)
+            {
+                Debug.LogError("One or more arguments are null");
+                // name which ones are null 
+                Debug.LogError("text: " + text);
+                Debug.LogError("partialText3D: " + partialText3D);
+                Debug.LogError("_wordReciteManager: " + _wordReciteManager);
+                Debug.LogError("_freeSpeechManager: " + _freeSpeechManager);
+                Debug.LogError("originallyUtteredText: " + originallyUtteredText);
+
+                return;
+            }
             string lowercaseText = text.ToLower();
 
             if (confirmationActions.ContainsKey(lowercaseText))
@@ -59,6 +75,10 @@ namespace MText
 
         private void HandleYesConfirmation(Modular3DText partialText3D, WordReciteManager _wordReciteManager,FreeSpeechManager _freeSpeechManager, string originallyUtteredText )
         {
+            Debug.LogError("yes: partialText3D: " + (partialText3D == null));
+
+            Debug.LogError("yes: _wordReciteManager: " + (_wordReciteManager == null));
+
             StartCoroutine(HandleYesConfirmationCoroutine(partialText3D, _wordReciteManager));
         }
 
@@ -66,7 +86,6 @@ namespace MText
         {
             StartCoroutine(HandleNoConfirmationCoroutine(partialText3D, _wordReciteManager, _freeSpeechManager, originallyUtteredText));
         }
-
 
         private void HandleOtherConfirmation(string text, Modular3DText partialText3D,FreeSpeechManager _freeSpeechManager, string originallyUtteredText)
         {
@@ -77,9 +96,10 @@ namespace MText
 
         private IEnumerator HandleYesConfirmationCoroutine(Modular3DText partialText3D, WordReciteManager _wordReciteManager)
         {
-            partialText3D.UpdateText(confirmationResponses[ConfirmationResponseType.POSITIVE_CONFIRMATION_RESPONSE]);
-            yield return new WaitForSeconds(amountOfTimeToWaitBeforeRepeatingWord);
-            _wordReciteManager.MoveOnIfMoreWordsInList();
+            Debug.Log("Yes was spoken coroutine" + _wordReciteManager.name, partialText3D.gameObject );
+            // partialText3D.UpdateText(confirmationResponses[ConfirmationResponseType.POSITIVE_CONFIRMATION_RESPONSE]);
+            yield return new WaitForSeconds(2);
+            // _wordReciteManager.MoveOnIfMoreWordsInList();
         }
         private IEnumerator HandleNoConfirmationCoroutine(Modular3DText partialText3D, WordReciteManager _wordReciteManager, FreeSpeechManager _freeSpeechManager, string originallyUtteredText)
         {
@@ -93,6 +113,24 @@ namespace MText
             partialText3D.UpdateText(confirmationResponses[ConfirmationResponseType.UNKNOWN_CONFIRMATION_RESPONSE]);
             yield return new WaitForSeconds(amountOfTimeToWaitBeforeRepeatingWord);
             _freeSpeechManager.ConfirmWhatUserSaid(originallyUtteredText);
+        }
+
+
+        // Expose public static method for getting confirmation responses
+        public static string GetConfirmationResponse(ConfirmationResponseType responseType)
+        {
+            ConfirmationHandlerSO confirmationHandlerSO = FindObjectOfType<ConfirmationHandler>().confirmationHandlerSO;
+            switch (responseType)
+            {
+                case ConfirmationResponseType.POSITIVE_CONFIRMATION_RESPONSE:
+                    return confirmationHandlerSO.PositiveConfirmationResponse;
+                case ConfirmationResponseType.NEGATIVE_CONFIRMATION_RESPONSE:
+                    return confirmationHandlerSO.NegativeConfirmationResponse;
+                case ConfirmationResponseType.UNKNOWN_CONFIRMATION_RESPONSE:
+                    return confirmationHandlerSO.UnknownConfirmationResponse;
+                default:
+                    return string.Empty;
+            }
         }
     }
 }
