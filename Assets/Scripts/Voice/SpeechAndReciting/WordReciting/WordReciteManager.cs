@@ -88,10 +88,6 @@ public class WordReciteManager : MonoBehaviour
     }
 
     void SetWordAndUiListsBasedOnLevel() {
-        Debug.Log("Setting word and UI lists based on level" + _levelManager.currentLevel);
-        Debug.Log(_levelManager.currentLevel);
-                Debug.Log(_levelManager == null);
-
         switch (_levelManager.currentLevel) {
             case "Level1":
                 currentWordOrSentenceList = wordLists.level1WordList;
@@ -103,7 +99,6 @@ public class WordReciteManager : MonoBehaviour
                 break;
             case "Level3":
                 currentWordOrSentenceList = wordLists.level3OpenQuestionsList;
-                Debug.Log("lv3, setting " + currentWordOrSentenceList.Count);
                 break;
         }
     }

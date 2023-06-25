@@ -48,7 +48,7 @@ namespace MText
         {
             // Always update subtitles when attempting speech
             subtitleText3D.UpdateText(text);
-            if (_witListeningStateManager.currentListeningState == EListeningState.ListeningForEverything) {
+            if (_witListeningStateManager.RecitingWordsIsAllowed()) {
                 partialText3D.UpdateText(text);
             }
         }
@@ -60,24 +60,19 @@ namespace MText
 
         public void HandleFullTranscription(string text)
         {
-            // Clear subtitle speech
             // 1) Always listen for menu
             _uiManager.CheckIfUICommandsWereSpoken(text.ToLower());
 
-            bool isInConfirmationMode = _witListeningStateManager.currentListeningState == EListeningState.ListeningForConfirmation;
-
-            bool isInReciteMode = _witListeningStateManager.currentListeningState == EListeningState.ListeningForEverything ||
-            _witListeningStateManager.currentListeningState == EListeningState.ListeningForRecitedWordsOnly;
-
-            if (isInConfirmationMode) {
+            // 2) Are we listening for 'yes' or 'no?'
+            if (_witListeningStateManager.currentListeningState == EListeningState.ListeningForConfirmation) {
                 EConfirmationResponseType confirmation = ConfirmationHandler.CheckIfConfirmationWasSpoken(text);
                 StartCoroutine(ProceedBasedOnConfirmation(confirmation, originallyUtteredText));
             }
-            // 2) Activate Tasks if in recite mode
-            else if (isInReciteMode)
-                {
+            // 3) Activate Tasks if in any valid reciting states
+            else if (_witListeningStateManager.RecitingWordsIsAllowed()) {
                     ActivateTasksBasedOnTranscription(text);
-                }
+            }
+
             else {
                 Debug.LogError("WRONG state - did not activate word task. You are robably in the menu." + _witListeningStateManager.currentListeningState);
             }

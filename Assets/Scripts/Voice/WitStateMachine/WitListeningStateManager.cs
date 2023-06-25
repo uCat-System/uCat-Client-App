@@ -23,6 +23,9 @@ public class WitListeningStateManager : MonoBehaviour
     public UIManager _uiManager;
     public ListeningState currentListeningState;
     public WordReciteManager _wordReciteManager;
+    public GameObject[] wits;
+
+    // This dict will return true if we are in any of the allowed reciting states
 
     private static Dictionary<ListeningState, bool> validRecitingStates = new Dictionary<ListeningState, bool>
     {
@@ -34,23 +37,27 @@ public class WitListeningStateManager : MonoBehaviour
         { ListeningState.ListeningForLobbyMenuCommandsOnly, false }
     };
 
-    public GameObject[] wits;
 
     public bool RecitingWordsIsAllowed()
     {
         // If the current state is in the dictionary, return true or false depending on if it is allowed
-        return validRecitingStates.ContainsKey(currentListeningState) && validRecitingStates[currentListeningState];
+        bool contains = validRecitingStates.ContainsKey(currentListeningState);
+        Debug.Log("Contains: " + contains);
+
+        bool value = validRecitingStates[currentListeningState];
+        Debug.Log("value for key: " + value);
+
+        foreach (ListeningState key in validRecitingStates.Keys)
+        {
+            Debug.Log("current" + currentListeningState);
+            Debug.Log("Key: " + key);
+        }
+
+        return contains && value;
     }
 
     private void Start()
-    {
-        // This dict will return true if we are in any of the disallowed states
-        validRecitingStates = new Dictionary<ListeningState, bool>
-        {
-            { ListeningState.ListeningForTaskMenuCommandsOnly, false },
-            { ListeningState.ListeningForMenuActivationCommandsOnly, false },
-        };
-        
+    {        
         string scene = SceneManager.GetActiveScene().name;
         if (scene == "Level3") {
              TransitionToState(ListeningState.ListeningForEverything);
