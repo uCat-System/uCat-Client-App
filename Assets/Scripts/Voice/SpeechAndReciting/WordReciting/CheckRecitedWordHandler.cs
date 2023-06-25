@@ -26,6 +26,9 @@ public class CheckRecitedWordHandler
     private static Dictionary<string, ProceedResponseType> proceedActions;
     public static Dictionary<Enum, string> proceedResponses;
 
+    public static float timeBetweenWordsInSeconds = 1f;
+
+
     // Checking words
 
     private static Dictionary<bool, CorrectResponseType> correctActions;

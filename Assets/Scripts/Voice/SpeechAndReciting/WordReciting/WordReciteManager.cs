@@ -227,12 +227,10 @@ public class WordReciteManager : MonoBehaviour
 
         // Compare the uttered text with the correct text
         ECorrectResponseType correctResponseType = CheckRecitedWordHandler.CheckIfWordOrSentenceIsCorrect(text, activeList[currentWordOrSentenceIndex]);
-        HandleWordOrSentenceCorrectOrIncorrect(correctResponseType);
-
-        yield return new WaitForSeconds(2);
+        StartCoroutine(HandleWordOrSentenceCorrectOrIncorrect(correctResponseType));
     }
 
-    public void HandleWordOrSentenceCorrectOrIncorrect(ECorrectResponseType responseType) {
+    public IEnumerator HandleWordOrSentenceCorrectOrIncorrect(ECorrectResponseType responseType) {
 
         string correctResponseText = CheckRecitedWordHandler.correctResponses[responseType];
         reciteText3D.UpdateText(correctResponseText);
@@ -240,11 +238,14 @@ public class WordReciteManager : MonoBehaviour
         switch (responseType) {
             case ECorrectResponseType.POSITIVE_CORRECT_RESPONSE:
                 reciteText3D.Material = correctColour;
-                WordAnsweredCorrectly();
+                yield return new WaitForSeconds(CheckRecitedWordHandler.timeBetweenWordsInSeconds);
+                AddScoreToScoreManager();
+                MoveOnIfMoreWordsInList();
                 break;
             case ECorrectResponseType.NEGATIVE_CORRECT_RESPONSE:
                 reciteText3D.Material = incorrectColour;
-                StartCoroutine(WordAnsweredIncorrectly());
+                yield return new WaitForSeconds(CheckRecitedWordHandler.timeBetweenWordsInSeconds);
+                RepeatSameWord();
                 break;
             case ECorrectResponseType.UNKNOWN_CORRECT_RESPONSE:
                 break;
@@ -281,13 +282,6 @@ public class WordReciteManager : MonoBehaviour
         }
     }
 
-    IEnumerator WordAnsweredIncorrectly()
-    {
-        reciteText3D.UpdateText("Try again!");
-        yield return new WaitForSeconds(1);
-        RepeatSameWord();
-    }
-
     public void MoveOnIfMoreWordsInList ()
     {
         if (currentWordOrSentenceIndex < activeList.Count - 1)
@@ -305,14 +299,8 @@ public class WordReciteManager : MonoBehaviour
             StartCoroutine(CheckWordListStatus());
         }
     }
-    void WordAnsweredCorrectly()
-    {
-        AddScoreToScoreManager();
-        MoveOnIfMoreWordsInList();
-    }
 
-
-    IEnumerator CheckWordListStatus()
+    private IEnumerator CheckWordListStatus()
     {
         // Either proceed to next word list (ui), or end the game.
         if (wordListComplete && !uiComplete)
