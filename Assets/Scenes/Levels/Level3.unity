@@ -1795,7 +1795,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4024811971100895185}
-  - {fileID: 9147203544603786093}
   - {fileID: 6028993137593117646}
   - {fileID: 6743279097538115534}
   - {fileID: 5437470524803419759}
@@ -2365,7 +2364,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 9147203543807151587}
           m_TargetAssemblyTypeName: MText.FreeSpeechManager, Assembly-CSharp
-          m_MethodName: HandlePartialTranscription
+          m_MethodName: HandleFullTranscription
           m_Mode: 0
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -2613,56 +2612,3 @@ MonoBehaviour:
   _witListeningStateManager: {fileID: 9147203543807151586}
   _wordReciteManager: {fileID: 9147203543807151588}
   menu: {fileID: 963088022}
---- !u!114 &9147203544603786092
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9147203544603786094}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60a6e82f4bf988941b65bbe8ceb9c213, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  listeningText3D: {fileID: 560954396}
-  _uiManager: {fileID: 9147203543807151589}
-  currentListeningState: 0
-  _wordReciteManager: {fileID: 9147203543807151588}
-  wits:
-  - {fileID: 4024811971100895150}
-  - {fileID: 6028993137593117617}
-  - {fileID: 6743279097538115505}
-  - {fileID: 5437470524803419664}
---- !u!4 &9147203544603786093
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9147203544603786094}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.8473197, y: 0.79298544, z: 16.96364}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1398197843232354228}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &9147203544603786094
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 9147203544603786093}
-  - component: {fileID: 9147203544603786092}
-  m_Layer: 0
-  m_Name: WitListeningStateManager
-  m_TagString: WitListeningStateManager
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0

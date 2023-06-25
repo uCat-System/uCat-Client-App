@@ -28,14 +28,6 @@ public class WitListeningStateManager : MonoBehaviour
 
     private void Start()
     {
-        _wordReciteManager = GameObject.FindWithTag("WordReciteManager")?.GetComponent<WordReciteManager>();
-
-        if (_wordReciteManager == null)
-        {
-            _wordReciteManager = null;
-        }
-
-
         string scene = SceneManager.GetActiveScene().name;
         if (scene == "Level3") {
              TransitionToState(ListeningState.ListeningForEverything);
@@ -68,6 +60,14 @@ public class WitListeningStateManager : MonoBehaviour
         
     }
 
+    public IEnumerator TurnWitOffAndOn(Wit wit) {
+        // Turn it off and on
+        Debug.Log("Deactivating and reactivating wit: " + wit.name);
+        wit.Deactivate();
+        yield return new WaitForSeconds(0.00001f);
+        wit.Activate();
+    }
+
     void DisableOtherWitsAndEnableThisOne(string witToEnable) {
             Debug.Log("witToEnable: " + witToEnable);
             Debug.Log("wits.Length: " + wits.Length);
@@ -80,7 +80,7 @@ public class WitListeningStateManager : MonoBehaviour
                  if (wits[i].name == witToEnable) {
                     Debug.Log("Found");
                       wits[i].SetActive(true);
-                      wit.Activate();
+                      StartCoroutine(TurnWitOffAndOn(wit));
                  } else {
                       wits[i].SetActive(false);
                  } 
