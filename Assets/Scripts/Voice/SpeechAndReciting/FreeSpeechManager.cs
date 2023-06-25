@@ -12,7 +12,6 @@ namespace MText
         public UIManager _uiManager;
 
         public WordReciteManager _wordReciteManager;
-
         public Modular3DText partialText3D;
         public Modular3DText subtitleText3D;
 
@@ -30,7 +29,6 @@ namespace MText
             subtitleText3D = GameObject.FindWithTag("SubtitleText3D").GetComponent<Modular3DText>();
             scene = SceneManager.GetActiveScene();
         }
-
     
         public void StoppedListeningDueToInactivity()
         {
@@ -64,8 +62,6 @@ namespace MText
         {
             // Clear subtitle speech
             // 1) Always listen for menu
-            Debug.Log("text? " + text);
-            Debug.Log("ui manager? " + _uiManager);
             _uiManager.CheckIfUICommandsWereSpoken(text.ToLower());
 
             bool isInConfirmationMode = _witListeningStateManager.currentListeningState == EListeningState.ListeningForConfirmation;
@@ -73,10 +69,10 @@ namespace MText
             bool isInReciteMode = _witListeningStateManager.currentListeningState == EListeningState.ListeningForEverything ||
             _witListeningStateManager.currentListeningState == EListeningState.ListeningForRecitedWordsOnly;
 
-                            Debug.Log("We are in confirm m,ode? " + isInConfirmationMode + _witListeningStateManager.currentListeningState);
             if (isInConfirmationMode) {
-
+                // "yes"
                 EConfirmationResponseType confirmation = ConfirmationHandler.CheckIfConfirmationWasSpoken(text);
+                // EConfirmationResponseType (confirmation) == ConfirmationResponseType.POSITIVE_CONFIRMATION_RESPONSE
                 StartCoroutine(ProceedBasedOnConfirmation(confirmation, originallyUtteredText));
             }
             // 2) Activate Tasks if in recite mode
@@ -89,10 +85,8 @@ namespace MText
             }
         }
 
-
         private IEnumerator ProceedBasedOnConfirmation(EConfirmationResponseType responseType, string originallyUtteredText) {
 
-            Debug.Log("We are proceeding? ");
             string confirmationText = ConfirmationHandler.confirmationResponses[responseType];
             partialText3D.UpdateText(confirmationText);
             yield return new WaitForSeconds(ConfirmationHandler.confirmationWaitTimeInSeconds);
@@ -131,7 +125,7 @@ namespace MText
                  // Update the spoken text
                 CalculateCachedText(text);
                 // Only confirm yes/no if the 'next/proceed' prompt is not active
-                if (_wordReciteManager.isDeciding) {
+                if (_wordReciteManager.isDecidingToProceedOrNot) {
                     StartCoroutine(_wordReciteManager.CheckRecitedWord(text));
                 } else {
                     ConfirmWhatUserSaid(text.ToLower());
@@ -153,21 +147,19 @@ namespace MText
         // Prevent the text log becoming too long
         int maxLengthBasedOnScene = 0;
         Scene scene = SceneManager.GetActiveScene();
-        switch (scene.name)
-        {
+        switch (scene.name) {
             case "Level1":
                 maxLengthBasedOnScene = 40;
                 break;
             case "Level2":
-                 maxLengthBasedOnScene = 70;
-                 break;
+                maxLengthBasedOnScene = 70;
+                break;
             case "Level3":
                 maxLengthBasedOnScene = 120;
                 break;
             default:
                 maxLengthBasedOnScene = 30;
-                break;
-        }
+                break;}
 
         if (cachedText.Length > maxLengthBasedOnScene) {
             cachedText = newText;

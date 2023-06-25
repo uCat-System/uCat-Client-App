@@ -7,7 +7,7 @@ using EListeningState = WitListeningStateManager.ListeningState;
 
 public class WordReciteManager : MonoBehaviour
 {
-    public bool isDeciding = false;
+    public bool isDecidingToProceedOrNot = false;
     public bool resuming = false;
 
     // Current word tracking
@@ -56,7 +56,7 @@ public class WordReciteManager : MonoBehaviour
 
     public AudioClip[] wordSounds;
 
-    void Awake()
+    void Start()
     {
         // Assigning gameobjects
         reciteBoardAudioSource = GameObject.FindWithTag("ReciteBoard").GetComponent<AudioSource>();
@@ -70,7 +70,10 @@ public class WordReciteManager : MonoBehaviour
         // Initialise Word Lists
         SetWordAndUiListsBasedOnLevel();
         activeList = currentWordOrSentenceList;
+        Debug.Log("active list is " + activeList.Count);
+
         currentWordOrSentenceIndex = 0;
+        Debug.Log("current index is " + currentWordOrSentenceIndex);
 
         // Set score based on amount of words in lists
         if (_levelManager.currentLevel != "Level3")
@@ -84,6 +87,10 @@ public class WordReciteManager : MonoBehaviour
     }
 
     void SetWordAndUiListsBasedOnLevel() {
+        Debug.Log("Setting word and UI lists based on level" + _levelManager.currentLevel);
+        Debug.Log(_levelManager.currentLevel);
+                Debug.Log(_levelManager == null);
+
         switch (_levelManager.currentLevel) {
             case "Level1":
                 currentWordOrSentenceList = wordLists.level1WordList;
@@ -95,6 +102,7 @@ public class WordReciteManager : MonoBehaviour
                 break;
             case "Level3":
                 currentWordOrSentenceList = wordLists.level3OpenQuestionsList;
+                Debug.Log("lv3, setting " + currentWordOrSentenceList.Count);
                 break;
         }
     }
@@ -212,7 +220,7 @@ public class WordReciteManager : MonoBehaviour
         }
         bool wordAnsweredCorrectly;
 
-         if (isDeciding) {
+         if (isDecidingToProceedOrNot) {
             // Are they saying 'next' or 'repeat'
             if (text.ToLower() == "next")
             {
@@ -339,6 +347,6 @@ public class WordReciteManager : MonoBehaviour
     {
         _scoreManager.DisplayScoreInPartialTextSection();
         reciteText3D.UpdateText("Say 'next' to proceed.\nOr 'repeat' to repeat sentences.");
-        isDeciding = true;
+        isDecidingToProceedOrNot = true;
     }
 }

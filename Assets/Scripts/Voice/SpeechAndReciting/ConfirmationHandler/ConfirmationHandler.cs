@@ -11,7 +11,6 @@ public class ConfirmationHandler
 
     private static Dictionary<string, ConfirmationResponseType> confirmationActions;
     public static Dictionary<Enum, string> confirmationResponses;
-
     public static float confirmationWaitTimeInSeconds = 2f;
 
     // Reference to the ConfirmationResponseData scriptable object
@@ -25,7 +24,7 @@ public class ConfirmationHandler
     }
 
     static ConfirmationHandler()
-    {
+    {        
         confirmationActions = new Dictionary<string, ConfirmationResponseType>
         {
             { "yes", ConfirmationResponseType.POSITIVE_CONFIRMATION_RESPONSE },

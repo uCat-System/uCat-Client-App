@@ -2470,7 +2470,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9147203543807151583}
-  - component: {fileID: 9147203543807151588}
+  - component: {fileID: 9147203543807151590}
   - component: {fileID: 9147203543807151587}
   - component: {fileID: 9147203543807151586}
   - component: {fileID: 9147203543807151585}
@@ -2542,7 +2542,7 @@ MonoBehaviour:
   listeningText3D: {fileID: 560954396}
   _uiManager: {fileID: 9147203543807151589}
   currentListeningState: 0
-  _wordReciteManager: {fileID: 9147203543807151588}
+  _wordReciteManager: {fileID: 9147203543807151590}
   wits:
   - {fileID: 4024811971100895150}
   - {fileID: 6028993137593117617}
@@ -2561,12 +2561,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _uiManager: {fileID: 9147203543807151589}
-  _wordReciteManager: {fileID: 9147203543807151588}
+  _wordReciteManager: {fileID: 9147203543807151590}
   partialText3D: {fileID: 1683794367}
   subtitleText3D: {fileID: 360268101}
   _witListeningStateManager: {fileID: 9147203543807151586}
   cachedText: 
---- !u!114 &9147203543807151588
+--- !u!114 &9147203543807151589
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2575,10 +2575,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 9147203543807151568}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8f78cde7c696394ea1e5fe99e32c7b6, type: 3}
+  m_Script: {fileID: 11500000, guid: fc45d88a8119af14aa4ebaaf255ce6c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDeciding: 0
+  animator: {fileID: 963088024}
+  textElements: {fileID: 360268102}
+  _witListeningStateManager: {fileID: 9147203543807151586}
+  _wordReciteManager: {fileID: 9147203543807151590}
+  menu: {fileID: 963088022}
+--- !u!114 &9147203543807151590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9147203543807151568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5ade88bcc11f534ba90460b5a603fe6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDecidingToProceedOrNot: 0
   resuming: 0
   wordLists: {fileID: 11400000, guid: a3a83d047afb6c943a61e130941a77f0, type: 2}
   correctColour: {fileID: 2100000, guid: 5562c698b21c8924a84fa2abb367f9cd, type: 2}
@@ -2595,20 +2612,3 @@ MonoBehaviour:
   reciteBoardAudioSource: {fileID: 899594003}
   wordSounds:
   - {fileID: 8300000, guid: 3c728dab5c4b22d40a8d14fd98f7f9ea, type: 3}
---- !u!114 &9147203543807151589
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9147203543807151568}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc45d88a8119af14aa4ebaaf255ce6c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 963088024}
-  textElements: {fileID: 360268102}
-  _witListeningStateManager: {fileID: 9147203543807151586}
-  _wordReciteManager: {fileID: 9147203543807151588}
-  menu: {fileID: 963088022}
