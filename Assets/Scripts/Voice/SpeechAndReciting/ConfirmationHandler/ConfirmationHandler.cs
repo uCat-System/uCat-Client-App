@@ -13,9 +13,6 @@ public class ConfirmationHandler
     public static Dictionary<Enum, string> confirmationResponses;
     public static float confirmationWaitTimeInSeconds = 2f;
 
-    // Reference to the ConfirmationResponseData scriptable object
-    public static ConfirmationResponseData confirmationResponseData;
-
     public enum ConfirmationResponseType
     {
         POSITIVE_CONFIRMATION_RESPONSE,
@@ -24,18 +21,26 @@ public class ConfirmationHandler
     }
 
     static ConfirmationHandler()
-    {        
+    {
         confirmationActions = new Dictionary<string, ConfirmationResponseType>
         {
             { "yes", ConfirmationResponseType.POSITIVE_CONFIRMATION_RESPONSE },
             { "no", ConfirmationResponseType.NEGATIVE_CONFIRMATION_RESPONSE }
         };
 
+         // Access the ConfirmationResponseData scriptable object's fields
+        ConfirmationResponseData confirmationResponseData = Resources.Load<ConfirmationResponseData>("ConfirmationResponseData");
+        if (confirmationResponseData == null)
+        {
+            Debug.LogError("ConfirmationResponseData not found.");
+            return;
+        }
+
         confirmationResponses = new Dictionary<Enum, string>
         {
-            { ConfirmationResponseType.POSITIVE_CONFIRMATION_RESPONSE, "Cool!" },
-            { ConfirmationResponseType.NEGATIVE_CONFIRMATION_RESPONSE, "Oops, let's try again." },
-            { ConfirmationResponseType.UNKNOWN_CONFIRMATION_RESPONSE, "Sorry, I didn't understand that. Please say yes or no." }
+            { ConfirmationResponseType.POSITIVE_CONFIRMATION_RESPONSE, confirmationResponseData.positiveConfirmationResponse },
+            { ConfirmationResponseType.NEGATIVE_CONFIRMATION_RESPONSE, confirmationResponseData.negativeConfirmationResponse },
+            { ConfirmationResponseType.UNKNOWN_CONFIRMATION_RESPONSE, confirmationResponseData.unknownConfirmationResponse }
         };
     }
 

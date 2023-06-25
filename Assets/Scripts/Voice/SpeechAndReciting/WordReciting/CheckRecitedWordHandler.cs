@@ -8,13 +8,6 @@ public class CheckRecitedWordHandler
     // This class is used to handle recited words from the user.
     // </Summary>
 
-
-    /* 
-        --> Needs to handle (isDeciding), which should check for 'next' and 'repeat' as inputs
-        --> Needs to handle checking if the word was correct or not,
-            so will need (text, wordToRecite, isDeciding) as inputs
-
-    */
     public enum ProceedResponseType
     {
         POSITIVE_PROCEED_RESPONSE,
@@ -40,6 +33,14 @@ public class CheckRecitedWordHandler
 
     static CheckRecitedWordHandler()
     { 
+        // Access the ConfirmationResponseData scriptable object's fields
+        RecitedWordData recitedWordData = Resources.Load<RecitedWordData>("RecitedWordData");
+        if (recitedWordData == null)
+        {
+            Debug.LogError("recitedWordData not found.");
+            return;
+        }
+        
         correctActions = new Dictionary<bool, CorrectResponseType>
         {
             { true, CorrectResponseType.POSITIVE_CORRECT_RESPONSE },
@@ -48,9 +49,9 @@ public class CheckRecitedWordHandler
 
         correctResponses = new Dictionary<Enum, string>
         {
-            { CorrectResponseType.POSITIVE_CORRECT_RESPONSE, "Great job!" },
-            { CorrectResponseType.NEGATIVE_CORRECT_RESPONSE, "Sorry, that's not correct." },
-            { CorrectResponseType.UNKNOWN_CORRECT_RESPONSE, "Sorry, I didn't understand that." }
+            { CorrectResponseType.POSITIVE_CORRECT_RESPONSE, recitedWordData.positiveCorrectResponse },
+            { CorrectResponseType.NEGATIVE_CORRECT_RESPONSE, recitedWordData.negativeCorrectResponse },
+            { CorrectResponseType.UNKNOWN_CORRECT_RESPONSE, recitedWordData.unknownCorrectResponse }
         };
 
         proceedActions = new Dictionary<string, ProceedResponseType>

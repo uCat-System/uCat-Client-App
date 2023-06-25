@@ -3,6 +3,7 @@ using Meta.WitAi;
 using UnityEngine.SceneManagement;
 using EListeningState = WitListeningStateManager.ListeningState;
 using EConfirmationResponseType = ConfirmationHandler.ConfirmationResponseType;
+using ECorrectResponseType = CheckRecitedWordHandler.CorrectResponseType;
 using System.Collections;
 
 namespace MText
@@ -25,7 +26,7 @@ namespace MText
         Scene scene;
 
         void Start()
-        {      
+        {   
             subtitleText3D = GameObject.FindWithTag("SubtitleText3D").GetComponent<Modular3DText>();
             scene = SceneManager.GetActiveScene();
         }
