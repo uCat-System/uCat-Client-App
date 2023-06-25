@@ -5,6 +5,7 @@ using Meta.WitAi;
 using MText;
 using EListeningState = WitListeningStateManager.ListeningState;
 using EProceedResponseType = CheckRecitedWordHandler.ProceedResponseType;
+using ECorrectResponseType = CheckRecitedWordHandler.CorrectResponseType;
 
 public class WordReciteManager : MonoBehaviour
 {
@@ -211,6 +212,46 @@ public class WordReciteManager : MonoBehaviour
     {
         StartCoroutine(CheckRecitedWord(transcription));
     }
+   
+    public IEnumerator CheckRecitedWord(string text)
+    {
+        if (!_witListeningStateManager.RecitingWordsIsAllowed()) {
+            yield break;
+        }
+
+        if (isDecidingToProceedOrNot) {
+            EProceedResponseType responseType = CheckRecitedWordHandler.CheckIfProceedPhraseSpoken(text);
+            ProceedOrNotBasedOnResponse(responseType);
+            yield break;
+        }
+
+        // Compare the uttered text with the correct text
+        ECorrectResponseType correctResponseType = CheckRecitedWordHandler.CheckIfWordOrSentenceIsCorrect(text, activeList[currentWordOrSentenceIndex]);
+        HandleWordOrSentenceCorrectOrIncorrect(correctResponseType);
+
+        yield return new WaitForSeconds(2);
+    }
+
+    public void HandleWordOrSentenceCorrectOrIncorrect(ECorrectResponseType responseType) {
+
+        string correctResponseText = CheckRecitedWordHandler.correctResponses[responseType];
+        reciteText3D.UpdateText(correctResponseText);
+
+        switch (responseType) {
+            case ECorrectResponseType.POSITIVE_CORRECT_RESPONSE:
+                reciteText3D.Material = correctColour;
+                WordAnsweredCorrectly();
+                break;
+            case ECorrectResponseType.NEGATIVE_CORRECT_RESPONSE:
+                reciteText3D.Material = incorrectColour;
+                StartCoroutine(WordAnsweredIncorrectly());
+                break;
+            case ECorrectResponseType.UNKNOWN_CORRECT_RESPONSE:
+                break;
+            default:
+                break;
+        }
+    }
 
     public void ProceedOrNotBasedOnResponse(EProceedResponseType responseType) { 
         switch (responseType) {
@@ -226,51 +267,6 @@ public class WordReciteManager : MonoBehaviour
                 partialText3D.UpdateText(CheckRecitedWordHandler.proceedResponses[responseType]);
                 GameOver();
                 break;}
-    }
-   
-    public IEnumerator CheckRecitedWord(string text)
-    {
-        if (!_witListeningStateManager.RecitingWordsIsAllowed()) {
-            Debug.Log("Reciting is not allowed");
-            yield break;
-        }
-
-        bool wordAnsweredCorrectly;
-
-         if (isDecidingToProceedOrNot) {
-            EProceedResponseType responseType = CheckRecitedWordHandler.CheckIfProceedPhraseSpoken(text);
-            ProceedOrNotBasedOnResponse(responseType);
-            yield break;
-        }
-
-        // Does their answer match the current word?
-        wordAnsweredCorrectly = text.ToLower() == activeList[currentWordOrSentenceIndex].ToLower();
-
-        // Change text to reflect correct / incorrect 
-
-        if (wordAnsweredCorrectly) {
-            reciteText3D.UpdateText("Correct!");
-            reciteText3D.Material = correctColour;
-            // reciteBoardAudioSource.clip = wordSounds[1];
-        } else {
-            reciteText3D.UpdateText("Incorrect.");
-            reciteText3D.Material = incorrectColour;
-            // reciteBoardAudioSource.clip = wordSounds[2];
-        }
-
-        // Play sound
-        // reciteBoardAudioSource.Play();
-
-        yield return new WaitForSeconds(2);
-
-        if (wordAnsweredCorrectly)
-        {
-            WordAnsweredCorrectly();
-        }
-        else
-        {
-            StartCoroutine(WordAnsweredIncorrectly());
-        }
     }
 
     void AddScoreToScoreManager()
