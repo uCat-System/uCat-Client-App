@@ -228,11 +228,11 @@ public class WordReciteManager : MonoBehaviour
    
     public IEnumerator CheckRecitedWord(string text)
     {
-        if (_witListeningStateManager.currentListeningState == EListeningState.ListeningForTaskMenuCommandsOnly
-        || _witListeningStateManager.currentListeningState == EListeningState.ListeningForMenuActivationCommandsOnly)
-        {
+        if (!_witListeningStateManager.RecitingWordsIsAllowed()) {
+            Debug.Log("Reciting is not allowed");
             yield break;
         }
+
         bool wordAnsweredCorrectly;
 
          if (isDecidingToProceedOrNot) {

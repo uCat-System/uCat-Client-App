@@ -4,6 +4,7 @@ using MText;
 using Meta.WitAi;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using System.Collections.Generic;
 
 public class WitListeningStateManager : MonoBehaviour
 {
@@ -17,17 +18,39 @@ public class WitListeningStateManager : MonoBehaviour
         ListeningForConfirmation,
 
         ListeningForLobbyMenuCommandsOnly,
-
     }
     public Modular3DText listeningText3D;
     public UIManager _uiManager;
     public ListeningState currentListeningState;
     public WordReciteManager _wordReciteManager;
 
+    private static Dictionary<ListeningState, bool> validRecitingStates = new Dictionary<ListeningState, bool>
+    {
+        { ListeningState.ListeningForEverything, true},
+        { ListeningState.ListeningForRecitedWordsOnly, true },
+        { ListeningState.ListeningForConfirmation, true },
+        { ListeningState.ListeningForTaskMenuCommandsOnly, false },
+        { ListeningState.ListeningForMenuActivationCommandsOnly, false },
+        { ListeningState.ListeningForLobbyMenuCommandsOnly, false }
+    };
+
     public GameObject[] wits;
+
+    public bool RecitingWordsIsAllowed()
+    {
+        // If the current state is in the dictionary, return true or false depending on if it is allowed
+        return validRecitingStates.ContainsKey(currentListeningState) && validRecitingStates[currentListeningState];
+    }
 
     private void Start()
     {
+        // This dict will return true if we are in any of the disallowed states
+        validRecitingStates = new Dictionary<ListeningState, bool>
+        {
+            { ListeningState.ListeningForTaskMenuCommandsOnly, false },
+            { ListeningState.ListeningForMenuActivationCommandsOnly, false },
+        };
+        
         string scene = SceneManager.GetActiveScene().name;
         if (scene == "Level3") {
              TransitionToState(ListeningState.ListeningForEverything);
@@ -62,23 +85,16 @@ public class WitListeningStateManager : MonoBehaviour
 
     public IEnumerator TurnWitOffAndOn(Wit wit) {
         // Turn it off and on
-        Debug.Log("Deactivating and reactivating wit: " + wit.name);
         wit.Deactivate();
         yield return new WaitForSeconds(0.00001f);
         wit.Activate();
     }
 
     void DisableOtherWitsAndEnableThisOne(string witToEnable) {
-            Debug.Log("witToEnable: " + witToEnable);
-            Debug.Log("wits.Length: " + wits.Length);
-            Debug.Log("wits[0]: " + wits[0]);
          for (int i = 0; i < wits.Length; i++)
             {  
-                Debug.Log("wits[i]: " + wits[i]);
-
                 Wit wit = wits[i].GetComponent<Wit>();
                  if (wits[i].name == witToEnable) {
-                    Debug.Log("Found");
                       wits[i].SetActive(true);
                       StartCoroutine(TurnWitOffAndOn(wit));
                  } else {
