@@ -37,21 +37,16 @@ public class WitListeningStateManager : MonoBehaviour
         { ListeningState.ListeningForLobbyMenuCommandsOnly, false }
     };
 
-
     public bool RecitingWordsIsAllowed()
     {
         // If the current state is in the dictionary, return true or false depending on if it is allowed
         bool contains = validRecitingStates.ContainsKey(currentListeningState);
-        Debug.Log("Contains: " + contains);
+        
+        if (!contains) {
+            Debug.LogError("The current listening state is not in the reciting dictionary");
+        }
 
         bool value = validRecitingStates[currentListeningState];
-        Debug.Log("value for key: " + value);
-
-        foreach (ListeningState key in validRecitingStates.Keys)
-        {
-            Debug.Log("current" + currentListeningState);
-            Debug.Log("Key: " + key);
-        }
 
         return contains && value;
     }

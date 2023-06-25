@@ -18,7 +18,7 @@ public class UIController : MonoBehaviour
                 // name it for easy recognition
                 _Instance.name = _Instance.GetType().ToString();
                 // mark root as DontDestroyOnLoad();
-                DontDestroyOnLoad(_Instance.gameObject);
+                // DontDestroyOnLoad(_Instance.gameObject);
             }
             return _Instance;
         }

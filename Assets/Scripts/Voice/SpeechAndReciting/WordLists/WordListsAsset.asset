@@ -50,6 +50,6 @@ MonoBehaviour:
   - Settings
   - Help
   level2UiList:
-  - Hey there.
-  - Look at that black cat.
-  - I would like to repeat sentences.
+  - Hey there
+  - Look at that black cat
+  - I would like to repeat sentences

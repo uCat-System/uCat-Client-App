@@ -63,6 +63,9 @@ public class WordReciteManager : MonoBehaviour
         reciteBoardAudioSource = GameObject.FindWithTag("ReciteBoard").GetComponent<AudioSource>();
         subtitleText3D = GameObject.FindWithTag("SubtitleText3D").GetComponent<Modular3DText>();
         partialText3D = GameObject.FindWithTag("PartialText3D").GetComponent<Modular3DText>();
+        reciteText3D = GameObject.FindWithTag("ReciteText3D").GetComponent<Modular3DText>();
+        reciteBoardAudioSource = GameObject.FindWithTag("ReciteBoard").GetComponent<AudioSource>();
+
        
         // Game state variables
         uiComplete = false;
@@ -102,6 +105,7 @@ public class WordReciteManager : MonoBehaviour
                 break;
         }
     }
+
 
     public IEnumerator StartCurrentWordCountdown()
     {
@@ -179,10 +183,11 @@ public class WordReciteManager : MonoBehaviour
         StartCoroutine(ChangeTimeOutText());
     }
     void Update() {
-        // if (Input.GetKeyDown(KeyCode.Space))
-        // {
-        //     GoToNextWord();
-        // }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            // currentWordOrSentenceIndex = activeList.Count - 2;
+            GoToNextWord();
+        }
     }
 
     public void GoToNextWord()
@@ -211,9 +216,11 @@ public class WordReciteManager : MonoBehaviour
         switch (responseType) {
             case EProceedResponseType.POSITIVE_PROCEED_RESPONSE:
                 _levelManager.LevelComplete();
+                isDecidingToProceedOrNot = false;
                 break;
             case EProceedResponseType.NEGATIVE_PROCEED_RESPONSE:
                 _levelManager.RepeatLevel();
+                isDecidingToProceedOrNot = false;
                 break;
             case EProceedResponseType.UNKNOWN_PROCEED_RESPONSE:
                 partialText3D.UpdateText(CheckRecitedWordHandler.proceedResponses[responseType]);
