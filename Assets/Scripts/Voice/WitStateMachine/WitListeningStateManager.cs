@@ -58,7 +58,6 @@ public class WitListeningStateManager : MonoBehaviour
                 
                 if (_everythingWit != null)
                 {
-                    Debug.Log("Wit module found, activating");
                     _everythingWit.Activate();
                 }
             }
@@ -76,7 +75,7 @@ public class WitListeningStateManager : MonoBehaviour
     }
 
     public void StoppedListening() {
-        Debug.Log("Stopped! Reactivating");
+        Debug.LogError("Stopped! Reactivating");
         StartCoroutine(ResetToCurrentListeningState());
     }
 
@@ -85,7 +84,6 @@ public class WitListeningStateManager : MonoBehaviour
         // Turn it back on again
         // TODO - improve this - I don't know why it doesn't work without the delay
         yield return new WaitForSeconds(0.00001f);
-        // change to the previous state (either menu only or all)
         TransitionToState(currentListeningState);
         
     }
@@ -93,8 +91,6 @@ public class WitListeningStateManager : MonoBehaviour
     void DisableOtherWitsAndEnableThisOne(string witToEnable) {
          for (int i = 0; i < wits.Length; i++)
             {  
-                Debug.Log("wits[i].name " + wits[i].name);
-                Debug.Log("witToEnable " + witToEnable);
                 Wit wit = wits[i].GetComponent<Wit>();
                  if (wits[i].name == witToEnable) {
                       wits[i].SetActive(true);
@@ -116,13 +112,12 @@ public class WitListeningStateManager : MonoBehaviour
 
     public void TransitionToState(WitListeningStateMachine.State nextState)
         {
-            //TODO Use import statements to call enum values
             listeningText3D.UpdateText(nextState.ToString());
 
             switch (nextState)
             {
                 case WitListeningStateMachine.State.NotListening:
-                    // DisableAllWits();
+                    DisableAllWits();
                     break;
                 case WitListeningStateMachine.State.ListeningForMenuActivationCommandsOnly:
                     DisableOtherWitsAndEnableThisOne("MenuListeningWit");
@@ -131,7 +126,6 @@ public class WitListeningStateManager : MonoBehaviour
                     DisableOtherWitsAndEnableThisOne("EverythingWit");
                     break;
                 case WitListeningStateMachine.State.ListeningForTaskMenuCommandsOnly:
-                    Debug.Log("Should be disabling/enabling");
                     DisableOtherWitsAndEnableThisOne("TaskMenuNavigationWit");
                     break;
                 case WitListeningStateMachine.State.ListeningForConfirmation:
@@ -148,18 +142,4 @@ public class WitListeningStateManager : MonoBehaviour
 
             Debug.Log("WitListeningStateMachine transitioned to state: " + nextState);
         }
-
-    // This can be called with a string value from external scripts.
-    // public void ChangeState(string state)
-    // {
-    //     if (Enum.TryParse(state, out WitListeningStateMachine.State newState))
-    //     {
-    //         TransitionToState(newState);
-    //         currentListeningState = state;
-    //     }
-    //     else
-    //     {
-    //         Debug.LogError("Invalid state: " + state);
-    //     }
-    // }
 }

@@ -23,8 +23,6 @@ namespace MText
 
         public WitListeningStateManager _witListeningStateManager;
 
-        public ConfirmationResponseData _confirmationResponseData;
-
         public string cachedText = "";
 
         Scene scene;
@@ -39,24 +37,20 @@ namespace MText
     
         public void StoppedListeningDueToInactivity()
         {
-            Debug.Log("Stopped listening due to inactivity");
             HandleInactivityFailure();
         }
 
         public void StoppedListeningDueToDeactivation()
         {
-            Debug.Log("Stopped listening due to Deactivation");
         }
 
         public void StoppedListeningDueToTimeout()
         {
-            Debug.Log("Stopped listening due to timeout");
             HandleInactivityFailure();
         }
 
         public void HandlePartialTranscription(string text)
         {
-            Debug.Log("Partial received: " + text);
             // Always update subtitles when attempting speech
             subtitleText3D.UpdateText(text);
             if (_witListeningStateManager.currentListeningState == EState.ListeningForEverything) {
@@ -66,15 +60,11 @@ namespace MText
 
          public void MinimumWakeThresholdHit()
         {
-            partialText3D.UpdateText("Heard something");
-            Debug.Log("HIT MINIMUM: ");
-            
+            // partialText3D.UpdateText("Heard something");            
         }
 
         public void HandleFullTranscription(string text)
         {
-            Debug.Log("Receiving full text of " + text);
-
             // Clear subtitle speech
             // 1) Always listen for menu
             _uiManager.CheckIfUICommandsWereSpoken(text.ToLower());
@@ -91,20 +81,18 @@ namespace MText
             // 2) Activate Tasks if in recite mode
             else if (isInReciteMode)
                 {
-                    Debug.Log("activating word task or free recite");
                     ActivateTasksBasedOnTranscription(text);
                 }
             else {
-                Debug.Log("WRONG state - did not activate word task. You are robably in the menu." + _witListeningStateManager.currentListeningState);
+                Debug.LogError("WRONG state - did not activate word task. You are robably in the menu." + _witListeningStateManager.currentListeningState);
             }
         }
 
 
         private IEnumerator ProceedBasedOnConfirmation(EConfirmationResponseType responseType, string originallyUtteredText) {
 
-            Debug.Log("Proceeding based on confirmation");
-            string text = ConfirmationHandler.confirmationResponses[responseType];
-            partialText3D.UpdateText(text);
+            string confirmationText = ConfirmationHandler.confirmationResponses[responseType];
+            partialText3D.UpdateText(confirmationText);
             yield return new WaitForSeconds(ConfirmationHandler.confirmationWaitTimeInSeconds);
 
             // if yes, move on
@@ -121,7 +109,7 @@ namespace MText
             }
 
             else {
-                Debug.Log("ERROR: Confirmation response type not recognised");
+                Debug.LogError("ERROR: Confirmation response type not recognised");
             }
         }
 
@@ -134,17 +122,14 @@ namespace MText
         {        
             if (SceneManager.GetActiveScene().name != "Level3") 
             {
-                Debug.Log("activating word task");
                 _wordReciteManager.StartWordCheck(text);
           
             } else {
                 // Run level 3 task
-                Debug.Log("should be transcribing");
                  // Update the spoken text
                 CalculateCachedText(text);
                 // Only confirm yes/no if the 'next/proceed' prompt is not active
                 if (_wordReciteManager.isDeciding) {
-                    Debug.Log("going to check recited word");
                     StartCoroutine(_wordReciteManager.CheckRecitedWord(text));
                 } else {
                     ConfirmWhatUserSaid(text.ToLower());
@@ -154,17 +139,11 @@ namespace MText
         }
 
         public void ConfirmWhatUserSaid(string text) {
-            Debug.Log("Confirming what user said" + text);
             originallyUtteredText = text;
             _witListeningStateManager.TransitionToState(EState.ListeningForConfirmation);
-            // Display what they said on screen
-            // partialText3D.UpdateText(text);
 
             // Ask them to confirm
             partialText3D.UpdateText("Did you say " + text + "?");
-
-            // Change state to listening for confirmation
-            // this state should only accept yes or no
         }
 
      void CalculateCachedText(string newText) {

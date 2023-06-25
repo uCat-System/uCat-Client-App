@@ -113,13 +113,11 @@ public class WordReciteManager : MonoBehaviour
 
         if (_witListeningStateManager.currentListeningState == EState.ListeningForTaskMenuCommandsOnly)
         {
-            Debug.Log("Breaking out of countdown because in navigation state");
             yield break;
         }
 
         partialText3D.UpdateText("");
         reciteText3D.Material = defaultColour;
-        Debug.Log("Abnoput to display index " + currentWordOrSentenceIndex + " of " + currentWordOrSentenceList);
         string word = activeList[currentWordOrSentenceIndex];
         // word == "Hello"
     
@@ -127,7 +125,6 @@ public class WordReciteManager : MonoBehaviour
         {
 
         if (_witListeningStateManager.currentListeningState == EState.ListeningForTaskMenuCommandsOnly) {
-            Debug.Log("Breaking out of countdown because in navigation state");
             yield break;
         }
             switch (i)
@@ -151,11 +148,9 @@ public class WordReciteManager : MonoBehaviour
 
         // Countdown finished, start listening for the word
         if (_witListeningStateManager.currentListeningState == EState.ListeningForTaskMenuCommandsOnly) {
-             Debug.Log("EXITING OUT BECAUSE WE ARE IN MENU STATE " + _witListeningStateManager.currentListeningState);
             yield break;
         } else {
             subtitleText3D.UpdateText("");
-            Debug.Log("CONTINUING, STATE IS " + _witListeningStateManager.currentListeningState);
             _witListeningStateManager.TransitionToState(EState.ListeningForEverything);
             reciteText3D.UpdateText(word);
             reciteText3D.Material = listeningColour;
@@ -212,11 +207,9 @@ public class WordReciteManager : MonoBehaviour
    
     public IEnumerator CheckRecitedWord(string text)
     {
-        Debug.Log("Checking recited word with state of " + _witListeningStateManager.currentListeningState);
         if (_witListeningStateManager.currentListeningState == EState.ListeningForTaskMenuCommandsOnly
         || _witListeningStateManager.currentListeningState == EState.ListeningForMenuActivationCommandsOnly)
         {
-            Debug.Log("Breaking out of recited word because menu active or in command mode" + _witListeningStateManager.currentListeningState);
             yield break;
         }
         bool wordAnsweredCorrectly;
@@ -236,7 +229,6 @@ public class WordReciteManager : MonoBehaviour
             }
 
             else {
-                Debug.Log("Not next or repeat");
                 partialText3D.UpdateText("I didn't understand that, please try again.");
                 GameOver();
                 yield break;
@@ -266,7 +258,6 @@ public class WordReciteManager : MonoBehaviour
 
         if (wordAnsweredCorrectly)
         {
-            Debug.Log("Word answered correctly");
             WordAnsweredCorrectly();
         }
         else
@@ -296,10 +287,8 @@ public class WordReciteManager : MonoBehaviour
 
     public void MoveOnIfMoreWordsInList ()
     {
-        Debug.Log("checking if more words in list" + currentWordOrSentenceIndex + " " + activeList.Count);
         if (currentWordOrSentenceIndex < activeList.Count - 1)
         {
-            Debug.Log("going to next word because index valid");
             GoToNextWord();
         }
 
@@ -316,19 +305,12 @@ public class WordReciteManager : MonoBehaviour
     void WordAnsweredCorrectly()
     {
         AddScoreToScoreManager();
-        Debug.Log("moving on");
-
         MoveOnIfMoreWordsInList();
     }
 
 
     IEnumerator CheckWordListStatus()
     {
-        Debug.Log("Checking word list status");
-        Debug.Log("Chang complete: " + wordListComplete);
-        Debug.Log("UI complete: " + uiComplete);
-        Debug.Log("openQuestionsComplete: " + openQuestionsComplete);
-
         // Either proceed to next word list (ui), or end the game.
         if (wordListComplete && !uiComplete)
         { 
@@ -337,10 +319,6 @@ public class WordReciteManager : MonoBehaviour
             reciteText3D.UpdateText("Great! Moving onto UI word list.");
 
             yield return new WaitForSeconds(2);
-            Debug.Log("Changing to UI list");
-            Debug.Log("fierst word should be " + currentUiList[0]);
-                        Debug.Log("actual first:  " + activeList[0]);
-
             StartCoroutine(StartCurrentWordCountdown());
             
         }
@@ -355,7 +333,7 @@ public class WordReciteManager : MonoBehaviour
 
         else
         {
-            Debug.Log("Something went wrong in conditional for list changing.");
+            Debug.LogError("Something went wrong in conditional for list changing.");
         }
     }
 
@@ -363,7 +341,6 @@ public class WordReciteManager : MonoBehaviour
     {
         _scoreManager.DisplayScoreInPartialTextSection();
         reciteText3D.UpdateText("Say 'next' to proceed.\nOr 'repeat' to repeat sentences.");
-        // StartCoroutine(_witListeningStateManager.TurnWitOffAndOn());
         isDeciding = true;
     }
 }

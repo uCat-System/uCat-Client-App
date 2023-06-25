@@ -32,7 +32,6 @@ public class UIController : MonoBehaviour
     public void EnableOrDisableUI()
     {
         paused = !paused;
-        Debug.Log("Paused is now " + paused);
         if (paused)
         {
             Time.timeScale = 0;
