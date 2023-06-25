@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36b8632f078d2df4b83da44f37699a6a, type: 3}
-  m_Name: ConfirmationHandlerAsset
+  m_Script: {fileID: 11500000, guid: 3408fc9c297a44c4bb4a00c196de3cb4, type: 3}
+  m_Name: ConfirmationResponseData
   m_EditorClassIdentifier: 
-  positiveConfirmationResponse: Good Job
-  negativeConfirmationResponse: Oops
-  unknownConfirmationResponse: Not sure
+  positiveConfirmationResponse: 1
+  negativeConfirmationResponse: 2
+  unknownConfirmationResponse: 3

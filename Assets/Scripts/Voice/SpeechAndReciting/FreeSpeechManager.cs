@@ -1,17 +1,19 @@
-using System.Collections;
 using UnityEngine;
 using Meta.WitAi;
 using UnityEngine.SceneManagement;
 using EState = WitListeningStateMachine.State;
+using EConfirmationResponseType = ConfirmationHandler.ConfirmationResponseType;
+using System.Collections;
 
 namespace MText
-{ 
+{
     public class FreeSpeechManager : MonoBehaviour
     {
         [SerializeField] private Wit wit;
         private UIManager _uiManager;
 
         public WordReciteManager _wordReciteManager;
+
         public Modular3DText partialText3D;
         public Modular3DText subtitleText3D;
         public Modular3DText fullText3D;
@@ -20,6 +22,8 @@ namespace MText
         private string originallyUtteredText;
 
         public WitListeningStateManager _witListeningStateManager;
+
+        public ConfirmationResponseData _confirmationResponseData;
 
         public string cachedText = "";
 
@@ -81,8 +85,8 @@ namespace MText
             _witListeningStateManager.currentListeningState == EState.ListeningForRecitedWordsOnly;
 
             if (isInConfirmationMode) {
-                ConfirmationHandler confirmationHandler = new ConfirmationHandler();
-                confirmationHandler.CheckIfConfirmationWasSpoken(text, partialText3D, _wordReciteManager, this, originallyUtteredText);
+                EConfirmationResponseType confirmation = ConfirmationHandler.CheckIfConfirmationWasSpoken(text);
+                StartCoroutine(ProceedBasedOnConfirmation(confirmation, originallyUtteredText));
             }
             // 2) Activate Tasks if in recite mode
             else if (isInReciteMode)
@@ -92,6 +96,32 @@ namespace MText
                 }
             else {
                 Debug.Log("WRONG state - did not activate word task. You are robably in the menu." + _witListeningStateManager.currentListeningState);
+            }
+        }
+
+
+        private IEnumerator ProceedBasedOnConfirmation(EConfirmationResponseType responseType, string originallyUtteredText) {
+
+            Debug.Log("Proceeding based on confirmation");
+            string text = ConfirmationHandler.confirmationResponses[responseType];
+            partialText3D.UpdateText(text);
+            yield return new WaitForSeconds(ConfirmationHandler.confirmationWaitTimeInSeconds);
+
+            // if yes, move on
+            if (responseType == EConfirmationResponseType.POSITIVE_CONFIRMATION_RESPONSE) {
+                _wordReciteManager.MoveOnIfMoreWordsInList();
+            }
+            // If no, repeat the word
+            else if (responseType == EConfirmationResponseType.NEGATIVE_CONFIRMATION_RESPONSE) {
+                _wordReciteManager.RepeatSameWord();
+            }
+            // If neither, repeat confirmation attempt
+            else if (responseType == EConfirmationResponseType.UNKNOWN_CONFIRMATION_RESPONSE) {
+                ConfirmWhatUserSaid(originallyUtteredText);
+            }
+
+            else {
+                Debug.Log("ERROR: Confirmation response type not recognised");
             }
         }
 
