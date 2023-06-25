@@ -4,6 +4,7 @@ using UnityEngine;
 using Meta.WitAi;
 using MText;
 using EListeningState = WitListeningStateManager.ListeningState;
+using EProceedResponseType = CheckRecitedWordHandler.ProceedResponseType;
 
 public class WordReciteManager : MonoBehaviour
 {
@@ -210,6 +211,20 @@ public class WordReciteManager : MonoBehaviour
     {
         StartCoroutine(CheckRecitedWord(transcription));
     }
+
+    public void ProceedOrNotBasedOnResponse(EProceedResponseType responseType) { 
+        switch (responseType) {
+            case EProceedResponseType.POSITIVE_PROCEED_RESPONSE:
+                _levelManager.LevelComplete();
+                break;
+            case EProceedResponseType.NEGATIVE_PROCEED_RESPONSE:
+                _levelManager.RepeatLevel();
+                break;
+            case EProceedResponseType.UNKNOWN_PROCEED_RESPONSE:
+                partialText3D.UpdateText(CheckRecitedWordHandler.proceedResponses[responseType]);
+                GameOver();
+                break;}
+    }
    
     public IEnumerator CheckRecitedWord(string text)
     {
@@ -221,25 +236,9 @@ public class WordReciteManager : MonoBehaviour
         bool wordAnsweredCorrectly;
 
          if (isDecidingToProceedOrNot) {
-            // Are they saying 'next' or 'repeat'
-            if (text.ToLower() == "next")
-            {
-                _levelManager.LevelComplete();
-                yield break;
-            }
-            else if (text.ToLower() == "repeat")
-            {
-                _levelManager.RepeatLevel();
-                yield break;
-
-            }
-
-            else {
-                partialText3D.UpdateText("I didn't understand that, please try again.");
-                GameOver();
-                yield break;
-
-            }
+            EProceedResponseType responseType = CheckRecitedWordHandler.CheckIfProceedPhraseSpoken(text);
+            ProceedOrNotBasedOnResponse(responseType);
+            yield break;
         }
 
         // Does their answer match the current word?

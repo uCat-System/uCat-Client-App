@@ -23,27 +23,20 @@ public class CheckRecitedWordHandler
     }
 
     private static Dictionary<string, ProceedResponseType> proceedActions;
-    // public static Dictionary<Enum, string> proceedResponses;
-    // public static float confirmationWaitTimeInSeconds = 2f;
-
-    // Reference to the ConfirmationResponseData scriptable object
-    // public static ConfirmationResponseData confirmationResponseData;
-
-
+    public static Dictionary<Enum, string> proceedResponses;
+    
     static CheckRecitedWordHandler()
     {        
         proceedActions = new Dictionary<string, ProceedResponseType>
         {
             { "next", ProceedResponseType.POSITIVE_PROCEED_RESPONSE },
-            { "proceed", ProceedResponseType.NEGATIVE_PROCEED_RESPONSE }
+            { "repeat", ProceedResponseType.NEGATIVE_PROCEED_RESPONSE }
         };
 
-        // confirmationResponses = new Dictionary<Enum, string>
-        // {
-        //     { ProceedResponseType.POSITIVE_PROCEED_RESPONSE, "Cool!" },
-        //     { ProceedResponseType.NEGATIVE_PROCEED_RESPONSE, "Oops, let's try again." },
-        //     { ProceedResponseType.UNKNOWN_PROCEED_RESPONSE, "Sorry, I didn't understand that. Please say yes or no." }
-        // };
+        proceedResponses = new Dictionary<Enum, string>
+        {
+            { ProceedResponseType.UNKNOWN_PROCEED_RESPONSE, "Sorry, I didn't understand that. Please say yes or no." }
+        };
     }
 
     public static ProceedResponseType CheckIfProceedPhraseSpoken(string text)

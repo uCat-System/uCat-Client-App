@@ -70,9 +70,7 @@ namespace MText
             _witListeningStateManager.currentListeningState == EListeningState.ListeningForRecitedWordsOnly;
 
             if (isInConfirmationMode) {
-                // "yes"
                 EConfirmationResponseType confirmation = ConfirmationHandler.CheckIfConfirmationWasSpoken(text);
-                // EConfirmationResponseType (confirmation) == ConfirmationResponseType.POSITIVE_CONFIRMATION_RESPONSE
                 StartCoroutine(ProceedBasedOnConfirmation(confirmation, originallyUtteredText));
             }
             // 2) Activate Tasks if in recite mode
@@ -91,21 +89,19 @@ namespace MText
             partialText3D.UpdateText(confirmationText);
             yield return new WaitForSeconds(ConfirmationHandler.confirmationWaitTimeInSeconds);
 
-            // if yes, move on
-            if (responseType == EConfirmationResponseType.POSITIVE_CONFIRMATION_RESPONSE) {
-                _wordReciteManager.MoveOnIfMoreWordsInList();
-            }
-            // If no, repeat the word
-            else if (responseType == EConfirmationResponseType.NEGATIVE_CONFIRMATION_RESPONSE) {
-                _wordReciteManager.RepeatSameWord();
-            }
-            // If neither, repeat confirmation attempt
-            else if (responseType == EConfirmationResponseType.UNKNOWN_CONFIRMATION_RESPONSE) {
-                ConfirmWhatUserSaid(originallyUtteredText);
-            }
-
-            else {
-                Debug.LogError("ERROR: Confirmation response type not recognised");
+            switch (responseType) {
+                case EConfirmationResponseType.POSITIVE_CONFIRMATION_RESPONSE:
+                    _wordReciteManager.MoveOnIfMoreWordsInList();
+                    break;
+                case EConfirmationResponseType.NEGATIVE_CONFIRMATION_RESPONSE:
+                    _wordReciteManager.RepeatSameWord();
+                    break;
+                case EConfirmationResponseType.UNKNOWN_CONFIRMATION_RESPONSE:
+                    ConfirmWhatUserSaid(originallyUtteredText);
+                    break;
+                default:
+                    Debug.LogError("ERROR: Confirmation response type not recognised");
+                    break;
             }
         }
 
