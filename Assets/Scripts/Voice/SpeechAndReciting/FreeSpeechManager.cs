@@ -1,7 +1,7 @@
 using UnityEngine;
 using Meta.WitAi;
 using UnityEngine.SceneManagement;
-using EState = WitListeningStateMachine.State;
+using EListeningState = WitListeningStateManager.ListeningState;
 using EConfirmationResponseType = ConfirmationHandler.ConfirmationResponseType;
 using System.Collections;
 
@@ -9,14 +9,12 @@ namespace MText
 {
     public class FreeSpeechManager : MonoBehaviour
     {
-        [SerializeField] private Wit wit;
-        private UIManager _uiManager;
+        public UIManager _uiManager;
 
         public WordReciteManager _wordReciteManager;
 
         public Modular3DText partialText3D;
         public Modular3DText subtitleText3D;
-        public Modular3DText fullText3D;
 
         // Used to cache the text when we are in a confirmation state
         private string originallyUtteredText;
@@ -30,7 +28,6 @@ namespace MText
         void Start()
         {      
             subtitleText3D = GameObject.FindWithTag("SubtitleText3D").GetComponent<Modular3DText>();
-            _uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
             scene = SceneManager.GetActiveScene();
         }
 
@@ -53,7 +50,7 @@ namespace MText
         {
             // Always update subtitles when attempting speech
             subtitleText3D.UpdateText(text);
-            if (_witListeningStateManager.currentListeningState == EState.ListeningForEverything) {
+            if (_witListeningStateManager.currentListeningState == EListeningState.ListeningForEverything) {
                 partialText3D.UpdateText(text);
             }
         }
@@ -67,14 +64,18 @@ namespace MText
         {
             // Clear subtitle speech
             // 1) Always listen for menu
+            Debug.Log("text? " + text);
+            Debug.Log("ui manager? " + _uiManager);
             _uiManager.CheckIfUICommandsWereSpoken(text.ToLower());
 
-            bool isInConfirmationMode = _witListeningStateManager.currentListeningState == EState.ListeningForConfirmation;
+            bool isInConfirmationMode = _witListeningStateManager.currentListeningState == EListeningState.ListeningForConfirmation;
 
-            bool isInReciteMode = _witListeningStateManager.currentListeningState == EState.ListeningForEverything ||
-            _witListeningStateManager.currentListeningState == EState.ListeningForRecitedWordsOnly;
+            bool isInReciteMode = _witListeningStateManager.currentListeningState == EListeningState.ListeningForEverything ||
+            _witListeningStateManager.currentListeningState == EListeningState.ListeningForRecitedWordsOnly;
 
+                            Debug.Log("We are in confirm m,ode? " + isInConfirmationMode + _witListeningStateManager.currentListeningState);
             if (isInConfirmationMode) {
+
                 EConfirmationResponseType confirmation = ConfirmationHandler.CheckIfConfirmationWasSpoken(text);
                 StartCoroutine(ProceedBasedOnConfirmation(confirmation, originallyUtteredText));
             }
@@ -91,6 +92,7 @@ namespace MText
 
         private IEnumerator ProceedBasedOnConfirmation(EConfirmationResponseType responseType, string originallyUtteredText) {
 
+            Debug.Log("We are proceeding? ");
             string confirmationText = ConfirmationHandler.confirmationResponses[responseType];
             partialText3D.UpdateText(confirmationText);
             yield return new WaitForSeconds(ConfirmationHandler.confirmationWaitTimeInSeconds);
@@ -140,7 +142,8 @@ namespace MText
 
         public void ConfirmWhatUserSaid(string text) {
             originallyUtteredText = text;
-            _witListeningStateManager.TransitionToState(EState.ListeningForConfirmation);
+            Debug.Log("Setting state to confirtmation mode ");
+            _witListeningStateManager.TransitionToState(EListeningState.ListeningForConfirmation);
 
             // Ask them to confirm
             partialText3D.UpdateText("Did you say " + text + "?");

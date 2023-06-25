@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Meta.WitAi;
 using MText;
-using EState = WitListeningStateMachine.State;
+using EListeningState = WitListeningStateManager.ListeningState;
 
 public class WordReciteManager : MonoBehaviour
 {
@@ -54,13 +54,11 @@ public class WordReciteManager : MonoBehaviour
 
     public AudioSource reciteBoardAudioSource;
 
-    [SerializeField] private Wit wit;
     public AudioClip[] wordSounds;
 
     void Awake()
     {
         // Assigning gameobjects
-        wit = GameObject.FindWithTag("Wit").GetComponent<Wit>();
         reciteBoardAudioSource = GameObject.FindWithTag("ReciteBoard").GetComponent<AudioSource>();
         subtitleText3D = GameObject.FindWithTag("SubtitleText3D").GetComponent<Modular3DText>();
         partialText3D = GameObject.FindWithTag("PartialText3D").GetComponent<Modular3DText>();
@@ -111,7 +109,7 @@ public class WordReciteManager : MonoBehaviour
         reciteBoardAudioSource.clip = wordSounds[0];
         reciteBoardAudioSource.Play();
 
-        if (_witListeningStateManager.currentListeningState == EState.ListeningForTaskMenuCommandsOnly)
+        if (_witListeningStateManager.currentListeningState == EListeningState.ListeningForTaskMenuCommandsOnly)
         {
             yield break;
         }
@@ -124,7 +122,7 @@ public class WordReciteManager : MonoBehaviour
         for (float i = 0; i < 3; i++)
         {
 
-        if (_witListeningStateManager.currentListeningState == EState.ListeningForTaskMenuCommandsOnly) {
+        if (_witListeningStateManager.currentListeningState == EListeningState.ListeningForTaskMenuCommandsOnly) {
             yield break;
         }
             switch (i)
@@ -139,7 +137,7 @@ public class WordReciteManager : MonoBehaviour
                     reciteText3D.UpdateText("." + word + ".");
 
                     // Discard anything said during countdown and start fresh
-                    // _witListeningStateManager.TransitionToState(EState.NotListening);
+                    // _witListeningStateManager.TransitionToState(EListeningState.NotListening);
                     break;
             }
            
@@ -147,11 +145,11 @@ public class WordReciteManager : MonoBehaviour
         }
 
         // Countdown finished, start listening for the word
-        if (_witListeningStateManager.currentListeningState == EState.ListeningForTaskMenuCommandsOnly) {
+        if (_witListeningStateManager.currentListeningState == EListeningState.ListeningForTaskMenuCommandsOnly) {
             yield break;
         } else {
             subtitleText3D.UpdateText("");
-            _witListeningStateManager.TransitionToState(EState.ListeningForEverything);
+            _witListeningStateManager.TransitionToState(EListeningState.ListeningForEverything);
             reciteText3D.UpdateText(word);
             reciteText3D.Material = listeningColour;
         }
@@ -185,7 +183,7 @@ public class WordReciteManager : MonoBehaviour
 
     public void GoToNextWord()
     {
-        _witListeningStateManager.TransitionToState(EState.ListeningForMenuActivationCommandsOnly);
+        _witListeningStateManager.TransitionToState(EListeningState.ListeningForMenuActivationCommandsOnly);
         // If the next word does not exceed the limit
         if (currentWordOrSentenceIndex < currentWordOrSentenceList.Count-1)
         {
@@ -197,7 +195,7 @@ public class WordReciteManager : MonoBehaviour
     }
     public void RepeatSameWord()
     {
-        _witListeningStateManager.TransitionToState(EState.ListeningForMenuActivationCommandsOnly);
+        _witListeningStateManager.TransitionToState(EListeningState.ListeningForMenuActivationCommandsOnly);
         StartCoroutine(StartCurrentWordCountdown());
     }
     public void StartWordCheck(string transcription)
@@ -207,8 +205,8 @@ public class WordReciteManager : MonoBehaviour
    
     public IEnumerator CheckRecitedWord(string text)
     {
-        if (_witListeningStateManager.currentListeningState == EState.ListeningForTaskMenuCommandsOnly
-        || _witListeningStateManager.currentListeningState == EState.ListeningForMenuActivationCommandsOnly)
+        if (_witListeningStateManager.currentListeningState == EListeningState.ListeningForTaskMenuCommandsOnly
+        || _witListeningStateManager.currentListeningState == EListeningState.ListeningForMenuActivationCommandsOnly)
         {
             yield break;
         }
@@ -295,7 +293,7 @@ public class WordReciteManager : MonoBehaviour
         else
         {
             // Mark the current list as complete, and move on to the next (if any) via changing booleans
-            _witListeningStateManager.TransitionToState(EState.ListeningForEverything);
+            _witListeningStateManager.TransitionToState(EListeningState.ListeningForEverything);
             if (activeList == currentWordOrSentenceList) { wordListComplete = true; }
             if (activeList == currentUiList) { uiComplete = true; }
             if (_levelManager.currentLevel == "Level3") { openQuestionsComplete = true; }

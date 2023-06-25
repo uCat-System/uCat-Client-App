@@ -4,21 +4,25 @@ using MText;
 using Meta.WitAi;
 using UnityEngine.SceneManagement;
 using System.Collections;
-using EState = WitListeningStateMachine.State;
-
-
-
 
 public class WitListeningStateManager : MonoBehaviour
 {
+    public enum ListeningState
+    {
+        NotListening,
+        ListeningForEverything,
+        ListeningForMenuActivationCommandsOnly, // brings up menu
+        ListeningForRecitedWordsOnly,
+        ListeningForTaskMenuCommandsOnly, // navigates within the menu
+        ListeningForConfirmation,
+
+        ListeningForLobbyMenuCommandsOnly,
+
+    }
     public Modular3DText listeningText3D;
     public UIManager _uiManager;
-    public EState currentListeningState;
+    public ListeningState currentListeningState;
     public WordReciteManager _wordReciteManager;
-
-    public WitListeningStateMachine _witListeningStateMachine;
-    public Wit _everythingWit;
-    public Wit _menuListeningWit;
 
     public GameObject[] wits;
 
@@ -34,41 +38,17 @@ public class WitListeningStateManager : MonoBehaviour
 
         string scene = SceneManager.GetActiveScene().name;
         if (scene == "Level3") {
-             TransitionToState(EState.ListeningForEverything);
+             TransitionToState(ListeningState.ListeningForEverything);
         } else {
-            TransitionToState(EState.ListeningForMenuActivationCommandsOnly);
-        }
-
-        _uiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
-        listeningText3D = GameObject.FindWithTag("ListeningText3D").GetComponent<Modular3DText>();
-        if (_witListeningStateMachine == null)
-        {
-            Debug.LogError("WitListeningStateMachine is not assigned.");
-            return;
+            TransitionToState(ListeningState.ListeningForMenuActivationCommandsOnly);
         }
     }
-
-       public void ActivateWit()
-        {
-            // Have to manually check if it exists since we turn Wit on and off 
-            GameObject witGameObject = GameObject.FindWithTag("Wit");
-            if (witGameObject != null && witGameObject.activeSelf)
-            {
-                _everythingWit = witGameObject.GetComponent<Wit>();
-                
-                if (_everythingWit != null)
-                {
-                    _everythingWit.Activate();
-                }
-            }
-
-        }
 
     public void DetectUICommandsInWitListeningStateManager(string text) {
         // if the state is ListeningForMenuActivationCommandsOnly OR ListeningForEverything,
         // check if the spoken text is in the menuCommandPhrases list:
-        if (currentListeningState == WitListeningStateMachine.State.ListeningForMenuActivationCommandsOnly ||
-            currentListeningState == WitListeningStateMachine.State.ListeningForEverything)
+        if (currentListeningState == ListeningState.ListeningForMenuActivationCommandsOnly ||
+            currentListeningState == ListeningState.ListeningForEverything)
         {
             _uiManager.CheckIfUICommandsWereSpoken(text);
         }
@@ -89,10 +69,16 @@ public class WitListeningStateManager : MonoBehaviour
     }
 
     void DisableOtherWitsAndEnableThisOne(string witToEnable) {
+            Debug.Log("witToEnable: " + witToEnable);
+            Debug.Log("wits.Length: " + wits.Length);
+            Debug.Log("wits[0]: " + wits[0]);
          for (int i = 0; i < wits.Length; i++)
             {  
+                Debug.Log("wits[i]: " + wits[i]);
+
                 Wit wit = wits[i].GetComponent<Wit>();
                  if (wits[i].name == witToEnable) {
+                    Debug.Log("Found");
                       wits[i].SetActive(true);
                       wit.Activate();
                  } else {
@@ -110,28 +96,31 @@ public class WitListeningStateManager : MonoBehaviour
  
     // This is called from the WitListeningStateMachine script using actual enum values.
 
-    public void TransitionToState(WitListeningStateMachine.State nextState)
+    public void TransitionToState(ListeningState nextState)
         {
             listeningText3D.UpdateText(nextState.ToString());
 
             switch (nextState)
             {
-                case WitListeningStateMachine.State.NotListening:
+                case ListeningState.NotListening:
                     DisableAllWits();
                     break;
-                case WitListeningStateMachine.State.ListeningForMenuActivationCommandsOnly:
+                case ListeningState.ListeningForMenuActivationCommandsOnly:
                     DisableOtherWitsAndEnableThisOne("MenuListeningWit");
                     break;
-                case WitListeningStateMachine.State.ListeningForEverything:
+                case ListeningState.ListeningForEverything:
+
                     DisableOtherWitsAndEnableThisOne("EverythingWit");
                     break;
-                case WitListeningStateMachine.State.ListeningForTaskMenuCommandsOnly:
+                case ListeningState.ListeningForTaskMenuCommandsOnly:
                     DisableOtherWitsAndEnableThisOne("TaskMenuNavigationWit");
                     break;
-                case WitListeningStateMachine.State.ListeningForConfirmation:
+                case ListeningState.ListeningForConfirmation:
+                    Debug.Log("Starting confirmation: " + nextState);
+
                      DisableOtherWitsAndEnableThisOne("ConfirmationWit");
                     break;
-                case WitListeningStateMachine.State.ListeningForLobbyMenuCommandsOnly:
+                case ListeningState.ListeningForLobbyMenuCommandsOnly:
                     break;
                 default:
                     Debug.LogError("Invalid state transition." + nextState);

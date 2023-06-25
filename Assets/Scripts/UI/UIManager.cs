@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-using System.IO;
-using EState = WitListeningStateMachine.State;
+using EListeningState = WitListeningStateManager.ListeningState;
 using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
@@ -52,10 +51,10 @@ public class UIManager : MonoBehaviour
         {
             textElements.SetActive(false);
             menu.SetActive(true);
-            _witListeningStateManager.TransitionToState(EState.ListeningForTaskMenuCommandsOnly);
+            _witListeningStateManager.TransitionToState(EListeningState.ListeningForTaskMenuCommandsOnly);
         }
 
-        if (menu.activeInHierarchy && _witListeningStateManager.currentListeningState == EState.ListeningForTaskMenuCommandsOnly)
+        if (menu.activeInHierarchy && _witListeningStateManager.currentListeningState == EListeningState.ListeningForTaskMenuCommandsOnly)
         {
             Debug.Log("Menu is active and listening for navigation commands only: " + text);
             switch (text)
@@ -87,9 +86,9 @@ public class UIManager : MonoBehaviour
                     StartCoroutine(WaitForAnimationToEnd());
                     string scene = SceneManager.GetActiveScene().name;
                     if (scene == "Level3") {
-                        _witListeningStateManager.TransitionToState(EState.ListeningForEverything);
+                        _witListeningStateManager.TransitionToState(EListeningState.ListeningForEverything);
                     } else {
-                        _witListeningStateManager.TransitionToState(EState.ListeningForMenuActivationCommandsOnly);
+                        _witListeningStateManager.TransitionToState(EListeningState.ListeningForMenuActivationCommandsOnly);
                         _wordReciteManager.RepeatSameWord();
                     }
                     textElements.SetActive(true);
