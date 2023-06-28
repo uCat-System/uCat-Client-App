@@ -3,7 +3,6 @@ using Meta.WitAi;
 using UnityEngine.SceneManagement;
 using EListeningState = WitListeningStateManager.ListeningState;
 using EConfirmationResponseType = ConfirmationHandler.ConfirmationResponseType;
-using ECorrectResponseType = CheckRecitedWordHandler.CorrectResponseType;
 using System.Collections;
 
 namespace MText

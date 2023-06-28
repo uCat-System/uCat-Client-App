@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using EListeningState = WitListeningStateManager.ListeningState;
+using EMenuNavigationResponseType = UICommandHandler.MenuNavigationResponseType;
 using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
@@ -58,9 +59,81 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    void ActivateMenuNavigationCommandsBasedOnResponse(EMenuNavigationResponseType navigationCommand) {
+
+        //  NavigationInputData navigationInputData = Resources.Load<NavigationInputData>("NavigationInputData");
+        // menuNavigationActions = new Dictionary<string, MenuNavigationResponseType>
+        // {
+        //     { navigationInputData.repeatLevelInput, MenuNavigationResponseType.REPEAT_LEVEL_RESPONSE },
+        //     { navigationInputData.nextLevelInput, MenuNavigationResponseType.NEXT_LEVEL_RESPONSE },
+        //     { navigationInputData.nurseInput, MenuNavigationResponseType.NURSE_RESPONSE },
+        //     { navigationInputData.restartLevelInput, MenuNavigationResponseType.RESTART_LEVEL_RESPONSE },
+        //     { navigationInputData.resumeInput, MenuNavigationResponseType.RESUME_RESPONSE },
+        //     { navigationInputData.reciteWordsInput, MenuNavigationResponseType.RECITE_WORDS_RESPONSE },
+        //     { navigationInputData.reciteSentencesInput, MenuNavigationResponseType.RECITE_SENTENCES_RESPONSE },
+        //     { navigationInputData.reciteOpenQuestionsInput, MenuNavigationResponseType.RECITE_OPEN_QUESTIONS_RESPONSE },
+        //     { navigationInputData.lobbyInput, MenuNavigationResponseType.LOBBY_RESPONSE }
+        // };
+        switch (navigationCommand) {
+            case EMenuNavigationResponseType.REPEAT_LEVEL_RESPONSE:
+                // TODO move to levelmanager
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                break;
+            case EMenuNavigationResponseType.NEXT_LEVEL_RESPONSE:
+                int nextBuildIndex = SceneManager.GetActiveScene().buildIndex + 1;
+                if (nextBuildIndex < SceneManager.sceneCountInBuildSettings)
+                {
+                    SceneManager.LoadScene(nextBuildIndex);
+                }
+                else
+                {
+                    // Handle failure case when there is no next scene
+                    Debug.Log("No next scene available.");
+                }
+                break;
+            case EMenuNavigationResponseType.NURSE_RESPONSE:
+                // TODO move to levelmanager
+                SceneManager.LoadScene("Nurse");
+                break;
+            case EMenuNavigationResponseType.RESTART_LEVEL_RESPONSE:
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                break;
+            case EMenuNavigationResponseType.RESUME_RESPONSE:
+                animator.Play("CloseClip");
+                StartCoroutine(WaitForAnimationToEnd());
+                string scene = SceneManager.GetActiveScene().name;
+                if (scene == "Level3") {
+                    _witListeningStateManager.TransitionToState(EListeningState.ListeningForEverything);
+                } else {
+                    _witListeningStateManager.TransitionToState(EListeningState.ListeningForMenuActivationCommandsOnly);
+                    _wordReciteManager.RepeatSameWord();
+                }
+                textElements.SetActive(true);
+                break;
+            case EMenuNavigationResponseType.RECITE_WORDS_RESPONSE:
+                SceneManager.LoadScene("Level1");
+                break;
+            case EMenuNavigationResponseType.RECITE_SENTENCES_RESPONSE:
+                SceneManager.LoadScene("Level2");
+                break;
+            case EMenuNavigationResponseType.RECITE_OPEN_QUESTIONS_RESPONSE:
+                SceneManager.LoadScene("Level3");
+                break;
+            case EMenuNavigationResponseType.LOBBY_RESPONSE:
+                SceneManager.LoadScene("Lobby");
+                break;
+            default:
+                break;
+        }
+    }
+
     public void CheckIfMenuNavigationCommandsWereSpoken(string text) {
 
             Debug.Log("Menu is active and listening for navigation commands only: " + text);
+            EMenuNavigationResponseType navigationCommand = UICommandHandler.CheckIfMenuNavigationCommandsWereSpoken(text);
+            ActivateMenuNavigationCommandsBasedOnResponse(navigationCommand);
+            // StartCoroutine(ProceedBasedOnConfirmation(confirmation, originallyUtteredText));
+
             switch (text)
             {
                 case "repeat level":
