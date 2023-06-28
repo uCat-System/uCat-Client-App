@@ -62,7 +62,14 @@ namespace MText
         public void HandleFullTranscription(string text)
         {
             // 1) Always listen for menu
-            _uiManager.CheckIfUICommandsWereSpoken(text.ToLower());
+            _uiManager.CheckIfMenuActivationCommandsWereSpoken(text.ToLower());
+
+            // 2 Are we listening for commands within the menu?
+
+            if (_witListeningStateManager.MenuNavigationCommandsAreAllowed()) {
+                Debug.Log("Menu is active and listening for navigation commands only: " + text);
+                _uiManager.CheckIfMenuNavigationCommandsWereSpoken(text.ToLower());
+            }
 
             // 2) Are we listening for 'yes' or 'no?'
             if (_witListeningStateManager.currentListeningState == EListeningState.ListeningForConfirmation) {
@@ -71,6 +78,7 @@ namespace MText
             }
             // 3) Activate Tasks if in any valid reciting states
             else if (_witListeningStateManager.RecitingWordsIsAllowed()) {
+                    Debug.Log("Reciting words is allowed" + text + _witListeningStateManager.currentListeningState);
                     ActivateTasksBasedOnTranscription(text);
             }
 

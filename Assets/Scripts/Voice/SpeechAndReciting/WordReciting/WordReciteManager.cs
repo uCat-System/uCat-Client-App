@@ -187,7 +187,7 @@ public class WordReciteManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             // currentWordOrSentenceIndex = activeList.Count - 2;
-            GoToNextWord();
+            // GoToNextWord();
         }
     }
 

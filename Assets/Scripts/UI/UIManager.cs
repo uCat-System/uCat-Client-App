@@ -17,6 +17,7 @@ public class UIManager : MonoBehaviour
 
      List<string> acceptableWakeWords = new List<string>()
     {
+        // TODO move to UIHandler class
         "menu",
         "activate menu",
         "hey cat",
@@ -45,7 +46,9 @@ public class UIManager : MonoBehaviour
     }
     public GameObject menu;
 
-    public void CheckIfUICommandsWereSpoken(string text) {
+    public void CheckIfMenuActivationCommandsWereSpoken(string text) {
+        // TODO move the below to external UIHandler class
+
         // Listen for any of the wake phrases
         if (!menu.activeInHierarchy && acceptableWakeWords.Any(text.Contains))
         {
@@ -53,9 +56,10 @@ public class UIManager : MonoBehaviour
             menu.SetActive(true);
             _witListeningStateManager.TransitionToState(EListeningState.ListeningForTaskMenuCommandsOnly);
         }
+    }
 
-        if (menu.activeInHierarchy && _witListeningStateManager.currentListeningState == EListeningState.ListeningForTaskMenuCommandsOnly)
-        {
+    public void CheckIfMenuNavigationCommandsWereSpoken(string text) {
+
             Debug.Log("Menu is active and listening for navigation commands only: " + text);
             switch (text)
             {
@@ -104,7 +108,6 @@ public class UIManager : MonoBehaviour
                     break;
                 default:
                     break;
-            }
         }
         
         

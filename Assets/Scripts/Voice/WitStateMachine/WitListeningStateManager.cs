@@ -32,25 +32,40 @@ public class WitListeningStateManager : MonoBehaviour
         { ListeningState.ListeningForEverything, true},
         { ListeningState.ListeningForRecitedWordsOnly, true },
         { ListeningState.ListeningForConfirmation, true },
-        { ListeningState.ListeningForTaskMenuCommandsOnly, false },
-        { ListeningState.ListeningForMenuActivationCommandsOnly, false },
-        { ListeningState.ListeningForLobbyMenuCommandsOnly, false }
     };
+
+    private static Dictionary<ListeningState, bool> validMenuNavigationStates = new Dictionary<ListeningState, bool>
+    {
+        { ListeningState.ListeningForLobbyMenuCommandsOnly, true },
+        { ListeningState.ListeningForTaskMenuCommandsOnly, true },
+    };
+
+    public bool CurrentStateIsAllowedInDictionary(Dictionary<ListeningState, bool> dictToSearch) {
+        // Go through every enum value
+        foreach (ListeningState state in Enum.GetValues(typeof(ListeningState)))
+        {
+            if (!dictToSearch.ContainsKey(state))
+            {
+                Debug.Log("Adding " + state + " to dict" + dictToSearch);
+                // If the state is not in the dictionary, add it and set it to false
+                dictToSearch[state] = false;
+            }
+        }
+        // If the current state is in the dictionary, return true or false depending on if it is allowed
+        Debug.Log(dictToSearch + "is allowed in current state");
+        return dictToSearch[currentListeningState];
+    }
 
     public bool RecitingWordsIsAllowed()
     {
         // If the current state is in the dictionary, return true or false depending on if it is allowed
-        bool contains = validRecitingStates.ContainsKey(currentListeningState);
-        
-        if (!contains) {
-            Debug.LogError("The current listening state is not in the reciting dictionary");
-        }
-
-        bool value = validRecitingStates[currentListeningState];
-
-        return contains && value;
+        // This prevents the accidental activation of reciting logic when the user is in a menu or elsewhere
+        return CurrentStateIsAllowedInDictionary(validRecitingStates);
     }
 
+    public bool MenuNavigationCommandsAreAllowed() {
+        return CurrentStateIsAllowedInDictionary(validMenuNavigationStates);
+    }
     private void Start()
     {        
         string scene = SceneManager.GetActiveScene().name;
@@ -61,14 +76,33 @@ public class WitListeningStateManager : MonoBehaviour
         }
     }
 
-    public void DetectUICommandsInWitListeningStateManager(string text) {
-        // if the state is ListeningForMenuActivationCommandsOnly OR ListeningForEverything,
-        // check if the spoken text is in the menuCommandPhrases list:
-        if (currentListeningState == ListeningState.ListeningForMenuActivationCommandsOnly ||
-            currentListeningState == ListeningState.ListeningForEverything)
-        {
-            _uiManager.CheckIfUICommandsWereSpoken(text);
+    void Update() {
+        // update the states based on keypresses 1-7
+        if (Input.GetKeyDown(KeyCode.Alpha1)) {
+            TransitionToState(ListeningState.ListeningForEverything);
         }
+        if (Input.GetKeyDown(KeyCode.Alpha2)) {
+            TransitionToState(ListeningState.ListeningForMenuActivationCommandsOnly);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3)) {
+            TransitionToState(ListeningState.ListeningForRecitedWordsOnly);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4)) {
+            TransitionToState(ListeningState.ListeningForTaskMenuCommandsOnly);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha5)) {
+            TransitionToState(ListeningState.ListeningForConfirmation);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha6)) {
+            TransitionToState(ListeningState.ListeningForLobbyMenuCommandsOnly);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha7)) {
+            TransitionToState(ListeningState.NotListening);
+        }
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            Debug.Log(CurrentStateIsAllowedInDictionary(validRecitingStates));
+        }
+
     }
 
     public void StoppedListening() {
