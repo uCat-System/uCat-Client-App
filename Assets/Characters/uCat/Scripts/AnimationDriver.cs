@@ -11,7 +11,11 @@ public class AnimationDriver : MonoBehaviour
     public enum CatAnimations
     {
         Idle,
+        Happy,
+        Surprised,
+        Sad,
         Confused,
+        Peeking,
         Error
 
     }
@@ -61,12 +65,31 @@ public class AnimationDriver : MonoBehaviour
         {
             case CatAnimations.Idle:
                 // Let's remember that the Idle animation is there by default and NextAnim triggers the end of whatever loop we're in.
+                catAnimator.SetTrigger("SlowBobbing");
                 catAnimator.SetTrigger("NextAnim");
                 break;
+            case CatAnimations.Happy:
+                catAnimator.SetTrigger("SlowBobbing");
+                catAnimator.SetTrigger("Happy");
+                break;
+            case CatAnimations.Sad:
+                catAnimator.SetTrigger("SlowBobbing");
+                catAnimator.SetTrigger("Sad");
+                break;
+            case CatAnimations.Surprised:
+                catAnimator.SetTrigger("StopBobbing");
+                catAnimator.SetTrigger("Surprised");
+                break;
             case CatAnimations.Confused:
+                catAnimator.SetTrigger("SlowBobbing");
                 catAnimator.SetTrigger("Confused");
                 break;
+            case CatAnimations.Peeking:
+                catAnimator.SetTrigger("SlowBobbing");
+                catAnimator.SetTrigger("Peeking");
+                break;
             case CatAnimations.Error:
+                catAnimator.SetTrigger("StopBobbing");
                 catAnimator.SetTrigger("Error");
                 break;
             default:
