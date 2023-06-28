@@ -19,6 +19,7 @@ public class LevelManager : MonoBehaviour
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
     }
+
     public void LevelComplete()
     {
         // Switch scenes based on score

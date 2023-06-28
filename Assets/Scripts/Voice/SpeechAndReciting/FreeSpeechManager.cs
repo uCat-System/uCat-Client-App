@@ -3,6 +3,8 @@ using Meta.WitAi;
 using UnityEngine.SceneManagement;
 using EListeningState = WitListeningStateManager.ListeningState;
 using EConfirmationResponseType = ConfirmationHandler.ConfirmationResponseType;
+using EMenuActivationResponseType = UICommandHandler.MenuActivationResponseType;
+using EMenuNavigationResponseType = UICommandHandler.MenuNavigationResponseType;
 using System.Collections;
 
 namespace MText
@@ -35,10 +37,6 @@ namespace MText
             HandleInactivityFailure();
         }
 
-        public void StoppedListeningDueToDeactivation()
-        {
-        }
-
         public void StoppedListeningDueToTimeout()
         {
             HandleInactivityFailure();
@@ -58,41 +56,57 @@ namespace MText
             // partialText3D.UpdateText("Heard something");            
         }
 
-        public void HandleFullTranscription(string text)
-        {
-            // 1) Always listen for menu
-            _uiManager.CheckIfMenuActivationCommandsWereSpoken(text.ToLower());
-
-            // 2 Are we listening for commands within the menu?
-
-            if (_witListeningStateManager.MenuNavigationCommandsAreAllowed()) {
-                Debug.Log("Menu is active and listening for navigation commands only: " + text);
-                _uiManager.CheckIfMenuNavigationCommandsWereSpoken(text.ToLower());
-            }
-
-            // 2) Are we listening for 'yes' or 'no?'
-            if (_witListeningStateManager.currentListeningState == EListeningState.ListeningForConfirmation) {
-                EConfirmationResponseType confirmation = ConfirmationHandler.CheckIfConfirmationWasSpoken(text);
-                StartCoroutine(ProceedBasedOnConfirmation(confirmation, originallyUtteredText));
-            }
-            // 3) Activate Tasks if in any valid reciting states
-            else if (_witListeningStateManager.RecitingWordsIsAllowed()) {
-                    Debug.Log("Reciting words is allowed" + text + _witListeningStateManager.currentListeningState);
-                    ActivateTasksBasedOnTranscription(text);
-            }
-
-            else {
-                Debug.LogError("WRONG state - did not activate word task. You are robably in the menu." + _witListeningStateManager.currentListeningState);
+        public void HandleMenuActivationResponse(EMenuActivationResponseType menuActivationResponse) {
+            switch (menuActivationResponse) {
+                case EMenuActivationResponseType.POSITIVE_ACTIVATE_MENU_RESPONSE:
+                    _uiManager.ActivateMenu();
+                    break;
+                default:
+                    Debug.Log("Activating menu was allowed but phrase was invalid: " + menuActivationResponse);
+                    break;
             }
         }
 
-        private IEnumerator ProceedBasedOnConfirmation(EConfirmationResponseType responseType, string originallyUtteredText) {
+        public void HandleFullTranscription(string text)
+        {
 
-            string confirmationText = ConfirmationHandler.confirmationResponses[responseType];
+            if (_witListeningStateManager.MenuActivationCommandsAreAllowed()) {
+                // Listen for menu activation
+                EMenuActivationResponseType menuActivationResponse = UICommandHandler.CheckIfMenuActivationCommandsWereSpoken(text);
+                HandleMenuActivationResponse(menuActivationResponse);
+            }
+
+
+            if (_witListeningStateManager.MenuNavigationCommandsAreAllowed()) {
+                // Listen for commands within the menu
+                EMenuNavigationResponseType menuNavigationResponse = UICommandHandler.CheckIfMenuNavigationCommandsWereSpoken(text);
+                _uiManager.ActivateMenuNavigationCommandsBasedOnResponse(menuNavigationResponse);
+            }
+
+           
+            if (_witListeningStateManager.currentListeningState == EListeningState.ListeningForConfirmation) {
+                //Listen for 'yes' or 'no?' (confirmation)
+                EConfirmationResponseType confirmationResponse = ConfirmationHandler.CheckIfConfirmationWasSpoken(text);
+                StartCoroutine(ProceedBasedOnConfirmation(confirmationResponse, originallyUtteredText));
+            }
+            else if (_witListeningStateManager.RecitingWordsIsAllowed()) {
+                // Activate Tasks (recite words, etc) if in any valid reciting states
+                ActivateTasksBasedOnTranscription(text);
+            }
+
+            else {
+                Debug.LogError("Did not activate word task with phrase " + text + " . You are probably in the menu." + _witListeningStateManager.currentListeningState);
+                _witListeningStateManager.ReactivateToTryMenuNavigationCommandsAgain();
+            }
+        }
+
+        private IEnumerator ProceedBasedOnConfirmation(EConfirmationResponseType confirmationResponse, string originallyUtteredText) {
+
+            string confirmationText = ConfirmationHandler.confirmationResponses[confirmationResponse];
             partialText3D.UpdateText(confirmationText);
             yield return new WaitForSeconds(ConfirmationHandler.confirmationWaitTimeInSeconds);
 
-            switch (responseType) {
+            switch (confirmationResponse) {
                 case EConfirmationResponseType.POSITIVE_CONFIRMATION_RESPONSE:
                     _wordReciteManager.MoveOnIfMoreWordsInList();
                     break;

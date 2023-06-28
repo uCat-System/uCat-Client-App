@@ -10,11 +10,16 @@ public class UICommandHandler
 
     private static Dictionary<string, MenuNavigationResponseType> menuNavigationActions;
 
+    private static Dictionary<string, MenuActivationResponseType> menuActivationActions;
+
+
+    public enum MenuActivationResponseType {
+        POSITIVE_ACTIVATE_MENU_RESPONSE,
+        UNKNOWN_ACTIVATION_RESPONSE
+    }
     public enum MenuNavigationResponseType
     {
         REPEAT_LEVEL_RESPONSE,
-        NEXT_LEVEL_RESPONSE,
-
         NURSE_RESPONSE,
 
         RESTART_LEVEL_RESPONSE,
@@ -30,11 +35,12 @@ public class UICommandHandler
 
     static UICommandHandler()
     {
+        // Menu Navigation commands
+
         NavigationInputData navigationInputData = Resources.Load<NavigationInputData>("NavigationInputData");
         menuNavigationActions = new Dictionary<string, MenuNavigationResponseType>
         {
             { navigationInputData.repeatLevelInput, MenuNavigationResponseType.REPEAT_LEVEL_RESPONSE },
-            { navigationInputData.nextLevelInput, MenuNavigationResponseType.NEXT_LEVEL_RESPONSE },
             { navigationInputData.nurseInput, MenuNavigationResponseType.NURSE_RESPONSE },
             { navigationInputData.restartLevelInput, MenuNavigationResponseType.RESTART_LEVEL_RESPONSE },
             { navigationInputData.resumeInput, MenuNavigationResponseType.RESUME_RESPONSE },
@@ -45,6 +51,18 @@ public class UICommandHandler
         };
 
 
+        // Menu Activation Commands
+
+        MenuActivationInputData activationInputData = Resources.Load<MenuActivationInputData>("MenuActivationInputData");
+        menuActivationActions = new Dictionary<string, MenuActivationResponseType> {};
+
+        foreach (string acceptableWakeWord in activationInputData.acceptableWakeWords)
+        {
+            Debug.Log("Adding acceptable wake word: " + acceptableWakeWord);
+             menuActivationActions[acceptableWakeWord] = MenuActivationResponseType.POSITIVE_ACTIVATE_MENU_RESPONSE;
+        }
+
+
         if (navigationInputData == null)
         {
             Debug.LogError("navigationInputData not found.");
@@ -52,6 +70,28 @@ public class UICommandHandler
         }
     }
 
+    public static MenuActivationResponseType CheckIfMenuActivationCommandsWereSpoken(string text) {
+
+        Debug.Log("Checking if menu activation commands were spoken: " + text);
+        // check if any of the arguments are null
+        if (text == null)
+        {
+            Debug.LogError("Text is null");
+            return MenuActivationResponseType.UNKNOWN_ACTIVATION_RESPONSE;
+        }
+
+        string lowercaseText = text.ToLower();
+
+        if (menuActivationActions.ContainsKey(lowercaseText))
+        {
+            Debug.Log("Menu activation command is contained in list: " + lowercaseText);
+            return menuActivationActions[lowercaseText];
+        }
+        else
+        {
+            return MenuActivationResponseType.UNKNOWN_ACTIVATION_RESPONSE;
+        }
+    }
     public static MenuNavigationResponseType CheckIfMenuNavigationCommandsWereSpoken(string text)
     {
         // check if any of the arguments are null

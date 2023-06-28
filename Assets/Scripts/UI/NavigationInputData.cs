@@ -4,7 +4,6 @@ using UnityEngine;
 public class NavigationInputData : ScriptableObject
 {
     public string repeatLevelInput = "repeat level";
-    public string nextLevelInput = "next level";
     public string nurseInput = "nurse";
     public string restartLevelInput = "restart level";
     public string resumeInput = "resume";

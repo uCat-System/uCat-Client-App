@@ -20,6 +20,8 @@ public class WitListeningStateManager : MonoBehaviour
         ListeningForLobbyMenuCommandsOnly,
     }
     public Modular3DText listeningText3D;
+
+    public string scene;
     public UIManager _uiManager;
     public ListeningState currentListeningState;
     public WordReciteManager _wordReciteManager;
@@ -36,8 +38,15 @@ public class WitListeningStateManager : MonoBehaviour
 
     private static Dictionary<ListeningState, bool> validMenuNavigationStates = new Dictionary<ListeningState, bool>
     {
+        { ListeningState.ListeningForEverything, true},
         { ListeningState.ListeningForLobbyMenuCommandsOnly, true },
         { ListeningState.ListeningForTaskMenuCommandsOnly, true },
+    };
+
+    private static Dictionary<ListeningState, bool> validMenuActivationStates = new Dictionary<ListeningState, bool>
+    {
+        { ListeningState.ListeningForEverything, true },
+        { ListeningState.ListeningForMenuActivationCommandsOnly, true },
     };
 
     public bool CurrentStateIsAllowedInDictionary(Dictionary<ListeningState, bool> dictToSearch) {
@@ -46,13 +55,11 @@ public class WitListeningStateManager : MonoBehaviour
         {
             if (!dictToSearch.ContainsKey(state))
             {
-                Debug.Log("Adding " + state + " to dict" + dictToSearch);
                 // If the state is not in the dictionary, add it and set it to false
                 dictToSearch[state] = false;
             }
         }
         // If the current state is in the dictionary, return true or false depending on if it is allowed
-        Debug.Log(dictToSearch + "is allowed in current state");
         return dictToSearch[currentListeningState];
     }
 
@@ -63,12 +70,38 @@ public class WitListeningStateManager : MonoBehaviour
         return CurrentStateIsAllowedInDictionary(validRecitingStates);
     }
 
+    public void ReactivateToTryMenuNavigationCommandsAgain() {
+        // This is called when the user says something that is not a valid menu navigation command
+        // We want to reactivate the wit listening state manager to try again
+        // This is a coroutine because we want to wait a few seconds before reactivating
+        StartCoroutine(ReactivateToTryMenuNavigationCommandsAgainCoroutine());
+    }
+
+    IEnumerator ReactivateToTryMenuNavigationCommandsAgainCoroutine() {
+        // Wait a few seconds before reactivating
+        yield return new WaitForSeconds(1);
+        // Reactivate
+        TransitionToRelevantMenuNavigationStateBasedOnLevel();
+    }
+
     public bool MenuNavigationCommandsAreAllowed() {
         return CurrentStateIsAllowedInDictionary(validMenuNavigationStates);
     }
+
+    public bool MenuActivationCommandsAreAllowed() {
+        return CurrentStateIsAllowedInDictionary(validMenuActivationStates);
+    }
+
+    public void TransitionToRelevantMenuNavigationStateBasedOnLevel() {
+        if (scene != "Level3") {
+            TransitionToState(ListeningState.ListeningForTaskMenuCommandsOnly);
+        } else {
+            TransitionToState(ListeningState.ListeningForLobbyMenuCommandsOnly);
+        }
+    }
     private void Start()
     {        
-        string scene = SceneManager.GetActiveScene().name;
+        scene = SceneManager.GetActiveScene().name;
         if (scene == "Level3") {
              TransitionToState(ListeningState.ListeningForEverything);
         } else {
