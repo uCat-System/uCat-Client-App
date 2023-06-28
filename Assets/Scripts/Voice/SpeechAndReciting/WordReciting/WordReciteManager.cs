@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Meta.WitAi;
 using MText;
 using EListeningState = WitListeningStateManager.ListeningState;
 using EProceedResponseType = CheckRecitedWordHandler.ProceedResponseType;
@@ -9,6 +8,8 @@ using ECorrectResponseType = CheckRecitedWordHandler.CorrectResponseType;
 
 public class WordReciteManager : MonoBehaviour
 {
+    public AnimationDriver catAnimationDriver;
+
     public bool isDecidingToProceedOrNot = false;
     public bool resuming = false;
 
@@ -237,14 +238,18 @@ public class WordReciteManager : MonoBehaviour
 
         switch (responseType) {
             case ECorrectResponseType.POSITIVE_CORRECT_RESPONSE:
+                catAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Happy;
                 reciteText3D.Material = correctColour;
                 yield return new WaitForSeconds(CheckRecitedWordHandler.timeBetweenWordsInSeconds);
+                catAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Idle;
                 AddScoreToScoreManager();
                 MoveOnIfMoreWordsInList();
                 break;
             case ECorrectResponseType.NEGATIVE_CORRECT_RESPONSE:
+                catAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Sad;
                 reciteText3D.Material = incorrectColour;
                 yield return new WaitForSeconds(CheckRecitedWordHandler.timeBetweenWordsInSeconds);
+                catAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Idle;
                 RepeatSameWord();
                 break;
             case ECorrectResponseType.UNKNOWN_CORRECT_RESPONSE:
