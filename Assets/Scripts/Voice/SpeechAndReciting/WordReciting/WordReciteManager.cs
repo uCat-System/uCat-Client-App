@@ -147,7 +147,7 @@ public class WordReciteManager : MonoBehaviour
                     reciteText3D.UpdateText("." + word + ".");
 
                     // Discard anything said during countdown and start fresh
-                    // _witListeningStateManager.TransitionToState(EListeningState.NotListening);
+                    _witListeningStateManager.TransitionToState(EListeningState.NotListening);
                     break;
             }
            

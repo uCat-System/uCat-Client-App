@@ -61,8 +61,10 @@ namespace MText
                 case EMenuActivationResponseType.POSITIVE_ACTIVATE_MENU_RESPONSE:
                     _uiManager.ActivateMenu();
                     break;
-                default:
+                case EMenuActivationResponseType.UNKNOWN_ACTIVATION_RESPONSE:
                     Debug.Log("Activating menu was allowed but phrase was invalid: " + menuActivationResponse);
+                    break;
+                default:
                     break;
             }
         }
@@ -96,7 +98,9 @@ namespace MText
 
             else {
                 Debug.LogError("Did not activate word task with phrase " + text + " . You are probably in the menu." + _witListeningStateManager.currentListeningState);
-                _witListeningStateManager.ReactivateToTryMenuNavigationCommandsAgain();
+                 if (_witListeningStateManager.MenuNavigationCommandsAreAllowed()) {
+                    _witListeningStateManager.ReactivateToTryMenuNavigationCommandsAgain();
+                 }
             }
         }
 
