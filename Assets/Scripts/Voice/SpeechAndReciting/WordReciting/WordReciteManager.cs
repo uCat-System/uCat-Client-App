@@ -95,6 +95,7 @@ public class WordReciteManager : MonoBehaviour
     void SetWordAndUiListsBasedOnLevel() {
         switch (_levelManager.currentLevel) {
             case "Level1":
+                Debug.Log("Setting word lists for level 1");
                 currentWordOrSentenceList = wordLists.level1WordList;
                 currentUiList = wordLists.level1UiList;
                 break;
