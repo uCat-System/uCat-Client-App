@@ -1,27 +1,33 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using EIntroDialogueLines = UcatDialogueHandler.UcatIntroDialogueLines;
 using MText;
-
 
 public class DialogueManager : MonoBehaviour
 {
     public Modular3DText subtitleText;
+
     void Start()
     {
         SetSubtitlesToCurrentLineOfDialogue();
     }
 
-    void SetSubtitlesToCurrentLineOfDialogue() {
-        // First just use the first line
-        // then setup current line tracking in the static class
-        subtitleText.UpdateText(UcatDialogueHandler.uCatIntroDialogue[EIntroDialogueLines.INTRO_LINE_02]);
+   public void SetSubtitlesToCurrentLineOfDialogue()
+{
+    if (UcatDialogueHandler.uCatIntroDialogue.TryGetValue(UcatDialogueHandler.currentDialogueOptionIndex, out string currentDialogueOption))
+    {
+        subtitleText.UpdateText(currentDialogueOption);
     }
+    else
+    {
+        Debug.LogError("Invalid current dialogue option index: " + UcatDialogueHandler.currentDialogueOptionIndex);
+    }
+}
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            UcatDialogueHandler.IncrementDialogueOption();
+            SetSubtitlesToCurrentLineOfDialogue();
+        }
     }
 }

@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: DialogueScriptData
   m_EditorClassIdentifier: 
   introScriptDialogueOptions:
-  - Hi123
-  - hi2
-  - hi3
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
