@@ -28,8 +28,19 @@ namespace MText
 
         void Start()
         {   
+            //DEBUG
+
+
+            // / DEBUG
             subtitleText3D = GameObject.FindWithTag("SubtitleText3D").GetComponent<Modular3DText>();
             scene = SceneManager.GetActiveScene();
+        }
+
+        void Update() {
+            // if (Input.GetKeyDown(KeyCode.Space)) {
+            //     UcatDialogueManager ucatDialogueManager = new UcatDialogueManager();
+            //     ucatDialogueManager.DisplayDialogueLineAndAnimateAccordingly();
+            // }
         }
     
         public void StoppedListeningDueToInactivity()

@@ -1596,7 +1596,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4858736876065918637, guid: eeb381f8f105aa04aab5137abf3cd87b, type: 3}
   m_PrefabInstance: {fileID: 1937571875}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1937571877
+--- !u!114 &1937571884
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1605,12 +1605,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1937571876}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb6d3628762d24c46a5db1fe675c45d3, type: 3}
+  m_Script: {fileID: 11500000, guid: d69f5f0db4c0d694184819d14f4b2bc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uCatAnimationDriver: {fileID: 2070328622}
   subtitleText: {fileID: 3211107781574464607}
-  currentLineOfDialogue: 0
 --- !u!850595691 &1983238411
 LightingSettings:
   m_ObjectHideFlags: 0
