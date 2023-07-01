@@ -211,6 +211,7 @@ GameObject:
   - component: {fileID: 4858736876065918620}
   - component: {fileID: 4858736876065918621}
   - component: {fileID: 4858736876065918616}
+  - component: {fileID: 1937571884}
   m_Layer: 0
   m_Name: ManagersContainer
   m_TagString: Untagged
@@ -241,11 +242,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4858736876065918637}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e5ade88bcc11f534ba90460b5a603fe6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  catAnimationDriver: {fileID: 0}
   isDecidingToProceedOrNot: 0
   resuming: 0
   wordLists: {fileID: 11400000, guid: a3a83d047afb6c943a61e130941a77f0, type: 2}
@@ -294,6 +296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   listeningText3D: {fileID: 0}
+  scene: 
   _uiManager: {fileID: 4858736876065918616}
   currentListeningState: 0
   _wordReciteManager: {fileID: 4858736876065918619}
@@ -342,11 +345,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc45d88a8119af14aa4ebaaf255ce6c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _levelManager: {fileID: 0}
   animator: {fileID: 0}
   textElements: {fileID: 0}
   _witListeningStateManager: {fileID: 4858736876065918623}
   _wordReciteManager: {fileID: 4858736876065918619}
   menu: {fileID: 0}
+--- !u!114 &1937571884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4858736876065918637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d69f5f0db4c0d694184819d14f4b2bc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  subtitleText: {fileID: 0}
+  catAnimationDriver: {fileID: 0}
 --- !u!1 &6919823459598120140
 GameObject:
   m_ObjectHideFlags: 0

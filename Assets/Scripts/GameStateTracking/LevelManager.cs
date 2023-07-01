@@ -27,6 +27,9 @@ public class LevelManager : MonoBehaviour
         switch (scene.name)
         {
 
+            case "Intro":
+                SceneManager.LoadScene("Level1");
+                break; 
             case "Level1":
                 // TODO - in theory this should never happen as the user has to repeat
                 // answers until they get them right. But leaving as a backup.

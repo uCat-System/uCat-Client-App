@@ -11,6 +11,8 @@ public class UcatDialogueHandler
     public static Dictionary<int, string> uCatIntroDialogue = new Dictionary<int, string>();
     public static Dictionary<int, AnimationDriver.CatAnimations> uCatIntroDialogueAnimations = new Dictionary<int, AnimationDriver.CatAnimations>();
 
+    public static int timeBetweenLinesInSeconds = 0;
+
     static UcatDialogueHandler()
     {
         currentDialogueOptionIndex = 0;
@@ -22,6 +24,9 @@ public class UcatDialogueHandler
             Debug.LogError("dialogueScriptData not found.");
             return;
         }
+
+        // The delay in seconds from data object
+        timeBetweenLinesInSeconds = dialogueScriptData.timeBetweenLinesInSeconds;
 
         // Clear the existing dictionary
         uCatIntroDialogue.Clear();

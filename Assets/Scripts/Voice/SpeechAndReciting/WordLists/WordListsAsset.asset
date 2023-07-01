@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0be5a1666715533478e3fcde2906ab54, type: 3}
   m_Name: WordListsAsset
   m_EditorClassIdentifier: 
+  introWordList:
+  - Hello
   level1WordList:
   - Hello
   - Computer

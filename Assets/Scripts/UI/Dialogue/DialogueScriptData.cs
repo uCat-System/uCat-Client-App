@@ -8,4 +8,7 @@ public class DialogueScriptData : ScriptableObject
     public List<string> introScriptDialogueOptions = new List<string>();
 
     public List<AnimationDriver.CatAnimations> introScriptDialogueAnimations = new List<AnimationDriver.CatAnimations>();
+
+    public int timeBetweenLinesInSeconds = 0;
+
 }

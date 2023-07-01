@@ -82,7 +82,7 @@ public class WordReciteManager : MonoBehaviour
         Debug.Log("current index is " + currentWordOrSentenceIndex);
 
         // Set score based on amount of words in lists
-        if (_levelManager.currentLevel != "Level3")
+        if (_levelManager.currentLevel == "Level1" || _levelManager.currentLevel == "Level2")
         {
             _scoreManager.SetMaxScoreBasedOnWordListCount(currentWordOrSentenceList.Count + currentUiList.Count);
         }
@@ -94,6 +94,10 @@ public class WordReciteManager : MonoBehaviour
 
     void SetWordAndUiListsBasedOnLevel() {
         switch (_levelManager.currentLevel) {
+            case "Intro":
+                currentWordOrSentenceList = wordLists.introWordList;
+                currentUiList = null;
+                break;
             case "Level1":
                 Debug.Log("Setting word lists for level 1");
                 currentWordOrSentenceList = wordLists.level1WordList;
@@ -261,6 +265,7 @@ public class WordReciteManager : MonoBehaviour
     }
 
     public void ProceedOrNotBasedOnResponse(EProceedResponseType responseType) { 
+        Debug.Log("ProceedOrNotBasedOnResponse" + responseType);
         switch (responseType) {
             case EProceedResponseType.POSITIVE_PROCEED_RESPONSE:
                 _levelManager.LevelComplete();
@@ -272,7 +277,7 @@ public class WordReciteManager : MonoBehaviour
                 break;
             case EProceedResponseType.UNKNOWN_PROCEED_RESPONSE:
                 partialText3D.UpdateText(CheckRecitedWordHandler.proceedResponses[responseType]);
-                GameOver();
+                StartCoroutine(GameOver());
                 break;}
     }
 
@@ -300,7 +305,8 @@ public class WordReciteManager : MonoBehaviour
             // Mark the current list as complete, and move on to the next (if any) via changing booleans
             _witListeningStateManager.TransitionToState(EListeningState.ListeningForEverything);
             if (activeList == currentWordOrSentenceList) { wordListComplete = true; }
-            if (activeList == currentUiList) { uiComplete = true; }
+            // No UI list in intro
+            if (activeList == currentUiList || _levelManager.currentLevel == "Intro") { uiComplete = true; }
             if (_levelManager.currentLevel == "Level3") { openQuestionsComplete = true; }
             StartCoroutine(CheckWordListStatus());
         }
@@ -325,7 +331,7 @@ public class WordReciteManager : MonoBehaviour
             currentWordOrSentenceIndex = 0;
             reciteText3D.UpdateText("Finished!");
 
-            GameOver();
+            StartCoroutine(GameOver());
         }
 
         else
@@ -334,9 +340,10 @@ public class WordReciteManager : MonoBehaviour
         }
     }
 
-    void GameOver()
+    IEnumerator GameOver()
     {
         _scoreManager.DisplayScoreInPartialTextSection();
+        yield return new WaitForSeconds(3);
         reciteText3D.UpdateText("Say 'next' to proceed.\nOr 'repeat' to repeat sentences.");
         isDecidingToProceedOrNot = true;
     }

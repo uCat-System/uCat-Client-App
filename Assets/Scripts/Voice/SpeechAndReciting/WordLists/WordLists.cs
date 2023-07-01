@@ -6,6 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Custom/WordLists")]
 public class WordLists : ScriptableObject
 {
+    public List<string> introWordList;
     public List<string> level1WordList;
     public List<string> level2SentenceList;
     public List<string> level3OpenQuestionsList;
