@@ -5,16 +5,22 @@ public class DialogueManager : MonoBehaviour
 {
     public Modular3DText subtitleText;
 
+    public AnimationDriver catAnimationDriver;
+
     void Start()
     {
-        SetSubtitlesToCurrentLineOfDialogue();
+        SetSubtitlesToCurrentLineOfDialogueAndPlayRelevantAnimation();
     }
 
-   public void SetSubtitlesToCurrentLineOfDialogue()
+   public void SetSubtitlesToCurrentLineOfDialogueAndPlayRelevantAnimation()
 {
     if (UcatDialogueHandler.uCatIntroDialogue.TryGetValue(UcatDialogueHandler.currentDialogueOptionIndex, out string currentDialogueOption))
     {
+        // Update dialogue
         subtitleText.UpdateText(currentDialogueOption);
+
+        // Play the relevant animation
+        catAnimationDriver.catAnimation = UcatDialogueHandler.uCatIntroDialogueAnimations[UcatDialogueHandler.currentDialogueOptionIndex];
     }
     else
     {
@@ -27,7 +33,7 @@ public class DialogueManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             UcatDialogueHandler.IncrementDialogueOption();
-            SetSubtitlesToCurrentLineOfDialogue();
+            SetSubtitlesToCurrentLineOfDialogueAndPlayRelevantAnimation();
         }
     }
 }

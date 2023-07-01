@@ -33,15 +33,21 @@ public class UcatDialogueHandler
 
             // Add the dialogue option to the dictionary
             uCatIntroDialogue[i] = dialogueOption;
-            Debug.Log("After one iteration: " + uCatIntroDialogue[i]);
         }
 
-        Debug.Log("After all: " + uCatIntroDialogue.Count);
+        // Populate the second dictionary with the animations
+        for (int i = 0; i < dialogueScriptData.introScriptDialogueAnimations.Count; i++)
+        {
+            AnimationDriver.CatAnimations animation = dialogueScriptData.introScriptDialogueAnimations[i];
+
+            // Add the animation to the dictionary
+            uCatIntroDialogueAnimations[i] = animation;
+        }
     }
 
     public static void IncrementDialogueOption()
     {
-        // Increment the index
+        // Increment the index (will loop back to the start eventually)
         currentDialogueOptionIndex = (currentDialogueOptionIndex + 1) % uCatIntroDialogue.Count;
     }
 }

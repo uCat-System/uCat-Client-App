@@ -1609,6 +1609,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   subtitleText: {fileID: 3211107781574464607}
+  catAnimationDriver: {fileID: 2070328622}
 --- !u!850595691 &1983238411
 LightingSettings:
   m_ObjectHideFlags: 0
