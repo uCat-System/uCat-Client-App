@@ -26,7 +26,7 @@ MonoBehaviour:
   - Level 1 script
   level1ScriptDialogueAnimations: 01000000
   level2ScriptDialogueOptions: []
-  level2ScriptDialogueAnimations: 
+  level2ScriptDialogueAnimations: 00000000
   level3ScriptDialogueOptions: []
   level3ScriptDialogueAnimations: 
   timeBetweenLinesInSeconds: 5
