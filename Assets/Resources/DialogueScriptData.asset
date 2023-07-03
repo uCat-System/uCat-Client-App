@@ -27,7 +27,7 @@ MonoBehaviour:
   - here is line 2
   level1ScriptDialogueAnimations: 0200000004000000
   level2ScriptDialogueOptions: []
-  level2ScriptDialogueAnimations: 
+  level2ScriptDialogueAnimations: 00000000
   level3ScriptDialogueOptions: []
   level3ScriptDialogueAnimations: 
   timeBetweenLinesInSeconds: 5
