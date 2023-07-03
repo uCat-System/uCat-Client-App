@@ -99,7 +99,6 @@ public class WordReciteManager : MonoBehaviour
                 currentUiList = null;
                 break;
             case "Level1":
-                Debug.Log("Setting word lists for level 1");
                 currentWordOrSentenceList = wordLists.level1WordList;
                 currentUiList = wordLists.level1UiList;
                 break;
@@ -188,13 +187,6 @@ public class WordReciteManager : MonoBehaviour
     {
         // Do not add to score
         StartCoroutine(ChangeTimeOutText());
-    }
-    void Update() {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            // currentWordOrSentenceIndex = activeList.Count - 2;
-            // GoToNextWord();
-        }
     }
 
     public void GoToNextWord()
