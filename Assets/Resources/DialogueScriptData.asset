@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DialogueScriptData
   m_EditorClassIdentifier: 
   introScriptDialogueOptions:
-  - Hi! I'm so glad to see you made it this far!
+  - "Hi! I\u2019m so glad to see you here."
   - I'm uCat, your AI guide for your BCI. I'll take you through the calibration program.
   - 'For the past few weeks you practiced repeating a ton of words. '
   - I think it's time you learn how to use them to your advantage.
@@ -23,8 +23,9 @@ MonoBehaviour:
   - 'When the phrase turns green, try to repeat after me:'
   introScriptDialogueAnimations: 0200000001000000000000000100000000000000000000000100000000000000
   level1ScriptDialogueOptions:
-  - Level 1 script
-  level1ScriptDialogueAnimations: 01000000
+  - here is line 1 that ucat says
+  - here is line 2
+  level1ScriptDialogueAnimations: 0200000004000000
   level2ScriptDialogueOptions: []
   level2ScriptDialogueAnimations: 
   level3ScriptDialogueOptions: []

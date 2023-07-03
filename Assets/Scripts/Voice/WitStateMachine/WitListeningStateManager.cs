@@ -17,7 +17,7 @@ public class WitListeningStateManager : MonoBehaviour
         ListeningForTaskMenuCommandsOnly, // navigates within the menu
         ListeningForConfirmation,
 
-        ListeningForLobbyMenuCommandsOnly,
+        ListeningForLobbyMenuCommandsOnly, // including memo mode
     }
     public Modular3DText listeningText3D;
 
@@ -57,6 +57,7 @@ public class WitListeningStateManager : MonoBehaviour
             {
                 // If the state is not in the dictionary, add it and set it to false
                 dictToSearch[state] = false;
+                // ListeningForTaskMenuCommandsOnly
             }
         }
         // If the current state is in the dictionary, return true or false depending on if it is allowed
@@ -149,7 +150,6 @@ public class WitListeningStateManager : MonoBehaviour
         // TODO - improve this - I don't know why it doesn't work without the delay
         yield return new WaitForSeconds(0.00001f);
         TransitionToState(currentListeningState);
-        
     }
 
     public IEnumerator TurnWitOffAndOn(Wit wit) {

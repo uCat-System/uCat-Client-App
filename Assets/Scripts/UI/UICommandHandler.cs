@@ -72,6 +72,7 @@ public class UICommandHandler
 
     public static MenuActivationResponseType CheckIfMenuActivationCommandsWereSpoken(string text) {
 
+        // hey ucat
         Debug.Log("Checking if menu activation commands were spoken: " + text);
         // check if any of the arguments are null
         if (text == null)

@@ -11,8 +11,7 @@ public class WordReciteManager : MonoBehaviour
     public AnimationDriver catAnimationDriver;
 
     public bool isDecidingToProceedOrNot = false;
-    public bool resuming = false;
-
+    
     // Current word tracking
     int currentWordOrSentenceIndex;
 
@@ -214,6 +213,7 @@ public class WordReciteManager : MonoBehaviour
     public IEnumerator CheckRecitedWord(string text)
     {
         if (!_witListeningStateManager.RecitingWordsIsAllowed()) {
+            // Menu
             yield break;
         }
 

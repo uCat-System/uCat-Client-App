@@ -19,11 +19,6 @@ public class DialogueScriptData : ScriptableObject
     public List<string> level3ScriptDialogueOptions = new List<string>();
 
     public List<AnimationDriver.CatAnimations> level3ScriptDialogueAnimations = new List<AnimationDriver.CatAnimations>();
-
-
-
-
-
     public int timeBetweenLinesInSeconds = 0;
 
 }

@@ -66,13 +66,11 @@ namespace MText
 
         public void HandleFullTranscription(string text)
         {
-
             if (_witListeningStateManager.MenuActivationCommandsAreAllowed()) {
                 // Listen for menu activation
                 EMenuActivationResponseType menuActivationResponse = UICommandHandler.CheckIfMenuActivationCommandsWereSpoken(text);
                 HandleMenuActivationResponse(menuActivationResponse);
             }
-
 
             if (_witListeningStateManager.MenuNavigationCommandsAreAllowed()) {
                 // Listen for commands within the menu
@@ -80,7 +78,6 @@ namespace MText
                 _uiManager.ActivateMenuNavigationCommandsBasedOnResponse(menuNavigationResponse);
             }
 
-           
             if (_witListeningStateManager.currentListeningState == EListeningState.ListeningForConfirmation) {
                 //Listen for 'yes' or 'no?' (confirmation)
                 EConfirmationResponseType confirmationResponse = ConfirmationHandler.CheckIfConfirmationWasSpoken(text);
