@@ -1498,6 +1498,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1937571876}
     - target: {fileID: 1937571884, guid: eeb381f8f105aa04aab5137abf3cd87b, type: 3}
+      propertyPath: catAudioSource
+      value: 
+      objectReference: {fileID: 2070328627}
+    - target: {fileID: 1937571884, guid: eeb381f8f105aa04aab5137abf3cd87b, type: 3}
       propertyPath: _wordReciteManager
       value: 
       objectReference: {fileID: 2097450972}

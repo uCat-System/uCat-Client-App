@@ -13,6 +13,8 @@ public class DialogueManager : MonoBehaviour
 
     public WordReciteManager _wordReciteManager;
 
+    public AudioSource catAudioSource;
+
     public bool introDialogueIsComplete;
 
     void Start()
@@ -23,9 +25,10 @@ public class DialogueManager : MonoBehaviour
         StartCoroutine(CycleThroughDialogue(_levelManager.currentLevel));
     }
 
-   public void SetSubtitlesToCurrentLineOfDialogueAndPlayRelevantAnimation(Dictionary<int, string> dialogueList, Dictionary<int, AnimationDriver.CatAnimations> dialogueAnimations)
+   public void SetDialogueTextAnimationAndSound(Dictionary<int, string> dialogueList, 
+        Dictionary<int, AnimationDriver.CatAnimations> dialogueAnimations, Dictionary<int, AudioClip> dialogueAudio)
     {
-        Debug.Log("SetSubtitlesToCurrentLineOfDialogueAndPlayRelevantAnimation" + UcatDialogueHandler.currentDialogueOptionIndex + " " + dialogueList.Count + " " + dialogueAnimations.Count);
+        Debug.Log("SetDialogueTextAnimationAndSound" + UcatDialogueHandler.currentDialogueOptionIndex + " " + dialogueList.Count + " " + dialogueAnimations.Count);
         if (dialogueList.TryGetValue(UcatDialogueHandler.currentDialogueOptionIndex, out string currentDialogueOption))
         {
             // Update dialogue
@@ -36,6 +39,10 @@ public class DialogueManager : MonoBehaviour
             // Play the relevant animation
             catAnimationDriver.catAnimation = dialogueAnimations[UcatDialogueHandler.currentDialogueOptionIndex];
             Debug.Log("Update catAnimation " + dialogueAnimations[UcatDialogueHandler.currentDialogueOptionIndex]);
+
+            // Play the dialogue audio
+            catAudioSource.clip = dialogueAudio[UcatDialogueHandler.currentDialogueOptionIndex];
+            catAudioSource.Play();
 
         }
         else
@@ -50,33 +57,39 @@ public class DialogueManager : MonoBehaviour
 
         Dictionary<int, string> currentDialogueList;
         Dictionary<int, AnimationDriver.CatAnimations> currentAnimationList;
+        Dictionary<int, AudioClip> currentAudioList;
          // We pass in different dictionaries based on the scene
         switch (_levelManager.currentLevel) {
             case "Intro":
                 currentDialogueList = UcatDialogueHandler.uCatIntroDialogue;
                 currentAnimationList = UcatDialogueHandler.uCatIntroDialogueAnimations;
+                currentAudioList = UcatDialogueHandler.uCatIntroDialogueAudio;
                 break;
             case "Level1":
                 Debug.Log("Level1");
                 currentDialogueList = UcatDialogueHandler.uCatLevel1Dialogue;
                 currentAnimationList = UcatDialogueHandler.uCatLevel1DialogueAnimations;
+                currentAudioList = UcatDialogueHandler.uCatLevel1DialogueAudio;
                 break;
             case "Level2":
                 currentDialogueList = UcatDialogueHandler.uCatLevel2Dialogue;
                 currentAnimationList = UcatDialogueHandler.uCatLevel2DialogueAnimations;
+                currentAudioList = UcatDialogueHandler.uCatLevel2DialogueAudio;
                 break;
             case "Level3":
                 currentDialogueList = UcatDialogueHandler.uCatLevel3Dialogue;
                 currentAnimationList = UcatDialogueHandler.uCatLevel3DialogueAnimations;
+                currentAudioList = UcatDialogueHandler.uCatLevel3DialogueAudio;
                 break;
             default:
                 currentDialogueList = null;
                 currentAnimationList = null;
+                currentAudioList = null;
                 Debug.LogError("Dictionary not setup for: " + _levelManager.currentLevel);
                 break;
         }
 
-        SetSubtitlesToCurrentLineOfDialogueAndPlayRelevantAnimation(currentDialogueList, currentAnimationList);
+        SetDialogueTextAnimationAndSound(currentDialogueList, currentAnimationList, currentAudioList);
         yield return new WaitForSeconds(UcatDialogueHandler.timeBetweenLinesInSeconds);
         
         Debug.Log("Checking if we should continue" + UcatDialogueHandler.currentDialogueOptionIndex + " " + currentDialogueList.Count + " " + currentAnimationList.Count);
@@ -122,7 +135,7 @@ public class DialogueManager : MonoBehaviour
         // if (Input.GetKeyDown(KeyCode.Space))
         // {
         //     StartCoroutine(CycleThroughDialogue(_levelManager.currentLevel));
-        //     // SetSubtitlesToCurrentLineOfDialogueAndPlayRelevantAnimation();
+        //     // SetDialogueTextAnimationAndSound();
         // }
     }
 }

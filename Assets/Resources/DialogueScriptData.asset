@@ -16,12 +16,18 @@ MonoBehaviour:
   - "Hi! I\u2019m so glad to see you here."
   - 'When the phrase turns green, try to repeat after me:'
   introScriptDialogueAnimations: 0200000001000000000000000100000000000000000000000100000000000000
+  introScriptDialogueAudio:
+  - {fileID: 8300000, guid: fe8140c62f08ab84fb8f5e1b0e59d517, type: 3}
+  - {fileID: 8300000, guid: 5968cac7831adf2459e56bc237254118, type: 3}
   level1ScriptDialogueOptions:
   - here is line 1 that ucat says
   - here is line 2
   level1ScriptDialogueAnimations: 0200000004000000
+  level1ScriptDialogueAudio: []
   level2ScriptDialogueOptions: []
   level2ScriptDialogueAnimations: 00000000
+  level2ScriptDialogueAudio: []
   level3ScriptDialogueOptions: []
   level3ScriptDialogueAnimations: 
+  level3ScriptDialogueAudio: []
   timeBetweenLinesInSeconds: 5
