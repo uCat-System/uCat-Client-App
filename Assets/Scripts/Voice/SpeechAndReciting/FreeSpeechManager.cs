@@ -111,7 +111,9 @@ namespace MText
                     _wordReciteManager.RepeatSameWord();
                     break;
                 case EConfirmationResponseType.UNKNOWN_CONFIRMATION_RESPONSE:
-                    ConfirmWhatUserSaid(originallyUtteredText);
+                    if (_witListeningStateManager.currentListeningState != EListeningState.ListeningForConfirmation) { 
+                        ConfirmWhatUserSaid(originallyUtteredText);
+                    }
                     break;
                 default:
                     Debug.LogError("ERROR: Confirmation response type not recognised");
@@ -180,7 +182,9 @@ namespace MText
                 // Run level 3 task
                 // Update the spoken text
                 CalculateCachedText(text);
-                ConfirmWhatUserSaid(text.ToLower());
+                if (_witListeningStateManager.currentListeningState != EListeningState.ListeningForConfirmation) { 
+                    ConfirmWhatUserSaid(text.ToLower());
+                }
             }
         }
 
