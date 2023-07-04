@@ -1493,6 +1493,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1937571876}
     - target: {fileID: 1937571884, guid: eeb381f8f105aa04aab5137abf3cd87b, type: 3}
+      propertyPath: _wordReciteManager
+      value: 
+      objectReference: {fileID: 2097450972}
+    - target: {fileID: 1937571884, guid: eeb381f8f105aa04aab5137abf3cd87b, type: 3}
       propertyPath: catAnimationDriver
       value: 
       objectReference: {fileID: 2070328622}
@@ -1508,6 +1512,10 @@ PrefabInstance:
       propertyPath: textElements
       value: 
       objectReference: {fileID: 3211107781574464608}
+    - target: {fileID: 4858736876065918616, guid: eeb381f8f105aa04aab5137abf3cd87b, type: 3}
+      propertyPath: _levelManager
+      value: 
+      objectReference: {fileID: 1937571876}
     - target: {fileID: 4858736876065918619, guid: eeb381f8f105aa04aab5137abf3cd87b, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -1540,6 +1548,10 @@ PrefabInstance:
       propertyPath: partialText3D
       value: 
       objectReference: {fileID: 760428953}
+    - target: {fileID: 4858736876065918622, guid: eeb381f8f105aa04aab5137abf3cd87b, type: 3}
+      propertyPath: _levelManager
+      value: 
+      objectReference: {fileID: 1937571876}
     - target: {fileID: 4858736876065918622, guid: eeb381f8f105aa04aab5137abf3cd87b, type: 3}
       propertyPath: partialText3D
       value: 
@@ -1686,6 +1698,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e32f86f1efab4343adbe423102d053b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2097450972 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4858736876065918619, guid: eeb381f8f105aa04aab5137abf3cd87b, type: 3}
+  m_PrefabInstance: {fileID: 1937571875}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5ade88bcc11f534ba90460b5a603fe6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &2099836998 stripped

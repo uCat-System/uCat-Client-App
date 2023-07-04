@@ -14,12 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   introScriptDialogueOptions:
   - "Hi! I\u2019m so glad to see you here."
-  - I'm uCat, your AI guide for your BCI. I'll take you through the calibration program.
-  - 'For the past few weeks you practiced repeating a ton of words. '
-  - I think it's time you learn how to use them to your advantage.
-  - As usual, try to repeat the phrase when the text turns green.
-  - Imagine you are mouthing the words to someone across the room.
-  - This time however I will play your inner voice back to you.
   - 'When the phrase turns green, try to repeat after me:'
   introScriptDialogueAnimations: 0200000001000000000000000100000000000000000000000100000000000000
   level1ScriptDialogueOptions:

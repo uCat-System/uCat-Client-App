@@ -11,13 +11,21 @@ public class DialogueManager : MonoBehaviour
 
     public LevelManager _levelManager;
 
-    void Awake()
+    public WordReciteManager _wordReciteManager;
+
+    public bool introDialogueIsComplete;
+
+    void Start()
     {
-        
+        // uCat begins idle so that the first anim can play properly
+        introDialogueIsComplete = false;
+        catAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Idle;
+        StartCoroutine(CycleThroughDialogue(_levelManager.currentLevel));
     }
 
    public void SetSubtitlesToCurrentLineOfDialogueAndPlayRelevantAnimation(Dictionary<int, string> dialogueList, Dictionary<int, AnimationDriver.CatAnimations> dialogueAnimations)
     {
+        Debug.Log("SetSubtitlesToCurrentLineOfDialogueAndPlayRelevantAnimation" + UcatDialogueHandler.currentDialogueOptionIndex + " " + dialogueList.Count + " " + dialogueAnimations.Count);
         if (dialogueList.TryGetValue(UcatDialogueHandler.currentDialogueOptionIndex, out string currentDialogueOption))
         {
             // Update dialogue
@@ -71,22 +79,50 @@ public class DialogueManager : MonoBehaviour
         SetSubtitlesToCurrentLineOfDialogueAndPlayRelevantAnimation(currentDialogueList, currentAnimationList);
         yield return new WaitForSeconds(UcatDialogueHandler.timeBetweenLinesInSeconds);
         
-        if (UcatDialogueHandler.currentDialogueOptionIndex >= currentDialogueList.Count || currentDialogueList == null || currentAnimationList == null) {
+        Debug.Log("Checking if we should continue" + UcatDialogueHandler.currentDialogueOptionIndex + " " + currentDialogueList.Count + " " + currentAnimationList.Count);
+        if (UcatDialogueHandler.currentDialogueOptionIndex >= currentDialogueList.Count-1 || currentDialogueList == null || currentAnimationList == null) {
             // Do not continue incrementing if we are at the end
+            Debug.Log("END OF DIALOGUE");
+            EndOfDialogue();
             yield break;
+        } else {
+            // Otherwise, start the next line
+            UcatDialogueHandler.IncrementDialogueOption();
+            StartCoroutine(CycleThroughDialogue(scene));
         }
 
-        // Otherwise, start the next line
-        UcatDialogueHandler.IncrementDialogueOption();
-        StartCoroutine(CycleThroughDialogue(scene));
+    }
+
+    void EndOfDialogue() {
+        UcatDialogueHandler.currentDialogueOptionIndex = 0;
+        catAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Idle;
+        switch (_levelManager.currentLevel) {
+            case "Intro":
+                introDialogueIsComplete = true;
+                _wordReciteManager.enabled = true;
+                // Some function in wordrecitemanager to test the hello thing
+                break;
+            case "Level1":
+                // TODO: do something here
+                break;
+            case "Level2":
+                // TODO: do something here
+                break;
+            case "Level3":
+                // TODO: do something here
+                break;
+            default:
+                Debug.LogError("Dictionary not setup for: " + _levelManager.currentLevel);
+                break;
+        }
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            StartCoroutine(CycleThroughDialogue(_levelManager.currentLevel));
-            // SetSubtitlesToCurrentLineOfDialogueAndPlayRelevantAnimation();
-        }
+        // if (Input.GetKeyDown(KeyCode.Space))
+        // {
+        //     StartCoroutine(CycleThroughDialogue(_levelManager.currentLevel));
+        //     // SetSubtitlesToCurrentLineOfDialogueAndPlayRelevantAnimation();
+        // }
     }
 }

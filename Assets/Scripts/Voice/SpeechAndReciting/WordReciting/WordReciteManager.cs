@@ -223,9 +223,8 @@ public class WordReciteManager : MonoBehaviour
         ECorrectResponseType correctResponseType = CheckRecitedWordHandler.CheckIfWordOrSentenceIsCorrect(text, activeList[currentWordOrSentenceIndex]);
         StartCoroutine(HandleWordOrSentenceCorrectOrIncorrect(correctResponseType));
     }
-
+    
     public IEnumerator HandleWordOrSentenceCorrectOrIncorrect(ECorrectResponseType responseType) {
-
         string correctResponseText = CheckRecitedWordHandler.correctResponses[responseType];
         reciteText3D.UpdateText(correctResponseText);
 

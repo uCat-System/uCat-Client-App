@@ -87,6 +87,6 @@ public class UcatDialogueHandler
     public static void IncrementDialogueOption()
     {
         // Increment the index (will loop back to the start eventually)
-        currentDialogueOptionIndex = (currentDialogueOptionIndex + 1) % uCatIntroDialogue.Count;
+        currentDialogueOptionIndex = (currentDialogueOptionIndex + 1);
     }
 }
