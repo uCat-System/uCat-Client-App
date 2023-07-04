@@ -58,7 +58,6 @@ public class UICommandHandler
 
         foreach (string acceptableWakeWord in activationInputData.acceptableWakeWords)
         {
-            Debug.Log("Adding acceptable wake word: " + acceptableWakeWord);
              menuActivationActions[acceptableWakeWord] = MenuActivationResponseType.POSITIVE_ACTIVATE_MENU_RESPONSE;
         }
 
@@ -72,8 +71,6 @@ public class UICommandHandler
 
     public static MenuActivationResponseType CheckIfMenuActivationCommandsWereSpoken(string text) {
 
-        // hey ucat
-        Debug.Log("Checking if menu activation commands were spoken: " + text);
         // check if any of the arguments are null
         if (text == null)
         {

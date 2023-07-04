@@ -252,20 +252,6 @@ public class WordReciteManager : MonoBehaviour
         }
     }
 
-    public void HandleProceedResponse(EProceedResponseType proceedResponse) { 
-        switch (proceedResponse) {
-            case EProceedResponseType.POSITIVE_PROCEED_RESPONSE:
-                _levelManager.LevelComplete();
-                break;
-            case EProceedResponseType.NEGATIVE_PROCEED_RESPONSE:
-                _levelManager.RepeatLevel();
-                break;
-            case EProceedResponseType.UNKNOWN_PROCEED_RESPONSE:
-                partialText3D.UpdateText(ConfirmationHandler.proceedResponses[proceedResponse]);
-                GameOver();
-                break;}
-    }
-
     void AddScoreToScoreManager()
     {
          if (_levelManager.currentLevel == "Level1")
@@ -305,7 +291,6 @@ public class WordReciteManager : MonoBehaviour
         {
             currentWordOrSentenceIndex = 0;
             reciteText3D.UpdateText("Finished!");
-
             GameOver();
         }
         else if (wordListComplete && !uiComplete)

@@ -13,6 +13,8 @@ namespace MText
     public class FreeSpeechManager : MonoBehaviour
     {
         public UIManager _uiManager;
+
+        public LevelManager _levelManager;
         public WordReciteManager _wordReciteManager;
         public Modular3DText partialText3D;
         public Modular3DText subtitleText3D;
@@ -60,6 +62,8 @@ namespace MText
 
         public void HandleFullTranscription(string text)
         {
+
+            Debug.Log("Full transcription: " + text + " and current state is " + _witListeningStateManager.currentListeningState);
             if (_witListeningStateManager.MenuActivationCommandsAreAllowed()) {
                 // Listen for menu activation
                 EMenuActivationResponseType menuActivationResponse = UICommandHandler.CheckIfMenuActivationCommandsWereSpoken(text);
@@ -74,17 +78,21 @@ namespace MText
 
             if (_witListeningStateManager.currentListeningState == EListeningState.ListeningForConfirmation) {
                 //Listen for 'yes' or 'no?' (confirmation)
+                Debug.Log("confirmation mode active: " + text);
+
                 EConfirmationResponseType confirmationResponse = ConfirmationHandler.CheckIfConfirmationWasSpoken(text);
                 StartCoroutine(ProceedBasedOnConfirmation(confirmationResponse, originallyUtteredText));
+                Debug.Log("response of that was: " + confirmationResponse + " and the original text was: " + originallyUtteredText);
             }
 
             if (_witListeningStateManager.currentListeningState == EListeningState.ListeningForNextOrRepeat) {
                 // Listen for 'next' or 'repeat' (word recite)
                 Debug.Log("Checking if next or repeat was spoken: " + text);
                 EProceedResponseType proceedResponse = ConfirmationHandler.CheckIfProceedPhraseWasSpoken(text);
-                _wordReciteManager.HandleProceedResponse(proceedResponse);
+                HandleProceedResponse(proceedResponse, text);
             }
             if (_witListeningStateManager.RecitingWordsIsAllowed()) {
+                Debug.Log("About to activate recite stuff");
                 // Activate Tasks (recite words, etc) if in any valid reciting states
                 ActivateTasksBasedOnTranscription(text);
             }
@@ -96,6 +104,20 @@ namespace MText
                  }
             }
         }
+
+        public void HandleProceedResponse(EProceedResponseType proceedResponse, string originallyUtteredText) { 
+        switch (proceedResponse) {
+            case EProceedResponseType.POSITIVE_PROCEED_RESPONSE:
+                _levelManager.LevelComplete();
+                break;
+            case EProceedResponseType.NEGATIVE_PROCEED_RESPONSE:
+                _levelManager.RepeatLevel();
+                break;
+            case EProceedResponseType.UNKNOWN_PROCEED_RESPONSE:
+                partialText3D.UpdateText(ConfirmationHandler.proceedResponses[proceedResponse]);
+                _witListeningStateManager.TransitionToState(EListeningState.ListeningForConfirmation);
+                break;}
+    }
 
         private IEnumerator ProceedBasedOnConfirmation(EConfirmationResponseType confirmationResponse, string originallyUtteredText) {
 
@@ -111,9 +133,8 @@ namespace MText
                     _wordReciteManager.RepeatSameWord();
                     break;
                 case EConfirmationResponseType.UNKNOWN_CONFIRMATION_RESPONSE:
-                    if (_witListeningStateManager.currentListeningState != EListeningState.ListeningForConfirmation) { 
-                        ConfirmWhatUserSaid(originallyUtteredText);
-                    }
+                    // Listen again
+                    _witListeningStateManager.TransitionToState(EListeningState.ListeningForConfirmation);
                     break;
                 default:
                     Debug.LogError("ERROR: Confirmation response type not recognised");
@@ -182,19 +203,18 @@ namespace MText
                 // Run level 3 task
                 // Update the spoken text
                 CalculateCachedText(text);
-                if (_witListeningStateManager.currentListeningState != EListeningState.ListeningForConfirmation) { 
-                    ConfirmWhatUserSaid(text.ToLower());
+                if (_witListeningStateManager.currentListeningState != EListeningState.ListeningForConfirmation) {
+                    ConfirmWhatUserSaid(text);
                 }
             }
         }
 
-        public void ConfirmWhatUserSaid(string text) {
-            originallyUtteredText = text;
+        public void ConfirmWhatUserSaid(string originallyUtteredText) {
             Debug.Log("Setting state to confirtmation mode ");
             _witListeningStateManager.TransitionToState(EListeningState.ListeningForConfirmation);
-
             // Ask them to confirm
-            partialText3D.UpdateText("Did you say " + text + "?");
+            partialText3D.UpdateText("Did you say " + originallyUtteredText + "?");
+            // _witListeningStateManager.TurnWitActivationOffAndOn();
         }
 
      void CalculateCachedText(string newText) {
