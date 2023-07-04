@@ -300,7 +300,15 @@ public class WordReciteManager : MonoBehaviour
     private IEnumerator CheckWordListStatus()
     {
         // Either proceed to next word list (ui), or end the game.
-        if (wordListComplete && !uiComplete)
+        // If level 1/2 have both lists done, or level 3 has open questions done, end the game.
+        if (wordListComplete && uiComplete || openQuestionsComplete)
+        {
+            currentWordOrSentenceIndex = 0;
+            reciteText3D.UpdateText("Finished!");
+
+            GameOver();
+        }
+        else if (wordListComplete && !uiComplete)
         { 
             activeList = currentUiList;
             currentWordOrSentenceIndex = 0;
@@ -309,14 +317,6 @@ public class WordReciteManager : MonoBehaviour
             yield return new WaitForSeconds(2);
             StartCoroutine(StartCurrentWordCountdown());
             
-        }
-        // If level 1/2 have both lists done, or level 3 has open questions done, end the game.
-        else if (wordListComplete && uiComplete || openQuestionsComplete)
-        {
-            currentWordOrSentenceIndex = 0;
-            reciteText3D.UpdateText("Finished!");
-
-            GameOver();
         }
 
         else
