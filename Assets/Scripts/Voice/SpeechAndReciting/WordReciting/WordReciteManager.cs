@@ -9,8 +9,6 @@ using ECorrectResponseType = CheckRecitedWordHandler.CorrectResponseType;
 public class WordReciteManager : MonoBehaviour
 {
     public AnimationDriver catAnimationDriver;
-
-    public bool isDecidingToProceedOrNot = false;
     
     // Current word tracking
     int currentWordOrSentenceIndex;
@@ -199,8 +197,7 @@ public class WordReciteManager : MonoBehaviour
             StartCoroutine(StartCurrentWordCountdown());
         } else {
             // End of list
-            _witListeningStateManager.TransitionToState(EListeningState.ListeningForEverything);
-            StartCoroutine(GameOver());
+            GameOver();
         }
     }
     public void RepeatSameWord()
@@ -219,12 +216,6 @@ public class WordReciteManager : MonoBehaviour
             // Menu
             yield break;
         }
-
-        // if (isDecidingToProceedOrNot) {
-        //     EProceedResponseType responseType = ConfirmationHandler.CheckIfProceedPhraseWasSpoken(text);
-        //     HandleProceedResponse(responseType);
-        //     yield break;
-        // }
 
         // Compare the uttered text with the correct text
         ECorrectResponseType correctResponseType = CheckRecitedWordHandler.CheckIfWordOrSentenceIsCorrect(text, activeList[currentWordOrSentenceIndex]);
@@ -259,21 +250,17 @@ public class WordReciteManager : MonoBehaviour
         }
     }
 
-    public IEnumerator HandleProceedResponse(EProceedResponseType proceedResponse) { 
-        Debug.Log("HandleProceedResponse" + proceedResponse);
+    public void HandleProceedResponse(EProceedResponseType proceedResponse) { 
         switch (proceedResponse) {
             case EProceedResponseType.POSITIVE_PROCEED_RESPONSE:
                 _levelManager.LevelComplete();
-                isDecidingToProceedOrNot = false;
                 break;
             case EProceedResponseType.NEGATIVE_PROCEED_RESPONSE:
                 _levelManager.RepeatLevel();
-                isDecidingToProceedOrNot = false;
                 break;
             case EProceedResponseType.UNKNOWN_PROCEED_RESPONSE:
                 partialText3D.UpdateText(ConfirmationHandler.proceedResponses[proceedResponse]);
-                yield return new WaitForSeconds(2);
-                StartCoroutine(GameOver());
+                GameOver();
                 break;}
     }
 
@@ -327,7 +314,7 @@ public class WordReciteManager : MonoBehaviour
             currentWordOrSentenceIndex = 0;
             reciteText3D.UpdateText("Finished!");
 
-            StartCoroutine(GameOver());
+            GameOver();
         }
 
         else
@@ -336,12 +323,9 @@ public class WordReciteManager : MonoBehaviour
         }
     }
 
-    IEnumerator GameOver()
+    public void GameOver()
     {
-        // _scoreManager.DisplayScoreInPartialTextSection();
-        yield return new WaitForSeconds(1);
-        reciteText3D.UpdateText("Say 'next' to proceed.\nOr 'repeat' to repeat sentences.");
+        reciteText3D.UpdateText("Say 'next' to proceed.\nOr 'repeat' to repeat.");
         _witListeningStateManager.TransitionToState(EListeningState.ListeningForNextOrRepeat);
-        isDecidingToProceedOrNot = true;
     }
 }

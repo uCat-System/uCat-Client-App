@@ -82,7 +82,7 @@ namespace MText
                 // Listen for 'next' or 'repeat' (word recite)
                 Debug.Log("Checking if next or repeat was spoken: " + text);
                 EProceedResponseType proceedResponse = ConfirmationHandler.CheckIfProceedPhraseWasSpoken(text);
-                StartCoroutine(_wordReciteManager.HandleProceedResponse(proceedResponse));
+                _wordReciteManager.HandleProceedResponse(proceedResponse);
             }
             if (_witListeningStateManager.RecitingWordsIsAllowed()) {
                 // Activate Tasks (recite words, etc) if in any valid reciting states
@@ -169,17 +169,11 @@ namespace MText
                 _wordReciteManager.StartWordCheck(text);
           
             } else {
-                 // Run level 3 task
-                 // Update the spoken text
+                // Run level 3 task
+                // Update the spoken text
                 CalculateCachedText(text);
-                // Only confirm yes/no if the 'next/proceed' prompt is not active
-                if (_wordReciteManager.isDecidingToProceedOrNot) {
-                    StartCoroutine(_wordReciteManager.CheckRecitedWord(text));
-                } else {
-                    ConfirmWhatUserSaid(text.ToLower());
-                }
+                ConfirmWhatUserSaid(text.ToLower());
             }
-
         }
 
         public void ConfirmWhatUserSaid(string text) {
