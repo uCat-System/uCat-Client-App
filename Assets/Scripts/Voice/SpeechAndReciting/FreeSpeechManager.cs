@@ -5,6 +5,7 @@ using EListeningState = WitListeningStateManager.ListeningState;
 using EConfirmationResponseType = ConfirmationHandler.ConfirmationResponseType;
 using EMenuActivationResponseType = UICommandHandler.MenuActivationResponseType;
 using EMenuNavigationResponseType = UICommandHandler.MenuNavigationResponseType;
+using EProceedResponseType = ConfirmationHandler.ProceedResponseType;
 using System.Collections;
 
 namespace MText
@@ -12,7 +13,6 @@ namespace MText
     public class FreeSpeechManager : MonoBehaviour
     {
         public UIManager _uiManager;
-
         public WordReciteManager _wordReciteManager;
         public Modular3DText partialText3D;
         public Modular3DText subtitleText3D;
@@ -24,7 +24,7 @@ namespace MText
 
         public string cachedText = "";
 
-        public bool isListening;
+        public bool micIsActive;
 
         public float hasBeenListeningForSeconds;
 
@@ -77,7 +77,14 @@ namespace MText
                 EConfirmationResponseType confirmationResponse = ConfirmationHandler.CheckIfConfirmationWasSpoken(text);
                 StartCoroutine(ProceedBasedOnConfirmation(confirmationResponse, originallyUtteredText));
             }
-            else if (_witListeningStateManager.RecitingWordsIsAllowed()) {
+
+            if (_witListeningStateManager.currentListeningState == EListeningState.ListeningForNextOrRepeat) {
+                // Listen for 'next' or 'repeat' (word recite)
+                Debug.Log("Checking if next or repeat was spoken: " + text);
+                EProceedResponseType proceedResponse = ConfirmationHandler.CheckIfProceedPhraseWasSpoken(text);
+                StartCoroutine(_wordReciteManager.HandleProceedResponse(proceedResponse));
+            }
+            if (_witListeningStateManager.RecitingWordsIsAllowed()) {
                 // Activate Tasks (recite words, etc) if in any valid reciting states
                 ActivateTasksBasedOnTranscription(text);
             }
@@ -115,33 +122,38 @@ namespace MText
         public void OnStartListening() {
             // Clear the text
             subtitleText3D.UpdateText("STARTED LISTENING");
-            isListening = true;
-            hasBeenListeningForSeconds = 0;
+            micIsActive = true;
+            if (_witListeningStateManager.TimeoutCountingIsAllowed()) {
+                hasBeenListeningForSeconds = 0;
+            }
         }
 
         public void OnStoppedListening() {
             // Clear the text
             subtitleText3D.UpdateText("STOPPED LISTENING: " + hasBeenListeningForSeconds + " seconds");
-            isListening = false;
+            micIsActive = false;
         }
 
         public void OnTimeOut() {
             // Clear the text
             subtitleText3D.UpdateText("TIMED OUT " + hasBeenListeningForSeconds + " seconds");
-            isListening = false;
+            micIsActive = false;
         }
 
         public void OnInactivity() {
-            // Clear the text
-            _witListeningStateManager.TransitionToState(EListeningState.NotListening);
-            subtitleText3D.UpdateText("INACTIVITY" + hasBeenListeningForSeconds + " seconds");
-            hasBeenListeningForSeconds = 0;
-            isListening = false;
-            _wordReciteManager.OnMicrophoneTimeOut();
+            // Do not time out if we are in the menu, etc. Only when reciting.
+            if (_witListeningStateManager.TimeoutCountingIsAllowed()) {
+                _witListeningStateManager.TransitionToState(EListeningState.NotListening);
+                micIsActive = false;
+                subtitleText3D.UpdateText("INACTIVITY" + hasBeenListeningForSeconds + " seconds");
+                hasBeenListeningForSeconds = 0;
+                _wordReciteManager.OnMicrophoneTimeOut();
+            }
         }
 
         void Update() {
-            if (isListening) {
+            // Only count seconds if the mic is active and we are reciting words (not in menu etc)
+            if (micIsActive && _witListeningStateManager.TimeoutCountingIsAllowed()) {
                 hasBeenListeningForSeconds += Time.deltaTime;
             }
 
@@ -157,7 +169,7 @@ namespace MText
                 _wordReciteManager.StartWordCheck(text);
           
             } else {
-                // Run level 3 task
+                 // Run level 3 task
                  // Update the spoken text
                 CalculateCachedText(text);
                 // Only confirm yes/no if the 'next/proceed' prompt is not active

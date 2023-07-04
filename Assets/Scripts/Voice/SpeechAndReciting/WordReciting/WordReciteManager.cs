@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using MText;
 using EListeningState = WitListeningStateManager.ListeningState;
-using EProceedResponseType = CheckRecitedWordHandler.ProceedResponseType;
+using EProceedResponseType = ConfirmationHandler.ProceedResponseType;
 using ECorrectResponseType = CheckRecitedWordHandler.CorrectResponseType;
 
 public class WordReciteManager : MonoBehaviour
@@ -190,14 +190,16 @@ public class WordReciteManager : MonoBehaviour
 
     public void GoToNextWordIfItExists()
     {
-        _witListeningStateManager.TransitionToState(EListeningState.ListeningForMenuActivationCommandsOnly);
         // If the next word does not exceed the limit
         if (currentWordOrSentenceIndex < activeList.Count-1)
         {
             currentWordOrSentenceIndex++;
+            Debug.Log("going to next word " + currentWordOrSentenceIndex);
+            _witListeningStateManager.TransitionToState(EListeningState.ListeningForMenuActivationCommandsOnly);
             StartCoroutine(StartCurrentWordCountdown());
         } else {
             // End of list
+            _witListeningStateManager.TransitionToState(EListeningState.ListeningForEverything);
             StartCoroutine(GameOver());
         }
     }
@@ -218,11 +220,11 @@ public class WordReciteManager : MonoBehaviour
             yield break;
         }
 
-        if (isDecidingToProceedOrNot) {
-            EProceedResponseType responseType = CheckRecitedWordHandler.CheckIfProceedPhraseSpoken(text);
-            ProceedOrNotBasedOnResponse(responseType);
-            yield break;
-        }
+        // if (isDecidingToProceedOrNot) {
+        //     EProceedResponseType responseType = ConfirmationHandler.CheckIfProceedPhraseWasSpoken(text);
+        //     HandleProceedResponse(responseType);
+        //     yield break;
+        // }
 
         // Compare the uttered text with the correct text
         ECorrectResponseType correctResponseType = CheckRecitedWordHandler.CheckIfWordOrSentenceIsCorrect(text, activeList[currentWordOrSentenceIndex]);
@@ -257,9 +259,9 @@ public class WordReciteManager : MonoBehaviour
         }
     }
 
-    public void ProceedOrNotBasedOnResponse(EProceedResponseType responseType) { 
-        Debug.Log("ProceedOrNotBasedOnResponse" + responseType);
-        switch (responseType) {
+    public IEnumerator HandleProceedResponse(EProceedResponseType proceedResponse) { 
+        Debug.Log("HandleProceedResponse" + proceedResponse);
+        switch (proceedResponse) {
             case EProceedResponseType.POSITIVE_PROCEED_RESPONSE:
                 _levelManager.LevelComplete();
                 isDecidingToProceedOrNot = false;
@@ -269,7 +271,8 @@ public class WordReciteManager : MonoBehaviour
                 isDecidingToProceedOrNot = false;
                 break;
             case EProceedResponseType.UNKNOWN_PROCEED_RESPONSE:
-                partialText3D.UpdateText(CheckRecitedWordHandler.proceedResponses[responseType]);
+                partialText3D.UpdateText(ConfirmationHandler.proceedResponses[proceedResponse]);
+                yield return new WaitForSeconds(2);
                 StartCoroutine(GameOver());
                 break;}
     }
@@ -335,9 +338,10 @@ public class WordReciteManager : MonoBehaviour
 
     IEnumerator GameOver()
     {
-        _scoreManager.DisplayScoreInPartialTextSection();
-        yield return new WaitForSeconds(3);
+        // _scoreManager.DisplayScoreInPartialTextSection();
+        yield return new WaitForSeconds(1);
         reciteText3D.UpdateText("Say 'next' to proceed.\nOr 'repeat' to repeat sentences.");
+        _witListeningStateManager.TransitionToState(EListeningState.ListeningForNextOrRepeat);
         isDecidingToProceedOrNot = true;
     }
 }

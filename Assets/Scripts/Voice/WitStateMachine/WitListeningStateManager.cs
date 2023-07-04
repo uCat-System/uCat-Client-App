@@ -16,6 +16,7 @@ public class WitListeningStateManager : MonoBehaviour
         ListeningForRecitedWordsOnly,
         ListeningForTaskMenuCommandsOnly, // navigates within the menu
         ListeningForConfirmation,
+        ListeningForNextOrRepeat,
 
         ListeningForLobbyMenuCommandsOnly, // including memo mode
     }
@@ -47,6 +48,12 @@ public class WitListeningStateManager : MonoBehaviour
     {
         { ListeningState.ListeningForEverything, true },
         { ListeningState.ListeningForMenuActivationCommandsOnly, true },
+    };
+
+    private static Dictionary<ListeningState, bool> validTimeoutCountingStates = new Dictionary<ListeningState, bool>
+    {
+        { ListeningState.ListeningForEverything, true },
+        { ListeningState.ListeningForRecitedWordsOnly, true }
     };
 
     public bool CurrentStateIsAllowedInDictionary(Dictionary<ListeningState, bool> dictToSearch) {
@@ -93,6 +100,10 @@ public class WitListeningStateManager : MonoBehaviour
         return CurrentStateIsAllowedInDictionary(validMenuActivationStates);
     }
 
+    public bool TimeoutCountingIsAllowed() {
+        return CurrentStateIsAllowedInDictionary(validTimeoutCountingStates);
+    }
+
     public void TransitionToRelevantMenuNavigationStateBasedOnLevel() {
         if (scene != "Level3") {
             TransitionToState(ListeningState.ListeningForTaskMenuCommandsOnly);
@@ -110,35 +121,6 @@ public class WitListeningStateManager : MonoBehaviour
         }
     }
 
-    void Update() {
-        // update the states based on keypresses 1-7
-        if (Input.GetKeyDown(KeyCode.Alpha1)) {
-            TransitionToState(ListeningState.ListeningForEverything);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2)) {
-            TransitionToState(ListeningState.ListeningForMenuActivationCommandsOnly);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3)) {
-            TransitionToState(ListeningState.ListeningForRecitedWordsOnly);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha4)) {
-            TransitionToState(ListeningState.ListeningForTaskMenuCommandsOnly);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha5)) {
-            TransitionToState(ListeningState.ListeningForConfirmation);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha6)) {
-            TransitionToState(ListeningState.ListeningForLobbyMenuCommandsOnly);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha7)) {
-            TransitionToState(ListeningState.NotListening);
-        }
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            Debug.Log(CurrentStateIsAllowedInDictionary(validRecitingStates));
-        }
-
-    }
-
     public void StoppedListening() {
         Debug.LogError("Stopped! Reactivating");
         StartCoroutine(ResetToCurrentListeningState());
@@ -152,7 +134,7 @@ public class WitListeningStateManager : MonoBehaviour
         TransitionToState(currentListeningState);
     }
 
-    public IEnumerator TurnWitOffAndOn() {
+    public IEnumerator TurnWitActivationOffAndOn() {
         // Turn it off and on
         wit.SetActive(true);
         Wit witComponent = wit.GetComponent<Wit>();
@@ -160,19 +142,6 @@ public class WitListeningStateManager : MonoBehaviour
         yield return new WaitForSeconds(0.0000001f);
         witComponent.Activate();
     }
-
-    // void DisableOtherWitsAndEnableThisOne(string witToEnable) {
-    //      for (int i = 0; i < wits.Length; i++)
-    //         {  
-    //             Wit wit = wits[i].GetComponent<Wit>();
-    //              if (wits[i].name == witToEnable) {
-    //                   wits[i].SetActive(true);
-    //                   StartCoroutine(TurnWitOffAndOn(wit));
-    //              } else {
-    //                   wits[i].SetActive(false);
-    //              } 
-    //         }
-    // }
 
     void DisableWit() {
         wit.SetActive(false);
@@ -190,19 +159,22 @@ public class WitListeningStateManager : MonoBehaviour
                     DisableWit();
                     break;
                 case ListeningState.ListeningForMenuActivationCommandsOnly:
-                    StartCoroutine(TurnWitOffAndOn());
+                    StartCoroutine(TurnWitActivationOffAndOn());
                     break;
                 case ListeningState.ListeningForEverything:
-                    StartCoroutine(TurnWitOffAndOn());
+                    StartCoroutine(TurnWitActivationOffAndOn());
                     break;
                 case ListeningState.ListeningForTaskMenuCommandsOnly:
-                    StartCoroutine(TurnWitOffAndOn());
+                    StartCoroutine(TurnWitActivationOffAndOn());
                     break;
                 case ListeningState.ListeningForConfirmation:
-                    StartCoroutine(TurnWitOffAndOn());
+                    StartCoroutine(TurnWitActivationOffAndOn());
                     break;
                 case ListeningState.ListeningForLobbyMenuCommandsOnly:
-                    StartCoroutine(TurnWitOffAndOn());
+                    StartCoroutine(TurnWitActivationOffAndOn());
+                    break;
+                case ListeningState.ListeningForNextOrRepeat:
+                    StartCoroutine(TurnWitActivationOffAndOn());
                     break;
                 default:
                     Debug.LogError("Invalid state transition." + nextState);

@@ -8,13 +8,6 @@ public class CheckRecitedWordHandler
     // This class is used to handle recited words from the user.
     // </Summary>
 
-    public enum ProceedResponseType
-    {
-        POSITIVE_PROCEED_RESPONSE,
-        NEGATIVE_PROCEED_RESPONSE,
-        UNKNOWN_PROCEED_RESPONSE
-    }
-
     public enum CorrectResponseType
     {
         POSITIVE_CORRECT_RESPONSE,
@@ -22,12 +15,8 @@ public class CheckRecitedWordHandler
         UNKNOWN_CORRECT_RESPONSE
     }
 
-    // Proceeding
-    private static Dictionary<string, ProceedResponseType> proceedActions;
-    public static Dictionary<Enum, string> proceedResponses;
 
     public static float timeBetweenWordsInSeconds = 2f;
-
 
     // Checking words
 
@@ -56,17 +45,6 @@ public class CheckRecitedWordHandler
             { CorrectResponseType.NEGATIVE_CORRECT_RESPONSE, recitedWordData.negativeCorrectResponse },
             { CorrectResponseType.UNKNOWN_CORRECT_RESPONSE, recitedWordData.unknownCorrectResponse }
         };
-
-        proceedActions = new Dictionary<string, ProceedResponseType>
-        {
-            { "next", ProceedResponseType.POSITIVE_PROCEED_RESPONSE },
-            { "repeat", ProceedResponseType.NEGATIVE_PROCEED_RESPONSE }
-        };
-
-        proceedResponses = new Dictionary<Enum, string>
-        {
-            { ProceedResponseType.UNKNOWN_PROCEED_RESPONSE, "Sorry, I didn't understand that. Please say yes or no." }
-        };
     }
 
     public static CorrectResponseType CheckIfWordOrSentenceIsCorrect(string utteredWordOrSentence, string wordToRecite)
@@ -90,26 +68,5 @@ public class CheckRecitedWordHandler
             return correctActions[false];
         }
 
-    }
-
-    public static ProceedResponseType CheckIfProceedPhraseSpoken(string text)
-    {
-        // check if any of the arguments are null
-        if (text == null)
-        {
-            Debug.LogError("Text is null");
-            return ProceedResponseType.UNKNOWN_PROCEED_RESPONSE;
-        }
-
-        string lowercaseText = text.ToLower();
-
-        if (proceedActions.ContainsKey(lowercaseText))
-        {
-            return proceedActions[lowercaseText];
-        }
-        else
-        {
-            return ProceedResponseType.UNKNOWN_PROCEED_RESPONSE;
-        }
     }
 }
