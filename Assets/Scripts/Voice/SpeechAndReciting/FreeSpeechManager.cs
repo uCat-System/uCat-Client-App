@@ -24,9 +24,9 @@ namespace MText
 
         public string cachedText = "";
 
-        public bool micIsActive;
+        public bool isCurrentlyCountingTowardsTimeout;
 
-        public float hasBeenListeningForSeconds;
+        public float currentTimeoutTimerInSeconds;
 
         Scene scene;
 
@@ -122,42 +122,50 @@ namespace MText
         public void OnStartListening() {
             // Clear the text
             subtitleText3D.UpdateText("STARTED LISTENING");
-            micIsActive = true;
+            isCurrentlyCountingTowardsTimeout = true;
             if (_witListeningStateManager.TimeoutCountingIsAllowed()) {
-                hasBeenListeningForSeconds = 0;
+                currentTimeoutTimerInSeconds = 0;
             }
+        }
+
+        public void UserSaidSomething() {
+            // Clear the text
+            subtitleText3D.UpdateText("MIC DATA SENT");
+            Debug.Log("MIC DATA SENT");
+            currentTimeoutTimerInSeconds = 0;
+            isCurrentlyCountingTowardsTimeout = false;
         }
 
         public void OnStoppedListening() {
             // Clear the text
-            subtitleText3D.UpdateText("STOPPED LISTENING: " + hasBeenListeningForSeconds + " seconds");
-            micIsActive = false;
+            subtitleText3D.UpdateText("STOPPED LISTENING: " + currentTimeoutTimerInSeconds + " seconds");
+            isCurrentlyCountingTowardsTimeout = false;
         }
 
         public void OnTimeOut() {
             // Clear the text
-            subtitleText3D.UpdateText("TIMED OUT " + hasBeenListeningForSeconds + " seconds");
-            micIsActive = false;
+            subtitleText3D.UpdateText("TIMED OUT " + currentTimeoutTimerInSeconds + " seconds");
+            isCurrentlyCountingTowardsTimeout = false;
         }
 
         public void OnInactivity() {
             // Do not time out if we are in the menu, etc. Only when reciting.
             if (_witListeningStateManager.TimeoutCountingIsAllowed()) {
                 _witListeningStateManager.TransitionToState(EListeningState.NotListening);
-                micIsActive = false;
-                subtitleText3D.UpdateText("INACTIVITY" + hasBeenListeningForSeconds + " seconds");
-                hasBeenListeningForSeconds = 0;
+                isCurrentlyCountingTowardsTimeout = false;
+                subtitleText3D.UpdateText("INACTIVITY" + currentTimeoutTimerInSeconds + " seconds");
+                currentTimeoutTimerInSeconds = 0;
                 _wordReciteManager.OnMicrophoneTimeOut();
             }
         }
 
         void Update() {
             // Only count seconds if the mic is active and we are reciting words (not in menu etc)
-            if (micIsActive && _witListeningStateManager.TimeoutCountingIsAllowed()) {
-                hasBeenListeningForSeconds += Time.deltaTime;
+            if (isCurrentlyCountingTowardsTimeout && _witListeningStateManager.TimeoutCountingIsAllowed()) {
+                currentTimeoutTimerInSeconds += Time.deltaTime;
             }
 
-            if (hasBeenListeningForSeconds > 5) {
+            if (currentTimeoutTimerInSeconds > 5) {
                 OnInactivity();
             }
         }

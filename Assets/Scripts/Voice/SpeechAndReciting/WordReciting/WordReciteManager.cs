@@ -112,6 +112,8 @@ public class WordReciteManager : MonoBehaviour
 
     public IEnumerator StartCurrentWordCountdown()
     {
+        _witListeningStateManager.TransitionToState(EListeningState.ListeningForMenuActivationCommandsOnly);
+
         // Clear text
         subtitleText3D.UpdateText("");
 

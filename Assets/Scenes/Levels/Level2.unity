@@ -2298,6 +2298,10 @@ MonoBehaviour:
     _overriddenCallbacks:
     - _onPartialTranscription
     - _onFullTranscription
+    - _onStartListening
+    - _onStoppedListening
+    - _onMicDataSent
+    - _onMinimumWakeThresholdHit
     _onRequestOptionSetup:
       m_PersistentCalls:
         m_Calls: []
@@ -2312,7 +2316,19 @@ MonoBehaviour:
         m_Calls: []
     _onMinimumWakeThresholdHit:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 4858736875500326043}
+          m_TargetAssemblyTypeName: MText.FreeSpeechManager, Assembly-CSharp
+          m_MethodName: UserSaidSomething
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     _onMicDataSent:
       m_PersistentCalls:
         m_Calls: []
@@ -2351,10 +2367,34 @@ MonoBehaviour:
         m_Calls: []
     _onStartListening:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 4858736875500326043}
+          m_TargetAssemblyTypeName: MText.FreeSpeechManager, Assembly-CSharp
+          m_MethodName: OnStartListening
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     _onStoppedListening:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 4858736875500326043}
+          m_TargetAssemblyTypeName: MText.FreeSpeechManager, Assembly-CSharp
+          m_MethodName: OnStoppedListening
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     _onMicLevelChanged:
       m_PersistentCalls:
         m_Calls: []
@@ -2475,6 +2515,8 @@ MonoBehaviour:
   subtitleText3D: {fileID: 1876476228}
   _witListeningStateManager: {fileID: 4858736875500326042}
   cachedText: 
+  isCurrentlyCountingTowardsTimeout: 0
+  currentTimeoutTimerInSeconds: 0
 --- !u!114 &4858736875500326045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2506,7 +2548,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   catAnimationDriver: {fileID: 648954739}
-  isDecidingToProceedOrNot: 0
   wordLists: {fileID: 11400000, guid: 5be0ea6368eaed34fa1eb736acb4009f, type: 2}
   correctColour: {fileID: 2100000, guid: 5562c698b21c8924a84fa2abb367f9cd, type: 2}
   incorrectColour: {fileID: 2100000, guid: dfa4872a000de054bb0c1c830a263904, type: 2}
