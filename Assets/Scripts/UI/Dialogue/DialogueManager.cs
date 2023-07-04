@@ -90,6 +90,7 @@ public class DialogueManager : MonoBehaviour
 
         SetDialogueTextAnimationAndSound(currentDialogueList, currentAnimationList, currentAudioList);
         yield return new WaitWhile(() => catAudioSource.isPlaying);
+        yield return new WaitForSeconds(UcatDialogueHandler.timeBetweenLinesInSeconds);
         
         Debug.Log("Checking if we should continue" + UcatDialogueHandler.currentDialogueOptionIndex + " " + currentDialogueList.Count + " " + currentAnimationList.Count);
         if (UcatDialogueHandler.currentDialogueOptionIndex >= currentDialogueList.Count-1 || currentDialogueList == null || currentAnimationList == null) {

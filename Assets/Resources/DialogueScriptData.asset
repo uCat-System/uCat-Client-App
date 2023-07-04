@@ -30,4 +30,4 @@ MonoBehaviour:
   level3ScriptDialogueOptions: []
   level3ScriptDialogueAnimations: 
   level3ScriptDialogueAudio: []
-  timeBetweenLinesInSeconds: 5
+  timeBetweenLinesInSeconds: 1
