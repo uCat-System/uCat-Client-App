@@ -179,7 +179,7 @@ public class WordReciteManager : MonoBehaviour
     {
         reciteText3D.UpdateText("Timed out! Moving on...");
         yield return new WaitForSeconds(2);
-        GoToNextWord();
+        GoToNextWordIfItExists();
     }
 
     public void OnMicrophoneInactivity()
@@ -188,17 +188,18 @@ public class WordReciteManager : MonoBehaviour
         StartCoroutine(ChangeTimeOutText());
     }
 
-    public void GoToNextWord()
+    public void GoToNextWordIfItExists()
     {
         _witListeningStateManager.TransitionToState(EListeningState.ListeningForMenuActivationCommandsOnly);
         // If the next word does not exceed the limit
-        if (currentWordOrSentenceIndex < currentWordOrSentenceList.Count-1)
+        if (currentWordOrSentenceIndex < activeList.Count-1)
         {
             currentWordOrSentenceIndex++;
+            StartCoroutine(StartCurrentWordCountdown());
+        } else {
+            // End of list
+            StartCoroutine(GameOver());
         }
-        
-        StartCoroutine(StartCurrentWordCountdown());
-
     }
     public void RepeatSameWord()
     {
@@ -289,7 +290,7 @@ public class WordReciteManager : MonoBehaviour
     {
         if (currentWordOrSentenceIndex < activeList.Count - 1)
         {
-            GoToNextWord();
+            GoToNextWordIfItExists();
         }
 
         else

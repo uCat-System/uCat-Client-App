@@ -25,7 +25,7 @@ public class WitListeningStateManager : MonoBehaviour
     public UIManager _uiManager;
     public ListeningState currentListeningState;
     public WordReciteManager _wordReciteManager;
-    public GameObject[] wits;
+    public GameObject wit;
 
     // This dict will return true if we are in any of the allowed reciting states
 
@@ -152,31 +152,30 @@ public class WitListeningStateManager : MonoBehaviour
         TransitionToState(currentListeningState);
     }
 
-    public IEnumerator TurnWitOffAndOn(Wit wit) {
+    public IEnumerator TurnWitOffAndOn() {
         // Turn it off and on
-        wit.Deactivate();
-        yield return new WaitForSeconds(0.00001f);
-        wit.Activate();
+        wit.SetActive(true);
+        Wit witComponent = wit.GetComponent<Wit>();
+        witComponent.Deactivate();
+        yield return new WaitForSeconds(0.0000001f);
+        witComponent.Activate();
     }
 
-    void DisableOtherWitsAndEnableThisOne(string witToEnable) {
-         for (int i = 0; i < wits.Length; i++)
-            {  
-                Wit wit = wits[i].GetComponent<Wit>();
-                 if (wits[i].name == witToEnable) {
-                      wits[i].SetActive(true);
-                      StartCoroutine(TurnWitOffAndOn(wit));
-                 } else {
-                      wits[i].SetActive(false);
-                 } 
-            }
-    }
+    // void DisableOtherWitsAndEnableThisOne(string witToEnable) {
+    //      for (int i = 0; i < wits.Length; i++)
+    //         {  
+    //             Wit wit = wits[i].GetComponent<Wit>();
+    //              if (wits[i].name == witToEnable) {
+    //                   wits[i].SetActive(true);
+    //                   StartCoroutine(TurnWitOffAndOn(wit));
+    //              } else {
+    //                   wits[i].SetActive(false);
+    //              } 
+    //         }
+    // }
 
-    void DisableAllWits() {
-         for (int i = 0; i < wits.Length; i++)
-            {  
-                wits[i].SetActive(false);
-            }
+    void DisableWit() {
+        wit.SetActive(false);
     }
  
     // This is called from the WitListeningStateMachine script using actual enum values.
@@ -188,24 +187,22 @@ public class WitListeningStateManager : MonoBehaviour
             switch (nextState)
             {
                 case ListeningState.NotListening:
-                    DisableAllWits();
+                    DisableWit();
                     break;
                 case ListeningState.ListeningForMenuActivationCommandsOnly:
-                    DisableOtherWitsAndEnableThisOne("MenuListeningWit");
+                    StartCoroutine(TurnWitOffAndOn());
                     break;
                 case ListeningState.ListeningForEverything:
-
-                    DisableOtherWitsAndEnableThisOne("EverythingWit");
+                    StartCoroutine(TurnWitOffAndOn());
                     break;
                 case ListeningState.ListeningForTaskMenuCommandsOnly:
-                    DisableOtherWitsAndEnableThisOne("TaskMenuNavigationWit");
+                    StartCoroutine(TurnWitOffAndOn());
                     break;
                 case ListeningState.ListeningForConfirmation:
-                    Debug.Log("Starting confirmation: " + nextState);
-
-                     DisableOtherWitsAndEnableThisOne("ConfirmationWit");
+                    StartCoroutine(TurnWitOffAndOn());
                     break;
                 case ListeningState.ListeningForLobbyMenuCommandsOnly:
+                    StartCoroutine(TurnWitOffAndOn());
                     break;
                 default:
                     Debug.LogError("Invalid state transition." + nextState);

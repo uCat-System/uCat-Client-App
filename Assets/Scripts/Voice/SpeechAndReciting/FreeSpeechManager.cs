@@ -24,22 +24,16 @@ namespace MText
 
         public string cachedText = "";
 
+        public bool isListening;
+
+        public float hasBeenListeningForSeconds;
+
         Scene scene;
 
         void Start()
         {   
             subtitleText3D = GameObject.FindWithTag("SubtitleText3D").GetComponent<Modular3DText>();
             scene = SceneManager.GetActiveScene();
-        }
-    
-        public void StoppedListeningDueToInactivity()
-        {
-            HandleInactivityFailure();
-        }
-
-        public void StoppedListeningDueToTimeout()
-        {
-            HandleInactivityFailure();
         }
 
         public void HandlePartialTranscription(string text)
@@ -118,9 +112,42 @@ namespace MText
             }
         }
 
-        public void HandleInactivityFailure()
-        {
+        public void OnStartListening() {
+            // Clear the text
+            subtitleText3D.UpdateText("STARTED LISTENING");
+            isListening = true;
+            hasBeenListeningForSeconds = 0;
+        }
+
+        public void OnStoppedListening() {
+            // Clear the text
+            subtitleText3D.UpdateText("STOPPED LISTENING: " + hasBeenListeningForSeconds + " seconds");
+            isListening = false;
+        }
+
+        public void OnTimeOut() {
+            // Clear the text
+            subtitleText3D.UpdateText("TIMED OUT " + hasBeenListeningForSeconds + " seconds");
+            isListening = false;
+        }
+
+        public void OnInactivity() {
+            // Clear the text
+            _witListeningStateManager.TransitionToState(EListeningState.NotListening);
+            subtitleText3D.UpdateText("INACTIVITY" + hasBeenListeningForSeconds + " seconds");
+            hasBeenListeningForSeconds = 0;
+            isListening = false;
             _wordReciteManager.OnMicrophoneTimeOut();
+        }
+
+        void Update() {
+            if (isListening) {
+                hasBeenListeningForSeconds += Time.deltaTime;
+            }
+
+            if (hasBeenListeningForSeconds > 5) {
+                OnInactivity();
+            }
         }
 
         public void ActivateTasksBasedOnTranscription(string text)
