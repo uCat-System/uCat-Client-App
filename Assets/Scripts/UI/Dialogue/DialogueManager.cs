@@ -41,9 +41,8 @@ public class DialogueManager : MonoBehaviour
             Debug.Log("Update catAnimation " + dialogueAnimations[UcatDialogueHandler.currentDialogueOptionIndex]);
 
             // Play the dialogue audio
-            catAudioSource.clip = dialogueAudio[UcatDialogueHandler.currentDialogueOptionIndex];
-            catAudioSource.Play();
-
+            // catAudioSource.clip = dialogueAudio[UcatDialogueHandler.currentDialogueOptionIndex];
+            catAudioSource.PlayOneShot(dialogueAudio[UcatDialogueHandler.currentDialogueOptionIndex]);
         }
         else
         {
@@ -90,7 +89,7 @@ public class DialogueManager : MonoBehaviour
         }
 
         SetDialogueTextAnimationAndSound(currentDialogueList, currentAnimationList, currentAudioList);
-        yield return new WaitForSeconds(UcatDialogueHandler.timeBetweenLinesInSeconds);
+        yield return new WaitWhile(() => catAudioSource.isPlaying);
         
         Debug.Log("Checking if we should continue" + UcatDialogueHandler.currentDialogueOptionIndex + " " + currentDialogueList.Count + " " + currentAnimationList.Count);
         if (UcatDialogueHandler.currentDialogueOptionIndex >= currentDialogueList.Count-1 || currentDialogueList == null || currentAnimationList == null) {
@@ -103,7 +102,6 @@ public class DialogueManager : MonoBehaviour
             UcatDialogueHandler.IncrementDialogueOption();
             StartCoroutine(CycleThroughDialogue(scene));
         }
-
     }
 
     void EndOfDialogue() {

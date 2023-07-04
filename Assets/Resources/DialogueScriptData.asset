@@ -17,8 +17,8 @@ MonoBehaviour:
   - 'When the phrase turns green, try to repeat after me:'
   introScriptDialogueAnimations: 0200000001000000000000000100000000000000000000000100000000000000
   introScriptDialogueAudio:
-  - {fileID: 8300000, guid: fe8140c62f08ab84fb8f5e1b0e59d517, type: 3}
-  - {fileID: 8300000, guid: 5968cac7831adf2459e56bc237254118, type: 3}
+  - {fileID: 8300000, guid: 83f7000155daddd47a0afed6f8be9aed, type: 3}
+  - {fileID: 8300000, guid: dae20ec920e875d429297d5aca51081e, type: 3}
   level1ScriptDialogueOptions:
   - here is line 1 that ucat says
   - here is line 2
