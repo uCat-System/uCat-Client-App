@@ -146,6 +146,12 @@ public class WitListeningStateManager : MonoBehaviour
     void DisableWit() {
         wit.SetActive(false);
     }
+
+    void Update() {
+        if (Input.GetKeyDown(KeyCode.Alpha1)) {
+            StartCoroutine(TurnWitActivationOffAndOn());
+        }
+    }
  
     // This is called from the WitListeningStateMachine script using actual enum values.
 
