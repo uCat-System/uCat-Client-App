@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UcatDialogueHandler
+public static class UcatDialogueHandler
 {
     // Variable to track the current dialogue option
     public static int currentDialogueOptionIndex;
