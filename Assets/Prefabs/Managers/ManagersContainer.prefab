@@ -36,7 +36,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8343668746282422105
 MonoBehaviour:
@@ -45,17 +45,17 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8343668746282422127}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e5ade88bcc11f534ba90460b5a603fe6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   catAnimationDriver: {fileID: 0}
-  wordLists: {fileID: 11400000, guid: 5be0ea6368eaed34fa1eb736acb4009f, type: 2}
+  wordLists: {fileID: 11400000, guid: a3a83d047afb6c943a61e130941a77f0, type: 2}
   correctColour: {fileID: 2100000, guid: 5562c698b21c8924a84fa2abb367f9cd, type: 2}
   incorrectColour: {fileID: 2100000, guid: dfa4872a000de054bb0c1c830a263904, type: 2}
-  defaultColour: {fileID: 2100000, guid: ac605445953bb8d448dde47a525d047f, type: 2}
-  listeningColour: {fileID: 2100000, guid: f8f321e22bea45a49bb0a21221efaa58, type: 2}
+  defaultColour: {fileID: 2100000, guid: a4049ec7b242909488a39efb39d014ea, type: 2}
+  listeningColour: {fileID: 2100000, guid: 5562c698b21c8924a84fa2abb367f9cd, type: 2}
   _freeSpeechManager: {fileID: 8343668746282422108}
   _witListeningStateManager: {fileID: 8343668746282422109}
   _scoreManager: {fileID: 8343668746282422110}
@@ -79,7 +79,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _uiManager: {fileID: 8343668746282422106}
-  _levelManager: {fileID: 0}
+  _levelManager: {fileID: 8343668746282422111}
   _wordReciteManager: {fileID: 8343668746282422105}
   partialText3D: {fileID: 0}
   subtitleText3D: {fileID: 0}
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc45d88a8119af14aa4ebaaf255ce6c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levelManager: {fileID: 0}
+  _levelManager: {fileID: 8343668746282422111}
   animator: {fileID: 0}
   textElements: {fileID: 0}
   _witListeningStateManager: {fileID: 8343668746282422109}
@@ -166,6 +166,6 @@ MonoBehaviour:
   subtitleText: {fileID: 0}
   catAnimationDriver: {fileID: 0}
   _levelManager: {fileID: 8343668746282422111}
-  _wordReciteManager: {fileID: 0}
+  _wordReciteManager: {fileID: 8343668746282422105}
   catAudioSource: {fileID: 0}
   introDialogueIsComplete: 0
