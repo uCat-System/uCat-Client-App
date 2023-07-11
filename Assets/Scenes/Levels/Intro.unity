@@ -1804,17 +1804,49 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: a3a83d047afb6c943a61e130941a77f0, type: 2}
     - target: {fileID: 8343668746282422105, guid: eeb381f8f105aa04aab5137abf3cd87b, type: 3}
+      propertyPath: reciteText3D
+      value: 
+      objectReference: {fileID: 2099836998}
+    - target: {fileID: 8343668746282422105, guid: eeb381f8f105aa04aab5137abf3cd87b, type: 3}
       propertyPath: defaultColour
       value: 
       objectReference: {fileID: 2100000, guid: a4049ec7b242909488a39efb39d014ea, type: 2}
     - target: {fileID: 8343668746282422105, guid: eeb381f8f105aa04aab5137abf3cd87b, type: 3}
+      propertyPath: partialText3D
+      value: 
+      objectReference: {fileID: 760428953}
+    - target: {fileID: 8343668746282422105, guid: eeb381f8f105aa04aab5137abf3cd87b, type: 3}
+      propertyPath: subtitleText3D
+      value: 
+      objectReference: {fileID: 3211107781574464607}
+    - target: {fileID: 8343668746282422105, guid: eeb381f8f105aa04aab5137abf3cd87b, type: 3}
       propertyPath: listeningColour
       value: 
       objectReference: {fileID: 2100000, guid: 5562c698b21c8924a84fa2abb367f9cd, type: 2}
+    - target: {fileID: 8343668746282422105, guid: eeb381f8f105aa04aab5137abf3cd87b, type: 3}
+      propertyPath: catAnimationDriver
+      value: 
+      objectReference: {fileID: 2070328622}
+    - target: {fileID: 8343668746282422105, guid: eeb381f8f105aa04aab5137abf3cd87b, type: 3}
+      propertyPath: reciteBoardAudioSource
+      value: 
+      objectReference: {fileID: 3211107781574464606}
     - target: {fileID: 8343668746282422106, guid: eeb381f8f105aa04aab5137abf3cd87b, type: 3}
       propertyPath: menu
       value: 
       objectReference: {fileID: 858645785}
+    - target: {fileID: 8343668746282422106, guid: eeb381f8f105aa04aab5137abf3cd87b, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 858645786}
+    - target: {fileID: 8343668746282422106, guid: eeb381f8f105aa04aab5137abf3cd87b, type: 3}
+      propertyPath: textElements
+      value: 
+      objectReference: {fileID: 3211107781574464608}
+    - target: {fileID: 8343668746282422106, guid: eeb381f8f105aa04aab5137abf3cd87b, type: 3}
+      propertyPath: _levelManager
+      value: 
+      objectReference: {fileID: 1937571876}
     - target: {fileID: 8343668746282422108, guid: eeb381f8f105aa04aab5137abf3cd87b, type: 3}
       propertyPath: _levelManager
       value: 
