@@ -1430,10 +1430,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1241855630}
     - target: {fileID: 3505799383072129518, guid: eeb381f8f105aa04aab5137abf3cd87b, type: 3}
-      propertyPath: subtitleText
-      value: 
-      objectReference: {fileID: 1241855630}
-    - target: {fileID: 3505799383072129518, guid: eeb381f8f105aa04aab5137abf3cd87b, type: 3}
       propertyPath: catAudioSource
       value: 
       objectReference: {fileID: 3211107781574464606}
@@ -1441,10 +1437,6 @@ PrefabInstance:
       propertyPath: catAnimationDriver
       value: 
       objectReference: {fileID: 2070328622}
-    - target: {fileID: 8343668746282422105, guid: eeb381f8f105aa04aab5137abf3cd87b, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8343668746282422105, guid: eeb381f8f105aa04aab5137abf3cd87b, type: 3}
       propertyPath: reciteText3D
       value: 
@@ -1657,14 +1649,6 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 1040507445}
     m_Modifications:
-    - target: {fileID: 2119053305, guid: 74ce51154cf56e14db799fe9c14bb97f, type: 3}
-      propertyPath: updatedAfterStyleUpdateOnPrefabInstances
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3211107781258915269, guid: 74ce51154cf56e14db799fe9c14bb97f, type: 3}
-      propertyPath: updatedAfterStyleUpdateOnPrefabInstances
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3211107781863502236, guid: 74ce51154cf56e14db799fe9c14bb97f, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -1713,18 +1697,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerAndBoard
       objectReference: {fileID: 0}
-    - target: {fileID: 3600330948901486828, guid: 74ce51154cf56e14db799fe9c14bb97f, type: 3}
-      propertyPath: updatedAfterStyleUpdateOnPrefabInstances
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5249430434132939676, guid: 74ce51154cf56e14db799fe9c14bb97f, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 732658413}
-    - target: {fileID: 7356684955875389533, guid: 74ce51154cf56e14db799fe9c14bb97f, type: 3}
-      propertyPath: updatedAfterStyleUpdateOnPrefabInstances
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7497548650100249515, guid: 74ce51154cf56e14db799fe9c14bb97f, type: 3}
       propertyPath: m_Mesh
       value: 

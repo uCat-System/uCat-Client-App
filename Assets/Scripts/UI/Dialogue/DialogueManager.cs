@@ -15,12 +15,9 @@ public class DialogueManager : MonoBehaviour
 
     public AudioSource catAudioSource;
 
-    public bool introDialogueIsComplete;
-
     void Start()
     {
         // uCat begins idle so that the first anim can play properly
-        introDialogueIsComplete = false;
         catAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Idle;
         StartCoroutine(CycleThroughDialogue(_levelManager.currentLevel));
     }
@@ -51,6 +48,8 @@ public class DialogueManager : MonoBehaviour
     }
 
     private IEnumerator CycleThroughDialogue(string scene) {
+
+
         // TODO move this out of ienumerator, only need to do it once
         Debug.Log("Cycling through with level " + scene);
 
@@ -88,6 +87,13 @@ public class DialogueManager : MonoBehaviour
                 break;
         }
 
+        if (currentDialogueList.Count == 0)
+        {
+            Debug.LogError("No dialogue lines found");
+            EndOfDialogue();
+            yield break;
+        }
+
         SetDialogueTextAnimationAndSound(currentDialogueList, currentAnimationList, currentAudioList);
         yield return new WaitWhile(() => catAudioSource.isPlaying);
         yield return new WaitForSeconds(UcatDialogueHandler.timeBetweenLinesInSeconds);
@@ -108,27 +114,8 @@ public class DialogueManager : MonoBehaviour
     void EndOfDialogue() {
         UcatDialogueHandler.currentDialogueOptionIndex = 0;
         catAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Idle;
+        _wordReciteManager.enabled = true;
         dialogueText.UpdateText("");
-        switch (_levelManager.currentLevel) {
-            case "Intro":
-                introDialogueIsComplete = true;
-                _wordReciteManager.enabled = true;
-                // Some function in wordrecitemanager to test the hello thing
-                break;
-            case "Level1":
-                _wordReciteManager.enabled = true;
-                // TODO: do something here
-                break;
-            case "Level2":
-                // TODO: do something here
-                break;
-            case "Level3":
-                // TODO: do something here
-                break;
-            default:
-                Debug.LogError("Dictionary not setup for: " + _levelManager.currentLevel);
-                break;
-        }
     }
 
     void Update()

@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d69f5f0db4c0d694184819d14f4b2bc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  subtitleText: {fileID: 0}
+  dialogueText: {fileID: 0}
   catAnimationDriver: {fileID: 0}
   _levelManager: {fileID: 8343668746282422111}
   _wordReciteManager: {fileID: 8343668746282422105}
