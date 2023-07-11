@@ -159,20 +159,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45d100e06f4a0744c8728e86700b5472, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: Could you say that one again?
-  oldText: Could you say that one again?
+  _text: 
+  oldText: 
   wordArray:
-  - Could
-  - ' '
-  - you
-  - ' '
-  - say
-  - ' '
-  - that
-  - ' '
-  - one
-  - ' '
-  - again?
+  - 
   characterObjectList: []
   _allcharacterObjectList:
   - {fileID: 0}
@@ -3157,11 +3147,11 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 8582aee3c51dcd24fbd29694f8788a8e, type: 2}
     - target: {fileID: 5679632975711472796, guid: 7de4a9e7ce2cf424e9e77acca7673856, type: 3}
       propertyPath: _text
-      value: Thirty
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5679632975711472796, guid: 7de4a9e7ce2cf424e9e77acca7673856, type: 3}
       propertyPath: oldText
-      value: Thirty
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5679632975711472796, guid: 7de4a9e7ce2cf424e9e77acca7673856, type: 3}
       propertyPath: _material
@@ -3169,11 +3159,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: a4049ec7b242909488a39efb39d014ea, type: 2}
     - target: {fileID: 5679632975711472796, guid: 7de4a9e7ce2cf424e9e77acca7673856, type: 3}
       propertyPath: wordArray.Array.data[0]
-      value: Thirty
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5679632975711472796, guid: 7de4a9e7ce2cf424e9e77acca7673856, type: 3}
       propertyPath: updatedAfterStyleUpdateOnPrefabInstances
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6031666213536457141, guid: 7de4a9e7ce2cf424e9e77acca7673856, type: 3}
       propertyPath: _font
@@ -3181,11 +3171,11 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 8582aee3c51dcd24fbd29694f8788a8e, type: 2}
     - target: {fileID: 6031666213536457141, guid: 7de4a9e7ce2cf424e9e77acca7673856, type: 3}
       propertyPath: _text
-      value: Thirsty
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6031666213536457141, guid: 7de4a9e7ce2cf424e9e77acca7673856, type: 3}
       propertyPath: oldText
-      value: Thirsty
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6031666213536457141, guid: 7de4a9e7ce2cf424e9e77acca7673856, type: 3}
       propertyPath: _material
@@ -3193,11 +3183,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: a4049ec7b242909488a39efb39d014ea, type: 2}
     - target: {fileID: 6031666213536457141, guid: 7de4a9e7ce2cf424e9e77acca7673856, type: 3}
       propertyPath: wordArray.Array.data[0]
-      value: Thirsty
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6031666213536457141, guid: 7de4a9e7ce2cf424e9e77acca7673856, type: 3}
       propertyPath: updatedAfterStyleUpdateOnPrefabInstances
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8172365575194481798, guid: 7de4a9e7ce2cf424e9e77acca7673856, type: 3}
       propertyPath: m_TagString

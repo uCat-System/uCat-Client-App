@@ -5,7 +5,7 @@ using System.Collections;
 
 public class DialogueManager : MonoBehaviour
 {
-    public Modular3DText subtitleText;
+    public Modular3DText dialogueText;
 
     public AnimationDriver catAnimationDriver;
 
@@ -32,7 +32,7 @@ public class DialogueManager : MonoBehaviour
         if (dialogueList.TryGetValue(UcatDialogueHandler.currentDialogueOptionIndex, out string currentDialogueOption))
         {
             // Update dialogue
-            subtitleText.UpdateText(currentDialogueOption);
+            dialogueText.UpdateText(currentDialogueOption);
             Debug.Log("Update dialogue " + currentDialogueOption);
 
 
@@ -108,6 +108,7 @@ public class DialogueManager : MonoBehaviour
     void EndOfDialogue() {
         UcatDialogueHandler.currentDialogueOptionIndex = 0;
         catAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Idle;
+        dialogueText.UpdateText("");
         switch (_levelManager.currentLevel) {
             case "Intro":
                 introDialogueIsComplete = true;
@@ -115,6 +116,7 @@ public class DialogueManager : MonoBehaviour
                 // Some function in wordrecitemanager to test the hello thing
                 break;
             case "Level1":
+                _wordReciteManager.enabled = true;
                 // TODO: do something here
                 break;
             case "Level2":
