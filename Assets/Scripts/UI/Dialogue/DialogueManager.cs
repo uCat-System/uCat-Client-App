@@ -22,7 +22,7 @@ public class DialogueManager : MonoBehaviour
         // uCat begins idle so that the first anim can play properly
         introDialogueIsComplete = false;
         catAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Idle;
-        StartCoroutine(CycleThroughDialogue(_levelManager.currentLevel));
+        StartCoroutine(CycleThroughDialogue());
     }
 
    public void SetDialogueTextAnimationAndSound(Dictionary<int, string> dialogueList, 
@@ -50,9 +50,9 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    private IEnumerator CycleThroughDialogue(string scene) {
+    private IEnumerator CycleThroughDialogue() {
         // TODO move this out of ienumerator, only need to do it once
-        Debug.Log("Cycling through with level " + scene);
+        Debug.Log("Cycling through with level " + _levelManager.currentLevel);
 
         Dictionary<int, string> currentDialogueList;
         Dictionary<int, AnimationDriver.CatAnimations> currentAnimationList;
@@ -101,7 +101,7 @@ public class DialogueManager : MonoBehaviour
         } else {
             // Otherwise, start the next line
             UcatDialogueHandler.IncrementDialogueOption();
-            StartCoroutine(CycleThroughDialogue(scene));
+            StartCoroutine(CycleThroughDialogue());
         }
     }
 
