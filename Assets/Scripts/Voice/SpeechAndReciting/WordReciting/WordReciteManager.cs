@@ -86,6 +86,7 @@ public class WordReciteManager : MonoBehaviour
 
         // Start the first word
         reciteText3D.Material = defaultColour;
+        
         StartCoroutine(StartCurrentWordCountdown());
     }
 
@@ -112,6 +113,7 @@ public class WordReciteManager : MonoBehaviour
 
     public IEnumerator StartCurrentWordCountdown()
     {
+
         _witListeningStateManager.TransitionToState(EListeningState.ListeningForMenuActivationCommandsOnly);
 
         // Clear text

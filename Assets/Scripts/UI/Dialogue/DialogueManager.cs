@@ -17,8 +17,6 @@ public class DialogueManager : MonoBehaviour
 
     public bool introDialogueIsComplete;
 
-    public GameObject dialogueBoard;
-
     void Start()
     {
         // uCat begins idle so that the first anim can play properly
@@ -53,7 +51,6 @@ public class DialogueManager : MonoBehaviour
     }
 
     private IEnumerator CycleThroughDialogue(string scene) {
-        dialogueBoard.SetActive(true);
         // TODO move this out of ienumerator, only need to do it once
         Debug.Log("Cycling through with level " + scene);
 
@@ -110,7 +107,6 @@ public class DialogueManager : MonoBehaviour
 
     void EndOfDialogue() {
         UcatDialogueHandler.currentDialogueOptionIndex = 0;
-        dialogueBoard.SetActive(false);
         catAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Idle;
         switch (_levelManager.currentLevel) {
             case "Intro":
