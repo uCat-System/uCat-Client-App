@@ -53,7 +53,9 @@ public class WitListeningStateManager : MonoBehaviour
     private static Dictionary<ListeningState, bool> validTimeoutCountingStates = new Dictionary<ListeningState, bool>
     {
         { ListeningState.ListeningForEverything, true },
-        { ListeningState.ListeningForRecitedWordsOnly, true }
+        { ListeningState.ListeningForRecitedWordsOnly, true },
+        { ListeningState.ListeningForConfirmation, true },
+        { ListeningState.ListeningForNextOrRepeat, true },
     };
 
     public bool CurrentStateIsAllowedInDictionary(Dictionary<ListeningState, bool> dictToSearch) {

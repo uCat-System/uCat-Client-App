@@ -208,7 +208,7 @@ namespace MText
                 }
             }
         }
-
+        
         public void ConfirmWhatUserSaid(string originallyUtteredText) {
             Debug.Log("Setting state to confirtmation mode ");
             _witListeningStateManager.TransitionToState(EListeningState.ListeningForConfirmation);
