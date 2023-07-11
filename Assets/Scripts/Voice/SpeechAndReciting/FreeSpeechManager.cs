@@ -98,6 +98,7 @@ namespace MText
             }
 
             else {
+                // Turn mic back on if we are in the menu and it didn't recognise anything
                 Debug.LogError("Did not activate word task with phrase " + text + " . You are probably in the menu." + _witListeningStateManager.currentListeningState);
                  if (_witListeningStateManager.MenuNavigationCommandsAreAllowed()) {
                     _witListeningStateManager.ReactivateToTryMenuNavigationCommandsAgain();
