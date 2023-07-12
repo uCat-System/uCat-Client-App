@@ -19,7 +19,6 @@ public class UICommandHandler
     }
     public enum MenuNavigationResponseType
     {
-        REPEAT_LEVEL_RESPONSE,
         NURSE_RESPONSE,
 
         RESTART_LEVEL_RESPONSE,
@@ -30,6 +29,9 @@ public class UICommandHandler
         RECITE_SENTENCES_RESPONSE,
         RECITE_OPEN_QUESTIONS_RESPONSE,
         LOBBY_RESPONSE,
+        WRITING_RESPONSE,
+        CONVERSATION_RESPONSE,
+        SETTINGS_RESPONSE,
         UNKNOWN_NAVIGATION_RESPONSE
     }
 
@@ -49,11 +51,6 @@ public class UICommandHandler
             // { navigationInputData.reciteOpenQuestionsInput, MenuNavigationResponseType.RECITE_OPEN_QUESTIONS_RESPONSE },
             // { navigationInputData.lobbyInput, MenuNavigationResponseType.LOBBY_RESPONSE }
         };
-
-        foreach (string repeatLevelInput in navigationInputData.repeatLevelInputs)
-        {
-             menuNavigationActions[repeatLevelInput] = MenuNavigationResponseType.REPEAT_LEVEL_RESPONSE;
-        }
 
         foreach (string nurseInput in navigationInputData.nurseInputs)
         {
@@ -88,6 +85,21 @@ public class UICommandHandler
         foreach (string lobbyInput in navigationInputData.lobbyInputs)
         {
              menuNavigationActions[lobbyInput] = MenuNavigationResponseType.LOBBY_RESPONSE;
+        }
+
+        foreach (string writingInput in navigationInputData.writingInputs)
+        {
+             menuNavigationActions[writingInput] = MenuNavigationResponseType.WRITING_RESPONSE;
+        }
+
+        foreach (string conversationInput in navigationInputData.conversationInputs)
+        {
+             menuNavigationActions[conversationInput] = MenuNavigationResponseType.CONVERSATION_RESPONSE;
+        }
+
+        foreach (string settingsInput in navigationInputData.settingsInputs)
+        {
+             menuNavigationActions[settingsInput] = MenuNavigationResponseType.SETTINGS_RESPONSE;
         }
 
 

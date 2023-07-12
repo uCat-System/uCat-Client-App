@@ -47,10 +47,6 @@ public class UIManager : MonoBehaviour
 
     public void ActivateMenuNavigationCommandsBasedOnResponse(EMenuNavigationResponseType navigationCommand) {
         switch (navigationCommand) {
-            case EMenuNavigationResponseType.REPEAT_LEVEL_RESPONSE:
-                // TODO move to levelmanager
-                _levelManager.RepeatLevel();
-                break;
             case EMenuNavigationResponseType.NURSE_RESPONSE:
                 // TODO implement later
                 // SceneManager.LoadScene("Nurse");
@@ -81,6 +77,15 @@ public class UIManager : MonoBehaviour
                 break;
             case EMenuNavigationResponseType.LOBBY_RESPONSE:
                 SceneManager.LoadScene("Lobby");
+                break;
+            case EMenuNavigationResponseType.WRITING_RESPONSE:
+                Debug.Log("Writing not implemented yet");
+                break;
+            case EMenuNavigationResponseType.CONVERSATION_RESPONSE:
+                Debug.Log("Conversations not implemented yet");
+                break;
+            case EMenuNavigationResponseType.SETTINGS_RESPONSE:
+                Debug.Log("Settings not implemented yet");
                 break;
             default:
                 break;
