@@ -146,7 +146,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelManager: {fileID: 8343668746282422111}
-  animator: {fileID: 0}
   textElements: {fileID: 0}
   _witListeningStateManager: {fileID: 8343668746282422109}
   _wordReciteManager: {fileID: 8343668746282422105}
@@ -168,4 +167,3 @@ MonoBehaviour:
   _levelManager: {fileID: 8343668746282422111}
   _wordReciteManager: {fileID: 8343668746282422105}
   catAudioSource: {fileID: 0}
-  introDialogueIsComplete: 0
