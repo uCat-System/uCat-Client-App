@@ -192,6 +192,16 @@ namespace MText
             if (currentTimeoutTimerInSeconds > 5) {
                 OnInactivity();
             }
+
+            // DEbug
+
+            if (Input.GetKeyDown(KeyCode.Space)) {
+                HandleFullTranscription("menu");
+            }
+
+            if (Input.GetKeyDown(KeyCode.Escape)) {
+                HandleFullTranscription("resume");
+            }
         }
 
         public void ActivateTasksBasedOnTranscription(string text)

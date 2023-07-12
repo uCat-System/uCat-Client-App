@@ -27,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 658064423}
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
-  m_LocalPosition: {x: -0.019571368, y: 1.4893494, z: 2.6}
-  m_LocalScale: {x: 0.16833927, y: 0.55229425, z: 2.693285}
+  m_LocalPosition: {x: 0.739, y: 1.135, z: 2.6}
+  m_LocalScale: {x: 0.21000323, y: 0.6889871, z: 0.124749996}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3211107783098718911}
@@ -17038,16 +17038,40 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4943968627529476477, guid: e362d1674f584914b87a4d1946ba53e9, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.3059621
+      objectReference: {fileID: 0}
+    - target: {fileID: 4943968627529476477, guid: e362d1674f584914b87a4d1946ba53e9, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.1727462
+      objectReference: {fileID: 0}
+    - target: {fileID: 4943968627529476477, guid: e362d1674f584914b87a4d1946ba53e9, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.010278876
+      objectReference: {fileID: 0}
+    - target: {fileID: 4943968627529476477, guid: e362d1674f584914b87a4d1946ba53e9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.87
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 4943968627529476477, guid: e362d1674f584914b87a4d1946ba53e9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.94
+      value: 3.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 5085162942609034745, guid: e362d1674f584914b87a4d1946ba53e9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 5085162942609034745, guid: e362d1674f584914b87a4d1946ba53e9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.06
       objectReference: {fileID: 0}
     - target: {fileID: 5085162943768654752, guid: e362d1674f584914b87a4d1946ba53e9, type: 3}
       propertyPath: m_RootOrder
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5085162943768654752, guid: e362d1674f584914b87a4d1946ba53e9, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.6452
       objectReference: {fileID: 0}
     - target: {fileID: 5085162943768654752, guid: e362d1674f584914b87a4d1946ba53e9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -17092,6 +17116,10 @@ PrefabInstance:
     - target: {fileID: 5085162943768654782, guid: e362d1674f584914b87a4d1946ba53e9, type: 3}
       propertyPath: m_Name
       value: XR Origin With Board
+      objectReference: {fileID: 0}
+    - target: {fileID: 5085162944099020040, guid: e362d1674f584914b87a4d1946ba53e9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.118
       objectReference: {fileID: 0}
     - target: {fileID: 5168488818431955981, guid: e362d1674f584914b87a4d1946ba53e9, type: 3}
       propertyPath: characterObjectList.Array.size
@@ -19281,6 +19309,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WitListeningText
       objectReference: {fileID: 0}
+    - target: {fileID: 7226479327428215630, guid: 1bd501103fe3417468cede46710cbc66, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7226479327428215633, guid: 1bd501103fe3417468cede46710cbc66, type: 3}
       propertyPath: _material
       value: 
@@ -20443,11 +20475,11 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 8582aee3c51dcd24fbd29694f8788a8e, type: 2}
     - target: {fileID: 5679632975711472796, guid: 7de4a9e7ce2cf424e9e77acca7673856, type: 3}
       propertyPath: _text
-      value: How do you like my music
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5679632975711472796, guid: 7de4a9e7ce2cf424e9e77acca7673856, type: 3}
       propertyPath: oldText
-      value: How do you like my music
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5679632975711472796, guid: 7de4a9e7ce2cf424e9e77acca7673856, type: 3}
       propertyPath: _material
@@ -20459,11 +20491,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5679632975711472796, guid: 7de4a9e7ce2cf424e9e77acca7673856, type: 3}
       propertyPath: wordArray.Array.size
-      value: 11
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5679632975711472796, guid: 7de4a9e7ce2cf424e9e77acca7673856, type: 3}
       propertyPath: wordArray.Array.data[0]
-      value: How
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5679632975711472796, guid: 7de4a9e7ce2cf424e9e77acca7673856, type: 3}
       propertyPath: wordArray.Array.data[1]
@@ -20515,11 +20547,11 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 8582aee3c51dcd24fbd29694f8788a8e, type: 2}
     - target: {fileID: 6031666213536457141, guid: 7de4a9e7ce2cf424e9e77acca7673856, type: 3}
       propertyPath: _text
-      value: How do you like my music
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6031666213536457141, guid: 7de4a9e7ce2cf424e9e77acca7673856, type: 3}
       propertyPath: oldText
-      value: How do you like my music
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6031666213536457141, guid: 7de4a9e7ce2cf424e9e77acca7673856, type: 3}
       propertyPath: _material
@@ -20535,11 +20567,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6031666213536457141, guid: 7de4a9e7ce2cf424e9e77acca7673856, type: 3}
       propertyPath: wordArray.Array.size
-      value: 11
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6031666213536457141, guid: 7de4a9e7ce2cf424e9e77acca7673856, type: 3}
       propertyPath: wordArray.Array.data[0]
-      value: How
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6031666213536457141, guid: 7de4a9e7ce2cf424e9e77acca7673856, type: 3}
       propertyPath: wordArray.Array.data[1]

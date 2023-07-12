@@ -9,6 +9,8 @@ using ECorrectResponseType = CheckRecitedWordHandler.CorrectResponseType;
 public class WordReciteManager : MonoBehaviour
 {
     public AnimationDriver catAnimationDriver;
+
+    public Modular3DText dialogueText3D;
     
     // Current word tracking
     int currentWordOrSentenceIndex;
@@ -228,7 +230,7 @@ public class WordReciteManager : MonoBehaviour
     
     public IEnumerator HandleWordOrSentenceCorrectOrIncorrect(ECorrectResponseType responseType) {
         string correctResponseText = CheckRecitedWordHandler.correctResponses[responseType];
-        reciteText3D.UpdateText(correctResponseText);
+        dialogueText3D.UpdateText(correctResponseText);
 
         switch (responseType) {
             case ECorrectResponseType.POSITIVE_CORRECT_RESPONSE:
