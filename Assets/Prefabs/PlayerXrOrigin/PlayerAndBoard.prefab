@@ -746,7 +746,7 @@ MonoBehaviour:
   _allcharacterObjectList: []
   autoSaveMesh: 0
   _font: {fileID: 11400000, guid: 8582aee3c51dcd24fbd29694f8788a8e, type: 2}
-  _material: {fileID: 2100000, guid: a4049ec7b242909488a39efb39d014ea, type: 2}
+  _material: {fileID: 2100000, guid: f7c73a6d1f390c24b855c23ffcd4b41f, type: 2}
   _fontSize: {x: 5, y: 5, z: 100}
   _capitalize: 0
   _lowercase: 0
@@ -1208,7 +1208,7 @@ MonoBehaviour:
   _allcharacterObjectList: []
   autoSaveMesh: 0
   _font: {fileID: 11400000, guid: 8582aee3c51dcd24fbd29694f8788a8e, type: 2}
-  _material: {fileID: 2100000, guid: a4049ec7b242909488a39efb39d014ea, type: 2}
+  _material: {fileID: 2100000, guid: f7c73a6d1f390c24b855c23ffcd4b41f, type: 2}
   _fontSize: {x: 5, y: 5, z: 100}
   _capitalize: 0
   _lowercase: 0
@@ -1513,7 +1513,7 @@ MonoBehaviour:
   _allcharacterObjectList: []
   autoSaveMesh: 0
   _font: {fileID: 11400000, guid: 8582aee3c51dcd24fbd29694f8788a8e, type: 2}
-  _material: {fileID: 2100000, guid: a4049ec7b242909488a39efb39d014ea, type: 2}
+  _material: {fileID: 2100000, guid: f7c73a6d1f390c24b855c23ffcd4b41f, type: 2}
   _fontSize: {x: 5, y: 5, z: 100}
   _capitalize: 0
   _lowercase: 0
@@ -2140,7 +2140,7 @@ MonoBehaviour:
   _allcharacterObjectList: []
   autoSaveMesh: 0
   _font: {fileID: 11400000, guid: 8582aee3c51dcd24fbd29694f8788a8e, type: 2}
-  _material: {fileID: 2100000, guid: a4049ec7b242909488a39efb39d014ea, type: 2}
+  _material: {fileID: 2100000, guid: f7c73a6d1f390c24b855c23ffcd4b41f, type: 2}
   _fontSize: {x: 5, y: 5, z: 100}
   _capitalize: 0
   _lowercase: 0
@@ -2693,7 +2693,7 @@ MonoBehaviour:
   _allcharacterObjectList: []
   autoSaveMesh: 0
   _font: {fileID: 11400000, guid: 8582aee3c51dcd24fbd29694f8788a8e, type: 2}
-  _material: {fileID: 2100000, guid: a4049ec7b242909488a39efb39d014ea, type: 2}
+  _material: {fileID: 2100000, guid: f7c73a6d1f390c24b855c23ffcd4b41f, type: 2}
   _fontSize: {x: 5, y: 5, z: 100}
   _capitalize: 0
   _lowercase: 0
@@ -3351,7 +3351,7 @@ MonoBehaviour:
   _allcharacterObjectList: []
   autoSaveMesh: 0
   _font: {fileID: 11400000, guid: 8582aee3c51dcd24fbd29694f8788a8e, type: 2}
-  _material: {fileID: 2100000, guid: a4049ec7b242909488a39efb39d014ea, type: 2}
+  _material: {fileID: 2100000, guid: f7c73a6d1f390c24b855c23ffcd4b41f, type: 2}
   _fontSize: {x: 5, y: 5, z: 100}
   _capitalize: 0
   _lowercase: 0
@@ -4187,7 +4187,7 @@ MonoBehaviour:
   _allcharacterObjectList: []
   autoSaveMesh: 0
   _font: {fileID: 11400000, guid: 8582aee3c51dcd24fbd29694f8788a8e, type: 2}
-  _material: {fileID: 2100000, guid: a4049ec7b242909488a39efb39d014ea, type: 2}
+  _material: {fileID: 2100000, guid: f7c73a6d1f390c24b855c23ffcd4b41f, type: 2}
   _fontSize: {x: 5, y: 5, z: 100}
   _capitalize: 0
   _lowercase: 0
@@ -4947,7 +4947,7 @@ MonoBehaviour:
   _allcharacterObjectList: []
   autoSaveMesh: 0
   _font: {fileID: 11400000, guid: 8582aee3c51dcd24fbd29694f8788a8e, type: 2}
-  _material: {fileID: 2100000, guid: a4049ec7b242909488a39efb39d014ea, type: 2}
+  _material: {fileID: 2100000, guid: f7c73a6d1f390c24b855c23ffcd4b41f, type: 2}
   _fontSize: {x: 5, y: 5, z: 100}
   _capitalize: 0
   _lowercase: 0
@@ -6297,7 +6297,7 @@ MonoBehaviour:
   _allcharacterObjectList: []
   autoSaveMesh: 0
   _font: {fileID: 11400000, guid: 8582aee3c51dcd24fbd29694f8788a8e, type: 2}
-  _material: {fileID: 2100000, guid: a4049ec7b242909488a39efb39d014ea, type: 2}
+  _material: {fileID: 2100000, guid: f7c73a6d1f390c24b855c23ffcd4b41f, type: 2}
   _fontSize: {x: 5, y: 5, z: 100}
   _capitalize: 0
   _lowercase: 0
@@ -6861,12 +6861,24 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7635826562936255635, guid: aa97a48dd13a0fb4f826de7540e2f9c5, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7635826562936255635, guid: aa97a48dd13a0fb4f826de7540e2f9c5, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: d8adbb78d4dd1524083f3bec8f0e7082, type: 2}
+      objectReference: {fileID: 2100000, guid: 16c165a954e0aa44aafd43ac369bb795, type: 2}
+    - target: {fileID: -7635826562936255635, guid: aa97a48dd13a0fb4f826de7540e2f9c5, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 16c165a954e0aa44aafd43ac369bb795, type: 2}
     - target: {fileID: 919132149155446097, guid: aa97a48dd13a0fb4f826de7540e2f9c5, type: 3}
       propertyPath: m_Name
       value: RoundedCubeMesh
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: aa97a48dd13a0fb4f826de7540e2f9c5, type: 3}
+      propertyPath: m_Name
+      value: Mesh
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects:
