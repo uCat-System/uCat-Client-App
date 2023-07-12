@@ -5,7 +5,7 @@ using System.Collections;
 
 public class DialogueManager : MonoBehaviour
 {
-    public Modular3DText subtitleText;
+    public Modular3DText dialogueText;
 
     public AnimationDriver catAnimationDriver;
 
@@ -15,12 +15,9 @@ public class DialogueManager : MonoBehaviour
 
     public AudioSource catAudioSource;
 
-    public bool introDialogueIsComplete;
-
     void Start()
     {
         // uCat begins idle so that the first anim can play properly
-        introDialogueIsComplete = false;
         catAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Idle;
         StartCoroutine(CycleThroughDialogue());
     }
@@ -32,7 +29,7 @@ public class DialogueManager : MonoBehaviour
         if (dialogueList.TryGetValue(DialogueHandler.currentDialogueOptionIndex, out string currentDialogueOption))
         {
             // Update dialogue
-            subtitleText.UpdateText(currentDialogueOption);
+            dialogueText.UpdateText(currentDialogueOption);
             Debug.Log("Update dialogue " + currentDialogueOption);
 
 
@@ -88,6 +85,13 @@ public class DialogueManager : MonoBehaviour
                 break;
         }
 
+        if (currentDialogueList.Count == 0)
+        {
+            Debug.LogError("No dialogue lines found");
+            EndOfDialogue();
+            yield break;
+        }
+
         SetDialogueTextAnimationAndSound(currentDialogueList, currentAnimationList, currentAudioList);
         yield return new WaitWhile(() => catAudioSource.isPlaying);
         yield return new WaitForSeconds(DialogueHandler.timeBetweenLinesInSeconds);
@@ -108,33 +112,8 @@ public class DialogueManager : MonoBehaviour
     void EndOfDialogue() {
         DialogueHandler.currentDialogueOptionIndex = 0;
         catAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Idle;
-        switch (_levelManager.currentLevel) {
-            case "Intro":
-                introDialogueIsComplete = true;
-                _wordReciteManager.enabled = true;
-                // Some function in wordrecitemanager to test the hello thing
-                break;
-            case "Level1":
-                // TODO: do something here
-                break;
-            case "Level2":
-                // TODO: do something here
-                break;
-            case "Level3":
-                // TODO: do something here
-                break;
-            default:
-                Debug.LogError("Dictionary not setup for: " + _levelManager.currentLevel);
-                break;
-        }
+        _wordReciteManager.enabled = true;
+        dialogueText.UpdateText("");
     }
 
-    void Update()
-    {
-        // if (Input.GetKeyDown(KeyCode.Space))
-        // {
-        //     StartCoroutine(CycleThroughDialogue(_levelManager.currentLevel));
-        //     // SetDialogueTextAnimationAndSound();
-        // }
-    }
 }

@@ -35,7 +35,7 @@ namespace MText
         void Start()
         {   
             subtitleText3D = GameObject.FindWithTag("SubtitleText3D").GetComponent<Modular3DText>();
-            scene = SceneManager.GetActiveScene();
+            scene = SceneManager.GetActiveScene(); 
         }
 
         public void HandlePartialTranscription(string text)
@@ -98,6 +98,7 @@ namespace MText
             }
 
             else {
+                // Turn mic back on if we are in the menu and it didn't recognise anything
                 Debug.LogError("Did not activate word task with phrase " + text + " . You are probably in the menu." + _witListeningStateManager.currentListeningState);
                  if (_witListeningStateManager.MenuNavigationCommandsAreAllowed()) {
                     _witListeningStateManager.ReactivateToTryMenuNavigationCommandsAgain();
@@ -191,6 +192,16 @@ namespace MText
             if (currentTimeoutTimerInSeconds > 5) {
                 OnInactivity();
             }
+
+            // DEbug
+
+            if (Input.GetKeyDown(KeyCode.Space)) {
+                HandleFullTranscription("menu");
+            }
+
+            if (Input.GetKeyDown(KeyCode.Escape)) {
+                HandleFullTranscription("resume");
+            }
         }
 
         public void ActivateTasksBasedOnTranscription(string text)
@@ -208,7 +219,7 @@ namespace MText
                 }
             }
         }
-
+        
         public void ConfirmWhatUserSaid(string originallyUtteredText) {
             Debug.Log("Setting state to confirtmation mode ");
             _witListeningStateManager.TransitionToState(EListeningState.ListeningForConfirmation);

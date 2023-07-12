@@ -27,7 +27,9 @@ MonoBehaviour:
   - here is line 1 that ucat says
   - here is line 2
   level1ScriptDialogueAnimations: 0200000004000000
-  level1ScriptDialogueAudio: []
+  level1ScriptDialogueAudio:
+  - {fileID: 8300000, guid: 83f7000155daddd47a0afed6f8be9aed, type: 3}
+  - {fileID: 8300000, guid: dae20ec920e875d429297d5aca51081e, type: 3}
   level2ScriptDialogueOptions: []
   level2ScriptDialogueAnimations: 00000000
   level2ScriptDialogueAudio: []

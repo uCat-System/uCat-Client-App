@@ -19,7 +19,6 @@ public class UICommandHandler
     }
     public enum MenuNavigationResponseType
     {
-        REPEAT_LEVEL_RESPONSE,
         NURSE_RESPONSE,
 
         RESTART_LEVEL_RESPONSE,
@@ -30,6 +29,9 @@ public class UICommandHandler
         RECITE_SENTENCES_RESPONSE,
         RECITE_OPEN_QUESTIONS_RESPONSE,
         LOBBY_RESPONSE,
+        WRITING_RESPONSE,
+        CONVERSATION_RESPONSE,
+        SETTINGS_RESPONSE,
         UNKNOWN_NAVIGATION_RESPONSE
     }
 
@@ -40,15 +42,65 @@ public class UICommandHandler
         NavigationInputData navigationInputData = Resources.Load<NavigationInputData>("NavigationInputData");
         menuNavigationActions = new Dictionary<string, MenuNavigationResponseType>
         {
-            { navigationInputData.repeatLevelInput, MenuNavigationResponseType.REPEAT_LEVEL_RESPONSE },
-            { navigationInputData.nurseInput, MenuNavigationResponseType.NURSE_RESPONSE },
-            { navigationInputData.restartLevelInput, MenuNavigationResponseType.RESTART_LEVEL_RESPONSE },
-            { navigationInputData.resumeInput, MenuNavigationResponseType.RESUME_RESPONSE },
-            { navigationInputData.reciteWordsInput, MenuNavigationResponseType.RECITE_WORDS_RESPONSE },
-            { navigationInputData.reciteSentencesInput, MenuNavigationResponseType.RECITE_SENTENCES_RESPONSE },
-            { navigationInputData.reciteOpenQuestionsInput, MenuNavigationResponseType.RECITE_OPEN_QUESTIONS_RESPONSE },
-            { navigationInputData.lobbyInput, MenuNavigationResponseType.LOBBY_RESPONSE }
+            // { navigationInputData.repeatLevelInput, MenuNavigationResponseType.REPEAT_LEVEL_RESPONSE },
+            // { navigationInputData.nurseInput, MenuNavigationResponseType.NURSE_RESPONSE },
+            // { navigationInputData.restartLevelInput, MenuNavigationResponseType.RESTART_LEVEL_RESPONSE },
+            // { navigationInputData.resumeInput, MenuNavigationResponseType.RESUME_RESPONSE },
+            // { navigationInputData.reciteWordsInput, MenuNavigationResponseType.RECITE_WORDS_RESPONSE },
+            // { navigationInputData.reciteSentencesInput, MenuNavigationResponseType.RECITE_SENTENCES_RESPONSE },
+            // { navigationInputData.reciteOpenQuestionsInput, MenuNavigationResponseType.RECITE_OPEN_QUESTIONS_RESPONSE },
+            // { navigationInputData.lobbyInput, MenuNavigationResponseType.LOBBY_RESPONSE }
         };
+
+        foreach (string nurseInput in navigationInputData.nurseInputs)
+        {
+             menuNavigationActions[nurseInput] = MenuNavigationResponseType.NURSE_RESPONSE;
+        }
+
+        foreach (string restartLevelInput in navigationInputData.restartLevelInputs)
+        {
+             menuNavigationActions[restartLevelInput] = MenuNavigationResponseType.RESTART_LEVEL_RESPONSE;
+        }
+
+        foreach (string resumeInput in navigationInputData.resumeInputs)
+        {
+             menuNavigationActions[resumeInput] = MenuNavigationResponseType.RESUME_RESPONSE;
+        }
+
+        foreach (string reciteWordsInput in navigationInputData.reciteWordsInputs)
+        {
+             menuNavigationActions[reciteWordsInput] = MenuNavigationResponseType.RECITE_WORDS_RESPONSE;
+        }
+
+        foreach (string reciteSentencesInput in navigationInputData.reciteSentencesInputs)
+        {
+             menuNavigationActions[reciteSentencesInput] = MenuNavigationResponseType.RECITE_SENTENCES_RESPONSE;
+        }
+
+        foreach (string reciteOpenQuestionsInput in navigationInputData.reciteOpenQuestionsInputs)
+        {
+             menuNavigationActions[reciteOpenQuestionsInput] = MenuNavigationResponseType.RECITE_OPEN_QUESTIONS_RESPONSE;
+        }
+
+        foreach (string lobbyInput in navigationInputData.lobbyInputs)
+        {
+             menuNavigationActions[lobbyInput] = MenuNavigationResponseType.LOBBY_RESPONSE;
+        }
+
+        foreach (string writingInput in navigationInputData.writingInputs)
+        {
+             menuNavigationActions[writingInput] = MenuNavigationResponseType.WRITING_RESPONSE;
+        }
+
+        foreach (string conversationInput in navigationInputData.conversationInputs)
+        {
+             menuNavigationActions[conversationInput] = MenuNavigationResponseType.CONVERSATION_RESPONSE;
+        }
+
+        foreach (string settingsInput in navigationInputData.settingsInputs)
+        {
+             menuNavigationActions[settingsInput] = MenuNavigationResponseType.SETTINGS_RESPONSE;
+        }
 
 
         // Menu Activation Commands

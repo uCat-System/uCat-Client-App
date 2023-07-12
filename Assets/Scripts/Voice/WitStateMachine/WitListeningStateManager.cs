@@ -28,6 +28,8 @@ public class WitListeningStateManager : MonoBehaviour
     public WordReciteManager _wordReciteManager;
     public GameObject wit;
 
+    public GameObject micIcon;
+
     // This dict will return true if we are in any of the allowed reciting states
 
     private static Dictionary<ListeningState, bool> validRecitingStates = new Dictionary<ListeningState, bool>
@@ -53,7 +55,9 @@ public class WitListeningStateManager : MonoBehaviour
     private static Dictionary<ListeningState, bool> validTimeoutCountingStates = new Dictionary<ListeningState, bool>
     {
         { ListeningState.ListeningForEverything, true },
-        { ListeningState.ListeningForRecitedWordsOnly, true }
+        { ListeningState.ListeningForRecitedWordsOnly, true },
+        { ListeningState.ListeningForConfirmation, true },
+        { ListeningState.ListeningForNextOrRepeat, true },
     };
 
     public bool CurrentStateIsAllowedInDictionary(Dictionary<ListeningState, bool> dictToSearch) {
@@ -158,29 +162,35 @@ public class WitListeningStateManager : MonoBehaviour
     public void TransitionToState(ListeningState nextState)
         {
             listeningText3D.UpdateText(nextState.ToString());
-
             switch (nextState)
             {
                 case ListeningState.NotListening:
                     DisableWit();
+                    micIcon.SetActive(false);
                     break;
                 case ListeningState.ListeningForMenuActivationCommandsOnly:
                     StartCoroutine(TurnWitActivationOffAndOn());
+                    micIcon.SetActive(false);
                     break;
                 case ListeningState.ListeningForEverything:
                     StartCoroutine(TurnWitActivationOffAndOn());
+                    micIcon.SetActive(true);
                     break;
                 case ListeningState.ListeningForTaskMenuCommandsOnly:
                     StartCoroutine(TurnWitActivationOffAndOn());
+                    micIcon.SetActive(true);
                     break;
                 case ListeningState.ListeningForConfirmation:
                     StartCoroutine(TurnWitActivationOffAndOn());
+                    micIcon.SetActive(true);
                     break;
                 case ListeningState.ListeningForLobbyMenuCommandsOnly:
                     StartCoroutine(TurnWitActivationOffAndOn());
+                    micIcon.SetActive(true);
                     break;
                 case ListeningState.ListeningForNextOrRepeat:
                     StartCoroutine(TurnWitActivationOffAndOn());
+                    micIcon.SetActive(true);
                     break;
                 default:
                     Debug.LogError("Invalid state transition." + nextState);
