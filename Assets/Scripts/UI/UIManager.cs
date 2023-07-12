@@ -11,8 +11,6 @@ public class UIManager : MonoBehaviour
      private static UIManager instance;
 
      public LevelManager _levelManager;
-
-     public Animator animator;
      public GameObject textElements;
 
      public WitListeningStateManager _witListeningStateManager;

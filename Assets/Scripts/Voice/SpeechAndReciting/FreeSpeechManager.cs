@@ -35,7 +35,7 @@ namespace MText
         void Start()
         {   
             subtitleText3D = GameObject.FindWithTag("SubtitleText3D").GetComponent<Modular3DText>();
-            scene = SceneManager.GetActiveScene();
+            scene = SceneManager.GetActiveScene(); 
         }
 
         public void HandlePartialTranscription(string text)

@@ -1,14 +1,15 @@
 using UnityEngine;
-
+using System.Collections;
+using System.Collections.Generic;
 [CreateAssetMenu(fileName = "NavigationInputData", menuName = "ScriptableObjects/Navigation Input Data")]
 public class NavigationInputData : ScriptableObject
 {
-    public string repeatLevelInput = "repeat level";
-    public string nurseInput = "nurse";
-    public string restartLevelInput = "restart level";
-    public string resumeInput = "resume";
-    public string reciteWordsInput = "recite words";
-    public string reciteSentencesInput = "recite sentences";
-    public string reciteOpenQuestionsInput = "recite open questions";
-    public string lobbyInput = "lobby";
+    public List<string> repeatLevelInputs = new List<string> {"repeat level"};
+    public List<string> nurseInputs = new List<string> {"nurse"};
+    public List<string> restartLevelInputs = new List<string> {"restart level"};
+    public List<string> resumeInputs = new List<string> {"resume"};
+    public List<string> reciteWordsInputs = new List<string> {"recite words"};
+    public List<string> reciteSentencesInputs = new List<string> {"recite sentences"};
+    public List<string> reciteOpenQuestionsInputs = new List<string> {"recite open questions"};
+    public List<string> lobbyInputs = new List<string> {"lobby"};
 }

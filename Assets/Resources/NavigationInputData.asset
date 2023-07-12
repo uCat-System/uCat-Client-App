@@ -12,12 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ba278f0a7927974b86e9968ac38f266, type: 3}
   m_Name: NavigationInputData
   m_EditorClassIdentifier: 
-  repeatLevelInput: repeat level
-  nextLevelInput: next level
-  nurseInput: nurse
-  restartLevelInput: restart level
-  resumeInput: resume
-  reciteWordsInput: recite words
-  reciteSentencesInput: recite sentences
-  reciteOpenQuestionsInput: recite open questions
-  lobbyInput: lobby
+  repeatLevelInputs:
+  - repeat level
+  - repeat devil
+  nurseInputs:
+  - nurse
+  restartLevelInputs:
+  - restart level
+  resumeInputs:
+  - resume
+  reciteWordsInputs:
+  - recite words
+  reciteSentencesInputs:
+  - recite sentences
+  reciteOpenQuestionsInputs:
+  - recite open questions
+  lobbyInputs:
+  - lobby
