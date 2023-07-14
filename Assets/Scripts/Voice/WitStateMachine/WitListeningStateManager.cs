@@ -119,7 +119,7 @@ public class WitListeningStateManager : MonoBehaviour
     {        
         scene = SceneManager.GetActiveScene().name;
         if (scene == "Level3") {
-             TransitionToState(ListeningState.ListeningForEverything);
+            TransitionToState(ListeningState.ListeningForEverything);
         } else {
             TransitionToState(ListeningState.ListeningForMenuActivationCommandsOnly);
         }
