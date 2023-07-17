@@ -15,6 +15,10 @@ public class DialogueManager : MonoBehaviour
 
     public AudioSource catAudioSource;
 
+    // Variables exposing UI elements which uCat will show/hide during the Intro dialogue
+    public GameObject micIcon;
+    public GameObject boardComponent;
+
     void Start()
     {
         // uCat begins idle so that the first anim can play properly
@@ -40,6 +44,15 @@ public class DialogueManager : MonoBehaviour
             // Play the dialogue audio
             // catAudioSource.clip = dialogueAudio[UcatDialogueHandler.currentDialogueOptionIndex];
             catAudioSource.PlayOneShot(dialogueAudio[DialogueHandler.currentDialogueOptionIndex]);
+
+            //in the Intro, uCat wants to show the user what icon would be displayed when she is listening to them
+            var micState = (DialogueHandler.currentDialogueOptionIndex == 8) ? true : false;
+            micIcon.SetActive(micState);
+
+            //in the Intro, uCat wants to show the user the board from an appropriate time (not immediately)
+            boardComponent.SetActive(false);
+            if(DialogueHandler.currentDialogueOptionIndex >= 4) boardComponent.SetActive(true);
+
         }
         else
         {
