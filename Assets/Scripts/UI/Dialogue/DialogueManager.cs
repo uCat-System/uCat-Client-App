@@ -33,7 +33,7 @@ public class DialogueManager : MonoBehaviour
         if (dialogueList.TryGetValue(DialogueHandler.currentDialogueOptionIndex, out string currentDialogueOption))
         {
             // Update dialogue
-            dialogueText.UpdateText(currentDialogueOption);
+            dialogueText.UpdateText("uCat: " + currentDialogueOption);
             Debug.Log("Update dialogue " + currentDialogueOption);
 
 

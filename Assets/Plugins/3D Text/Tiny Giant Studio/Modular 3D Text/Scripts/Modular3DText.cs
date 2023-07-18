@@ -1005,6 +1005,9 @@ namespace MText
                 if (obj.GetComponent<MText_Letter>().model)
                 {
                     obj.GetComponent<MText_Letter>().model.material = Material;
+                    //set material red color
+                    if (obj.GetComponent<MText_Letter>().model.material.HasProperty("_Color"))
+                        obj.GetComponent<MText_Letter>().model.material.SetColor("_Color", Color.red);
                 }
             }
             if (obj.GetComponent<MeshFilter>())
