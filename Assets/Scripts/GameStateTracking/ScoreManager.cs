@@ -72,7 +72,7 @@ public class ScoreManager : MonoBehaviour
     // Eventually include database storage as well.
     void Start()
     {
-        partialText3D = GameObject.FindWithTag("PartialText3D").GetComponent<Modular3DText>();
+        //partialText3D = GameObject.FindWithTag("PartialText3D").GetComponent<Modular3DText>();
     }
 
     public void DisplayScoreInPartialTextSection()

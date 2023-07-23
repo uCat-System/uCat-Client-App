@@ -125,6 +125,6 @@ public static class DialogueHandler
     {
         // Increment the index (will loop back to the start eventually)
         currentDialogueOptionIndex = (currentDialogueOptionIndex + 1);
-        //currentDialogueOptionIndex = 8; //skips intro dialogues
+        currentDialogueOptionIndex = 10; //skips intro dialogues
     }
 }
