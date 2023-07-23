@@ -1,5 +1,5 @@
 using UnityEngine;
-using Meta.WitAi;
+using Oculus.Voice;
 using UnityEngine.SceneManagement;
 using EListeningState = WitListeningStateManager.ListeningState;
 using EConfirmationResponseType = ConfirmationHandler.ConfirmationResponseType;
