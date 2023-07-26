@@ -619,6 +619,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 1229834330}
     m_Modifications:
+    - target: {fileID: 772033782, guid: 74ce51154cf56e14db799fe9c14bb97f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
     - target: {fileID: 329568243756580902, guid: 74ce51154cf56e14db799fe9c14bb97f, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -727,6 +731,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerAndBoard
       objectReference: {fileID: 0}
+    - target: {fileID: 3211107782010876303, guid: 74ce51154cf56e14db799fe9c14bb97f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
     - target: {fileID: 3211107782058360247, guid: 74ce51154cf56e14db799fe9c14bb97f, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -858,17 +866,6 @@ Transform:
 --- !u!114 &360268100 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3600330948901486828, guid: 74ce51154cf56e14db799fe9c14bb97f, type: 3}
-  m_PrefabInstance: {fileID: 360268097}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45d100e06f4a0744c8728e86700b5472, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &360268101 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7356684955875389533, guid: 74ce51154cf56e14db799fe9c14bb97f, type: 3}
   m_PrefabInstance: {fileID: 360268097}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -1310,11 +1307,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7497548651376482360, guid: 74ce51154cf56e14db799fe9c14bb97f, type: 3}
   m_PrefabInstance: {fileID: 360268097}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &963088024 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 7497548651376482365, guid: 74ce51154cf56e14db799fe9c14bb97f, type: 3}
-  m_PrefabInstance: {fileID: 360268097}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1075785607
 GameObject:
   m_ObjectHideFlags: 0
@@ -1532,6 +1524,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1492981730, guid: 55297a9693d5df54ca0913abb0957ea5, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
     - target: {fileID: 1912555070330298890, guid: 55297a9693d5df54ca0913abb0957ea5, type: 3}
       propertyPath: m_Name
       value: JapaneseGardenEnvironment
@@ -1540,6 +1536,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3211107782320810651, guid: 55297a9693d5df54ca0913abb0957ea5, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
     - target: {fileID: 6221912463870838448, guid: 55297a9693d5df54ca0913abb0957ea5, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -2018,6 +2018,8 @@ MonoBehaviour:
   _levelManager: {fileID: 9147203543807151584}
   _wordReciteManager: {fileID: 0}
   catAudioSource: {fileID: 0}
+  micIcon: {fileID: 0}
+  boardComponent: {fileID: 0}
 --- !u!1 &9147203543807151568
 GameObject:
   m_ObjectHideFlags: 0
@@ -2102,6 +2104,7 @@ MonoBehaviour:
   currentListeningState: 0
   _wordReciteManager: {fileID: 9147203543807151590}
   wit: {fileID: 4024811971100895150}
+  micIcon: {fileID: 0}
 --- !u!114 &9147203543807151587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2118,7 +2121,7 @@ MonoBehaviour:
   _levelManager: {fileID: 9147203543807151584}
   _wordReciteManager: {fileID: 9147203543807151590}
   partialText3D: {fileID: 1683794367}
-  subtitleText3D: {fileID: 360268101}
+  subtitleText3D: {fileID: 0}
   _witListeningStateManager: {fileID: 9147203543807151586}
   cachedText: 
   isCurrentlyCountingTowardsTimeout: 0
@@ -2136,7 +2139,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelManager: {fileID: 0}
-  animator: {fileID: 963088024}
   textElements: {fileID: 360268102}
   _witListeningStateManager: {fileID: 9147203543807151586}
   _wordReciteManager: {fileID: 9147203543807151590}
@@ -2154,6 +2156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   catAnimationDriver: {fileID: 754171459}
+  dialogueText3D: {fileID: 0}
   wordLists: {fileID: 11400000, guid: a3a83d047afb6c943a61e130941a77f0, type: 2}
   correctColour: {fileID: 2100000, guid: 5562c698b21c8924a84fa2abb367f9cd, type: 2}
   incorrectColour: {fileID: 2100000, guid: dfa4872a000de054bb0c1c830a263904, type: 2}
@@ -2165,7 +2168,7 @@ MonoBehaviour:
   _levelManager: {fileID: 9147203543807151584}
   reciteText3D: {fileID: 360268100}
   partialText3D: {fileID: 1683794367}
-  subtitleText3D: {fileID: 360268101}
+  subtitleText3D: {fileID: 0}
   reciteBoardAudioSource: {fileID: 899594003}
   wordSounds:
   - {fileID: 8300000, guid: 3c728dab5c4b22d40a8d14fd98f7f9ea, type: 3}

@@ -1992,11 +1992,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 9213520756515671748, guid: b7e4aa74f4f82c840b64901f22f62424, type: 3}
   m_PrefabInstance: {fileID: 97754693}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &940584470 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 9213520756515671745, guid: b7e4aa74f4f82c840b64901f22f62424, type: 3}
-  m_PrefabInstance: {fileID: 97754693}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1075785607
 GameObject:
   m_ObjectHideFlags: 0
@@ -2085,13 +2080,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3a9918f74891044fb65f815fa1f3dc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wit: {fileID: 723296576}
-  wordReciteManager: {fileID: 2082858892}
+  _uiManager: {fileID: 0}
+  _levelManager: {fileID: 0}
+  _wordReciteManager: {fileID: 0}
   partialText3D: {fileID: 3211107781437779076}
   subtitleText3D: {fileID: 1656460658}
-  fullText3D: {fileID: 3211107782251384041}
-  _witListeningStateManager: {fileID: 1874132180}
+  _witListeningStateManager: {fileID: 0}
   cachedText: 
+  isCurrentlyCountingTowardsTimeout: 0
+  currentTimeoutTimerInSeconds: 0
 --- !u!1 &1442449950
 GameObject:
   m_ObjectHideFlags: 0
@@ -2136,9 +2133,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc45d88a8119af14aa4ebaaf255ce6c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 940584470}
+  _levelManager: {fileID: 0}
   textElements: {fileID: 8890741824386749451}
-  _witListeningStateManager: {fileID: 1874132180}
+  _witListeningStateManager: {fileID: 0}
   _wordReciteManager: {fileID: 0}
   menu: {fileID: 940584468}
 --- !u!43 &1556520042
@@ -2690,17 +2687,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7628463447719289226, guid: aeef7c9b1dabd6f4bb2121a6b3e0abf2, type: 3}
   m_PrefabInstance: {fileID: 1874132178}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1874132180 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7628463447719289227, guid: aeef7c9b1dabd6f4bb2121a6b3e0abf2, type: 3}
-  m_PrefabInstance: {fileID: 1874132178}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60a6e82f4bf988941b65bbe8ceb9c213, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1949416655
 GameObject:
   m_ObjectHideFlags: 0
@@ -4596,7 +4582,7 @@ Terrain:
   m_DrawTreesAndFoliage: 1
   m_StaticShadowCaster: 0
   m_ReflectionProbeUsage: 1
-  m_MaterialTemplate: {fileID: 10652, guid: 0000000000000000f000000000000000, type: 0}
+  m_MaterialTemplate: {fileID: 2100000, guid: 594ea882c5a793440b60ff72d896021e, type: 2}
   m_BakeLightProbesForTrees: 1
   m_PreserveTreePrototypeLayers: 0
   m_DeringLightProbesForTrees: 0
@@ -5762,7 +5748,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
