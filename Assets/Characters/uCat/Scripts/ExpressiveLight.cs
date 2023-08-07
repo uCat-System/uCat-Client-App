@@ -40,7 +40,7 @@ public class ExpressiveLight : MonoBehaviour
 
     // And let's allow people to set the intensity manually, just in case.
     [SerializeField]
-    private float _EmissiveIntensity = 4f;
+    private float _EmissiveIntensity = 3.5f;
 
     public float EmissiveIntensity
     {
@@ -91,7 +91,7 @@ public class ExpressiveLight : MonoBehaviour
 
         // Here's where we prepare the intensity we're given to plug it into the new emissive color properly. 
         // The user should see no difference between the color they give and the Intensity value shown.
-        intensityPrepared = Mathf.Pow(2.0f, (newEmissiveIntensity - 0.4169f));
+        intensityPrepared = 10f * Mathf.Pow(2.0f, (newEmissiveIntensity - 0.4169f));
 
         // Self explanatory, really. 
         // Tweak color values in a range from 0 to 1. Otherwise you'll have very intense colors if you go from 0 to 255.
@@ -104,25 +104,25 @@ public class ExpressiveLight : MonoBehaviour
                 expressiveMaterial.SetColor("_EmissionColor", Color.magenta * intensityPrepared);
                 break;
             case ExpressiveColor.Orange:
-                expressiveMaterial.SetColor("_EmissionColor", new Color(0.9f, 0.4f, 0.2f) * intensityPrepared);
+                expressiveMaterial.SetColor("_EmissionColor", new Color(0.9f, 0.4f, 0.2f) * intensityPrepared * 0.5f);
                 break;
             case ExpressiveColor.Yellow:
-                expressiveMaterial.SetColor("_EmissionColor", new Color(0.8f, 0.7f, 0.1f) * intensityPrepared);
+                expressiveMaterial.SetColor("_EmissionColor", new Color(0.8f, 0.7f, 0.1f) * intensityPrepared * 0.5f);
                 break;
             case ExpressiveColor.Green:
-                expressiveMaterial.SetColor("_EmissionColor", new Color(0.7f, 0.8f, 0.1f) * intensityPrepared);
+                expressiveMaterial.SetColor("_EmissionColor", new Color(0.3f, 0.8f, 0.01f) * intensityPrepared * 0.8f);
                 break;
             case ExpressiveColor.Cyan:
-                expressiveMaterial.SetColor("_EmissionColor", new Color(0.01f, 0.7f, 0.7f) * intensityPrepared);
+                expressiveMaterial.SetColor("_EmissionColor", new Color(0.01f, 0.7f, 0.7f) * intensityPrepared * 0.5f);
                 break;
             case ExpressiveColor.Blue:
-                expressiveMaterial.SetColor("_EmissionColor", new Color(0.01f, 0.05f, 0.9f) * intensityPrepared);
+                expressiveMaterial.SetColor("_EmissionColor", new Color(0.01f, 0.05f, 0.9f) * intensityPrepared * 2f);
                 break;
             case ExpressiveColor.Purple:
-                expressiveMaterial.SetColor("_EmissionColor", new Color(0.15f, 0f, 1f) * intensityPrepared);
+                expressiveMaterial.SetColor("_EmissionColor", new Color(0.05f, 0f, 1f) * intensityPrepared * 3f);
                 break;
             case ExpressiveColor.White:
-                expressiveMaterial.SetColor("_EmissionColor", new Color(0.6f, 0.6f, 0.6f) * intensityPrepared);
+                expressiveMaterial.SetColor("_EmissionColor", new Color(0.6f, 0.6f, 0.6f) * intensityPrepared * 0.3f);
                 break;
             default:
                 // This color is left intentionally bright to show something has gone horribly wrong.

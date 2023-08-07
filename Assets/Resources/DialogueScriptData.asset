@@ -27,7 +27,7 @@ MonoBehaviour:
     your turn to talk."
   - 'When dots disappear, repeat after me:'
   - "\u201C\u2026Hello\u2026\u201D"
-  introScriptDialogueAnimations: 0100000000000000000000000100000000000000000000000100000002000000000000000000000000000000
+  introScriptDialogueAnimations: 0300000003000000040000000100000004000000020000000000000000000000000000000000000000000000
   introScriptDialogueAudio:
   - {fileID: 8300000, guid: 28188cd7fbfc8de4e94c323a2a39d080, type: 3}
   - {fileID: 8300000, guid: bbcd5d10a0ada184fabbb325b8533dce, type: 3}
