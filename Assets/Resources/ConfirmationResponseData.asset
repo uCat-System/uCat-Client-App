@@ -13,8 +13,14 @@ MonoBehaviour:
   m_Name: ConfirmationResponseData
   m_EditorClassIdentifier: 
   positiveConfirmationResponse: Splendid!
+  positiveConfirmationAudio: {fileID: 8300000, guid: dc68ad11e3804354b9d68555e92a440a, type: 3}
   negativeConfirmationResponse: "Hm, let\u2019s try that one again."
+  negativeConfirmationAudio: {fileID: 0}
   unknownConfirmationResponse: "I didn\u2019t quite catch that. Try saying it again."
+  unknownConfirmationAudio: {fileID: 0}
   positiveProceedResponse: -->
+  positiveProceedAudio: {fileID: 0}
   negativeProceedResponse: <--
+  negativeProceedAudio: {fileID: 0}
   unknownProceedResponse: Could you say that one more time?
+  unknownProceedAudio: {fileID: 0}

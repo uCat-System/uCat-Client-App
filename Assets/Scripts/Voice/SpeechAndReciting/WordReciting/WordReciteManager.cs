@@ -8,6 +8,8 @@ using ECorrectResponseType = CheckRecitedWordHandler.CorrectResponseType;
 
 public class WordReciteManager : MonoBehaviour
 {
+    public AudioSource catAudioSource;
+    
     public AnimationDriver catAnimationDriver;
 
     public Modular3DText dialogueText3D;
@@ -235,6 +237,13 @@ public class WordReciteManager : MonoBehaviour
         switch (responseType) {
             case ECorrectResponseType.POSITIVE_CORRECT_RESPONSE:
                 catAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Happy;
+// ** TODO: Refactor to the Dialogue management paradigm (instead of directly envoking the assets) **
+                //Playing uCat monologue when correct answer is found
+                catAudioSource.PlayOneShot(ConfirmationHandler.temp_audioConfPos);
+                //dialogueText.UpdateText("uCat: " + correctResponseText);
+//////    
+
+
                 reciteText3D.Material = correctColour;
                 yield return new WaitForSeconds(CheckRecitedWordHandler.timeBetweenWordsInSeconds);
                 catAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Idle;

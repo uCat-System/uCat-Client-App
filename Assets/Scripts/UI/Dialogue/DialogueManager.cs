@@ -34,12 +34,9 @@ public class DialogueManager : MonoBehaviour
         {
             // Update dialogue
             dialogueText.UpdateText("uCat: " + currentDialogueOption);
-            Debug.Log("Update dialogue " + currentDialogueOption);
-
 
             // Play the relevant animation
             catAnimationDriver.catAnimation = dialogueAnimations[DialogueHandler.currentDialogueOptionIndex];
-            Debug.Log("Update catAnimation " + dialogueAnimations[DialogueHandler.currentDialogueOptionIndex]);
 
             // Play the dialogue audio
             // catAudioSource.clip = dialogueAudio[UcatDialogueHandler.currentDialogueOptionIndex];
@@ -67,7 +64,8 @@ public class DialogueManager : MonoBehaviour
         Dictionary<int, string> currentDialogueList;
         Dictionary<int, AnimationDriver.CatAnimations> currentAnimationList;
         Dictionary<int, AudioClip> currentAudioList;
-         // We pass in different dictionaries based on the scene
+        
+        // We pass in different dictionaries based on the scene
         switch (_levelManager.currentLevel) {
             case "Intro":
                 currentDialogueList = DialogueHandler.uCatIntroDialogue;

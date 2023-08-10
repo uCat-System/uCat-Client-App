@@ -18,6 +18,9 @@ public class ConfirmationHandler
     public static Dictionary<Enum, string> confirmationResponses;
     public static float confirmationWaitTimeInSeconds = 2f;
 
+
+    public static AudioClip temp_audioConfPos;
+
     public enum ConfirmationResponseType
     {
         POSITIVE_CONFIRMATION_RESPONSE,
@@ -48,6 +51,8 @@ public class ConfirmationHandler
 
          // Access the ConfirmationResponseData scriptable object's fields
         ConfirmationResponseData confirmationResponseData = Resources.Load<ConfirmationResponseData>("ConfirmationResponseData");
+        temp_audioConfPos = confirmationResponseData.positiveConfirmationAudio;
+
         if (confirmationResponseData == null)
         {
             Debug.LogError("ConfirmationResponseData not found.");
