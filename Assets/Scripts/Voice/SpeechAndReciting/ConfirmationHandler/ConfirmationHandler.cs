@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 public class ConfirmationHandler
@@ -49,7 +50,7 @@ public class ConfirmationHandler
             { "repeat", ProceedResponseType.NEGATIVE_PROCEED_RESPONSE }
         };
 
-         // Access the ConfirmationResponseData scriptable object's fields
+        // Access the ConfirmationResponseData scriptable object's fields
         ConfirmationResponseData confirmationResponseData = Resources.Load<ConfirmationResponseData>("ConfirmationResponseData");
         temp_audioConfPos = confirmationResponseData.positiveConfirmationAudio;
 

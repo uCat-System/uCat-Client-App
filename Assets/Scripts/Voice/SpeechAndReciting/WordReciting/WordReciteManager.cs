@@ -237,9 +237,9 @@ public class WordReciteManager : MonoBehaviour
         switch (responseType) {
             case ECorrectResponseType.POSITIVE_CORRECT_RESPONSE:
                 catAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Happy;
-// ** TODO: Refactor to the Dialogue management paradigm (instead of directly envoking the assets) **
+// ** TODO: Refactor to the Dialogue management paradigm **
                 //Playing uCat monologue when correct answer is found
-                catAudioSource.PlayOneShot(ConfirmationHandler.temp_audioConfPos);
+                //catAudioSource.PlayOneShot(ConfirmationHandler.temp_audioConfPos);
                 //dialogueText.UpdateText("uCat: " + correctResponseText);
 //////    
 
