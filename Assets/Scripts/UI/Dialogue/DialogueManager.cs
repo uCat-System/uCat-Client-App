@@ -19,6 +19,9 @@ public class DialogueManager : MonoBehaviour
     public GameObject micIcon;
     public GameObject boardComponent;
 
+    // The line of dialogue (index) when the mic icon display event should occur
+    public int micActivationDialogueIndex;
+
     void Start()
     {
         // uCat begins idle so that the first anim can play properly
@@ -43,7 +46,7 @@ public class DialogueManager : MonoBehaviour
             catAudioSource.PlayOneShot(dialogueAudio[DialogueHandler.currentDialogueOptionIndex]);
 
             //in the Intro, uCat wants to show the user what icon would be displayed when she is listening to them
-            var micState = (DialogueHandler.currentDialogueOptionIndex == 8) ? true : false;
+            var micState = (DialogueHandler.currentDialogueOptionIndex == micActivationDialogueIndex) ? true : false;
             micIcon.SetActive(micState);
 
             //in the Intro, uCat wants to show the user the board from an appropriate time (not immediately)
