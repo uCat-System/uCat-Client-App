@@ -22,6 +22,8 @@ public class DialogueManager : MonoBehaviour
     // The line of dialogue (index) when the mic icon display event should occur
     public int micActivationDialogueIndex;
 
+    public int boardActivationDialogueIndex;
+
     void Start()
     {
         // uCat begins idle so that the first anim can play properly
@@ -51,8 +53,7 @@ public class DialogueManager : MonoBehaviour
 
             //in the Intro, uCat wants to show the user the board from an appropriate time (not immediately)
             boardComponent.SetActive(false);
-            if(DialogueHandler.currentDialogueOptionIndex >= 4) boardComponent.SetActive(true);
-
+            if(DialogueHandler.currentDialogueOptionIndex >= boardActivationDialogueIndex) boardComponent.SetActive(true);
         }
         else
         {
