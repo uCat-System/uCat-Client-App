@@ -325,7 +325,12 @@ public class WordReciteManager : MonoBehaviour
 
     public void GameOver()
     {
-        reciteText3D.UpdateText("Say 'next' to proceed.\nOr 'repeat' to repeat.");
-        _witListeningStateManager.TransitionToState(EListeningState.ListeningForNextOrRepeat);
+        // If in the intro, we want to skip the confirmation.
+        if (_levelManager.currentLevel == "Intro") {
+            _levelManager.LevelComplete();
+        } else {
+            reciteText3D.UpdateText("Say 'next' to proceed.\nOr 'repeat' to repeat.");
+            _witListeningStateManager.TransitionToState(EListeningState.ListeningForNextOrRepeat);
+        }
     }
 }
