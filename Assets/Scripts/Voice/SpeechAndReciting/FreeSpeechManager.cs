@@ -15,6 +15,8 @@ namespace MText
         public UIManager _uiManager;
 
         public LevelManager _levelManager;
+
+        public LevelTransition _levelTransition;
         public WordReciteManager _wordReciteManager;
         public Modular3DText partialText3D;
         public Modular3DText subtitleText3D;
@@ -111,7 +113,7 @@ namespace MText
         public void HandleProceedResponse(EProceedResponseType proceedResponse, string originallyUtteredText) { 
         switch (proceedResponse) {
             case EProceedResponseType.POSITIVE_PROCEED_RESPONSE:
-                _levelManager.LevelComplete();
+                _levelTransition.BeginLevelTransition();
                 break;
             case EProceedResponseType.NEGATIVE_PROCEED_RESPONSE:
                 _levelManager.RepeatLevel();
@@ -197,13 +199,13 @@ namespace MText
 
             // DEbug
 
-            if (Input.GetKeyDown(KeyCode.Space)) {
-                HandleFullTranscription("menu");
-            }
+            // if (Input.GetKeyDown(KeyCode.Space)) {
+            //     HandleFullTranscription("menu");
+            // }
 
-            if (Input.GetKeyDown(KeyCode.Escape)) {
-                HandleFullTranscription("resume");
-            }
+            // if (Input.GetKeyDown(KeyCode.Escape)) {
+            //     HandleFullTranscription("resume");
+            // }
         }
 
         public void ActivateTasksBasedOnTranscription(string text)
