@@ -237,16 +237,16 @@ public class WordReciteManager : MonoBehaviour
         switch (responseType) {
             case ECorrectResponseType.POSITIVE_CORRECT_RESPONSE:
                 catAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Happy;
-                Debug.Log("A correct response was found");
-// ** TODO: Refactor to the Dialogue management paradigm **
+                // ** TODO: Refactor to the Dialogue management paradigm **
                 //Playing uCat monologue when correct answer is found
                 catAudioSource.PlayOneShot(ConfirmationHandler.temp_audioConfPos);
                 // dialogueText.UpdateText("uCat: " + correctResponseText);
-//////    
+                //////    
 
 
                 reciteText3D.Material = correctColour;
                 yield return new WaitForSeconds(CheckRecitedWordHandler.timeBetweenWordsInSeconds);
+                dialogueText3D.UpdateText("");
                 catAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Idle;
                 AddScoreToScoreManager();
                 MoveOnIfMoreWordsInList();
@@ -255,6 +255,7 @@ public class WordReciteManager : MonoBehaviour
                 catAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Sad;
                 reciteText3D.Material = incorrectColour;
                 yield return new WaitForSeconds(CheckRecitedWordHandler.timeBetweenWordsInSeconds);
+                dialogueText3D.UpdateText("");
                 catAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Idle;
                 RepeatSameWord();
                 break;
