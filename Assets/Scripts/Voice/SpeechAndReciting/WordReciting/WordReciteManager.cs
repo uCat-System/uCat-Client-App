@@ -247,14 +247,8 @@ public class WordReciteManager : MonoBehaviour
             case ECorrectResponseType.POSITIVE_CORRECT_RESPONSE:
                 dialogueText3D.UpdateText(CheckRecitedWordHandler.correctResponses[responseType]);
                 catAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Happy;
-                // ** TODO: Refactor to the Dialogue management paradigm **
-                //Playing uCat monologue when correct answer is found
-                // catAudioSource.PlayOneShot(ConfirmationHandler.temp_audioConfPos);
-                // dialogueText.UpdateText("uCat: " + correctResponseText);
-                //////    
-
-
                 reciteText3D.Material = correctColour;
+                Debug.LogError("WAITING (POS)");
                 yield return new WaitForSeconds(CheckRecitedWordHandler.timeBetweenWordsInSeconds);
                 dialogueText3D.UpdateText("");
                 catAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Idle;
@@ -268,7 +262,17 @@ public class WordReciteManager : MonoBehaviour
                 PlayIncorrectWordDialogue();
                 catAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Sad;
                 reciteText3D.Material = incorrectColour;
-                yield return new WaitForSeconds(CheckRecitedWordHandler.timeBetweenWordsInSeconds);
+
+                Debug.Log("Length? " + CheckRecitedWordHandler.negativeCorrectResponseAudio[incorrectWordAttempts].length);
+                // Wait for the amount of seconds that the audio clip goes for, so we don't overlap
+                Debug.LogError("WAITING (NEG)");
+
+                if (uCatAudioSource.isPlaying) {
+                    yield return new WaitWhile(() => uCatAudioSource.isPlaying);
+                } else {
+                    yield return new WaitForSeconds(CheckRecitedWordHandler.timeBetweenWordsInSeconds);
+                }
+
                 dialogueText3D.UpdateText("");
                 catAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Idle;
                 RepeatSameWord();
