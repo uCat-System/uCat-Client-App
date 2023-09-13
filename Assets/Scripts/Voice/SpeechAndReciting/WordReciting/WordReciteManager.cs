@@ -59,6 +59,7 @@ public class WordReciteManager : MonoBehaviour
     public Modular3DText subtitleText3D;
 
     public AudioSource reciteBoardAudioSource;
+    public AudioSource uCatAudioSource;
 
     public AudioClip[] wordSounds;
 
@@ -66,6 +67,7 @@ public class WordReciteManager : MonoBehaviour
     {
         // Assigning gameobjects
         reciteBoardAudioSource = GameObject.FindWithTag("ReciteBoard").GetComponent<AudioSource>();
+        uCatAudioSource = GameObject.FindWithTag("uCat").GetComponent<AudioSource>();
         subtitleText3D = GameObject.FindWithTag("SubtitleText3D").GetComponent<Modular3DText>();
         partialText3D = GameObject.FindWithTag("PartialText3D").GetComponent<Modular3DText>();
         reciteText3D = GameObject.FindWithTag("ReciteText3D").GetComponent<Modular3DText>();
@@ -284,6 +286,7 @@ public class WordReciteManager : MonoBehaviour
         if (incorrectWordAttempts <= 2) {
             incorrectResponseText = CheckRecitedWordHandler.negativeCorrectResponses[incorrectWordAttempts];
             // Play audio clip number x HERE
+            uCatAudioSource.PlayOneShot(CheckRecitedWordHandler.negativeCorrectResponseAudio[incorrectWordAttempts]);
         } else {
             incorrectResponseText = CheckRecitedWordHandler.negativeCorrectResponses[3];
         }

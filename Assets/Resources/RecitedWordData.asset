@@ -19,6 +19,8 @@ MonoBehaviour:
   - Hm, do you want to keep trying? If you want to skip a particular word, stay silent.
     You can always try again later.
   - Incorrect.
-  negativeCorrectResponseAudio: []
-  currentNegativeCorrectResponse: 
+  negativeCorrectResponseAudio:
+  - {fileID: 8300000, guid: 1abd6844905672440a09165ba625b9dd, type: 3}
+  - {fileID: 8300000, guid: fd6841ce321fe0142a4c66666852facc, type: 3}
+  - {fileID: 8300000, guid: ed19a16fdc8dbd34e8fa094d76179cff, type: 3}
   unknownCorrectResponse: Sorry, I didn't understand that.

@@ -24,6 +24,8 @@ public class CheckRecitedWordHandler
 
     public static string[] negativeCorrectResponses;
 
+    public static AudioClip[] negativeCorrectResponseAudio;
+
 
     static CheckRecitedWordHandler()
     { 
@@ -51,6 +53,7 @@ public class CheckRecitedWordHandler
 
         // Load the array of negative response strings on init
         negativeCorrectResponses = recitedWordData.negativeCorrectResponses;
+        negativeCorrectResponseAudio = recitedWordData.negativeCorrectResponseAudio;
     }
 
     public static CorrectResponseType CheckIfWordOrSentenceIsCorrect(string utteredWordOrSentence, string wordToRecite)
