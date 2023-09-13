@@ -195,13 +195,13 @@ namespace MText
 
             // DEbug
 
-            // if (Input.GetKeyDown(KeyCode.Space)) {
-            //     HandleFullTranscription("menu");
-            // }
+            if (Input.GetKeyDown(KeyCode.Space)) {
+                HandleFullTranscription("menu");
+            }
 
-            // if (Input.GetKeyDown(KeyCode.Escape)) {
-            //     HandleFullTranscription("resume");
-            // }
+            if (Input.GetKeyDown(KeyCode.Escape)) {
+                HandleFullTranscription("resume");
+            }
         }
 
         public void ActivateTasksBasedOnTranscription(string text)

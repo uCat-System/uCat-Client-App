@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
      private static UIManager instance;
 
      public LevelManager _levelManager;
+     public Animator boardAnimator;
      public GameObject textElements;
 
      public WitListeningStateManager _witListeningStateManager;
@@ -37,12 +38,29 @@ public class UIManager : MonoBehaviour
 
     public void ActivateMenu() {
 
+        StartCoroutine(StartMenuOpenAnimation());
+    }
+
+    public void DeactivateMenu() {
+        StartCoroutine(StartMenuCloseAnimation());
+    }
+
+    IEnumerator StartMenuOpenAnimation() {
         if (!menu.activeInHierarchy)
         {
             textElements.SetActive(false);
             menu.SetActive(true);
+            boardAnimator.SetTrigger("Open");
+            yield return new WaitForSeconds(1);
             _witListeningStateManager.TransitionToRelevantMenuNavigationStateBasedOnLevel();
         }
+    }
+
+    IEnumerator StartMenuCloseAnimation() {
+        boardAnimator.SetTrigger("Close");
+        yield return new WaitForSeconds(1);
+        menu.SetActive(false);
+        textElements.SetActive(true);
     }
 
     public void ActivateMenuNavigationCommandsBasedOnResponse(EMenuNavigationResponseType navigationCommand) {
@@ -59,7 +77,7 @@ public class UIManager : MonoBehaviour
                 break;
             case EMenuNavigationResponseType.RESUME_RESPONSE:
                 // TODO clean this up, maybe fire an event handler / put logic in witlisteningstatemanager
-                menu.SetActive(false);
+                DeactivateMenu();
                 string scene = SceneManager.GetActiveScene().name;
                 if (scene == "Level3") {
                     _witListeningStateManager.TransitionToState(EListeningState.ListeningForEverything);
