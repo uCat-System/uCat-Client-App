@@ -46,6 +46,9 @@ public class UIManager : MonoBehaviour
     }
 
     public void ActivateMenuNavigationCommandsBasedOnResponse(EMenuNavigationResponseType navigationCommand) {
+
+        LevelTransition _levelTransition = FindObjectOfType<LevelTransition>();
+
         switch (navigationCommand) {
             case EMenuNavigationResponseType.NURSE_RESPONSE:
                 // TODO implement later
@@ -67,16 +70,17 @@ public class UIManager : MonoBehaviour
                 textElements.SetActive(true);
                 break;
             case EMenuNavigationResponseType.RECITE_WORDS_RESPONSE:
-                SceneManager.LoadScene("Level1");
+                _levelTransition.BeginSpecificLevelTransition("Level1");
                 break;
             case EMenuNavigationResponseType.RECITE_SENTENCES_RESPONSE:
-                SceneManager.LoadScene("Level2");
+                Debug.Log("Sentences called");
+                _levelTransition.BeginSpecificLevelTransition("Level2");
                 break;
             case EMenuNavigationResponseType.RECITE_OPEN_QUESTIONS_RESPONSE:
-                SceneManager.LoadScene("Level3");
+                _levelTransition.BeginSpecificLevelTransition("Level3");
                 break;
             case EMenuNavigationResponseType.LOBBY_RESPONSE:
-                SceneManager.LoadScene("Lobby");
+                _levelTransition.BeginSpecificLevelTransition("Lobby");
                 break;
             case EMenuNavigationResponseType.WRITING_RESPONSE:
                 Debug.Log("Writing not implemented yet");

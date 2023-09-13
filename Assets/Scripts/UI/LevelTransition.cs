@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelTransition : MonoBehaviour
 {
@@ -20,7 +21,12 @@ public class LevelTransition : MonoBehaviour
         StartCoroutine(TransitionToNextLevel());
     }
 
-    IEnumerator TransitionToNextLevel()
+    public void BeginSpecificLevelTransition(string sceneName)
+    {
+        StartCoroutine(TransitionToSpecificLevel(sceneName));
+    }
+
+    public IEnumerator TransitionToNextLevel()
     {
         transition.SetTrigger("Start");
 
@@ -31,11 +37,22 @@ public class LevelTransition : MonoBehaviour
         LevelManager levelManager = FindObjectOfType<LevelManager>();
         if (levelManager != null)
         {
-            levelManager.LevelComplete();
+            levelManager.GoToNextLevelSequentially();
         }
         else
         {
             Debug.LogError("LevelManager not found.");
         }
+    }
+
+    public IEnumerator TransitionToSpecificLevel(string sceneName)
+    {
+                        Debug.Log("Sentences scene: " + sceneName);
+
+        transition.SetTrigger("Start");
+
+        yield return new WaitForSeconds(transitionTime);
+
+        SceneManager.LoadScene(sceneName);
     }
 }

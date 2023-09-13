@@ -32,7 +32,7 @@ public class LevelManager : MonoBehaviour
         SceneManager.LoadScene(scene.name);
     }
 
-    public void LevelComplete()
+    public void GoToNextLevelSequentially()
     {
         // Switch scenes based on score
         Scene scene = SceneManager.GetActiveScene();
