@@ -77,7 +77,6 @@ public class DialogueManager : MonoBehaviour
                 currentAudioList = DialogueHandler.uCatIntroDialogueAudio;
                 break;
             case "Level1":
-                Debug.Log("Level1");
                 currentDialogueList = DialogueHandler.uCatLevel1Dialogue;
                 currentAnimationList = DialogueHandler.uCatLevel1DialogueAnimations;
                 currentAudioList = DialogueHandler.uCatLevel1DialogueAudio;
@@ -111,10 +110,8 @@ public class DialogueManager : MonoBehaviour
         yield return new WaitWhile(() => catAudioSource.isPlaying);
         yield return new WaitForSeconds(DialogueHandler.timeBetweenLinesInSeconds);
         
-        Debug.Log("Checking if we should continue" + DialogueHandler.currentDialogueOptionIndex + " " + currentDialogueList.Count + " " + currentAnimationList.Count);
         if (DialogueHandler.currentDialogueOptionIndex >= currentDialogueList.Count-1 || currentDialogueList == null || currentAnimationList == null) {
             // Do not continue incrementing if we are at the end
-            Debug.Log("END OF DIALOGUE");
             EndOfDialogue();
             yield break;
         } else {

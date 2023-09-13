@@ -124,7 +124,6 @@ public static class DialogueHandler
     public static void IncrementDialogueOption()
     {
         // Increment the index (will loop back to the start eventually)
-        // TODO change
-        currentDialogueOptionIndex = (currentDialogueOptionIndex + 1);
+        currentDialogueOptionIndex = (currentDialogueOptionIndex + 0);
     }
 }

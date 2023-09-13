@@ -15,7 +15,6 @@ public class CheckRecitedWordHandler
         UNKNOWN_CORRECT_RESPONSE
     }
 
-
     public static float timeBetweenWordsInSeconds = 2f;
 
     // Checking words
@@ -23,10 +22,14 @@ public class CheckRecitedWordHandler
     private static Dictionary<bool, CorrectResponseType> correctActions;
     public static Dictionary<Enum, string> correctResponses;
 
+    public static string[] negativeCorrectResponses;
+
+
     static CheckRecitedWordHandler()
     { 
         // Access the ConfirmationResponseData scriptable object's fields
         RecitedWordData recitedWordData = Resources.Load<RecitedWordData>("RecitedWordData");
+
         if (recitedWordData == null)
         {
             Debug.LogError("recitedWordData not found.");
@@ -42,9 +45,12 @@ public class CheckRecitedWordHandler
         correctResponses = new Dictionary<Enum, string>
         {
             { CorrectResponseType.POSITIVE_CORRECT_RESPONSE, recitedWordData.positiveCorrectResponse },
-            { CorrectResponseType.NEGATIVE_CORRECT_RESPONSE, recitedWordData.negativeCorrectResponse },
+            { CorrectResponseType.NEGATIVE_CORRECT_RESPONSE, recitedWordData.negativeCorrectResponses[0] },
             { CorrectResponseType.UNKNOWN_CORRECT_RESPONSE, recitedWordData.unknownCorrectResponse }
         };
+
+        // Load the array of negative response strings on init
+        negativeCorrectResponses = recitedWordData.negativeCorrectResponses;
     }
 
     public static CorrectResponseType CheckIfWordOrSentenceIsCorrect(string utteredWordOrSentence, string wordToRecite)

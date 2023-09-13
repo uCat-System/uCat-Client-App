@@ -13,5 +13,12 @@ MonoBehaviour:
   m_Name: RecitedWordData
   m_EditorClassIdentifier: 
   positiveCorrectResponse: Correct!
-  negativeCorrectResponse: Incorrect.
+  negativeCorrectResponses:
+  - "I didn\u2019t quite catch that. Try saying it again."
+  - Could you say that one more time?
+  - Hm, do you want to keep trying? If you want to skip a particular word, stay silent.
+    You can always try again later.
+  - Incorrect.
+  negativeCorrectResponseAudio: []
+  currentNegativeCorrectResponse: 
   unknownCorrectResponse: Sorry, I didn't understand that.

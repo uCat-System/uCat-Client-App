@@ -67,7 +67,6 @@ namespace MText
         public void HandleFullTranscription(string text)
         {
 
-            Debug.Log("Full transcription: " + text + " and current state is " + _witListeningStateManager.currentListeningState);
             if (_witListeningStateManager.MenuActivationCommandsAreAllowed()) {
                 // Listen for menu activation
                 EMenuActivationResponseType menuActivationResponse = UICommandHandler.CheckIfMenuActivationCommandsWereSpoken(text);
@@ -82,11 +81,8 @@ namespace MText
 
             if (_witListeningStateManager.currentListeningState == EListeningState.ListeningForConfirmation) {
                 //Listen for 'yes' or 'no?' (confirmation)
-                Debug.Log("confirmation mode active: " + text);
-
                 EConfirmationResponseType confirmationResponse = ConfirmationHandler.CheckIfConfirmationWasSpoken(text);
                 StartCoroutine(ProceedBasedOnConfirmation(confirmationResponse, originallyUtteredText));
-                Debug.Log("response of that was: " + confirmationResponse + " and the original text was: " + originallyUtteredText);
             }
 
             if (_witListeningStateManager.currentListeningState == EListeningState.ListeningForNextOrRepeat) {
@@ -103,7 +99,7 @@ namespace MText
 
             else {
                 // Turn mic back on if we are in the menu and it didn't recognise anything
-                Debug.LogError("Did not activate word task with phrase " + text + " . You are probably in the menu." + _witListeningStateManager.currentListeningState);
+                Debug.LogError("Did not activate word task with phrase " + text + " . You are probably in the menu: " + _witListeningStateManager.currentListeningState);
                  if (_witListeningStateManager.MenuNavigationCommandsAreAllowed()) {
                     _witListeningStateManager.ReactivateToTryMenuNavigationCommandsAgain();
                  }

@@ -20,7 +20,7 @@ public class ConfirmationHandler
     public static float confirmationWaitTimeInSeconds = 2f;
 
 
-    public static AudioClip temp_audioConfPos;
+    public static AudioClip positiveConfirmationAudio;
 
     public enum ConfirmationResponseType
     {
@@ -52,7 +52,7 @@ public class ConfirmationHandler
 
         // Access the ConfirmationResponseData scriptable object's fields
         ConfirmationResponseData confirmationResponseData = Resources.Load<ConfirmationResponseData>("ConfirmationResponseData");
-        temp_audioConfPos = confirmationResponseData.positiveConfirmationAudio;
+        positiveConfirmationAudio = confirmationResponseData.positiveConfirmationAudio;
 
         if (confirmationResponseData == null)
         {

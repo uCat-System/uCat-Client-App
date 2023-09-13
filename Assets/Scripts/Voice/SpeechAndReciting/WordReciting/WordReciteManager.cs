@@ -34,6 +34,8 @@ public class WordReciteManager : MonoBehaviour
 
     bool openQuestionsComplete;
 
+    int incorrectWordAttempts;
+
     // Text colours
 
     public Material correctColour;
@@ -77,10 +79,10 @@ public class WordReciteManager : MonoBehaviour
         // Initialise Word Lists
         SetWordAndUiListsBasedOnLevel();
         activeList = currentWordOrSentenceList;
-        Debug.Log("active list is " + activeList.Count);
 
         currentWordOrSentenceIndex = 0;
-        Debug.Log("current index is " + currentWordOrSentenceIndex);
+
+        incorrectWordAttempts = 0;
 
         // Set score based on amount of words in lists
         if (_levelManager.currentLevel == "Level1" || _levelManager.currentLevel == "Level2")
@@ -220,26 +222,32 @@ public class WordReciteManager : MonoBehaviour
    
     public IEnumerator CheckRecitedWord(string text)
     {
+        Debug.Log("Checking word, reciting allowed? " + _witListeningStateManager.RecitingWordsIsAllowed());
         if (!_witListeningStateManager.RecitingWordsIsAllowed()) {
             // Menu
             yield break;
+        } else {
+            // Compare the uttered text with the correct text
+            ECorrectResponseType correctResponseType = CheckRecitedWordHandler.CheckIfWordOrSentenceIsCorrect(text, activeList[currentWordOrSentenceIndex]);
+            StartCoroutine(HandleWordOrSentenceCorrectOrIncorrect(correctResponseType));
         }
 
-        // Compare the uttered text with the correct text
-        ECorrectResponseType correctResponseType = CheckRecitedWordHandler.CheckIfWordOrSentenceIsCorrect(text, activeList[currentWordOrSentenceIndex]);
-        StartCoroutine(HandleWordOrSentenceCorrectOrIncorrect(correctResponseType));
     }
     
     public IEnumerator HandleWordOrSentenceCorrectOrIncorrect(ECorrectResponseType responseType) {
-        string correctResponseText = CheckRecitedWordHandler.correctResponses[responseType];
-        dialogueText3D.UpdateText(correctResponseText);
-
+        // The text is coming back as positive or negative currently.
+        // We need to expand this to be variable based on how many times they have gotten it wrong.
+        // We also need to add in the audio for the cat.
         switch (responseType) {
+
+            // If the word was right
+
             case ECorrectResponseType.POSITIVE_CORRECT_RESPONSE:
+                dialogueText3D.UpdateText(CheckRecitedWordHandler.correctResponses[responseType]);
                 catAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Happy;
                 // ** TODO: Refactor to the Dialogue management paradigm **
                 //Playing uCat monologue when correct answer is found
-                catAudioSource.PlayOneShot(ConfirmationHandler.temp_audioConfPos);
+                // catAudioSource.PlayOneShot(ConfirmationHandler.temp_audioConfPos);
                 // dialogueText.UpdateText("uCat: " + correctResponseText);
                 //////    
 
@@ -251,7 +259,11 @@ public class WordReciteManager : MonoBehaviour
                 AddScoreToScoreManager();
                 MoveOnIfMoreWordsInList();
                 break;
+
+            // If the word was wrong
+
             case ECorrectResponseType.NEGATIVE_CORRECT_RESPONSE:
+                PlayIncorrectWordDialogue();
                 catAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Sad;
                 reciteText3D.Material = incorrectColour;
                 yield return new WaitForSeconds(CheckRecitedWordHandler.timeBetweenWordsInSeconds);
@@ -266,6 +278,20 @@ public class WordReciteManager : MonoBehaviour
         }
     }
 
+    void PlayIncorrectWordDialogue() {
+        string incorrectResponseText; 
+        Debug.LogError("incorrectWordAttempts: " + incorrectWordAttempts);
+        if (incorrectWordAttempts <= 2) {
+            incorrectResponseText = CheckRecitedWordHandler.negativeCorrectResponses[incorrectWordAttempts];
+            // Play audio clip number x HERE
+        } else {
+            incorrectResponseText = CheckRecitedWordHandler.negativeCorrectResponses[3];
+        }
+
+        dialogueText3D.UpdateText(incorrectResponseText);
+        incorrectWordAttempts++;
+
+    }
     void AddScoreToScoreManager()
     {
          if (_levelManager.currentLevel == "Level1")
