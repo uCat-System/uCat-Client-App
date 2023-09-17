@@ -7,9 +7,9 @@ using EMenuActivationResponseType = UICommandHandler.MenuActivationResponseType;
 using EMenuNavigationResponseType = UICommandHandler.MenuNavigationResponseType;
 using EProceedResponseType = ConfirmationHandler.ProceedResponseType;
 using System.Collections;
+using MText;
 
-namespace MText
-{
+
     public class FreeSpeechManager : MonoBehaviour
     {
         public UIManager _uiManager;
@@ -66,32 +66,35 @@ namespace MText
 
         public void HandleFullTranscription(string text)
         {
-
+            Debug.Log("Handling full transcription: " + text);
             if (_witListeningStateManager.MenuActivationCommandsAreAllowed()) {
+                Debug.Log("Menu command allowed: " + text);  
                 // Listen for menu activation
                 EMenuActivationResponseType menuActivationResponse = UICommandHandler.CheckIfMenuActivationCommandsWereSpoken(text);
                 HandleMenuActivationResponse(menuActivationResponse);
             }
 
-            if (_witListeningStateManager.MenuNavigationCommandsAreAllowed()) {
+            else if (_witListeningStateManager.MenuNavigationCommandsAreAllowed()) {
                 // Listen for commands within the menu
+                Debug.Log("Menu navigation command allowed: " + text);
                 EMenuNavigationResponseType menuNavigationResponse = UICommandHandler.CheckIfMenuNavigationCommandsWereSpoken(text);
                 _uiManager.ActivateMenuNavigationCommandsBasedOnResponse(menuNavigationResponse);
             }
 
-            if (_witListeningStateManager.currentListeningState == EListeningState.ListeningForConfirmation) {
+            else if (_witListeningStateManager.currentListeningState == EListeningState.ListeningForConfirmation) {
+                Debug.Log("Checking if confirmation was spoken: " + text);
                 //Listen for 'yes' or 'no?' (confirmation)
                 EConfirmationResponseType confirmationResponse = ConfirmationHandler.CheckIfConfirmationWasSpoken(text);
                 StartCoroutine(ProceedBasedOnConfirmation(confirmationResponse, originallyUtteredText));
             }
 
-            if (_witListeningStateManager.currentListeningState == EListeningState.ListeningForNextOrRepeat) {
+            else if (_witListeningStateManager.currentListeningState == EListeningState.ListeningForNextOrRepeat) {
                 // Listen for 'next' or 'repeat' (word recite)
                 Debug.Log("Checking if next or repeat was spoken: " + text);
                 EProceedResponseType proceedResponse = ConfirmationHandler.CheckIfProceedPhraseWasSpoken(text);
                 HandleProceedResponse(proceedResponse, text);
             }
-            if (_witListeningStateManager.RecitingWordsIsAllowed()) {
+            else if (_witListeningStateManager.RecitingWordsIsAllowed()) {
                 Debug.Log("About to activate recite stuff");
                 // Activate Tasks (recite words, etc) if in any valid reciting states
                 ActivateTasksBasedOnTranscription(text);
@@ -192,16 +195,6 @@ namespace MText
             if (currentTimeoutTimerInSeconds > 5) {
                 OnInactivity();
             }
-
-            // DEbug
-
-            if (Input.GetKeyDown(KeyCode.Space)) {
-                HandleFullTranscription("menu");
-            }
-
-            if (Input.GetKeyDown(KeyCode.Escape)) {
-                HandleFullTranscription("resume");
-            }
         }
 
         public void ActivateTasksBasedOnTranscription(string text)
@@ -253,4 +246,4 @@ namespace MText
         }
     }
     }
-}
+

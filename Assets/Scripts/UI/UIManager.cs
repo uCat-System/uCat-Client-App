@@ -14,12 +14,15 @@ public class UIManager : MonoBehaviour
      public Animator boardAnimator;
      public GameObject textElements;
 
+     public GameObject reciteBoard;
+
      public WitListeningStateManager _witListeningStateManager;
     public WordReciteManager _wordReciteManager;
 
     private void Awake()
     {
         textElements = GameObject.FindWithTag("TextElements");
+        reciteBoard = GameObject.FindWithTag("ReciteBoard");
         if (instance == null)
         {
             instance = this;
@@ -51,20 +54,21 @@ public class UIManager : MonoBehaviour
             textElements.SetActive(false);
             menu.SetActive(true);
             boardAnimator.SetTrigger("Open");
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(1.5f);
             _witListeningStateManager.TransitionToRelevantMenuNavigationStateBasedOnLevel();
         }
     }
 
     IEnumerator StartMenuCloseAnimation() {
         boardAnimator.SetTrigger("Close");
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1.25f);
         menu.SetActive(false);
         textElements.SetActive(true);
     }
 
     public void ActivateMenuNavigationCommandsBasedOnResponse(EMenuNavigationResponseType navigationCommand) {
 
+        Debug.Log("MENU NAV COMMAND: " + navigationCommand.ToString());
         LevelTransition _levelTransition = FindObjectOfType<LevelTransition>();
 
         switch (navigationCommand) {
@@ -78,14 +82,16 @@ public class UIManager : MonoBehaviour
             case EMenuNavigationResponseType.RESUME_RESPONSE:
                 // TODO clean this up, maybe fire an event handler / put logic in witlisteningstatemanager
                 DeactivateMenu();
-                string scene = SceneManager.GetActiveScene().name;
-                if (scene == "Level3") {
-                    _witListeningStateManager.TransitionToState(EListeningState.ListeningForEverything);
-                } else {
-                    _witListeningStateManager.TransitionToState(EListeningState.ListeningForMenuActivationCommandsOnly);
-                    _wordReciteManager.RepeatSameWord();
-                }
-                textElements.SetActive(true);
+                // string scene = SceneManager.GetActiveScene().name;
+                // if (scene == "Level3") {
+                //     _witListeningStateManager.TransitionToState(EListeningState.ListeningForEverything);
+                // // If board is active (& we are in an exercise), reset the word
+                // } else if (reciteBoard.activeInHierarchy && _wordReciteManager.isCurrentlyCountingTowardsTimeout) {
+                //     Debug.Log("Board is active");
+                //     _witListeningStateManager.TransitionToState(EListeningState.ListeningForMenuActivationCommandsOnly);
+                //     _wordReciteManager.RepeatSameWord();
+                // }
+                // textElements.SetActive(true);
                 break;
             case EMenuNavigationResponseType.RECITE_WORDS_RESPONSE:
                 _levelTransition.BeginSpecificLevelTransition("Level1");

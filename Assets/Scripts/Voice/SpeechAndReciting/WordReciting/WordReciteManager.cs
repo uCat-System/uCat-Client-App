@@ -139,32 +139,30 @@ public class WordReciteManager : MonoBehaviour
 
         partialText3D.UpdateText("");
         reciteText3D.Material = defaultColour;
-        string word = activeList[currentWordOrSentenceIndex];
-        // word == "Hello"
-    
+        string word = activeList[currentWordOrSentenceIndex];    
         for (float i = 0; i < 3; i++)
         {
 
-        if (_witListeningStateManager.currentListeningState == EListeningState.ListeningForTaskMenuCommandsOnly) {
-            yield break;
-        }
-            switch (i)
-            {
-                case 0:
-                    reciteText3D.UpdateText("..." + word + "...");
-                    break;
-                case 1:
-                    reciteText3D.UpdateText(".." + word + "..");
-                    break;
-                case 2:
-                    reciteText3D.UpdateText("." + word + ".");
-
-                    // Discard anything said during countdown and start fresh
-                    _witListeningStateManager.TransitionToState(EListeningState.NotListening);
-                    break;
+            if (_witListeningStateManager.currentListeningState == EListeningState.ListeningForTaskMenuCommandsOnly) {
+                yield break;
             }
-           
-            yield return new WaitForSeconds(1);
+                switch (i)
+                {
+                    case 0:
+                        reciteText3D.UpdateText("..." + word + "...");
+                        break;
+                    case 1:
+                        reciteText3D.UpdateText(".." + word + "..");
+                        break;
+                    case 2:
+                        reciteText3D.UpdateText("." + word + ".");
+
+                        // Discard anything said during countdown and start fresh
+                        _witListeningStateManager.TransitionToState(EListeningState.NotListening);
+                        break;
+                }
+            
+                yield return new WaitForSeconds(1);
         }
 
         // Countdown finished, start listening for the word
