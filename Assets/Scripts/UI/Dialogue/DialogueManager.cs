@@ -24,11 +24,39 @@ public class DialogueManager : MonoBehaviour
 
     public int boardActivationDialogueIndex;
 
+    public DialogueState currentDialogueState;
+
+    private enum DialogueState {
+        IsPlayingDialogueOnly, // Eg during intro (before screen appears)
+        IsPerformingATask, // Eg during a word countdown
+        // IsPlayingDialogueDuringTask, // Eg during a word countdown, but the dialogue is still playing (eg Good job, try again, etc)
+    }
+
+    public void TransitionToState(ListeningState nextState)
+        {
+            switch (nextState)
+            {
+                case DialogueState.IsPlayingDialogueOnly:
+                    break;
+                case DialogueState.IsPerformingATask:
+                    // Add specific resume logic here eg when we close the menu and resume a task
+                    break;
+                default:
+                    Debug.LogError("Invalid dialogue state transition." + nextState);
+                    return;
+            }
+
+            currentDialogueState = nextState;
+        }
+
+    
+
     void Start()
     {
         // uCat begins idle so that the first anim can play properly
         catAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Idle;
         StartCoroutine(CycleThroughDialogue());
+        TransitionToState(DialogueState.IsPlayingDialogueOnly);
     }
 
    public void SetDialogueTextAnimationAndSound(Dictionary<int, string> dialogueList, 
@@ -124,6 +152,7 @@ public class DialogueManager : MonoBehaviour
     void EndOfDialogue() {
         DialogueHandler.currentDialogueOptionIndex = 0;
         catAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Idle;
+        currentDialogueState = DialogueState.IsPerformingATask;
         _wordReciteManager.enabled = true;
         dialogueText.UpdateText("");
     }

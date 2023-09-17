@@ -14,6 +14,8 @@ public class UIManager : MonoBehaviour
      public Animator boardAnimator;
      public GameObject textElements;
 
+     public DialogueManager _dialogueManager;
+
      public GameObject reciteBoard;
 
      public WitListeningStateManager _witListeningStateManager;
@@ -23,6 +25,8 @@ public class UIManager : MonoBehaviour
     {
         textElements = GameObject.FindWithTag("TextElements");
         reciteBoard = GameObject.FindWithTag("ReciteBoard");
+        _levelManager = FindObjectOfType<LevelManager>();
+        _dialogueManager = FindObjectOfType<DialogueManager>();
         if (instance == null)
         {
             instance = this;
@@ -63,7 +67,9 @@ public class UIManager : MonoBehaviour
         boardAnimator.SetTrigger("Close");
         yield return new WaitForSeconds(1.25f);
         menu.SetActive(false);
-        textElements.SetActive(true);
+        if (_dialogueManager.currentDialogueState == DialogueManager.DialogueState.IsPerformingATask) {
+            textElements.SetActive(true);
+        }
     }
 
     public void ActivateMenuNavigationCommandsBasedOnResponse(EMenuNavigationResponseType navigationCommand) {
