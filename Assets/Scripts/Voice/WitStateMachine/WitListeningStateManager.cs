@@ -97,6 +97,7 @@ public class WitListeningStateManager : MonoBehaviour
     }
 
     public bool MenuNavigationCommandsAreAllowed() {
+        Debug.Log("MenuNavigationCommandsAreAllowed? " + currentListeningState);
         return CurrentStateIsAllowedInDictionary(validMenuNavigationStates);
     }
 

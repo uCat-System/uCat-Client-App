@@ -67,9 +67,9 @@ public class UIManager : MonoBehaviour
         boardAnimator.SetTrigger("Close");
         yield return new WaitForSeconds(1.25f);
         menu.SetActive(false);
-        if (_dialogueManager.currentDialogueState == DialogueManager.DialogueState.IsPerformingATask) {
-            textElements.SetActive(true);
-        }
+        textElements.SetActive(true);
+        // if (_dialogueManager.currentDialogueState == DialogueManager.DialogueState.IsPerformingATask) {
+        // }
     }
 
     public void ActivateMenuNavigationCommandsBasedOnResponse(EMenuNavigationResponseType navigationCommand) {
@@ -88,6 +88,7 @@ public class UIManager : MonoBehaviour
             case EMenuNavigationResponseType.RESUME_RESPONSE:
                 // TODO clean this up, maybe fire an event handler / put logic in witlisteningstatemanager
                 DeactivateMenu();
+                _witListeningStateManager.TransitionToState(EListeningState.ListeningForMenuActivationCommandsOnly);
                 // string scene = SceneManager.GetActiveScene().name;
                 // if (scene == "Level3") {
                 //     _witListeningStateManager.TransitionToState(EListeningState.ListeningForEverything);
