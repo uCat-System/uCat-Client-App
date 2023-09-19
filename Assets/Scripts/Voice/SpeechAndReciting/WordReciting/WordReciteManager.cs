@@ -4,6 +4,7 @@ using UnityEngine;
 using MText;
 using EListeningState = WitListeningStateManager.ListeningState;
 using ECorrectResponseType = CheckRecitedWordHandler.CorrectResponseType;
+using EDialogueState = DialogueManager.DialogueState;
 
 public class WordReciteManager : MonoBehaviour
 {
@@ -51,8 +52,7 @@ public class WordReciteManager : MonoBehaviour
 
     public ScoreManager _scoreManager;
     public LevelManager _levelManager;
-    public LevelTransition _levelTransition;
-
+    public DialogueManager _dialogueManager;
     public Modular3DText reciteText3D;
     public Modular3DText partialText3D;
 
@@ -359,7 +359,7 @@ public class WordReciteManager : MonoBehaviour
     {
         // If in the intro, we want to skip the confirmation.
         if (_levelManager.currentLevel == "Intro") {
-            _levelTransition.BeginLevelTransition();
+            _dialogueManager.StartDialogue();
         } else {
             reciteText3D.UpdateText("Say 'next' to proceed.\nOr 'repeat' to repeat.");
             _witListeningStateManager.TransitionToState(EListeningState.ListeningForNextOrRepeat);

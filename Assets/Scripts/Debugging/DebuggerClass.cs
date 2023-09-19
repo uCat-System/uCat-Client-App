@@ -31,6 +31,14 @@ public class DebuggerClass : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha2)) {
             boardAnimator.SetTrigger("Close");
         }
+
+        if (Input.GetKeyDown(KeyCode.Alpha3)) {
+            Time.timeScale = 3f;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha4)) {
+            Time.timeScale = 1f;
+        }
     }
 
     void ActivateMenuViaVoice() {

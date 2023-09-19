@@ -74,27 +74,27 @@ using MText;
                 HandleMenuActivationResponse(menuActivationResponse);
             }
 
-            else if (_witListeningStateManager.MenuNavigationCommandsAreAllowed()) {
+            if (_witListeningStateManager.MenuNavigationCommandsAreAllowed()) {
                 // Listen for commands within the menu
                 Debug.Log("Menu navigation command allowed: " + text);
                 EMenuNavigationResponseType menuNavigationResponse = UICommandHandler.CheckIfMenuNavigationCommandsWereSpoken(text);
                 _uiManager.ActivateMenuNavigationCommandsBasedOnResponse(menuNavigationResponse);
             }
 
-            else if (_witListeningStateManager.currentListeningState == EListeningState.ListeningForConfirmation) {
+            if (_witListeningStateManager.currentListeningState == EListeningState.ListeningForConfirmation) {
                 Debug.Log("Checking if confirmation was spoken: " + text);
                 //Listen for 'yes' or 'no?' (confirmation)
                 EConfirmationResponseType confirmationResponse = ConfirmationHandler.CheckIfConfirmationWasSpoken(text);
                 StartCoroutine(ProceedBasedOnConfirmation(confirmationResponse, originallyUtteredText));
             }
 
-            else if (_witListeningStateManager.currentListeningState == EListeningState.ListeningForNextOrRepeat) {
+            if (_witListeningStateManager.currentListeningState == EListeningState.ListeningForNextOrRepeat) {
                 // Listen for 'next' or 'repeat' (word recite)
                 Debug.Log("Checking if next or repeat was spoken: " + text);
                 EProceedResponseType proceedResponse = ConfirmationHandler.CheckIfProceedPhraseWasSpoken(text);
                 HandleProceedResponse(proceedResponse, text);
             }
-            else if (_witListeningStateManager.RecitingWordsIsAllowed()) {
+            if (_witListeningStateManager.RecitingWordsIsAllowed()) {
                 Debug.Log("About to activate recite stuff");
                 // Activate Tasks (recite words, etc) if in any valid reciting states
                 ActivateTasksBasedOnTranscription(text);
