@@ -67,9 +67,20 @@ public class UIManager : MonoBehaviour
         boardAnimator.SetTrigger("Close");
         yield return new WaitForSeconds(1.25f);
         menu.SetActive(false);
-        textElements.SetActive(true);
         // if (_dialogueManager.currentDialogueState == DialogueManager.DialogueState.IsPerformingATask) {
         // }
+    }
+
+    public void Resume() {
+        // If the user is currently performing a task, re-enable the board
+        // if (_dialogueManager.currentDialogueState == DialogueManager.DialogueState.IsPerformingATask) {
+        //     reciteBoard.SetActive(true);
+        // }
+
+        DeactivateMenu();
+        // textElements.SetActive(true);
+        _witListeningStateManager.TransitionToState(EListeningState.ListeningForMenuActivationCommandsOnly);
+        //  _wordReciteManager.RepeatSameWord();
     }
 
     public void ActivateMenuNavigationCommandsBasedOnResponse(EMenuNavigationResponseType navigationCommand) {
@@ -86,19 +97,7 @@ public class UIManager : MonoBehaviour
                 _levelManager.RepeatLevel();
                 break;
             case EMenuNavigationResponseType.RESUME_RESPONSE:
-                // TODO clean this up, maybe fire an event handler / put logic in witlisteningstatemanager
-                DeactivateMenu();
-                _witListeningStateManager.TransitionToState(EListeningState.ListeningForMenuActivationCommandsOnly);
-                // string scene = SceneManager.GetActiveScene().name;
-                // if (scene == "Level3") {
-                //     _witListeningStateManager.TransitionToState(EListeningState.ListeningForEverything);
-                // // If board is active (& we are in an exercise), reset the word
-                // } else if (reciteBoard.activeInHierarchy && _wordReciteManager.isCurrentlyCountingTowardsTimeout) {
-                //     Debug.Log("Board is active");
-                //     _witListeningStateManager.TransitionToState(EListeningState.ListeningForMenuActivationCommandsOnly);
-                //     _wordReciteManager.RepeatSameWord();
-                // }
-                // textElements.SetActive(true);
+                Resume();
                 break;
             case EMenuNavigationResponseType.RECITE_WORDS_RESPONSE:
                 _levelTransition.BeginSpecificLevelTransition("Level1");

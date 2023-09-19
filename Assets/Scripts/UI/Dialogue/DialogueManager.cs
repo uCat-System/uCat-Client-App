@@ -19,50 +19,39 @@ public class DialogueManager : MonoBehaviour
     public GameObject micIcon;
     public GameObject boardComponent;
 
-    // The line of dialogue (index) when the mic icon display event should occur
-    public int micActivationDialogueIndex;
+    // The line of dialogue (index) when various events should occur
+    public int micActivationDialogueIndex; // Mic icon
 
-    public int boardActivationDialogueIndex;
+    public int boardActivationDialogueIndex; // Recite board
+
+    public int taskActivationDialogueIndex; // Actual task begins
 
     // public DialogueState currentDialogueState;
 
-    private enum DialogueState {
+    public enum DialogueState {
         IsPlayingDialogueOnly, // Eg during intro (before screen appears)
         IsPerformingATask, // Eg during a word countdown
         // IsPlayingDialogueDuringTask, // Eg during a word countdown, but the dialogue is still playing (eg Good job, try again, etc)
     }
 
-    // public void TransitionToState(DialogueState nextState)
-    //     {
-    //         switch (nextState)
-    //         {
-    //             case DialogueState.IsPlayingDialogueOnly:
-    //                 break;
-    //             case DialogueState.IsPerformingATask:
-    //                 // Add specific resume logic here eg when we close the menu and resume a task
-    //                 break;
-    //             default:
-    //                 Debug.LogError("Invalid dialogue state transition." + nextState);
-    //                 return;
-    //         }
-
-    //         currentDialogueState = nextState;
-    //     }
-
-    
+    public DialogueState currentDialogueState;
 
     void Start()
     {
         // uCat begins idle so that the first anim can play properly
         catAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Idle;
         StartCoroutine(CycleThroughDialogue());
-        // TransitionToState(DialogueState.IsPlayingDialogueOnly);
+        currentDialogueState = DialogueState.IsPlayingDialogueOnly;
+    }
+
+    void ActivateTaskWhileDialogueStillOngoing() {
+        _wordReciteManager.enabled = true;
+        currentDialogueState = DialogueState.IsPerformingATask;
     }
 
    public void SetDialogueTextAnimationAndSound(Dictionary<int, string> dialogueList, 
         Dictionary<int, AnimationDriver.CatAnimations> dialogueAnimations, Dictionary<int, AudioClip> dialogueAudio)
     {
-        Debug.Log("SetDialogueTextAnimationAndSound" + DialogueHandler.currentDialogueOptionIndex + " " + dialogueList.Count + " " + dialogueAnimations.Count);
         if (dialogueList.TryGetValue(DialogueHandler.currentDialogueOptionIndex, out string currentDialogueOption))
         {
             // Update dialogue
@@ -82,6 +71,8 @@ public class DialogueManager : MonoBehaviour
             //in the Intro, uCat wants to show the user the board from an appropriate time (not immediately)
             boardComponent.SetActive(false);
             if(DialogueHandler.currentDialogueOptionIndex >= boardActivationDialogueIndex) boardComponent.SetActive(true);
+
+            if (DialogueHandler.currentDialogueOptionIndex >= taskActivationDialogueIndex) ActivateTaskWhileDialogueStillOngoing();
         }
         else
         {
@@ -143,17 +134,17 @@ public class DialogueManager : MonoBehaviour
             EndOfDialogue();
             yield break;
         } else {
-            // Otherwise, start the next line
-            DialogueHandler.IncrementDialogueOption();
-            StartCoroutine(CycleThroughDialogue());
+            if (currentDialogueState != DialogueState.IsPerformingATask) {
+                // Otherwise, start the next line
+                DialogueHandler.IncrementDialogueOption();
+                StartCoroutine(CycleThroughDialogue());
+            }
         }
     }
 
     void EndOfDialogue() {
         DialogueHandler.currentDialogueOptionIndex = 0;
         catAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Idle;
-        // currentDialogueState = DialogueState.IsPerformingATask;
-        _wordReciteManager.enabled = true;
         dialogueText.UpdateText("");
     }
 
