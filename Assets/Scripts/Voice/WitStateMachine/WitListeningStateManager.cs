@@ -56,8 +56,6 @@ public class WitListeningStateManager : MonoBehaviour
     {
         { ListeningState.ListeningForEverything, true },
         { ListeningState.ListeningForRecitedWordsOnly, true },
-        { ListeningState.ListeningForConfirmation, true },
-        { ListeningState.ListeningForNextOrRepeat, true },
     };
 
     public bool CurrentStateIsAllowedInDictionary(Dictionary<ListeningState, bool> dictToSearch) {

@@ -94,6 +94,7 @@ MonoBehaviour:
   isCurrentlyCountingTowardsTimeout: 0
   currentTimeoutTimerInSeconds: 0
   catAudioSource: {fileID: 0}
+  timeoutInSeconds: 7
 --- !u!114 &8343668746282422109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,10 +182,16 @@ MonoBehaviour:
   catAudioSource: {fileID: 0}
   micIcon: {fileID: 0}
   boardComponent: {fileID: 0}
+  currentDialogueOptionIndex: 0
   micActivationDialogueIndex: 8
   boardActivationDialogueIndex: 4
   taskActivationDialogueIndex: 10
+  introTaskActivationIndex: 10
+  level1TaskActivationIndex: 5
+  level2TaskActivationIndex: 0
+  level3TaskActivationIndex: 0
   currentDialogueState: 0
+  previousDialogueState: 0
 --- !u!114 &1937571883
 MonoBehaviour:
   m_ObjectHideFlags: 0

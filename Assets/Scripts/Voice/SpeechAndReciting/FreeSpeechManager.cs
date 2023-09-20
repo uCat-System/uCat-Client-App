@@ -34,6 +34,8 @@ using MText;
 
         public AudioSource catAudioSource;
 
+        public int timeoutInSeconds;
+
         Scene scene;
 
         void Start()
@@ -191,9 +193,10 @@ using MText;
             // Only count seconds if the mic is active and we are reciting words (not in menu etc)
             if (isCurrentlyCountingTowardsTimeout && _witListeningStateManager.TimeoutCountingIsAllowed()) {
                 currentTimeoutTimerInSeconds += Time.deltaTime;
+                subtitleText3D.UpdateText("TIMEOUT: " + currentTimeoutTimerInSeconds + " seconds");
             }
 
-            if (currentTimeoutTimerInSeconds > 5) {
+            if (currentTimeoutTimerInSeconds > timeoutInSeconds) {
                 OnInactivity();
             }
         }
@@ -219,7 +222,6 @@ using MText;
             _witListeningStateManager.TransitionToState(EListeningState.ListeningForConfirmation);
             // Ask them to confirm
             partialText3D.UpdateText("Did you say " + originallyUtteredText + "?");
-            // _witListeningStateManager.TurnWitActivationOffAndOn();
         }
 
      void CalculateCachedText(string newText) {
