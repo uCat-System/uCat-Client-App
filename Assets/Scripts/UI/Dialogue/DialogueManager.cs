@@ -35,7 +35,7 @@ public class DialogueManager : MonoBehaviour
     public enum DialogueState {
         IsPlayingDialogueOnly, // Eg during intro (before screen appears)
         IsPerformingATask, // Eg during a word countdown
-        // IsPlayingDialogueDuringTask, // Eg during a word countdown, but the dialogue is still playing (eg Good job, try again, etc)
+        IsInMenu // When menu is open
     }
 
     public DialogueState currentDialogueState;
@@ -50,7 +50,6 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue() {
         Debug.Log("Starting dialogue. Index is " + DialogueHandler.currentDialogueOptionIndex);
-        currentDialogueState = DialogueState.IsPlayingDialogueOnly;
         StartCoroutine(CycleThroughDialogue());
     }
 
@@ -136,6 +135,11 @@ public class DialogueManager : MonoBehaviour
             yield break;
         }
 
+        if (currentDialogueState != DialogueState.IsPlayingDialogueOnly) {
+            Debug.Log("Not playing dialogue only. Breaking out.");
+            yield break;
+        }
+
 
         // Trigger the task to begin, and pause dialogue
         if (DialogueHandler.currentDialogueOptionIndex == taskActivationDialogueIndex) {
@@ -162,7 +166,7 @@ public class DialogueManager : MonoBehaviour
             Debug.Log("Not end of dialogue");
             DialogueHandler.IncrementDialogueOption();
             // Otherwise, start the next line as long as user is not performing a task
-            if (currentDialogueState != DialogueState.IsPerformingATask) {
+            if (currentDialogueState == DialogueState.IsPlayingDialogueOnly) {
                 StartCoroutine(CycleThroughDialogue());
             }
         }

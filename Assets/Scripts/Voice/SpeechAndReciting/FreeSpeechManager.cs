@@ -66,6 +66,7 @@ using MText;
 
         public void HandleFullTranscription(string text)
         {
+            subtitleText3D.UpdateText(text);
             Debug.Log("Handling full transcription: " + text);
             if (_witListeningStateManager.MenuActivationCommandsAreAllowed()) {
                 Debug.Log("Menu command allowed: " + text);  

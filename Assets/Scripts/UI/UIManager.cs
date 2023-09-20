@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Linq;
 using EListeningState = WitListeningStateManager.ListeningState;
 using EMenuNavigationResponseType = UICommandHandler.MenuNavigationResponseType;
+using EDialogueState = DialogueManager.DialogueState;
 using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
@@ -44,7 +45,7 @@ public class UIManager : MonoBehaviour
     }
 
     public void ActivateMenu() {
-
+        _dialogueManager.currentDialogueState = EDialogueState.IsInMenu;
         StartCoroutine(StartMenuOpenAnimation());
     }
 
@@ -76,7 +77,8 @@ public class UIManager : MonoBehaviour
         // if (_dialogueManager.currentDialogueState == DialogueManager.DialogueState.IsPerformingATask) {
         //     reciteBoard.SetActive(true);
         // }
-
+        _dialogueManager.currentDialogueState = EDialogueState.IsPlayingDialogueOnly;
+        _dialogueManager.StartDialogue();
         DeactivateMenu();
         // textElements.SetActive(true);
         _witListeningStateManager.TransitionToState(EListeningState.ListeningForMenuActivationCommandsOnly);

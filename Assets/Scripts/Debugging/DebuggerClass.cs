@@ -20,16 +20,11 @@ public class DebuggerClass : MonoBehaviour
             ActivateMenuViaVoice();
         }
 
-        if (Input.GetKeyDown(KeyCode.Space)) {
+        if (Input.GetKeyDown(KeyCode.Alpha1)) {
             _freeSpeechManager.HandleFullTranscription("resume");
         }
-
-        if (Input.GetKeyDown(KeyCode.Alpha1)) {
-            boardAnimator.SetTrigger("Open");
-        }
-
         if (Input.GetKeyDown(KeyCode.Alpha2)) {
-            boardAnimator.SetTrigger("Close");
+            _freeSpeechManager.HandleFullTranscription("INCORRECTRESUME");
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha3)) {
