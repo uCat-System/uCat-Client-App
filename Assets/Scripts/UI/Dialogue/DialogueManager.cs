@@ -30,6 +30,11 @@ public class DialogueManager : MonoBehaviour
 
     public int taskActivationDialogueIndex; // Actual task begins
 
+    public int introTaskActivationIndex;
+    public int level1TaskActivationIndex;
+    public int level2TaskActivationIndex;
+    public int level3TaskActivationIndex;
+
     // public DialogueState currentDialogueState;
 
     public enum DialogueState {
@@ -47,6 +52,7 @@ public class DialogueManager : MonoBehaviour
         // uCat begins idle so that the first anim can play properly
         _levelTransition = FindObjectOfType<LevelTransition>();
         catAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Idle;
+        SetDialogueTaskIndexes();
         StartDialogue();
     }
 
@@ -63,6 +69,26 @@ public class DialogueManager : MonoBehaviour
     void ActivateTaskAndPauseDialogue() {
         _wordReciteManager.enabled = true;
         ChangeDialogueState(DialogueState.IsPerformingATask);
+    }
+
+    void SetDialogueTaskIndexes() {
+        switch (_levelManager.currentLevel) {
+            case "Intro":
+                taskActivationDialogueIndex = introTaskActivationIndex;
+                break;
+            case "Level1":
+                taskActivationDialogueIndex = level1TaskActivationIndex;
+                break;
+            case "Level2":
+                taskActivationDialogueIndex = level2TaskActivationIndex;
+                break;
+            case "Level3":
+                taskActivationDialogueIndex = level3TaskActivationIndex;
+                break;
+            default:
+                Debug.LogError("No dialogue task indexes set for level " + _levelManager.currentLevel);
+                break;
+        }
     }
 
    public void SetDialogueTextAnimationAndSound(Dictionary<int, string> dialogueList, Dictionary<int, AnimationDriver.CatAnimations> dialogueAnimations, Dictionary<int, AudioClip> dialogueAudio)
@@ -149,7 +175,6 @@ public class DialogueManager : MonoBehaviour
 
         // Trigger the task to begin, and pause dialogue
         if (DialogueHandler.currentDialogueOptionIndex == taskActivationDialogueIndex) {
-            //  if its currently '10'
             Debug.Log("Activating task");
             ActivateTaskAndPauseDialogue();
             // Increment so that when we return from task we are on the next line

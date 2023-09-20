@@ -47,7 +47,7 @@ public static class DialogueHandler
 
     static DialogueHandler()
     {
-        currentDialogueOptionIndex = 10;
+        currentDialogueOptionIndex = 0;
 
         DialogueScriptData dialogueScriptData = Resources.Load<DialogueScriptData>("DialogueScriptData");
 
