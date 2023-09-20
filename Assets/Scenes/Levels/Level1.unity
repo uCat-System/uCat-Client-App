@@ -1246,6 +1246,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cf157744fd4ce34c99a2c115fc981c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boardAnimator: {fileID: 0}
+  _freeSpeechManager: {fileID: 0}
 --- !u!4 &1870360287
 Transform:
   m_ObjectHideFlags: 0
@@ -1269,6 +1271,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1937571883, guid: eeb381f8f105aa04aab5137abf3cd87b, type: 3}
+      propertyPath: boardAnimator
+      value: 
+      objectReference: {fileID: 3211107781574464609}
     - target: {fileID: 3505799383072129518, guid: eeb381f8f105aa04aab5137abf3cd87b, type: 3}
       propertyPath: micIcon
       value: 
@@ -1326,9 +1332,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 858645785}
     - target: {fileID: 8343668746282422106, guid: eeb381f8f105aa04aab5137abf3cd87b, type: 3}
+      propertyPath: reciteBoard
+      value: 
+      objectReference: {fileID: 3211107781574464607}
+    - target: {fileID: 8343668746282422106, guid: eeb381f8f105aa04aab5137abf3cd87b, type: 3}
       propertyPath: textElements
       value: 
       objectReference: {fileID: 3211107781574464608}
+    - target: {fileID: 8343668746282422106, guid: eeb381f8f105aa04aab5137abf3cd87b, type: 3}
+      propertyPath: boardAnimator
+      value: 
+      objectReference: {fileID: 3211107781574464609}
     - target: {fileID: 8343668746282422108, guid: eeb381f8f105aa04aab5137abf3cd87b, type: 3}
       propertyPath: partialText3D
       value: 
@@ -1658,9 +1672,19 @@ AudioSource:
   m_CorrespondingSourceObject: {fileID: 3211107781574464606, guid: 74ce51154cf56e14db799fe9c14bb97f, type: 3}
   m_PrefabInstance: {fileID: 3211107781574464604}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3211107781574464607 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3211107783098718910, guid: 74ce51154cf56e14db799fe9c14bb97f, type: 3}
+  m_PrefabInstance: {fileID: 3211107781574464604}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &3211107781574464608 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8890741824738465098, guid: 74ce51154cf56e14db799fe9c14bb97f, type: 3}
+  m_PrefabInstance: {fileID: 3211107781574464604}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &3211107781574464609 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7497548651376482365, guid: 74ce51154cf56e14db799fe9c14bb97f, type: 3}
   m_PrefabInstance: {fileID: 3211107781574464604}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7763343334214244448

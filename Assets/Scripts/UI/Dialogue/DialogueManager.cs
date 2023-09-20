@@ -40,6 +40,8 @@ public class DialogueManager : MonoBehaviour
 
     public DialogueState currentDialogueState;
 
+    public DialogueState previousDialogueState;
+
     void Start()
     {
         // uCat begins idle so that the first anim can play properly
@@ -53,9 +55,14 @@ public class DialogueManager : MonoBehaviour
         StartCoroutine(CycleThroughDialogue());
     }
 
+    public void ChangeDialogueState(DialogueState newDialogueState) {
+        previousDialogueState = currentDialogueState;
+        currentDialogueState = newDialogueState;
+    }
+
     void ActivateTaskAndPauseDialogue() {
         _wordReciteManager.enabled = true;
-        currentDialogueState = DialogueState.IsPerformingATask;
+        ChangeDialogueState(DialogueState.IsPerformingATask);
     }
 
    public void SetDialogueTextAnimationAndSound(Dictionary<int, string> dialogueList, Dictionary<int, AnimationDriver.CatAnimations> dialogueAnimations, Dictionary<int, AudioClip> dialogueAudio)
@@ -131,7 +138,6 @@ public class DialogueManager : MonoBehaviour
         if (currentDialogueList.Count == 0)
         {
             Debug.LogError("No dialogue lines found");
-            EndOfDialogue();
             yield break;
         }
 

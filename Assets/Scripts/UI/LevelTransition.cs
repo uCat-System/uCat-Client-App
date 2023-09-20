@@ -28,6 +28,8 @@ public class LevelTransition : MonoBehaviour
 
     public IEnumerator TransitionToNextLevel()
     {
+
+        DialogueHandler.ResetDialogueIndex();
         transition.SetTrigger("Start");
 
         yield return new WaitForSeconds(transitionTime);
@@ -47,7 +49,7 @@ public class LevelTransition : MonoBehaviour
 
     public IEnumerator TransitionToSpecificLevel(string sceneName)
     {
-                        Debug.Log("Sentences scene: " + sceneName);
+        DialogueHandler.ResetDialogueIndex();
 
         transition.SetTrigger("Start");
 

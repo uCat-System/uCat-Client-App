@@ -359,7 +359,7 @@ public class WordReciteManager : MonoBehaviour
     {
         // If in the intro, we want to skip the confirmation.
         if (_levelManager.currentLevel == "Intro") {
-            _dialogueManager.currentDialogueState = EDialogueState.IsPlayingDialogueOnly;
+            _dialogueManager.ChangeDialogueState(EDialogueState.IsPlayingDialogueOnly);
             _dialogueManager.StartDialogue();
         } else {
             reciteText3D.UpdateText("Say 'next' to proceed.\nOr 'repeat' to repeat.");

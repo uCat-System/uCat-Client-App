@@ -28,10 +28,10 @@ public class UIManager : MonoBehaviour
         reciteBoard = GameObject.FindWithTag("ReciteBoard");
         _levelManager = FindObjectOfType<LevelManager>();
         _dialogueManager = FindObjectOfType<DialogueManager>();
+
         if (instance == null)
         {
             instance = this;
-            // DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -40,17 +40,10 @@ public class UIManager : MonoBehaviour
     }
     public GameObject menu;
 
-    public void CheckIfMenuActivationCommandsWereSpoken(string text) {
-        
-    }
-
     public void ActivateMenu() {
-        _dialogueManager.currentDialogueState = EDialogueState.IsInMenu;
+        _witListeningStateManager.TransitionToRelevantMenuNavigationStateBasedOnLevel();
+        _dialogueManager.ChangeDialogueState(EDialogueState.IsInMenu);
         StartCoroutine(StartMenuOpenAnimation());
-    }
-
-    public void DeactivateMenu() {
-        StartCoroutine(StartMenuCloseAnimation());
     }
 
     IEnumerator StartMenuOpenAnimation() {
@@ -60,29 +53,39 @@ public class UIManager : MonoBehaviour
             menu.SetActive(true);
             boardAnimator.SetTrigger("Open");
             yield return new WaitForSeconds(1.5f);
-            _witListeningStateManager.TransitionToRelevantMenuNavigationStateBasedOnLevel();
         }
     }
+    public void DeactivateMenu() {
+        StartCoroutine(StartMenuCloseAnimation());
+    }
+
 
     IEnumerator StartMenuCloseAnimation() {
         boardAnimator.SetTrigger("Close");
         yield return new WaitForSeconds(1.25f);
         menu.SetActive(false);
-        // if (_dialogueManager.currentDialogueState == DialogueManager.DialogueState.IsPerformingATask) {
-        // }
     }
 
     public void Resume() {
-        // If the user is currently performing a task, re-enable the board
-        // if (_dialogueManager.currentDialogueState == DialogueManager.DialogueState.IsPerformingATask) {
-        //     reciteBoard.SetActive(true);
-        // }
-        _dialogueManager.currentDialogueState = EDialogueState.IsPlayingDialogueOnly;
-        _dialogueManager.StartDialogue();
-        DeactivateMenu();
-        // textElements.SetActive(true);
+        // Repeat task if it was in progress, otherwise continue dialogue
+
+        Debug.Log("Resuming, prev state was " + _dialogueManager.previousDialogueState.ToString() );
+
+        // Set the dialogue and Wit state back to what they were before menu activation
+         _dialogueManager.ChangeDialogueState(_dialogueManager.previousDialogueState);
         _witListeningStateManager.TransitionToState(EListeningState.ListeningForMenuActivationCommandsOnly);
-        //  _wordReciteManager.RepeatSameWord();
+
+        if (_dialogueManager.currentDialogueState == EDialogueState.IsPerformingATask) {
+            Debug.Log("Resuming task");
+            _wordReciteManager.enabled = true;
+            _wordReciteManager.RepeatSameWord();
+            textElements.SetActive(true);
+        } else if (_dialogueManager.currentDialogueState == EDialogueState.IsPlayingDialogueOnly) {
+            Debug.Log("Resuming dialogue");
+             _dialogueManager.StartDialogue();
+        }
+
+        DeactivateMenu();
     }
 
     public void ActivateMenuNavigationCommandsBasedOnResponse(EMenuNavigationResponseType navigationCommand) {

@@ -59,8 +59,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b72e6f3d235b89043a055b5f56a7b12f, type: 3}
   - {fileID: 8300000, guid: 152d5475be6dca949b8fc9151dd56460, type: 3}
   - {fileID: 8300000, guid: bb942939d7fb98149a86df49607d02e1, type: 3}
-  level2ScriptDialogueOptions: []
-  level2ScriptDialogueAnimations: 00000000
+  level2ScriptDialogueOptions:
+  - Something
+  level2ScriptDialogueAnimations: 01000000
   level2ScriptDialogueAudio: []
   level3ScriptDialogueOptions: []
   level3ScriptDialogueAnimations: 
