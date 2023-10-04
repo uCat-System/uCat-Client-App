@@ -261,7 +261,7 @@ public class WordReciteManager : MonoBehaviour
                 catAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Sad;
                 reciteText3D.Material = incorrectColour;
 
-                Debug.Log("Length? " + CheckRecitedWordHandler.negativeCorrectResponseAudio[incorrectWordAttempts].length);
+                //Debug.Log("Length? " + CheckRecitedWordHandler.negativeCorrectResponseAudio[incorrectWordAttempts].length);
                 // Wait for the amount of seconds that the audio clip goes for, so we don't overlap
                 Debug.LogError("WAITING (NEG)");
 
