@@ -1385,10 +1385,6 @@ PrefabInstance:
       propertyPath: _levelTransition
       value: 
       objectReference: {fileID: 843335153}
-    - target: {fileID: 8343668746282422108, guid: eeb381f8f105aa04aab5137abf3cd87b, type: 3}
-      propertyPath: timeoutInSeconds
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 8343668746282422109, guid: eeb381f8f105aa04aab5137abf3cd87b, type: 3}
       propertyPath: wit
       value: 
