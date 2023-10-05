@@ -4,6 +4,18 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
+
+    /* 
+        <Summary>
+        * This class is responsible for tracking the current level and switching between levels.
+        * Intro level : User repeats the word "Hello"
+        * Level 1: User repeats single words in a list, as well as UI words.
+        * Level 2: User repeats sentences in a list, as well as UI sentences.
+        * Level 3: User answers open questions in whichever format they like.
+        </Summary>
+    */
+
+
     public ScoreManager _scoreManager;
 
     // TODO set this to be read-only (private)
@@ -20,7 +32,7 @@ public class LevelManager : MonoBehaviour
         SceneManager.LoadScene(scene.name);
     }
 
-    public void LevelComplete()
+    public void GoToNextLevelSequentially()
     {
         // Switch scenes based on score
         Scene scene = SceneManager.GetActiveScene();

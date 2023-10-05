@@ -78,3 +78,5 @@ Assets/XR/Settings/OpenXR Package Settings.asset
 ProjectSettings/DynamicsManager.asset
 ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json
 ProjectSettings/ProjectSettings.asset
+/[Aa]ssets/PolytopeStudio/*
+/[Aa]ssets/TerrainSampleAssets/*

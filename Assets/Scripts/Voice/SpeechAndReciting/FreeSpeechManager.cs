@@ -1,5 +1,5 @@
 using UnityEngine;
-using Meta.WitAi;
+using Oculus.Voice;
 using UnityEngine.SceneManagement;
 using EListeningState = WitListeningStateManager.ListeningState;
 using EConfirmationResponseType = ConfirmationHandler.ConfirmationResponseType;
@@ -7,14 +7,16 @@ using EMenuActivationResponseType = UICommandHandler.MenuActivationResponseType;
 using EMenuNavigationResponseType = UICommandHandler.MenuNavigationResponseType;
 using EProceedResponseType = ConfirmationHandler.ProceedResponseType;
 using System.Collections;
+using MText;
 
-namespace MText
-{
+
     public class FreeSpeechManager : MonoBehaviour
     {
         public UIManager _uiManager;
 
         public LevelManager _levelManager;
+
+        public LevelTransition _levelTransition;
         public WordReciteManager _wordReciteManager;
         public Modular3DText partialText3D;
         public Modular3DText subtitleText3D;
@@ -30,12 +32,16 @@ namespace MText
 
         public float currentTimeoutTimerInSeconds;
 
+        public AudioSource catAudioSource;
+
+        public int timeoutInSeconds;
+
         Scene scene;
 
         void Start()
         {   
             subtitleText3D = GameObject.FindWithTag("SubtitleText3D").GetComponent<Modular3DText>();
-            scene = SceneManager.GetActiveScene(); 
+            scene = SceneManager.GetActiveScene();
         }
 
         public void HandlePartialTranscription(string text)
@@ -62,9 +68,10 @@ namespace MText
 
         public void HandleFullTranscription(string text)
         {
-
-            Debug.Log("Full transcription: " + text + " and current state is " + _witListeningStateManager.currentListeningState);
+            subtitleText3D.UpdateText(text);
+            Debug.Log("Handling full transcription: " + text);
             if (_witListeningStateManager.MenuActivationCommandsAreAllowed()) {
+                Debug.Log("Menu command allowed: " + text);  
                 // Listen for menu activation
                 EMenuActivationResponseType menuActivationResponse = UICommandHandler.CheckIfMenuActivationCommandsWereSpoken(text);
                 HandleMenuActivationResponse(menuActivationResponse);
@@ -72,17 +79,16 @@ namespace MText
 
             if (_witListeningStateManager.MenuNavigationCommandsAreAllowed()) {
                 // Listen for commands within the menu
+                Debug.Log("Menu navigation command allowed: " + text);
                 EMenuNavigationResponseType menuNavigationResponse = UICommandHandler.CheckIfMenuNavigationCommandsWereSpoken(text);
                 _uiManager.ActivateMenuNavigationCommandsBasedOnResponse(menuNavigationResponse);
             }
 
             if (_witListeningStateManager.currentListeningState == EListeningState.ListeningForConfirmation) {
+                Debug.Log("Checking if confirmation was spoken: " + text);
                 //Listen for 'yes' or 'no?' (confirmation)
-                Debug.Log("confirmation mode active: " + text);
-
                 EConfirmationResponseType confirmationResponse = ConfirmationHandler.CheckIfConfirmationWasSpoken(text);
                 StartCoroutine(ProceedBasedOnConfirmation(confirmationResponse, originallyUtteredText));
-                Debug.Log("response of that was: " + confirmationResponse + " and the original text was: " + originallyUtteredText);
             }
 
             if (_witListeningStateManager.currentListeningState == EListeningState.ListeningForNextOrRepeat) {
@@ -99,7 +105,7 @@ namespace MText
 
             else {
                 // Turn mic back on if we are in the menu and it didn't recognise anything
-                Debug.LogError("Did not activate word task with phrase " + text + " . You are probably in the menu." + _witListeningStateManager.currentListeningState);
+                Debug.LogError("Did not activate word task with phrase " + text + " . You are probably in the menu: " + _witListeningStateManager.currentListeningState);
                  if (_witListeningStateManager.MenuNavigationCommandsAreAllowed()) {
                     _witListeningStateManager.ReactivateToTryMenuNavigationCommandsAgain();
                  }
@@ -109,7 +115,7 @@ namespace MText
         public void HandleProceedResponse(EProceedResponseType proceedResponse, string originallyUtteredText) { 
         switch (proceedResponse) {
             case EProceedResponseType.POSITIVE_PROCEED_RESPONSE:
-                _levelManager.LevelComplete();
+                _levelTransition.BeginLevelTransition();
                 break;
             case EProceedResponseType.NEGATIVE_PROCEED_RESPONSE:
                 _levelManager.RepeatLevel();
@@ -145,7 +151,7 @@ namespace MText
 
         public void OnStartListening() {
             // Clear the text
-            subtitleText3D.UpdateText("STARTED LISTENING");
+            // subtitleText3D.UpdateText("STARTED LISTENING");
             isCurrentlyCountingTowardsTimeout = true;
             if (_witListeningStateManager.TimeoutCountingIsAllowed()) {
                 currentTimeoutTimerInSeconds = 0;
@@ -154,7 +160,7 @@ namespace MText
 
         public void UserSaidSomething() {
             // Clear the text
-            subtitleText3D.UpdateText("MIC DATA SENT");
+            // subtitleText3D.UpdateText("MIC DATA SENT");
             Debug.Log("MIC DATA SENT");
             currentTimeoutTimerInSeconds = 0;
             isCurrentlyCountingTowardsTimeout = false;
@@ -162,13 +168,13 @@ namespace MText
 
         public void OnStoppedListening() {
             // Clear the text
-            subtitleText3D.UpdateText("STOPPED LISTENING: " + currentTimeoutTimerInSeconds + " seconds");
+            // subtitleText3D.UpdateText("STOPPED LISTENING: " + currentTimeoutTimerInSeconds + " seconds");
             isCurrentlyCountingTowardsTimeout = false;
         }
 
         public void OnTimeOut() {
             // Clear the text
-            subtitleText3D.UpdateText("TIMED OUT " + currentTimeoutTimerInSeconds + " seconds");
+            // subtitleText3D.UpdateText("TIMED OUT " + currentTimeoutTimerInSeconds + " seconds");
             isCurrentlyCountingTowardsTimeout = false;
         }
 
@@ -187,20 +193,11 @@ namespace MText
             // Only count seconds if the mic is active and we are reciting words (not in menu etc)
             if (isCurrentlyCountingTowardsTimeout && _witListeningStateManager.TimeoutCountingIsAllowed()) {
                 currentTimeoutTimerInSeconds += Time.deltaTime;
+                // subtitleText3D.UpdateText("TIMEOUT: " + currentTimeoutTimerInSeconds + " seconds");
             }
 
-            if (currentTimeoutTimerInSeconds > 5) {
+            if (currentTimeoutTimerInSeconds > timeoutInSeconds) {
                 OnInactivity();
-            }
-
-            // DEbug
-
-            if (Input.GetKeyDown(KeyCode.Space)) {
-                HandleFullTranscription("menu");
-            }
-
-            if (Input.GetKeyDown(KeyCode.Escape)) {
-                HandleFullTranscription("resume");
             }
         }
 
@@ -225,7 +222,6 @@ namespace MText
             _witListeningStateManager.TransitionToState(EListeningState.ListeningForConfirmation);
             // Ask them to confirm
             partialText3D.UpdateText("Did you say " + originallyUtteredText + "?");
-            // _witListeningStateManager.TurnWitActivationOffAndOn();
         }
 
      void CalculateCachedText(string newText) {
@@ -253,4 +249,4 @@ namespace MText
         }
     }
     }
-}
+

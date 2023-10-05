@@ -126,4 +126,8 @@ public static class DialogueHandler
         // Increment the index (will loop back to the start eventually)
         currentDialogueOptionIndex = (currentDialogueOptionIndex + 1);
     }
+
+    public static void ResetDialogueIndex() {
+        currentDialogueOptionIndex = 0;
+    }
 }

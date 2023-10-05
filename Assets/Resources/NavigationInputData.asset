@@ -28,6 +28,7 @@ MonoBehaviour:
   - recite words
   - level one
   - words practice
+  - word
   reciteSentencesInputs:
   - phrase practice
   - practice phrases

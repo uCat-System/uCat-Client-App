@@ -12,7 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3408fc9c297a44c4bb4a00c196de3cb4, type: 3}
   m_Name: ConfirmationResponseData
   m_EditorClassIdentifier: 
-  positiveConfirmationResponse: Cool!
-  negativeConfirmationResponse: Oops, let's try again.
-  unknownConfirmationResponse: Sorry, I didn't understand that. Please say yes or
-    no.
+  positiveConfirmationResponse: Splendid!
+  positiveConfirmationAudio: {fileID: 0}
+  negativeConfirmationResponse: "Hm, let\u2019s try that one again."
+  negativeConfirmationAudio: {fileID: 0}
+  unknownConfirmationResponse: "I didn\u2019t quite catch that. Try saying it again."
+  unknownConfirmationAudio: {fileID: 0}
+  positiveProceedResponse: -->
+  positiveProceedAudio: {fileID: 0}
+  negativeProceedResponse: <--
+  negativeProceedAudio: {fileID: 0}
+  unknownProceedResponse: Could you say that one more time?
+  unknownProceedAudio: {fileID: 0}

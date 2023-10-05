@@ -56,8 +56,6 @@ public class WitListeningStateManager : MonoBehaviour
     {
         { ListeningState.ListeningForEverything, true },
         { ListeningState.ListeningForRecitedWordsOnly, true },
-        { ListeningState.ListeningForConfirmation, true },
-        { ListeningState.ListeningForNextOrRepeat, true },
     };
 
     public bool CurrentStateIsAllowedInDictionary(Dictionary<ListeningState, bool> dictToSearch) {
@@ -97,6 +95,7 @@ public class WitListeningStateManager : MonoBehaviour
     }
 
     public bool MenuNavigationCommandsAreAllowed() {
+        Debug.Log("MenuNavigationCommandsAreAllowed? " + currentListeningState);
         return CurrentStateIsAllowedInDictionary(validMenuNavigationStates);
     }
 
@@ -119,7 +118,7 @@ public class WitListeningStateManager : MonoBehaviour
     {        
         scene = SceneManager.GetActiveScene().name;
         if (scene == "Level3") {
-             TransitionToState(ListeningState.ListeningForEverything);
+            TransitionToState(ListeningState.ListeningForEverything);
         } else {
             TransitionToState(ListeningState.ListeningForMenuActivationCommandsOnly);
         }

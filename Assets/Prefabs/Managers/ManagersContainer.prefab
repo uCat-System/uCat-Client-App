@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 8343668746282422111}
   - component: {fileID: 8343668746282422106}
   - component: {fileID: 3505799383072129518}
+  - component: {fileID: 1937571883}
   m_Layer: 0
   m_Name: ManagersContainer
   m_TagString: Untagged
@@ -36,7 +37,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8343668746282422105
 MonoBehaviour:
@@ -50,7 +51,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5ade88bcc11f534ba90460b5a603fe6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  catAudioSource: {fileID: 0}
   catAnimationDriver: {fileID: 0}
+  dialogueText3D: {fileID: 0}
   wordLists: {fileID: 11400000, guid: a3a83d047afb6c943a61e130941a77f0, type: 2}
   correctColour: {fileID: 2100000, guid: 5562c698b21c8924a84fa2abb367f9cd, type: 2}
   incorrectColour: {fileID: 2100000, guid: dfa4872a000de054bb0c1c830a263904, type: 2}
@@ -60,10 +63,12 @@ MonoBehaviour:
   _witListeningStateManager: {fileID: 8343668746282422109}
   _scoreManager: {fileID: 8343668746282422110}
   _levelManager: {fileID: 8343668746282422111}
+  _dialogueManager: {fileID: 3505799383072129518}
   reciteText3D: {fileID: 0}
   partialText3D: {fileID: 0}
   subtitleText3D: {fileID: 0}
   reciteBoardAudioSource: {fileID: 0}
+  uCatAudioSource: {fileID: 0}
   wordSounds:
   - {fileID: 8300000, guid: 3c728dab5c4b22d40a8d14fd98f7f9ea, type: 3}
 --- !u!114 &8343668746282422108
@@ -80,6 +85,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _uiManager: {fileID: 8343668746282422106}
   _levelManager: {fileID: 8343668746282422111}
+  _levelTransition: {fileID: 0}
   _wordReciteManager: {fileID: 8343668746282422105}
   partialText3D: {fileID: 0}
   subtitleText3D: {fileID: 0}
@@ -87,6 +93,8 @@ MonoBehaviour:
   cachedText: 
   isCurrentlyCountingTowardsTimeout: 0
   currentTimeoutTimerInSeconds: 0
+  catAudioSource: {fileID: 0}
+  timeoutInSeconds: 7
 --- !u!114 &8343668746282422109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,6 +113,7 @@ MonoBehaviour:
   currentListeningState: 0
   _wordReciteManager: {fileID: 8343668746282422105}
   wit: {fileID: 0}
+  micIcon: {fileID: 0}
 --- !u!114 &8343668746282422110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,7 +155,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelManager: {fileID: 8343668746282422111}
+  boardAnimator: {fileID: 0}
   textElements: {fileID: 0}
+  _dialogueManager: {fileID: 3505799383072129518}
+  reciteBoard: {fileID: 0}
   _witListeningStateManager: {fileID: 8343668746282422109}
   _wordReciteManager: {fileID: 8343668746282422105}
   menu: {fileID: 0}
@@ -166,4 +178,31 @@ MonoBehaviour:
   catAnimationDriver: {fileID: 0}
   _levelManager: {fileID: 8343668746282422111}
   _wordReciteManager: {fileID: 8343668746282422105}
+  _levelTransition: {fileID: 0}
   catAudioSource: {fileID: 0}
+  micIcon: {fileID: 0}
+  boardComponent: {fileID: 0}
+  currentDialogueOptionIndex: 0
+  micActivationDialogueIndex: 8
+  boardActivationDialogueIndex: 4
+  taskActivationDialogueIndex: 10
+  introTaskActivationIndex: 10
+  level1TaskActivationIndex: 5
+  level2TaskActivationIndex: 0
+  level3TaskActivationIndex: 0
+  currentDialogueState: 0
+  previousDialogueState: 0
+--- !u!114 &1937571883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8343668746282422127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cf157744fd4ce34c99a2c115fc981c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boardAnimator: {fileID: 0}
+  _freeSpeechManager: {fileID: 8343668746282422108}

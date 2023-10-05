@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using MText;
 using EListeningState = WitListeningStateManager.ListeningState;
-using EProceedResponseType = ConfirmationHandler.ProceedResponseType;
 using ECorrectResponseType = CheckRecitedWordHandler.CorrectResponseType;
+using EDialogueState = DialogueManager.DialogueState;
 
 public class WordReciteManager : MonoBehaviour
 {
+    public AudioSource catAudioSource;
+    
     public AnimationDriver catAnimationDriver;
 
     public Modular3DText dialogueText3D;
@@ -33,6 +35,8 @@ public class WordReciteManager : MonoBehaviour
 
     bool openQuestionsComplete;
 
+    int incorrectWordAttempts;
+
     // Text colours
 
     public Material correctColour;
@@ -48,13 +52,14 @@ public class WordReciteManager : MonoBehaviour
 
     public ScoreManager _scoreManager;
     public LevelManager _levelManager;
-
+    public DialogueManager _dialogueManager;
     public Modular3DText reciteText3D;
     public Modular3DText partialText3D;
 
     public Modular3DText subtitleText3D;
 
     public AudioSource reciteBoardAudioSource;
+    public AudioSource uCatAudioSource;
 
     public AudioClip[] wordSounds;
 
@@ -62,6 +67,7 @@ public class WordReciteManager : MonoBehaviour
     {
         // Assigning gameobjects
         reciteBoardAudioSource = GameObject.FindWithTag("ReciteBoard").GetComponent<AudioSource>();
+        uCatAudioSource = GameObject.FindWithTag("uCat").GetComponent<AudioSource>();
         subtitleText3D = GameObject.FindWithTag("SubtitleText3D").GetComponent<Modular3DText>();
         partialText3D = GameObject.FindWithTag("PartialText3D").GetComponent<Modular3DText>();
         reciteText3D = GameObject.FindWithTag("ReciteText3D").GetComponent<Modular3DText>();
@@ -75,10 +81,10 @@ public class WordReciteManager : MonoBehaviour
         // Initialise Word Lists
         SetWordAndUiListsBasedOnLevel();
         activeList = currentWordOrSentenceList;
-        Debug.Log("active list is " + activeList.Count);
 
         currentWordOrSentenceIndex = 0;
-        Debug.Log("current index is " + currentWordOrSentenceIndex);
+
+        incorrectWordAttempts = 0;
 
         // Set score based on amount of words in lists
         if (_levelManager.currentLevel == "Level1" || _levelManager.currentLevel == "Level2")
@@ -116,6 +122,7 @@ public class WordReciteManager : MonoBehaviour
     public IEnumerator StartCurrentWordCountdown()
     {
 
+        dialogueText3D.UpdateText("");
         _witListeningStateManager.TransitionToState(EListeningState.ListeningForMenuActivationCommandsOnly);
 
         // Clear text
@@ -133,32 +140,30 @@ public class WordReciteManager : MonoBehaviour
 
         partialText3D.UpdateText("");
         reciteText3D.Material = defaultColour;
-        string word = activeList[currentWordOrSentenceIndex];
-        // word == "Hello"
-    
+        string word = activeList[currentWordOrSentenceIndex];    
         for (float i = 0; i < 3; i++)
         {
 
-        if (_witListeningStateManager.currentListeningState == EListeningState.ListeningForTaskMenuCommandsOnly) {
-            yield break;
-        }
-            switch (i)
-            {
-                case 0:
-                    reciteText3D.UpdateText("..." + word + "...");
-                    break;
-                case 1:
-                    reciteText3D.UpdateText(".." + word + "..");
-                    break;
-                case 2:
-                    reciteText3D.UpdateText("." + word + ".");
-
-                    // Discard anything said during countdown and start fresh
-                    _witListeningStateManager.TransitionToState(EListeningState.NotListening);
-                    break;
+            if (_witListeningStateManager.currentListeningState == EListeningState.ListeningForTaskMenuCommandsOnly) {
+                yield break;
             }
-           
-            yield return new WaitForSeconds(1);
+                switch (i)
+                {
+                    case 0:
+                        reciteText3D.UpdateText("..." + word + "...");
+                        break;
+                    case 1:
+                        reciteText3D.UpdateText(".." + word + "..");
+                        break;
+                    case 2:
+                        reciteText3D.UpdateText("." + word + ".");
+
+                        // Discard anything said during countdown and start fresh
+                        _witListeningStateManager.TransitionToState(EListeningState.NotListening);
+                        break;
+                }
+            
+                yield return new WaitForSeconds(1);
         }
 
         // Countdown finished, start listening for the word
@@ -218,33 +223,56 @@ public class WordReciteManager : MonoBehaviour
    
     public IEnumerator CheckRecitedWord(string text)
     {
+        Debug.Log("Checking word, reciting allowed? " + _witListeningStateManager.RecitingWordsIsAllowed());
         if (!_witListeningStateManager.RecitingWordsIsAllowed()) {
             // Menu
             yield break;
+        } else {
+            // Compare the uttered text with the correct text
+            ECorrectResponseType correctResponseType = CheckRecitedWordHandler.CheckIfWordOrSentenceIsCorrect(text, activeList[currentWordOrSentenceIndex]);
+            StartCoroutine(HandleWordOrSentenceCorrectOrIncorrect(correctResponseType));
         }
 
-        // Compare the uttered text with the correct text
-        ECorrectResponseType correctResponseType = CheckRecitedWordHandler.CheckIfWordOrSentenceIsCorrect(text, activeList[currentWordOrSentenceIndex]);
-        StartCoroutine(HandleWordOrSentenceCorrectOrIncorrect(correctResponseType));
     }
     
     public IEnumerator HandleWordOrSentenceCorrectOrIncorrect(ECorrectResponseType responseType) {
-        string correctResponseText = CheckRecitedWordHandler.correctResponses[responseType];
-        dialogueText3D.UpdateText(correctResponseText);
-
+        // The text is coming back as positive or negative currently.
+        // We need to expand this to be variable based on how many times they have gotten it wrong.
+        // We also need to add in the audio for the cat.
         switch (responseType) {
+
+            // If the word was right
+
             case ECorrectResponseType.POSITIVE_CORRECT_RESPONSE:
+                dialogueText3D.UpdateText(CheckRecitedWordHandler.correctResponses[responseType]);
                 catAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Happy;
                 reciteText3D.Material = correctColour;
+                Debug.LogError("WAITING (POS)");
                 yield return new WaitForSeconds(CheckRecitedWordHandler.timeBetweenWordsInSeconds);
+                dialogueText3D.UpdateText("");
                 catAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Idle;
                 AddScoreToScoreManager();
                 MoveOnIfMoreWordsInList();
                 break;
+
+            // If the word was wrong
+
             case ECorrectResponseType.NEGATIVE_CORRECT_RESPONSE:
+                PlayIncorrectWordDialogue();
                 catAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Sad;
                 reciteText3D.Material = incorrectColour;
-                yield return new WaitForSeconds(CheckRecitedWordHandler.timeBetweenWordsInSeconds);
+
+                //Debug.Log("Length? " + CheckRecitedWordHandler.negativeCorrectResponseAudio[incorrectWordAttempts].length);
+                // Wait for the amount of seconds that the audio clip goes for, so we don't overlap
+                Debug.LogError("WAITING (NEG)");
+
+                if (uCatAudioSource.isPlaying) {
+                    yield return new WaitWhile(() => uCatAudioSource.isPlaying);
+                } else {
+                    yield return new WaitForSeconds(CheckRecitedWordHandler.timeBetweenWordsInSeconds);
+                }
+
+                dialogueText3D.UpdateText("");
                 catAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Idle;
                 RepeatSameWord();
                 break;
@@ -255,6 +283,21 @@ public class WordReciteManager : MonoBehaviour
         }
     }
 
+    void PlayIncorrectWordDialogue() {
+        string incorrectResponseText; 
+        Debug.LogError("incorrectWordAttempts: " + incorrectWordAttempts);
+        if (incorrectWordAttempts <= 2) {
+            incorrectResponseText = CheckRecitedWordHandler.negativeCorrectResponses[incorrectWordAttempts];
+            // Play audio clip number x HERE
+            uCatAudioSource.PlayOneShot(CheckRecitedWordHandler.negativeCorrectResponseAudio[incorrectWordAttempts]);
+        } else {
+            incorrectResponseText = CheckRecitedWordHandler.negativeCorrectResponses[3];
+        }
+
+        dialogueText3D.UpdateText(incorrectResponseText);
+        incorrectWordAttempts++;
+
+    }
     void AddScoreToScoreManager()
     {
          if (_levelManager.currentLevel == "Level1")
@@ -315,7 +358,13 @@ public class WordReciteManager : MonoBehaviour
 
     public void GameOver()
     {
-        reciteText3D.UpdateText("Say 'next' to proceed.\nOr 'repeat' to repeat.");
-        _witListeningStateManager.TransitionToState(EListeningState.ListeningForNextOrRepeat);
+        // If in the intro, we want to skip the confirmation.
+        if (_levelManager.currentLevel == "Intro") {
+            _dialogueManager.ChangeDialogueState(EDialogueState.IsPlayingDialogueOnly);
+            _dialogueManager.StartDialogue();
+        } else {
+            reciteText3D.UpdateText("Say 'next' to proceed.\nOr 'repeat' to repeat.");
+            _witListeningStateManager.TransitionToState(EListeningState.ListeningForNextOrRepeat);
+        }
     }
 }

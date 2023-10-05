@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 public class ConfirmationHandler
@@ -17,6 +18,9 @@ public class ConfirmationHandler
 
     public static Dictionary<Enum, string> confirmationResponses;
     public static float confirmationWaitTimeInSeconds = 2f;
+
+
+    public static AudioClip positiveConfirmationAudio;
 
     public enum ConfirmationResponseType
     {
@@ -46,8 +50,10 @@ public class ConfirmationHandler
             { "repeat", ProceedResponseType.NEGATIVE_PROCEED_RESPONSE }
         };
 
-         // Access the ConfirmationResponseData scriptable object's fields
+        // Access the ConfirmationResponseData scriptable object's fields
         ConfirmationResponseData confirmationResponseData = Resources.Load<ConfirmationResponseData>("ConfirmationResponseData");
+        positiveConfirmationAudio = confirmationResponseData.positiveConfirmationAudio;
+
         if (confirmationResponseData == null)
         {
             Debug.LogError("ConfirmationResponseData not found.");

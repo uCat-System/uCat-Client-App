@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Linq;
 using EListeningState = WitListeningStateManager.ListeningState;
 using EMenuNavigationResponseType = UICommandHandler.MenuNavigationResponseType;
+using EDialogueState = DialogueManager.DialogueState;
 using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
@@ -11,7 +12,12 @@ public class UIManager : MonoBehaviour
      private static UIManager instance;
 
      public LevelManager _levelManager;
+     public Animator boardAnimator;
      public GameObject textElements;
+
+     public DialogueManager _dialogueManager;
+
+     public GameObject reciteBoard;
 
      public WitListeningStateManager _witListeningStateManager;
     public WordReciteManager _wordReciteManager;
@@ -19,10 +25,13 @@ public class UIManager : MonoBehaviour
     private void Awake()
     {
         textElements = GameObject.FindWithTag("TextElements");
+        reciteBoard = GameObject.FindWithTag("ReciteBoard");
+        _levelManager = FindObjectOfType<LevelManager>();
+        _dialogueManager = FindObjectOfType<DialogueManager>();
+
         if (instance == null)
         {
             instance = this;
-            // DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -31,21 +40,59 @@ public class UIManager : MonoBehaviour
     }
     public GameObject menu;
 
-    public void CheckIfMenuActivationCommandsWereSpoken(string text) {
-        
+    public void ActivateMenu() {
+        _witListeningStateManager.TransitionToRelevantMenuNavigationStateBasedOnLevel();
+        _dialogueManager.ChangeDialogueState(EDialogueState.IsInMenu);
+        StartCoroutine(StartMenuOpenAnimation());
     }
 
-    public void ActivateMenu() {
-
+    IEnumerator StartMenuOpenAnimation() {
         if (!menu.activeInHierarchy)
         {
             textElements.SetActive(false);
             menu.SetActive(true);
-            _witListeningStateManager.TransitionToRelevantMenuNavigationStateBasedOnLevel();
+            boardAnimator.SetTrigger("Open");
+            yield return new WaitForSeconds(1.5f);
         }
+    }
+    public void DeactivateMenu() {
+        StartCoroutine(StartMenuCloseAnimation());
+    }
+
+
+    IEnumerator StartMenuCloseAnimation() {
+        boardAnimator.SetTrigger("Close");
+        yield return new WaitForSeconds(1.25f);
+        menu.SetActive(false);
+    }
+
+    public void Resume() {
+        // Repeat task if it was in progress, otherwise continue dialogue
+
+        Debug.Log("Resuming, prev state was " + _dialogueManager.previousDialogueState.ToString() );
+
+        // Set the dialogue and Wit state back to what they were before menu activation
+         _dialogueManager.ChangeDialogueState(_dialogueManager.previousDialogueState);
+        _witListeningStateManager.TransitionToState(EListeningState.ListeningForMenuActivationCommandsOnly);
+
+        if (_dialogueManager.currentDialogueState == EDialogueState.IsPerformingATask) {
+            Debug.Log("Resuming task");
+            _wordReciteManager.enabled = true;
+            _wordReciteManager.RepeatSameWord();
+            textElements.SetActive(true);
+        } else if (_dialogueManager.currentDialogueState == EDialogueState.IsPlayingDialogueOnly) {
+            Debug.Log("Resuming dialogue");
+             _dialogueManager.StartDialogue();
+        }
+
+        DeactivateMenu();
     }
 
     public void ActivateMenuNavigationCommandsBasedOnResponse(EMenuNavigationResponseType navigationCommand) {
+
+        Debug.Log("MENU NAV COMMAND: " + navigationCommand.ToString());
+        LevelTransition _levelTransition = FindObjectOfType<LevelTransition>();
+
         switch (navigationCommand) {
             case EMenuNavigationResponseType.NURSE_RESPONSE:
                 // TODO implement later
@@ -55,28 +102,20 @@ public class UIManager : MonoBehaviour
                 _levelManager.RepeatLevel();
                 break;
             case EMenuNavigationResponseType.RESUME_RESPONSE:
-                // TODO clean this up, maybe fire an event handler / put logic in witlisteningstatemanager
-                menu.SetActive(false);
-                string scene = SceneManager.GetActiveScene().name;
-                if (scene == "Level3") {
-                    _witListeningStateManager.TransitionToState(EListeningState.ListeningForEverything);
-                } else {
-                    _witListeningStateManager.TransitionToState(EListeningState.ListeningForMenuActivationCommandsOnly);
-                    _wordReciteManager.RepeatSameWord();
-                }
-                textElements.SetActive(true);
+                Resume();
                 break;
             case EMenuNavigationResponseType.RECITE_WORDS_RESPONSE:
-                SceneManager.LoadScene("Level1");
+                _levelTransition.BeginSpecificLevelTransition("Level1");
                 break;
             case EMenuNavigationResponseType.RECITE_SENTENCES_RESPONSE:
-                SceneManager.LoadScene("Level2");
+                Debug.Log("Sentences called");
+                _levelTransition.BeginSpecificLevelTransition("Level2");
                 break;
             case EMenuNavigationResponseType.RECITE_OPEN_QUESTIONS_RESPONSE:
-                SceneManager.LoadScene("Level3");
+                _levelTransition.BeginSpecificLevelTransition("Level3");
                 break;
             case EMenuNavigationResponseType.LOBBY_RESPONSE:
-                SceneManager.LoadScene("Lobby");
+                _levelTransition.BeginSpecificLevelTransition("Lobby");
                 break;
             case EMenuNavigationResponseType.WRITING_RESPONSE:
                 Debug.Log("Writing not implemented yet");

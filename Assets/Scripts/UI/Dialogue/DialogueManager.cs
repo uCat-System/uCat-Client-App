@@ -13,33 +13,108 @@ public class DialogueManager : MonoBehaviour
 
     public WordReciteManager _wordReciteManager;
 
+    public LevelTransition _levelTransition;
+
     public AudioSource catAudioSource;
+
+    // Variables exposing UI elements which uCat will show/hide during the Intro dialogue
+    public GameObject micIcon;
+    public GameObject boardComponent;
+
+    public int currentDialogueOptionIndex;
+
+    // The line of dialogue (index) when various events should occur
+    public int micActivationDialogueIndex; // Mic icon
+
+    public int boardActivationDialogueIndex; // Recite board
+
+    public int taskActivationDialogueIndex; // Actual task begins
+
+    public int introTaskActivationIndex;
+    public int level1TaskActivationIndex;
+    public int level2TaskActivationIndex;
+    public int level3TaskActivationIndex;
+
+    // public DialogueState currentDialogueState;
+
+    public enum DialogueState {
+        IsPlayingDialogueOnly, // Eg during intro (before screen appears)
+        IsPerformingATask, // Eg during a word countdown
+        IsInMenu // When menu is open
+    }
+
+    public DialogueState currentDialogueState;
+
+    public DialogueState previousDialogueState;
 
     void Start()
     {
         // uCat begins idle so that the first anim can play properly
+        _levelTransition = FindObjectOfType<LevelTransition>();
         catAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Idle;
+        SetDialogueTaskIndexes();
+        StartDialogue();
+    }
+
+    public void StartDialogue() {
+        Debug.Log("Starting dialogue. Index is " + DialogueHandler.currentDialogueOptionIndex);
         StartCoroutine(CycleThroughDialogue());
     }
 
-   public void SetDialogueTextAnimationAndSound(Dictionary<int, string> dialogueList, 
-        Dictionary<int, AnimationDriver.CatAnimations> dialogueAnimations, Dictionary<int, AudioClip> dialogueAudio)
+    public void ChangeDialogueState(DialogueState newDialogueState) {
+        previousDialogueState = currentDialogueState;
+        currentDialogueState = newDialogueState;
+    }
+
+    void ActivateTaskAndPauseDialogue() {
+        _wordReciteManager.enabled = true;
+        ChangeDialogueState(DialogueState.IsPerformingATask);
+    }
+
+    void SetDialogueTaskIndexes() {
+        switch (_levelManager.currentLevel) {
+            case "Intro":
+                taskActivationDialogueIndex = introTaskActivationIndex;
+                break;
+            case "Level1":
+                taskActivationDialogueIndex = level1TaskActivationIndex;
+                break;
+            case "Level2":
+                taskActivationDialogueIndex = level2TaskActivationIndex;
+                break;
+            case "Level3":
+                taskActivationDialogueIndex = level3TaskActivationIndex;
+                break;
+            default:
+                Debug.LogError("No dialogue task indexes set for level " + _levelManager.currentLevel);
+                break;
+        }
+    }
+
+   public void SetDialogueTextAnimationAndSound(Dictionary<int, string> dialogueList, Dictionary<int, AnimationDriver.CatAnimations> dialogueAnimations, Dictionary<int, AudioClip> dialogueAudio)
     {
-        Debug.Log("SetDialogueTextAnimationAndSound" + DialogueHandler.currentDialogueOptionIndex + " " + dialogueList.Count + " " + dialogueAnimations.Count);
+        // Local variable to track current index
+        currentDialogueOptionIndex = DialogueHandler.currentDialogueOptionIndex;
+
         if (dialogueList.TryGetValue(DialogueHandler.currentDialogueOptionIndex, out string currentDialogueOption))
         {
             // Update dialogue
-            dialogueText.UpdateText(currentDialogueOption);
-            Debug.Log("Update dialogue " + currentDialogueOption);
-
+            dialogueText.UpdateText("uCat: " + currentDialogueOption);
 
             // Play the relevant animation
             catAnimationDriver.catAnimation = dialogueAnimations[DialogueHandler.currentDialogueOptionIndex];
-            Debug.Log("Update catAnimation " + dialogueAnimations[DialogueHandler.currentDialogueOptionIndex]);
 
             // Play the dialogue audio
             // catAudioSource.clip = dialogueAudio[UcatDialogueHandler.currentDialogueOptionIndex];
             catAudioSource.PlayOneShot(dialogueAudio[DialogueHandler.currentDialogueOptionIndex]);
+
+            //in the Intro, uCat wants to show the user what icon would be displayed when she is listening to them
+            var micState = (DialogueHandler.currentDialogueOptionIndex == micActivationDialogueIndex) ? true : false;
+            micIcon.SetActive(micState);
+
+            //in the Intro, uCat wants to show the user the board from an appropriate time (not immediately)
+            boardComponent.SetActive(false);
+            if(DialogueHandler.currentDialogueOptionIndex >= boardActivationDialogueIndex) boardComponent.SetActive(true);
         }
         else
         {
@@ -50,11 +125,13 @@ public class DialogueManager : MonoBehaviour
     private IEnumerator CycleThroughDialogue() {
         // TODO move this out of ienumerator, only need to do it once
         Debug.Log("Cycling through with level " + _levelManager.currentLevel);
+        Debug.Log("Current index is " + DialogueHandler.currentDialogueOptionIndex);
 
         Dictionary<int, string> currentDialogueList;
         Dictionary<int, AnimationDriver.CatAnimations> currentAnimationList;
         Dictionary<int, AudioClip> currentAudioList;
-         // We pass in different dictionaries based on the scene
+        
+        // We pass in different dictionaries based on the scene
         switch (_levelManager.currentLevel) {
             case "Intro":
                 currentDialogueList = DialogueHandler.uCatIntroDialogue;
@@ -62,7 +139,6 @@ public class DialogueManager : MonoBehaviour
                 currentAudioList = DialogueHandler.uCatIntroDialogueAudio;
                 break;
             case "Level1":
-                Debug.Log("Level1");
                 currentDialogueList = DialogueHandler.uCatLevel1Dialogue;
                 currentAnimationList = DialogueHandler.uCatLevel1DialogueAnimations;
                 currentAudioList = DialogueHandler.uCatLevel1DialogueAudio;
@@ -88,32 +164,51 @@ public class DialogueManager : MonoBehaviour
         if (currentDialogueList.Count == 0)
         {
             Debug.LogError("No dialogue lines found");
-            EndOfDialogue();
+            yield break;
+        }
+
+        if (currentDialogueState != DialogueState.IsPlayingDialogueOnly) {
+            Debug.Log("Not playing dialogue only. Breaking out.");
+            yield break;
+        }
+
+
+        // Trigger the task to begin, and pause dialogue
+        if (DialogueHandler.currentDialogueOptionIndex == taskActivationDialogueIndex) {
+            Debug.Log("Activating task");
+            ActivateTaskAndPauseDialogue();
+            // Increment so that when we return from task we are on the next line
+            DialogueHandler.IncrementDialogueOption();
+            Debug.Log("Breaking out");
             yield break;
         }
 
         SetDialogueTextAnimationAndSound(currentDialogueList, currentAnimationList, currentAudioList);
         yield return new WaitWhile(() => catAudioSource.isPlaying);
         yield return new WaitForSeconds(DialogueHandler.timeBetweenLinesInSeconds);
-        
-        Debug.Log("Checking if we should continue" + DialogueHandler.currentDialogueOptionIndex + " " + currentDialogueList.Count + " " + currentAnimationList.Count);
+    
+
         if (DialogueHandler.currentDialogueOptionIndex >= currentDialogueList.Count-1 || currentDialogueList == null || currentAnimationList == null) {
             // Do not continue incrementing if we are at the end
-            Debug.Log("END OF DIALOGUE");
+            Debug.Log("End of dialogue");
             EndOfDialogue();
             yield break;
         } else {
-            // Otherwise, start the next line
+            Debug.Log("Not end of dialogue");
             DialogueHandler.IncrementDialogueOption();
-            StartCoroutine(CycleThroughDialogue());
+            // Otherwise, start the next line as long as user is not performing a task
+            if (currentDialogueState == DialogueState.IsPlayingDialogueOnly) {
+                StartCoroutine(CycleThroughDialogue());
+            }
         }
+
     }
 
     void EndOfDialogue() {
         DialogueHandler.currentDialogueOptionIndex = 0;
         catAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Idle;
-        _wordReciteManager.enabled = true;
         dialogueText.UpdateText("");
+        _levelTransition.BeginLevelTransition();
     }
 
 }

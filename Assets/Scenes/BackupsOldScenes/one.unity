@@ -159,7 +159,46 @@ MonoBehaviour:
     - OnRequestOptionSetup
     - OnStartListening
     - OnStoppedListening
-    OnResponse:
+    _onRequestOptionSetup:
+      m_PersistentCalls:
+        m_Calls: []
+    _onRequestInitialized:
+      m_PersistentCalls:
+        m_Calls: []
+    _onRequestCreated:
+      m_PersistentCalls:
+        m_Calls: []
+    _onSend:
+      m_PersistentCalls:
+        m_Calls: []
+    _onMinimumWakeThresholdHit:
+      m_PersistentCalls:
+        m_Calls: []
+    _onMicDataSent:
+      m_PersistentCalls:
+        m_Calls: []
+    _onStoppedListeningDueToDeactivation:
+      m_PersistentCalls:
+        m_Calls: []
+    _onStoppedListeningDueToInactivity:
+      m_PersistentCalls:
+        m_Calls: []
+    _onStoppedListeningDueToTimeout:
+      m_PersistentCalls:
+        m_Calls: []
+    _onAborting:
+      m_PersistentCalls:
+        m_Calls: []
+    _onAborted:
+      m_PersistentCalls:
+        m_Calls: []
+    _onCanceled:
+      m_PersistentCalls:
+        m_Calls: []
+    _onPartialResponse:
+      m_PersistentCalls:
+        m_Calls: []
+    _onResponse:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 708896335}
@@ -174,34 +213,16 @@ MonoBehaviour:
             m_StringArgument: Press the spacebar to begin listening
             m_BoolArgument: 0
           m_CallState: 2
-    OnPartialResponse:
+    _onError:
       m_PersistentCalls:
         m_Calls: []
-    OnValidatePartialResponse:
+    _onRequestCompleted:
       m_PersistentCalls:
         m_Calls: []
-    OnError:
+    _onComplete:
       m_PersistentCalls:
         m_Calls: []
-    OnAborting:
-      m_PersistentCalls:
-        m_Calls: []
-    OnAborted:
-      m_PersistentCalls:
-        m_Calls: []
-    OnRequestCompleted:
-      m_PersistentCalls:
-        m_Calls: []
-    OnMicLevelChanged:
-      m_PersistentCalls:
-        m_Calls: []
-    OnRequestOptionSetup:
-      m_PersistentCalls:
-        m_Calls: []
-    OnRequestCreated:
-      m_PersistentCalls:
-        m_Calls: []
-    OnStartListening:
+    _onStartListening:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 708896335}
@@ -216,7 +237,7 @@ MonoBehaviour:
             m_StringArgument: Listening...
             m_BoolArgument: 0
           m_CallState: 2
-    OnStoppedListening:
+    _onStoppedListening:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 708896335}
@@ -231,31 +252,22 @@ MonoBehaviour:
             m_StringArgument: Processing...
             m_BoolArgument: 0
           m_CallState: 2
-    OnStoppedListeningDueToInactivity:
+    _onMicLevelChanged:
       m_PersistentCalls:
         m_Calls: []
-    OnStoppedListeningDueToTimeout:
+    _onPartialTranscription:
       m_PersistentCalls:
         m_Calls: []
-    OnStoppedListeningDueToDeactivation:
+    _onFullTranscription:
       m_PersistentCalls:
         m_Calls: []
-    OnMicDataSent:
+    _onByteDataReady:
       m_PersistentCalls:
         m_Calls: []
-    OnMinimumWakeThresholdHit:
+    _onByteDataSent:
       m_PersistentCalls:
         m_Calls: []
-    onPartialTranscription:
-      m_PersistentCalls:
-        m_Calls: []
-    onFullTranscription:
-      m_PersistentCalls:
-        m_Calls: []
-    OnByteDataReady:
-      m_PersistentCalls:
-        m_Calls: []
-    OnByteDataSent:
+    _onValidatePartialResponse:
       m_PersistentCalls:
         m_Calls: []
   witRuntimeConfiguration:
@@ -467,6 +479,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onDidNotMatch:
+    m_PersistentCalls:
+      m_Calls: []
+  onOutOfDomain:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &226811014
 GameObject:
   m_ObjectHideFlags: 0
@@ -653,7 +671,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1820,7 +1838,46 @@ MonoBehaviour:
     - OnRequestOptionSetup
     - OnStartListening
     - OnStoppedListening
-    OnResponse:
+    _onRequestOptionSetup:
+      m_PersistentCalls:
+        m_Calls: []
+    _onRequestInitialized:
+      m_PersistentCalls:
+        m_Calls: []
+    _onRequestCreated:
+      m_PersistentCalls:
+        m_Calls: []
+    _onSend:
+      m_PersistentCalls:
+        m_Calls: []
+    _onMinimumWakeThresholdHit:
+      m_PersistentCalls:
+        m_Calls: []
+    _onMicDataSent:
+      m_PersistentCalls:
+        m_Calls: []
+    _onStoppedListeningDueToDeactivation:
+      m_PersistentCalls:
+        m_Calls: []
+    _onStoppedListeningDueToInactivity:
+      m_PersistentCalls:
+        m_Calls: []
+    _onStoppedListeningDueToTimeout:
+      m_PersistentCalls:
+        m_Calls: []
+    _onAborting:
+      m_PersistentCalls:
+        m_Calls: []
+    _onAborted:
+      m_PersistentCalls:
+        m_Calls: []
+    _onCanceled:
+      m_PersistentCalls:
+        m_Calls: []
+    _onPartialResponse:
+      m_PersistentCalls:
+        m_Calls: []
+    _onResponse:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1531630142}
@@ -1835,34 +1892,16 @@ MonoBehaviour:
             m_StringArgument: Press the spacebar to begin listening
             m_BoolArgument: 0
           m_CallState: 2
-    OnPartialResponse:
+    _onError:
       m_PersistentCalls:
         m_Calls: []
-    OnValidatePartialResponse:
+    _onRequestCompleted:
       m_PersistentCalls:
         m_Calls: []
-    OnError:
+    _onComplete:
       m_PersistentCalls:
         m_Calls: []
-    OnAborting:
-      m_PersistentCalls:
-        m_Calls: []
-    OnAborted:
-      m_PersistentCalls:
-        m_Calls: []
-    OnRequestCompleted:
-      m_PersistentCalls:
-        m_Calls: []
-    OnMicLevelChanged:
-      m_PersistentCalls:
-        m_Calls: []
-    OnRequestOptionSetup:
-      m_PersistentCalls:
-        m_Calls: []
-    OnRequestCreated:
-      m_PersistentCalls:
-        m_Calls: []
-    OnStartListening:
+    _onStartListening:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1531630142}
@@ -1877,7 +1916,7 @@ MonoBehaviour:
             m_StringArgument: Listening...
             m_BoolArgument: 0
           m_CallState: 2
-    OnStoppedListening:
+    _onStoppedListening:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1531630142}
@@ -1892,31 +1931,22 @@ MonoBehaviour:
             m_StringArgument: Processing...
             m_BoolArgument: 0
           m_CallState: 2
-    OnStoppedListeningDueToInactivity:
+    _onMicLevelChanged:
       m_PersistentCalls:
         m_Calls: []
-    OnStoppedListeningDueToTimeout:
+    _onPartialTranscription:
       m_PersistentCalls:
         m_Calls: []
-    OnStoppedListeningDueToDeactivation:
+    _onFullTranscription:
       m_PersistentCalls:
         m_Calls: []
-    OnMicDataSent:
+    _onByteDataReady:
       m_PersistentCalls:
         m_Calls: []
-    OnMinimumWakeThresholdHit:
+    _onByteDataSent:
       m_PersistentCalls:
         m_Calls: []
-    onPartialTranscription:
-      m_PersistentCalls:
-        m_Calls: []
-    onFullTranscription:
-      m_PersistentCalls:
-        m_Calls: []
-    OnByteDataReady:
-      m_PersistentCalls:
-        m_Calls: []
-    OnByteDataSent:
+    _onValidatePartialResponse:
       m_PersistentCalls:
         m_Calls: []
   witRuntimeConfiguration:
@@ -2037,7 +2067,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2362,6 +2392,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onDidNotMatch:
+    m_PersistentCalls:
+      m_Calls: []
+  onOutOfDomain:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &912189965
 GameObject:
   m_ObjectHideFlags: 0
@@ -2958,6 +2994,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onDidNotMatch:
+    m_PersistentCalls:
+      m_Calls: []
+  onOutOfDomain:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -3721,6 +3763,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onDidNotMatch:
+    m_PersistentCalls:
+      m_Calls: []
+  onOutOfDomain:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1075785607
 GameObject:
   m_ObjectHideFlags: 0
@@ -3950,7 +3998,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4137,7 +4185,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -4748,6 +4797,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onDidNotMatch:
+    m_PersistentCalls:
+      m_Calls: []
+  onOutOfDomain:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1938142902
 GameObject:
   m_ObjectHideFlags: 0

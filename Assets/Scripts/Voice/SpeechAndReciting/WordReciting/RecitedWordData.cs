@@ -6,6 +6,8 @@ using System;
 public class RecitedWordData : ScriptableObject
 {
     public string positiveCorrectResponse = "Correct!";
-    public string negativeCorrectResponse = "Incorrect.";
+
+    public string[] negativeCorrectResponses;
+    public AudioClip[] negativeCorrectResponseAudio;
     public string unknownCorrectResponse = "Sorry, I didn't understand that.";   
 }

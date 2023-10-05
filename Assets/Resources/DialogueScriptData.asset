@@ -14,24 +14,54 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   introScriptDialogueOptions:
   - "Hi! I\u2019m so glad to see you here."
-  - 'When the phrase turns green, try to repeat after me:'
-  - '22 the phrase turns green, try to repeat after me:'
-  - '33 the phrase turns green, try to repeat after me:'
-  introScriptDialogueAnimations: 0200000001000000000000000100000000000000000000000100000000000000
+  - "I'm uCat, your AI guide for your BCI. I\u2019m here to take you through your
+    calibration program."
+  - For the past few weeks you practiced repeating a ton of words.
+  - "Don\u2019t you think it's time to learn how to use them to your advantage?"
+  - As usual, try to repeat the phrase when the dots disappear.
+  - Imagine you are mouthing the words to someone across the room.
+  - 'This time, however, I will play your inner voice back to you. '
+  - "Don\u2019t be shocked if it doesn\u2019t sound like you \u2013 we\u2019ll work
+    on changing that later! "
+  - "This icon will appear when I\u2019m listening to you. It indicates that it\u2019s
+    your turn to talk."
+  - 'When dots disappear, repeat after me:'
+  - "\u201C\u2026Hello\u2026\u201D"
+  - Wow..!
+  - That was too easy!
+  introScriptDialogueAnimations: 00000000010000000000000000000000000000000000000001000000020000000000000000000000000000000200000002000000
   introScriptDialogueAudio:
-  - {fileID: 8300000, guid: 83f7000155daddd47a0afed6f8be9aed, type: 3}
-  - {fileID: 8300000, guid: dae20ec920e875d429297d5aca51081e, type: 3}
-  - {fileID: 8300000, guid: dae20ec920e875d429297d5aca51081e, type: 3}
-  - {fileID: 8300000, guid: dae20ec920e875d429297d5aca51081e, type: 3}
+  - {fileID: 8300000, guid: 28188cd7fbfc8de4e94c323a2a39d080, type: 3}
+  - {fileID: 8300000, guid: bbcd5d10a0ada184fabbb325b8533dce, type: 3}
+  - {fileID: 8300000, guid: 6ba62a313ae854b4f980e743a0dd7fed, type: 3}
+  - {fileID: 8300000, guid: acfc4a90ae0c7cc48a2b6de5c20b6171, type: 3}
+  - {fileID: 8300000, guid: 034411083329f554c90f6f37fa174c90, type: 3}
+  - {fileID: 8300000, guid: 695bcf3271376484ca32419317f1f3e9, type: 3}
+  - {fileID: 8300000, guid: 5f769ec4ead7c474b8b598362dd17c39, type: 3}
+  - {fileID: 8300000, guid: bde1103d4cef60b4ba1cb0072091bab3, type: 3}
+  - {fileID: 8300000, guid: d9dba0625619fcf4a951c217a7c2597e, type: 3}
+  - {fileID: 8300000, guid: a3fa4fa0079e85748a70a7d80c144931, type: 3}
+  - {fileID: 8300000, guid: efde3b098b8f2e64e843d57b2da2519b, type: 3}
+  - {fileID: 8300000, guid: 5f2cc11dae8c82f45904c889030c20e0, type: 3}
+  - {fileID: 8300000, guid: aba758770cdcfe24aa77f484b69eff91, type: 3}
   level1ScriptDialogueOptions:
-  - here is line 1 that ucat says
-  - here is line 2
-  level1ScriptDialogueAnimations: 0200000004000000
+  - Don't worry, I have a gazillion more words for you to practice.
+  - "Not that I\u2019ll make you do a gazillion!"
+  - We should take our time adjusting to the BCI.
+  - Like we did before, I'm going to give you some words for you to repeat back.
+  - When the dots disappear, repeat the word on the top half of the screen.
+  - " We\u2019ll be having a conversation in no time."
+  level1ScriptDialogueAnimations: 000000000200000001000000000000000000000001000000
   level1ScriptDialogueAudio:
-  - {fileID: 8300000, guid: 83f7000155daddd47a0afed6f8be9aed, type: 3}
-  - {fileID: 8300000, guid: dae20ec920e875d429297d5aca51081e, type: 3}
-  level2ScriptDialogueOptions: []
-  level2ScriptDialogueAnimations: 00000000
+  - {fileID: 8300000, guid: 29c75bdc53610754db205f45d6c0d397, type: 3}
+  - {fileID: 8300000, guid: 1eba2df4fa0dd1b4ca84bf178f74ea23, type: 3}
+  - {fileID: 8300000, guid: 6271ec20055a4a344b91595a9127686e, type: 3}
+  - {fileID: 8300000, guid: b72e6f3d235b89043a055b5f56a7b12f, type: 3}
+  - {fileID: 8300000, guid: 152d5475be6dca949b8fc9151dd56460, type: 3}
+  - {fileID: 8300000, guid: bb942939d7fb98149a86df49607d02e1, type: 3}
+  level2ScriptDialogueOptions:
+  - Something
+  level2ScriptDialogueAnimations: 01000000
   level2ScriptDialogueAudio: []
   level3ScriptDialogueOptions: []
   level3ScriptDialogueAnimations: 
