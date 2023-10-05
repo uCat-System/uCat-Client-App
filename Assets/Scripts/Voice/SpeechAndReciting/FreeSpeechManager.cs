@@ -151,7 +151,7 @@ using MText;
 
         public void OnStartListening() {
             // Clear the text
-            subtitleText3D.UpdateText("STARTED LISTENING");
+            // subtitleText3D.UpdateText("STARTED LISTENING");
             isCurrentlyCountingTowardsTimeout = true;
             if (_witListeningStateManager.TimeoutCountingIsAllowed()) {
                 currentTimeoutTimerInSeconds = 0;
@@ -160,7 +160,7 @@ using MText;
 
         public void UserSaidSomething() {
             // Clear the text
-            subtitleText3D.UpdateText("MIC DATA SENT");
+            // subtitleText3D.UpdateText("MIC DATA SENT");
             Debug.Log("MIC DATA SENT");
             currentTimeoutTimerInSeconds = 0;
             isCurrentlyCountingTowardsTimeout = false;
@@ -168,13 +168,13 @@ using MText;
 
         public void OnStoppedListening() {
             // Clear the text
-            subtitleText3D.UpdateText("STOPPED LISTENING: " + currentTimeoutTimerInSeconds + " seconds");
+            // subtitleText3D.UpdateText("STOPPED LISTENING: " + currentTimeoutTimerInSeconds + " seconds");
             isCurrentlyCountingTowardsTimeout = false;
         }
 
         public void OnTimeOut() {
             // Clear the text
-            subtitleText3D.UpdateText("TIMED OUT " + currentTimeoutTimerInSeconds + " seconds");
+            // subtitleText3D.UpdateText("TIMED OUT " + currentTimeoutTimerInSeconds + " seconds");
             isCurrentlyCountingTowardsTimeout = false;
         }
 
@@ -193,7 +193,7 @@ using MText;
             // Only count seconds if the mic is active and we are reciting words (not in menu etc)
             if (isCurrentlyCountingTowardsTimeout && _witListeningStateManager.TimeoutCountingIsAllowed()) {
                 currentTimeoutTimerInSeconds += Time.deltaTime;
-                subtitleText3D.UpdateText("TIMEOUT: " + currentTimeoutTimerInSeconds + " seconds");
+                // subtitleText3D.UpdateText("TIMEOUT: " + currentTimeoutTimerInSeconds + " seconds");
             }
 
             if (currentTimeoutTimerInSeconds > timeoutInSeconds) {

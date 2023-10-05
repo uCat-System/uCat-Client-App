@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MText;
 
 public class DebuggerClass : MonoBehaviour
 {
 
     public Animator boardAnimator;
     public FreeSpeechManager _freeSpeechManager;
+
+    public Modular3DText debugText;
     // Start is called before the first frame update
     void Start()
     {
