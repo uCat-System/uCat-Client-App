@@ -1318,6 +1318,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2070328627}
     - target: {fileID: 3505799383072129518, guid: eeb381f8f105aa04aab5137abf3cd87b, type: 3}
+      propertyPath: _levelTransition
+      value: 
+      objectReference: {fileID: 843335153}
+    - target: {fileID: 3505799383072129518, guid: eeb381f8f105aa04aab5137abf3cd87b, type: 3}
       propertyPath: catAnimationDriver
       value: 
       objectReference: {fileID: 2070328622}
@@ -1727,7 +1731,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7763343332686868219, guid: f3481278ffa142a4fae338a4485e203b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7763343332686868220, guid: f3481278ffa142a4fae338a4485e203b, type: 3}
       propertyPath: m_RootOrder

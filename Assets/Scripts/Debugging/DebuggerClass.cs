@@ -28,7 +28,7 @@ public class DebuggerClass : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha3)) {
-            Time.timeScale = 3f;
+            _freeSpeechManager.HandleFullTranscription("phrase practice");
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha4)) {
