@@ -51,6 +51,9 @@ public class LevelManager : MonoBehaviour
             case "Level3":
                 SceneManager.LoadScene("Lobby");
                 break;
+            case "ConvoMode":
+                SceneManager.LoadScene("ConvoMode");
+                break;    
 
         }
 

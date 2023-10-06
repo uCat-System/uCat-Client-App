@@ -121,7 +121,7 @@ public class UIManager : MonoBehaviour
                 Debug.Log("Writing not implemented yet");
                 break;
             case EMenuNavigationResponseType.CONVERSATION_RESPONSE:
-                Debug.Log("Conversations not implemented yet");
+                _levelTransition.BeginSpecificLevelTransition("ConvoMode");
                 break;
             case EMenuNavigationResponseType.SETTINGS_RESPONSE:
                 Debug.Log("Settings not implemented yet");

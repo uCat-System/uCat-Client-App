@@ -161,7 +161,7 @@ public class DialogueManager : MonoBehaviour
                 break;
         }
 
-        if (currentDialogueList.Count == 0)
+        if ( currentDialogueList == null || currentDialogueList.Count == 0)
         {
             Debug.LogError("No dialogue lines found");
             yield break;

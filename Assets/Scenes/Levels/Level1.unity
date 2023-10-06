@@ -1325,6 +1325,14 @@ PrefabInstance:
       propertyPath: catAnimationDriver
       value: 
       objectReference: {fileID: 2070328622}
+    - target: {fileID: 3505799383072129518, guid: eeb381f8f105aa04aab5137abf3cd87b, type: 3}
+      propertyPath: currentDialogueState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3505799383072129518, guid: eeb381f8f105aa04aab5137abf3cd87b, type: 3}
+      propertyPath: currentDialogueOptionIndex
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 8343668746282422105, guid: eeb381f8f105aa04aab5137abf3cd87b, type: 3}
       propertyPath: reciteText3D
       value: 
