@@ -1168,7 +1168,7 @@ PrefabInstance:
     - target: {fileID: 8745639182078957001, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
       propertyPath: m_TerrainData
       value: 
-      objectReference: {fileID: 15600000, guid: 01b793aafae0fac4e90ebe02a7248b5d, type: 2}
+      objectReference: {fileID: 15600000, guid: 16e434f4ac1d748f79888bf647d0ae8f, type: 2}
     m_RemovedComponents: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8432735508404645038, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
@@ -1334,6 +1334,10 @@ PrefabInstance:
     - target: {fileID: 5366394114549681975, guid: cb2533963bc198f4f94b19fb45a8df6e, type: 3}
       propertyPath: m_Name
       value: FilmCamera
+      objectReference: {fileID: 0}
+    - target: {fileID: 5366394114549681975, guid: cb2533963bc198f4f94b19fb45a8df6e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5366394114549681976, guid: cb2533963bc198f4f94b19fb45a8df6e, type: 3}
       propertyPath: m_RootOrder
@@ -1847,7 +1851,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7638673701417909436, guid: 74ce51154cf56e14db799fe9c14bb97f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
