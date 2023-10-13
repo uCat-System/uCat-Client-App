@@ -10,12 +10,29 @@ public class LevelTransition : MonoBehaviour
 
     public GameObject crossFadeImage;
 
-    // Update is called once per frame
+    private static LevelTransition instance;
 
-    void Start() 
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            // This is the first instance, so make it persist through scene changes.
+            DontDestroyOnLoad(gameObject);
+            instance = this;
+        }
+        else if (instance != this)
+        {
+            // This is a duplicate, so destroy it.
+            Destroy(gameObject);
+        }
+    }
+
+    // Update is called once per frame
+    void Start()
     {
         crossFadeImage.SetActive(true);
     }
+
     public void BeginLevelTransition()
     {
         StartCoroutine(TransitionToNextLevel());
@@ -28,13 +45,12 @@ public class LevelTransition : MonoBehaviour
 
     public IEnumerator TransitionToNextLevel()
     {
-
         DialogueHandler.ResetDialogueIndex();
         transition.SetTrigger("Start");
 
         yield return new WaitForSeconds(transitionTime);
 
-        // Go to next scene using LevelManager
+        // Go to the next scene using LevelManager
 
         LevelManager levelManager = FindObjectOfType<LevelManager>();
         if (levelManager != null)
