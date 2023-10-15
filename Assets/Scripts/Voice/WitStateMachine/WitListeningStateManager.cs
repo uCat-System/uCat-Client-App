@@ -26,7 +26,7 @@ public class WitListeningStateManager : MonoBehaviour
     private WordReciteManager _wordReciteManager;
     private GameObject wit;
 
-    private GameObject micIcon;
+    public GameObject micIcon;
 
     // This dict will return true if we are in any of the allowed reciting states
 
@@ -58,7 +58,6 @@ public class WitListeningStateManager : MonoBehaviour
 
     private void Start()
     {   
-        micIcon = GameObject.FindWithTag("MicIcon");
         _uiManager = GetComponent<UIManager>();
         _wordReciteManager = GetComponent<WordReciteManager>();
         wit = GameObject.FindWithTag("Wit");

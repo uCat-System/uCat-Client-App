@@ -24,14 +24,14 @@ public class DebuggerClass : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha1)) {
-            _freeSpeechManager.HandleFullTranscription("resume");
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2)) {
-            _freeSpeechManager.HandleFullTranscription("INCORRECTRESUME");
+            _freeSpeechManager.HandleFullTranscription("word practice");
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha3)) {
+        if (Input.GetKeyDown(KeyCode.Alpha2)) {
             _freeSpeechManager.HandleFullTranscription("phrase practice");
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3)) {
+            _freeSpeechManager.HandleFullTranscription("Level 3");
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha4)) {

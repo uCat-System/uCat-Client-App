@@ -12,7 +12,7 @@ public class UIManager : MonoBehaviour
     private static UIManager instance;
 
     private LevelManager _levelManager;
-    private Animator boardAnimator;
+    private Animator menuBoardAnimator;
     private GameObject textElements;
 
     private DialogueManager _dialogueManager;
@@ -34,7 +34,7 @@ public class UIManager : MonoBehaviour
         _dialogueManager = FindObjectOfType<DialogueManager>();
 
         reciteBoard = GameObject.FindWithTag("ReciteBoard");
-        boardAnimator = reciteBoard.GetComponent<Animator>();
+        menuBoardAnimator = menu.GetComponent<Animator>();
         menu.SetActive(false);
 
         if (instance == null)
@@ -58,7 +58,7 @@ public class UIManager : MonoBehaviour
         {
             textElements.SetActive(false);
             menu.SetActive(true);
-            boardAnimator.SetTrigger("Open");
+            menuBoardAnimator.SetTrigger("Open");
             yield return new WaitForSeconds(1.5f);
         }
     }
@@ -68,7 +68,7 @@ public class UIManager : MonoBehaviour
 
 
     IEnumerator StartMenuCloseAnimation() {
-        boardAnimator.SetTrigger("Close");
+        menuBoardAnimator.SetTrigger("Close");
         yield return new WaitForSeconds(1.25f);
         menu.SetActive(false);
     }
