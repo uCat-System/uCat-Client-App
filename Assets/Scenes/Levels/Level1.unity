@@ -1105,6 +1105,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1868418544 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 6972111452065200284, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
+  m_PrefabInstance: {fileID: 1991096346}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1870360285
 GameObject:
   m_ObjectHideFlags: 0
@@ -1207,7 +1212,7 @@ PrefabInstance:
     - target: {fileID: 8343668746282422105, guid: eeb381f8f105aa04aab5137abf3cd87b, type: 3}
       propertyPath: catAudioSource
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1868418544}
     - target: {fileID: 8343668746282422105, guid: eeb381f8f105aa04aab5137abf3cd87b, type: 3}
       propertyPath: dialogueText3D
       value: 
@@ -1323,6 +1328,10 @@ PrefabInstance:
     - target: {fileID: 8343668746282422127, guid: eeb381f8f105aa04aab5137abf3cd87b, type: 3}
       propertyPath: m_Name
       value: ManagersContainer
+      objectReference: {fileID: 0}
+    - target: {fileID: 8343668746282422127, guid: eeb381f8f105aa04aab5137abf3cd87b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -1455,7 +1464,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4587402927007815856, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
       propertyPath: m_Name
-      value: uCat Japanese Nature Realm (1)
+      value: uCat Japanese Nature Realm
       objectReference: {fileID: 0}
     - target: {fileID: 5187435511404694095, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
       propertyPath: m_Mesh

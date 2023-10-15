@@ -182,7 +182,7 @@ MonoBehaviour:
   catAudioSource: {fileID: 0}
   micIcon: {fileID: 0}
   boardComponent: {fileID: 0}
-  currentDialogueOptionIndex: 0
+  currentDialogueOptionIndex: 10
   micActivationDialogueIndex: 8
   boardActivationDialogueIndex: 4
   taskActivationDialogueIndex: 10
@@ -206,3 +206,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boardAnimator: {fileID: 0}
   _freeSpeechManager: {fileID: 8343668746282422108}
+  debugText: {fileID: 0}
