@@ -5,21 +5,21 @@ using System.Collections;
 
 public class DialogueManager : MonoBehaviour
 {
-    public Modular3DText dialogueText;
+    private Modular3DText dialogueText;
 
-    public AnimationDriver catAnimationDriver;
+    private AnimationDriver catAnimationDriver;
 
-    public LevelManager _levelManager;
+    private LevelManager _levelManager;
 
-    public WordReciteManager _wordReciteManager;
+    private WordReciteManager _wordReciteManager;
 
-    public LevelTransition _levelTransition;
+    private LevelTransition _levelTransition;
 
-    public AudioSource catAudioSource;
+    private AudioSource catAudioSource;
 
     // Variables exposing UI elements which uCat will show/hide during the Intro dialogue
-    public GameObject micIcon;
-    public GameObject boardComponent;
+    private GameObject micIcon;
+    private GameObject boardComponent;
 
     public int currentDialogueOptionIndex;
 
@@ -35,8 +35,6 @@ public class DialogueManager : MonoBehaviour
     public int level2TaskActivationIndex;
     public int level3TaskActivationIndex;
 
-    // public DialogueState currentDialogueState;
-
     public enum DialogueState {
         IsPlayingDialogueOnly, // Eg during intro (before screen appears)
         IsPerformingATask, // Eg during a word countdown
@@ -50,7 +48,14 @@ public class DialogueManager : MonoBehaviour
     void Start()
     {
         // uCat begins idle so that the first anim can play properly
+        dialogueText = GameObject.FindWithTag("DialogueText3D").GetComponent<Modular3DText>();
+        catAnimationDriver = GameObject.FindWithTag("uCat").GetComponent<AnimationDriver>();
+        _levelManager = FindObjectOfType<LevelManager>();
+        _wordReciteManager = FindObjectOfType<WordReciteManager>();
+        catAudioSource = GameObject.FindWithTag("uCat").GetComponent<AudioSource>();
         _levelTransition = FindObjectOfType<LevelTransition>();
+        boardComponent = GameObject.FindWithTag("ReciteBoard");
+        micIcon = GameObject.FindWithTag("MicIcon");
         catAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Idle;
         SetDialogueTaskIndexes();
         StartDialogue();

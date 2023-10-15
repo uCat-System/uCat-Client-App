@@ -12,19 +12,19 @@ using MText;
 
     public class FreeSpeechManager : MonoBehaviour
     {
-        public UIManager _uiManager;
 
-        public LevelManager _levelManager;
+        private LevelTransition _levelTransition;
+        private LevelManager _levelManager;
 
-        public LevelTransition _levelTransition;
-        public WordReciteManager _wordReciteManager;
-        public Modular3DText partialText3D;
-        public Modular3DText subtitleText3D;
+        private UIManager _uiManager;
+        private WordReciteManager _wordReciteManager;
+        private WitListeningStateManager _witListeningStateManager;
+        private Modular3DText partialText3D;
+        private Modular3DText subtitleText3D;
 
         // Used to cache the text when we are in a confirmation state
         private string originallyUtteredText;
 
-        public WitListeningStateManager _witListeningStateManager;
 
         public string cachedText = "";
 
@@ -32,7 +32,7 @@ using MText;
 
         public float currentTimeoutTimerInSeconds;
 
-        public AudioSource catAudioSource;
+        private AudioSource catAudioSource;
 
         public int timeoutInSeconds;
 
@@ -40,7 +40,14 @@ using MText;
 
         void Start()
         {   
+            _wordReciteManager = GetComponent<WordReciteManager>();
+            _witListeningStateManager = GetComponent<WitListeningStateManager>();
+            _uiManager = GetComponent<UIManager>();
+            _levelManager = GetComponent<LevelManager>();
+            _levelTransition = FindObjectOfType<LevelTransition>();
+            partialText3D = GameObject.FindWithTag("PartialText3D").GetComponent<Modular3DText>();
             subtitleText3D = GameObject.FindWithTag("SubtitleText3D").GetComponent<Modular3DText>();
+            catAudioSource = GameObject.FindWithTag("uCat").GetComponent<AudioSource>();
             scene = SceneManager.GetActiveScene();
         }
 

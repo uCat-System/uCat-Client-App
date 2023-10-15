@@ -7,12 +7,10 @@ using ECorrectResponseType = CheckRecitedWordHandler.CorrectResponseType;
 using EDialogueState = DialogueManager.DialogueState;
 
 public class WordReciteManager : MonoBehaviour
-{
-    public AudioSource catAudioSource;
-    
-    public AnimationDriver catAnimationDriver;
+{    
+    private AnimationDriver catAnimationDriver;
 
-    public Modular3DText dialogueText3D;
+    private Modular3DText dialogueText3D;
     
     // Current word tracking
     int currentWordOrSentenceIndex;
@@ -46,32 +44,46 @@ public class WordReciteManager : MonoBehaviour
 
     // External Managers
 
-    public FreeSpeechManager _freeSpeechManager;
+    private FreeSpeechManager _freeSpeechManager;
 
-    public  WitListeningStateManager _witListeningStateManager;
+    private  WitListeningStateManager _witListeningStateManager;
 
-    public ScoreManager _scoreManager;
-    public LevelManager _levelManager;
-    public DialogueManager _dialogueManager;
-    public Modular3DText reciteText3D;
-    public Modular3DText partialText3D;
+    private ScoreManager _scoreManager;
+    private LevelManager _levelManager;
+    private DialogueManager _dialogueManager;
 
-    public Modular3DText subtitleText3D;
+    // 3D Text 
 
-    public AudioSource reciteBoardAudioSource;
-    public AudioSource uCatAudioSource;
+    private Modular3DText reciteText3D;
+    private Modular3DText partialText3D;
+
+    private Modular3DText subtitleText3D;
+
+    // Audio
+
+    private AudioSource reciteBoardAudioSource;
+    private AudioSource uCatAudioSource;
 
     public AudioClip[] wordSounds;
 
     void Start()
     {
         // Assigning gameobjects
-        // reciteBoardAudioSource = GameObject.FindWithTag("ReciteBoard").GetComponent<AudioSource>();
         uCatAudioSource = GameObject.FindWithTag("uCat").GetComponent<AudioSource>();
+        catAnimationDriver = GameObject.FindWithTag("uCat").GetComponent<AnimationDriver>();
         subtitleText3D = GameObject.FindWithTag("SubtitleText3D").GetComponent<Modular3DText>();
         partialText3D = GameObject.FindWithTag("PartialText3D").GetComponent<Modular3DText>();
         reciteText3D = GameObject.FindWithTag("ReciteText3D").GetComponent<Modular3DText>();
         reciteBoardAudioSource = GameObject.FindWithTag("ReciteBoard").GetComponent<AudioSource>();
+        dialogueText3D = GameObject.FindWithTag("DialogueText3D").GetComponent<Modular3DText>();
+
+        // Managers
+
+        _freeSpeechManager = GetComponent<FreeSpeechManager>();
+        _witListeningStateManager = GetComponent<WitListeningStateManager>();
+        _scoreManager = GetComponent<ScoreManager>();
+        _levelManager = GetComponent<LevelManager>();
+        _dialogueManager = GetComponent<DialogueManager>();
 
        
         // Game state variables

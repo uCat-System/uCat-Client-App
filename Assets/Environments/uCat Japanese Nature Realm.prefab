@@ -11332,7 +11332,7 @@ Transform:
   m_Children:
   - {fileID: 6345532630162526283}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1991096348
 MonoBehaviour:
@@ -14415,8 +14415,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5499405244474768460}
-  m_LocalRotation: {x: -0, y: 0.50073254, z: -0, w: 0.86560214}
-  m_LocalPosition: {x: 78.33028, y: 2.75, z: 55.28709}
+  m_LocalRotation: {x: -0, y: -0.8191521, z: -0, w: 0.57357645}
+  m_LocalPosition: {x: 150.21, y: 26.16, z: 117.26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -17811,7 +17811,7 @@ GameObject:
   - component: {fileID: 6972111452151734868}
   m_Layer: 0
   m_Name: DialogueText
-  m_TagString: SubtitleText3D
+  m_TagString: DialogueText3D
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19354,7 +19354,7 @@ GameObject:
   - component: {fileID: 6972111454059220396}
   m_Layer: 10
   m_Name: MicIcon
-  m_TagString: Untagged
+  m_TagString: MicIcon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
