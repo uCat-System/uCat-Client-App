@@ -66,7 +66,7 @@ public class WordReciteManager : MonoBehaviour
     void Start()
     {
         // Assigning gameobjects
-        reciteBoardAudioSource = GameObject.FindWithTag("ReciteBoard").GetComponent<AudioSource>();
+        // reciteBoardAudioSource = GameObject.FindWithTag("ReciteBoard").GetComponent<AudioSource>();
         uCatAudioSource = GameObject.FindWithTag("uCat").GetComponent<AudioSource>();
         subtitleText3D = GameObject.FindWithTag("SubtitleText3D").GetComponent<Modular3DText>();
         partialText3D = GameObject.FindWithTag("PartialText3D").GetComponent<Modular3DText>();

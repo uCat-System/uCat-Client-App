@@ -58,6 +58,8 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue() {
         Debug.Log("Starting dialogue. Index is " + DialogueHandler.currentDialogueOptionIndex);
+        _wordReciteManager.enabled = false;
+        ChangeDialogueState(DialogueState.IsPlayingDialogueOnly);
         StartCoroutine(CycleThroughDialogue());
     }
 
@@ -65,7 +67,7 @@ public class DialogueManager : MonoBehaviour
         previousDialogueState = currentDialogueState;
         currentDialogueState = newDialogueState;
     }
-
+    
     void ActivateTaskAndPauseDialogue() {
         _wordReciteManager.enabled = true;
         ChangeDialogueState(DialogueState.IsPerformingATask);
@@ -113,7 +115,6 @@ public class DialogueManager : MonoBehaviour
             micIcon.SetActive(micState);
 
             //in the Intro, uCat wants to show the user the board from an appropriate time (not immediately)
-            boardComponent.SetActive(false);
             if(DialogueHandler.currentDialogueOptionIndex >= boardActivationDialogueIndex) boardComponent.SetActive(true);
         }
         else

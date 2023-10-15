@@ -5,13 +5,24 @@ public class FollowTarget : MonoBehaviour
     public Transform target;  // Reference to the target GameObject (set in the Unity Inspector)
     public float speed = 5.0f;  // Speed at which the follower moves
 
+    private Vector3 startPos;
+
     public bool moving;
+
+    private void Start()
+    {
+        startPos = transform.position;
+    }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             moving = !moving;
+        }
+
+        if (Input.GetKeyDown(KeyCode.R)) {
+            transform.position = startPos;
         }
 
         if (target != null && moving)
