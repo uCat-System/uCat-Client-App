@@ -3054,10 +3054,6 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1599260999}
-    - target: {fileID: 775726549897851155, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 877146348916210106, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -3130,34 +3126,6 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1321550269}
-    - target: {fileID: 5499405244474768435, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 78.33028
-      objectReference: {fileID: 0}
-    - target: {fileID: 5499405244474768435, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 5499405244474768435, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 55.28709
-      objectReference: {fileID: 0}
-    - target: {fileID: 5499405244474768435, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.86560214
-      objectReference: {fileID: 0}
-    - target: {fileID: 5499405244474768435, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5499405244474768435, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.50073254
-      objectReference: {fileID: 0}
-    - target: {fileID: 5499405244474768435, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
     - target: {fileID: 6077588429730477223, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -3174,12 +3142,7 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1613383127}
-    - target: {fileID: 8657845361293279430, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
-      propertyPath: m_DetailObjectDistance
-      value: 250
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 965558481, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
+    m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
 --- !u!1 &6337240970874290454 stripped

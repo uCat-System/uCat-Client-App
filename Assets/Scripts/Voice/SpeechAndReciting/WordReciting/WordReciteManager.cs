@@ -256,7 +256,7 @@ public class WordReciteManager : MonoBehaviour
             // If the word was right
 
             case ECorrectResponseType.POSITIVE_CORRECT_RESPONSE:
-                dialogueText3D.UpdateText(CheckRecitedWordHandler.correctResponses[responseType]);
+                subtitleText3D.UpdateText(CheckRecitedWordHandler.correctResponses[responseType]);
                 catAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Happy;
                 reciteText3D.Material = correctColour;
                 Debug.LogError("WAITING (POS)");

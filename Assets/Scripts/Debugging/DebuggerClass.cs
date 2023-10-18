@@ -9,6 +9,8 @@ public class DebuggerClass : MonoBehaviour
     public Animator boardAnimator;
     public FreeSpeechManager _freeSpeechManager;
 
+    public WitListeningStateManager _witListeningStateManager;
+
     public Modular3DText debugText;
     // Start is called before the first frame update
     void Start()
@@ -36,6 +38,10 @@ public class DebuggerClass : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha4)) {
             Time.timeScale = 1f;
+        }
+
+        if (Input.GetKeyDown(KeyCode.F5)) {
+            _witListeningStateManager.TurnWitActivationOffAndOn();
         }
     }
 

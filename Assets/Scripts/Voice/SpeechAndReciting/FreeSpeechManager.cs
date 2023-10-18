@@ -13,6 +13,7 @@ using MText;
     public class FreeSpeechManager : MonoBehaviour
     {
 
+        public Material greenText;
         private LevelTransition _levelTransition;
         private LevelManager _levelManager;
 
@@ -20,6 +21,8 @@ using MText;
         private WordReciteManager _wordReciteManager;
         private WitListeningStateManager _witListeningStateManager;
         private Modular3DText partialText3D;
+
+        private Modular3DText confirmationText3D;
         private Modular3DText subtitleText3D;
 
         // Used to cache the text when we are in a confirmation state
@@ -46,6 +49,7 @@ using MText;
             _levelManager = GetComponent<LevelManager>();
             _levelTransition = FindObjectOfType<LevelTransition>();
             partialText3D = GameObject.FindWithTag("PartialText3D").GetComponent<Modular3DText>();
+            confirmationText3D = GameObject.FindWithTag("ConfirmationText3D").GetComponent<Modular3DText>();
             subtitleText3D = GameObject.FindWithTag("SubtitleText3D").GetComponent<Modular3DText>();
             catAudioSource = GameObject.FindWithTag("uCat").GetComponent<AudioSource>();
             scene = SceneManager.GetActiveScene();
@@ -137,6 +141,7 @@ using MText;
 
             string confirmationText = ConfirmationHandler.confirmationResponses[confirmationResponse];
             partialText3D.UpdateText(confirmationText);
+            confirmationText3D.UpdateText(confirmationText);
             yield return new WaitForSeconds(ConfirmationHandler.confirmationWaitTimeInSeconds);
 
             switch (confirmationResponse) {
@@ -228,7 +233,7 @@ using MText;
             Debug.Log("Setting state to confirtmation mode ");
             _witListeningStateManager.TransitionToState(EListeningState.ListeningForConfirmation);
             // Ask them to confirm
-            partialText3D.UpdateText("Did you say " + originallyUtteredText + "?");
+            confirmationText3D.UpdateText("Did you say \"" + originallyUtteredText + "\"?\n(Yes/No)");
         }
 
      void CalculateCachedText(string newText) {
