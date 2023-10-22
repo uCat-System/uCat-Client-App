@@ -51,24 +51,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5ade88bcc11f534ba90460b5a603fe6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  catAudioSource: {fileID: 0}
-  catAnimationDriver: {fileID: 0}
-  dialogueText3D: {fileID: 0}
   wordLists: {fileID: 11400000, guid: a3a83d047afb6c943a61e130941a77f0, type: 2}
   correctColour: {fileID: 2100000, guid: 5562c698b21c8924a84fa2abb367f9cd, type: 2}
   incorrectColour: {fileID: 2100000, guid: dfa4872a000de054bb0c1c830a263904, type: 2}
   defaultColour: {fileID: 2100000, guid: a4049ec7b242909488a39efb39d014ea, type: 2}
   listeningColour: {fileID: 2100000, guid: 5562c698b21c8924a84fa2abb367f9cd, type: 2}
-  _freeSpeechManager: {fileID: 8343668746282422108}
-  _witListeningStateManager: {fileID: 8343668746282422109}
-  _scoreManager: {fileID: 8343668746282422110}
-  _levelManager: {fileID: 8343668746282422111}
-  _dialogueManager: {fileID: 3505799383072129518}
-  reciteText3D: {fileID: 0}
-  partialText3D: {fileID: 0}
-  subtitleText3D: {fileID: 0}
-  reciteBoardAudioSource: {fileID: 0}
-  uCatAudioSource: {fileID: 0}
   wordSounds:
   - {fileID: 8300000, guid: 3c728dab5c4b22d40a8d14fd98f7f9ea, type: 3}
 --- !u!114 &8343668746282422108
@@ -83,17 +70,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3a9918f74891044fb65f815fa1f3dc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _uiManager: {fileID: 8343668746282422106}
-  _levelManager: {fileID: 8343668746282422111}
-  _levelTransition: {fileID: 0}
-  _wordReciteManager: {fileID: 8343668746282422105}
-  partialText3D: {fileID: 0}
-  subtitleText3D: {fileID: 0}
-  _witListeningStateManager: {fileID: 8343668746282422109}
   cachedText: 
   isCurrentlyCountingTowardsTimeout: 0
   currentTimeoutTimerInSeconds: 0
-  catAudioSource: {fileID: 0}
   timeoutInSeconds: 7
 --- !u!114 &8343668746282422109
 MonoBehaviour:
@@ -107,12 +86,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60a6e82f4bf988941b65bbe8ceb9c213, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  listeningText3D: {fileID: 0}
-  scene: 
-  _uiManager: {fileID: 8343668746282422106}
   currentListeningState: 0
-  _wordReciteManager: {fileID: 8343668746282422105}
-  wit: {fileID: 0}
   micIcon: {fileID: 0}
 --- !u!114 &8343668746282422110
 MonoBehaviour:

@@ -9,25 +9,33 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
-     private static UIManager instance;
+    private static UIManager instance;
 
-     public LevelManager _levelManager;
-     public Animator boardAnimator;
-     public GameObject textElements;
+    private LevelManager _levelManager;
+    private Animator menuBoardAnimator;
+    private GameObject textElements;
 
-     public DialogueManager _dialogueManager;
+    private DialogueManager _dialogueManager;
 
-     public GameObject reciteBoard;
+    private GameObject reciteBoard;
 
-     public WitListeningStateManager _witListeningStateManager;
-    public WordReciteManager _wordReciteManager;
+    private WitListeningStateManager _witListeningStateManager;
+    private WordReciteManager _wordReciteManager;
+
+    public GameObject menu;
 
     private void Awake()
     {
+        _wordReciteManager = FindObjectOfType<WordReciteManager>();
+        _witListeningStateManager = FindObjectOfType<WitListeningStateManager>();
         textElements = GameObject.FindWithTag("TextElements");
         reciteBoard = GameObject.FindWithTag("ReciteBoard");
         _levelManager = FindObjectOfType<LevelManager>();
         _dialogueManager = FindObjectOfType<DialogueManager>();
+
+        reciteBoard = GameObject.FindWithTag("ReciteBoard");
+        menuBoardAnimator = menu.GetComponent<Animator>();
+        menu.SetActive(false);
 
         if (instance == null)
         {
@@ -38,7 +46,6 @@ public class UIManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    public GameObject menu;
 
     public void ActivateMenu() {
         _witListeningStateManager.TransitionToRelevantMenuNavigationStateBasedOnLevel();
@@ -51,7 +58,7 @@ public class UIManager : MonoBehaviour
         {
             textElements.SetActive(false);
             menu.SetActive(true);
-            boardAnimator.SetTrigger("Open");
+            menuBoardAnimator.SetTrigger("Open");
             yield return new WaitForSeconds(1.5f);
         }
     }
@@ -61,7 +68,7 @@ public class UIManager : MonoBehaviour
 
 
     IEnumerator StartMenuCloseAnimation() {
-        boardAnimator.SetTrigger("Close");
+        menuBoardAnimator.SetTrigger("Close");
         yield return new WaitForSeconds(1.25f);
         menu.SetActive(false);
     }
@@ -129,10 +136,5 @@ public class UIManager : MonoBehaviour
             default:
                 break;
         }
-    }
-
-    void Start()
-    {
-        menu.SetActive(false);
     }
 }

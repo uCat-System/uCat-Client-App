@@ -20,13 +20,11 @@ public class WitListeningStateManager : MonoBehaviour
 
         ListeningForLobbyMenuCommandsOnly, // including memo mode
     }
-    public Modular3DText listeningText3D;
-
-    public string scene;
-    public UIManager _uiManager;
+    private string scene;
+    private UIManager _uiManager;
     public ListeningState currentListeningState;
-    public WordReciteManager _wordReciteManager;
-    public GameObject wit;
+    private WordReciteManager _wordReciteManager;
+    private GameObject wit;
 
     public GameObject micIcon;
 
@@ -57,6 +55,19 @@ public class WitListeningStateManager : MonoBehaviour
         { ListeningState.ListeningForEverything, true },
         { ListeningState.ListeningForRecitedWordsOnly, true },
     };
+
+    private void Start()
+    {   
+        _uiManager = GetComponent<UIManager>();
+        _wordReciteManager = GetComponent<WordReciteManager>();
+        wit = GameObject.FindWithTag("Wit");
+        scene = SceneManager.GetActiveScene().name;
+        if (scene == "Level3") {
+            TransitionToState(ListeningState.ListeningForEverything);
+        } else {
+            TransitionToState(ListeningState.ListeningForMenuActivationCommandsOnly);
+        }
+    }
 
     public bool CurrentStateIsAllowedInDictionary(Dictionary<ListeningState, bool> dictToSearch) {
         // Go through every enum value
@@ -114,15 +125,6 @@ public class WitListeningStateManager : MonoBehaviour
             TransitionToState(ListeningState.ListeningForLobbyMenuCommandsOnly);
         }
     }
-    private void Start()
-    {        
-        scene = SceneManager.GetActiveScene().name;
-        if (scene == "Level3") {
-            TransitionToState(ListeningState.ListeningForEverything);
-        } else {
-            TransitionToState(ListeningState.ListeningForMenuActivationCommandsOnly);
-        }
-    }
 
     public void StoppedListening() {
         Debug.LogError("Stopped! Reactivating");
@@ -160,7 +162,6 @@ public class WitListeningStateManager : MonoBehaviour
 
     public void TransitionToState(ListeningState nextState)
         {
-            listeningText3D.UpdateText(nextState.ToString());
             switch (nextState)
             {
                 case ListeningState.NotListening:

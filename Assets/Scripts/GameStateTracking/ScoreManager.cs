@@ -8,7 +8,7 @@ using MText;
 
 public class ScoreManager : MonoBehaviour
 {
-    public Modular3DText partialText3D;
+    private Modular3DText partialText3D;
     private int level1CurrentScore = 0;
     private int level2CurrentScore = 0;
     
@@ -72,7 +72,7 @@ public class ScoreManager : MonoBehaviour
     // Eventually include database storage as well.
     void Start()
     {
-        //partialText3D = GameObject.FindWithTag("PartialText3D").GetComponent<Modular3DText>();
+        partialText3D = GameObject.FindWithTag("PartialText3D").GetComponent<Modular3DText>();
     }
 
     public void DisplayScoreInPartialTextSection()
