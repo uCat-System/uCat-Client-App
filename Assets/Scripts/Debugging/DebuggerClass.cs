@@ -11,11 +11,15 @@ public class DebuggerClass : MonoBehaviour
 
     public WitListeningStateManager _witListeningStateManager;
 
+    private WordReciteManager _wordReciteManager;
+
     public Modular3DText debugText;
     // Start is called before the first frame update
     void Start()
     {
-        
+        _wordReciteManager = GetComponent<WordReciteManager>();
+        _freeSpeechManager = GetComponent<FreeSpeechManager>();
+        _witListeningStateManager = GetComponent<WitListeningStateManager>();
     }
 
     // Update is called once per frame
@@ -23,6 +27,10 @@ public class DebuggerClass : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape)) {
             ActivateMenuViaVoice();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            _wordReciteManager.enabled = true;
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha1)) {

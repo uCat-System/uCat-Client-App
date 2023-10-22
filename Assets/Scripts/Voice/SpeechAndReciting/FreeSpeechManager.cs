@@ -140,7 +140,6 @@ using MText;
         private IEnumerator ProceedBasedOnConfirmation(EConfirmationResponseType confirmationResponse, string originallyUtteredText) {
 
             string confirmationText = ConfirmationHandler.confirmationResponses[confirmationResponse];
-            partialText3D.UpdateText(confirmationText);
             confirmationText3D.UpdateText(confirmationText);
             yield return new WaitForSeconds(ConfirmationHandler.confirmationWaitTimeInSeconds);
 

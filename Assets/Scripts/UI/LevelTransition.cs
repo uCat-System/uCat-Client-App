@@ -30,7 +30,7 @@ public class LevelTransition : MonoBehaviour
     // Update is called once per frame
     void Start()
     {
-        crossFadeImage.SetActive(true);
+        // crossFadeImage.SetActive(true);
     }
 
     public void BeginLevelTransition()
@@ -65,6 +65,7 @@ public class LevelTransition : MonoBehaviour
 
     public IEnumerator TransitionToSpecificLevel(string sceneName)
     {
+        Debug.Log("Transitioning to " + sceneName);
         DialogueHandler.ResetDialogueIndex();
 
         transition.SetTrigger("Start");
