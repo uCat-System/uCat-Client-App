@@ -5,6 +5,10 @@ level transitions:
 - level 2 teleports randomly (dialogue index issue)
 
 
+general: 
+
+cannot currently have dialogue options after task is finished (should be able to just continue dialogue indexes?)
+
 intro: 
 
 
