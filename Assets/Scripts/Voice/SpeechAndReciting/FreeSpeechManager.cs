@@ -131,8 +131,7 @@ using MText;
                 _levelTransition.BeginLevelTransition();
                 break;
             case EProceedResponseType.NEGATIVE_PROCEED_RESPONSE:
-                _dialogueManager.SkipDialogueAndGoStraightToTask();
-                // _levelManager.RepeatLevel();
+                _levelManager.RepeatLevel();
                 break;
             case EProceedResponseType.UNKNOWN_PROCEED_RESPONSE:
                 partialText3D.UpdateText(ConfirmationHandler.proceedResponses[proceedResponse]);
