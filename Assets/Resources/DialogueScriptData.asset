@@ -66,7 +66,31 @@ MonoBehaviour:
   level2ScriptDialogueAudio:
   - {fileID: 8300000, guid: 5e1e55e42782b1b42bde326ad5bd272c, type: 3}
   - {fileID: 8300000, guid: af4e9b0720fbaf142b74b2f412c46f7c, type: 3}
-  level3ScriptDialogueOptions: []
-  level3ScriptDialogueAnimations: 
-  level3ScriptDialogueAudio: []
+  level3ScriptDialogueOptions:
+  - "Wow, you\u2019ve done a lot of hard work, hopefully there weren\u2019t any glitches
+    on the way."
+  - "This technology is very new, and I\u2019m sure the folks out there are working
+    their paws off to make sure any bugs will be squashed!"
+  - "Wait, not real bugs\u2026! I\u2019m terrified of them!"
+  - 'We just need to do one more thing before you can freely do what you want in
+    this world. '
+  - "Now, I won\u2019t throw anymore words at you\u2026"
+  - "It\u2019s time for you to try freestyle!"
+  - "Let\u2019s start with the small talk. I\u2019ll ask you a few casual questions
+    to begin with. "
+  - "When you stop talking, I\u2019ll stop listening."
+  - "My ears are a bit rusty, but you\u2019ll have a chance to correct me."
+  - You can use this exercise as a way of tracking your moods.
+  level3ScriptDialogueAnimations: 01000000000000000300000000000000010000000100000000000000000000000400000000000000
+  level3ScriptDialogueAudio:
+  - {fileID: 8300000, guid: f860a127975c0d845be13d232c3e31ce, type: 3}
+  - {fileID: 8300000, guid: ef31bce6259f12642808658e44f7ba6c, type: 3}
+  - {fileID: 8300000, guid: c260fcd07fb6ffe45a98a82ee3e2a7e8, type: 3}
+  - {fileID: 8300000, guid: 3023c6d20a349444f955e201534da793, type: 3}
+  - {fileID: 8300000, guid: a5557f6970f0ac34e8bbbef8abd53fba, type: 3}
+  - {fileID: 8300000, guid: b7bdd565321bae44aab7e39237e767b4, type: 3}
+  - {fileID: 8300000, guid: 8ff8e23d38fdfdc4dbb65cb7c2b0dfff, type: 3}
+  - {fileID: 8300000, guid: dd23d866a07e8ca41b1cb9bc833ab0f3, type: 3}
+  - {fileID: 8300000, guid: a5dd97cf3ad83bf45b1bfdae674192b9, type: 3}
+  - {fileID: 8300000, guid: c1a46f4794559c741aaf333539654b12, type: 3}
   timeBetweenLinesInSeconds: 1

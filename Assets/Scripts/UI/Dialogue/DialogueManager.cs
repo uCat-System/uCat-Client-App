@@ -78,6 +78,11 @@ public class DialogueManager : MonoBehaviour
         ChangeDialogueState(DialogueState.IsPerformingATask);
     }
 
+    public void SkipDialogueAndGoStraightToTask() {
+        DialogueHandler.currentDialogueOptionIndex = taskActivationDialogueIndex;
+        StartCoroutine(CycleThroughDialogue());
+    }
+
     void SetDialogueTaskIndexes() {
         switch (_levelManager.currentLevel) {
             case "Intro":

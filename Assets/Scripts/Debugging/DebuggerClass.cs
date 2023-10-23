@@ -14,6 +14,7 @@ public class DebuggerClass : MonoBehaviour
     private WordReciteManager _wordReciteManager;
 
     private LevelTransition _levelTransition;
+    private DialogueManager _dialogueManager;
 
     public Modular3DText debugText;
     // Start is called before the first frame update
@@ -23,6 +24,7 @@ public class DebuggerClass : MonoBehaviour
         _wordReciteManager = GetComponent<WordReciteManager>();
         _freeSpeechManager = GetComponent<FreeSpeechManager>();
         _witListeningStateManager = GetComponent<WitListeningStateManager>();
+        _dialogueManager = GetComponent<DialogueManager>();
     }
 
     // Update is called once per frame
@@ -48,7 +50,7 @@ public class DebuggerClass : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha4)) {
-            Time.timeScale = 1f;
+            _dialogueManager.SkipDialogueAndGoStraightToTask();
         }
 
         if (Input.GetKeyDown(KeyCode.F5)) {
