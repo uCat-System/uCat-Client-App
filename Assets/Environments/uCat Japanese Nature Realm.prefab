@@ -61,16 +61,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45d100e06f4a0744c8728e86700b5472, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: Did you say "Hello"?
-  oldText: Did you say "Hello"?
+  _text: 
+  oldText: 
   wordArray:
-  - Did
-  - ' '
-  - you
-  - ' '
-  - say
-  - ' '
-  - '"Hello"?'
+  - 
   characterObjectList: []
   _allcharacterObjectList:
   - {fileID: 0}
@@ -137,7 +131,7 @@ MonoBehaviour:
   canBreakOutermostPrefab: 0
   assetPath: 
   meshPaths: []
-  updatedAfterStyleUpdateOnPrefabInstances: 1
+  updatedAfterStyleUpdateOnPrefabInstances: 0
   debugLogs: 0
   hideOverwrittenVariablesFromInspector: 1
   updateTextOncePerFrame: 0
@@ -722,7 +716,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &367446315836391487
 Transform:
   m_ObjectHideFlags: 0
@@ -1352,7 +1346,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2126960778918005917
 Transform:
   m_ObjectHideFlags: 0
@@ -1870,7 +1864,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &634249619582277014
 Transform:
   m_ObjectHideFlags: 0
@@ -2051,7 +2045,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &570520253917129548
 Transform:
   m_ObjectHideFlags: 0
@@ -3845,7 +3839,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8043424618690263169
 Transform:
   m_ObjectHideFlags: 0
@@ -4055,7 +4049,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1966982488406073512
 Transform:
   m_ObjectHideFlags: 0
@@ -4678,7 +4672,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3958143736302868684
 Transform:
   m_ObjectHideFlags: 0
@@ -4888,7 +4882,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1628553377146091445
 Transform:
   m_ObjectHideFlags: 0
@@ -5257,13 +5251,7 @@ MonoBehaviour:
   oldText: Resume
   wordArray:
   - Resume
-  characterObjectList:
-  - {fileID: 4436562834764083294}
-  - {fileID: 2714525423143797853}
-  - {fileID: 3512914967597361683}
-  - {fileID: 3495385414762126973}
-  - {fileID: 8412411764901901130}
-  - {fileID: 8000111712666166242}
+  characterObjectList: []
   _allcharacterObjectList:
   - {fileID: 4436562834764083294}
   - {fileID: 2714525423143797853}
@@ -5277,7 +5265,7 @@ MonoBehaviour:
   _fontSize: {x: 5, y: 5, z: 100}
   _capitalize: 0
   _lowercase: 0
-  _autoLetterSize: 0
+  _autoLetterSize: 1
   _wordSpacing: 1
   useModules: 1
   startAddingModuleFromChar: 0
@@ -5299,7 +5287,7 @@ MonoBehaviour:
   canBreakOutermostPrefab: 0
   assetPath: 
   meshPaths: []
-  updatedAfterStyleUpdateOnPrefabInstances: 1
+  updatedAfterStyleUpdateOnPrefabInstances: 0
   debugLogs: 0
   hideOverwrittenVariablesFromInspector: 1
   updateTextOncePerFrame: 0
@@ -5970,7 +5958,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1786215939871685588}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.74, y: -0.03, z: -2}
+  m_LocalPosition: {x: -3.44, y: -0.03, z: -2}
   m_LocalScale: {x: 0.7000001, y: 0.70000017, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6374,7 +6362,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7259720496278679846
 Transform:
   m_ObjectHideFlags: 0
@@ -6490,7 +6478,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1963221319519298788}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.91, y: 4.01, z: -1}
+  m_LocalPosition: {x: -5.03, y: 4.01, z: -1}
   m_LocalScale: {x: 1.87, y: 1.87, z: 1.87}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -6562,7 +6550,7 @@ MonoBehaviour:
   _fontSize: {x: 4, y: 4, z: 100}
   _capitalize: 0
   _lowercase: 0
-  _autoLetterSize: 0
+  _autoLetterSize: 1
   _wordSpacing: 1
   useModules: 1
   startAddingModuleFromChar: 0
@@ -8014,7 +8002,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1368423483715897420
 Transform:
   m_ObjectHideFlags: 0
@@ -8119,7 +8107,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2624230171200808287
 Transform:
   m_ObjectHideFlags: 0
@@ -8329,7 +8317,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4385756094999448576
 Transform:
   m_ObjectHideFlags: 0
@@ -8434,7 +8422,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5329823877628227751
 Transform:
   m_ObjectHideFlags: 0
@@ -8933,7 +8921,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8547003649035149237
 Transform:
   m_ObjectHideFlags: 0
@@ -9038,7 +9026,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7749679729369648909
 Transform:
   m_ObjectHideFlags: 0
@@ -9514,15 +9502,7 @@ MonoBehaviour:
   oldText: Settings
   wordArray:
   - Settings
-  characterObjectList:
-  - {fileID: 6895504663765261838}
-  - {fileID: 6989610901261675872}
-  - {fileID: 4375823328108766459}
-  - {fileID: 8673389098772914309}
-  - {fileID: 781109925082280280}
-  - {fileID: 3040116605079286777}
-  - {fileID: 7567202285339962706}
-  - {fileID: 4265430800666477676}
+  characterObjectList: []
   _allcharacterObjectList:
   - {fileID: 6895504663765261838}
   - {fileID: 6989610901261675872}
@@ -9538,7 +9518,7 @@ MonoBehaviour:
   _fontSize: {x: 5, y: 5, z: 100}
   _capitalize: 0
   _lowercase: 0
-  _autoLetterSize: 0
+  _autoLetterSize: 1
   _wordSpacing: 1
   useModules: 1
   startAddingModuleFromChar: 0
@@ -9560,7 +9540,7 @@ MonoBehaviour:
   canBreakOutermostPrefab: 0
   assetPath: 
   meshPaths: []
-  updatedAfterStyleUpdateOnPrefabInstances: 1
+  updatedAfterStyleUpdateOnPrefabInstances: 0
   debugLogs: 0
   hideOverwrittenVariablesFromInspector: 1
   updateTextOncePerFrame: 0
@@ -10267,7 +10247,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2293799930996377387
 Transform:
   m_ObjectHideFlags: 0
@@ -10372,7 +10352,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1418319339553875477
 Transform:
   m_ObjectHideFlags: 0
@@ -10477,7 +10457,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7537266916626852600
 Transform:
   m_ObjectHideFlags: 0
@@ -10582,7 +10562,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6512239594663024168
 Transform:
   m_ObjectHideFlags: 0
@@ -10687,7 +10667,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7072092239882900814
 Transform:
   m_ObjectHideFlags: 0
@@ -11038,7 +11018,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &735618770896848610
 Transform:
   m_ObjectHideFlags: 0
@@ -11143,7 +11123,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8086393766591904486
 Transform:
   m_ObjectHideFlags: 0
@@ -11248,7 +11228,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4843157244927701605
 Transform:
   m_ObjectHideFlags: 0
@@ -11353,7 +11333,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1544107057240781819
 Transform:
   m_ObjectHideFlags: 0
@@ -11561,7 +11541,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4183109813046741201
 Transform:
   m_ObjectHideFlags: 0
@@ -11616,7 +11596,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1581163569070954639
 Transform:
   m_ObjectHideFlags: 0
@@ -11721,7 +11701,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3141205210252554900
 Transform:
   m_ObjectHideFlags: 0
@@ -11826,7 +11806,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2041225029581241158
 Transform:
   m_ObjectHideFlags: 0
@@ -11946,7 +11926,7 @@ Transform:
   - {fileID: 5366394114748069276}
   - {fileID: 4583368551910381232}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1991096348
 MonoBehaviour:
@@ -13004,7 +12984,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2762163615518859906
 Transform:
   m_ObjectHideFlags: 0
@@ -14069,7 +14049,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5163244142112006688
 Transform:
   m_ObjectHideFlags: 0
@@ -14174,7 +14154,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4884672577047541231
 Transform:
   m_ObjectHideFlags: 0
@@ -15460,7 +15440,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &736319332406993437
 Transform:
   m_ObjectHideFlags: 0
@@ -16772,7 +16752,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2910641278971523185
 Transform:
   m_ObjectHideFlags: 0
@@ -16982,7 +16962,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4747799639003381462
 Transform:
   m_ObjectHideFlags: 0
@@ -18799,7 +18779,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4287429417645090108
 Transform:
   m_ObjectHideFlags: 0
@@ -18947,52 +18927,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45d100e06f4a0744c8728e86700b5472, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: Here is text below the board which exemplifies a long phrase that uCat may
-    say. Are you happy with the subtitle?
-  oldText: Here is text below the board which exemplifies a long phrase that uCat
-    may say. Are you happy with the subtitle?
+  _text: 
+  oldText: 
   wordArray:
-  - Here
-  - ' '
-  - is
-  - ' '
-  - text
-  - ' '
-  - below
-  - ' '
-  - the
-  - ' '
-  - board
-  - ' '
-  - which
-  - ' '
-  - exemplifies
-  - ' '
-  - a
-  - ' '
-  - long
-  - ' '
-  - phrase
-  - ' '
-  - that
-  - ' '
-  - uCat
-  - ' '
-  - may
-  - ' '
-  - say.
-  - ' '
-  - Are
-  - ' '
-  - you
-  - ' '
-  - happy
-  - ' '
-  - with
-  - ' '
-  - the
-  - ' '
-  - subtitle?
+  - 
   characterObjectList: []
   _allcharacterObjectList:
   - {fileID: 0}
@@ -19059,7 +18997,7 @@ MonoBehaviour:
   canBreakOutermostPrefab: 0
   assetPath: 
   meshPaths: []
-  updatedAfterStyleUpdateOnPrefabInstances: 1
+  updatedAfterStyleUpdateOnPrefabInstances: 0
   debugLogs: 0
   hideOverwrittenVariablesFromInspector: 1
   updateTextOncePerFrame: 0
@@ -20566,7 +20504,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3299468061510935642
 Transform:
   m_ObjectHideFlags: 0
@@ -20776,7 +20714,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3647719444446761993
 Transform:
   m_ObjectHideFlags: 0
@@ -20892,7 +20830,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7056147444785169098}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.4, y: -3.42, z: -1}
+  m_LocalPosition: {x: -5.58, y: -3.42, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -20936,14 +20874,7 @@ MonoBehaviour:
   oldText: Writing
   wordArray:
   - Writing
-  characterObjectList:
-  - {fileID: 3075597951568890002}
-  - {fileID: 3793565038132282027}
-  - {fileID: 1380640148153860348}
-  - {fileID: 7959240824359827218}
-  - {fileID: 826172054775715859}
-  - {fileID: 3700141582495121041}
-  - {fileID: 448550649988000261}
+  characterObjectList: []
   _allcharacterObjectList:
   - {fileID: 3075597951568890002}
   - {fileID: 3793565038132282027}
@@ -20958,7 +20889,7 @@ MonoBehaviour:
   _fontSize: {x: 5, y: 5, z: 100}
   _capitalize: 0
   _lowercase: 0
-  _autoLetterSize: 0
+  _autoLetterSize: 1
   _wordSpacing: 1
   useModules: 1
   startAddingModuleFromChar: 0
@@ -20980,7 +20911,7 @@ MonoBehaviour:
   canBreakOutermostPrefab: 0
   assetPath: 
   meshPaths: []
-  updatedAfterStyleUpdateOnPrefabInstances: 1
+  updatedAfterStyleUpdateOnPrefabInstances: 0
   debugLogs: 0
   hideOverwrittenVariablesFromInspector: 1
   updateTextOncePerFrame: 0
@@ -21117,7 +21048,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7089418394544428268}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.16, y: -4.65108, z: -1}
+  m_LocalPosition: {x: -4.65, y: -4.65108, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -21164,27 +21095,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45d100e06f4a0744c8728e86700b5472, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: A Conversation
-  oldText: A Conversation
+  _text: Conversation
+  oldText: Conversation
   wordArray:
-  - A
-  - ' '
   - Conversation
-  characterObjectList:
-  - {fileID: 744174698154777451}
-  - {fileID: 2363235888433644758}
-  - {fileID: 5895217153488106456}
-  - {fileID: 191985025337110236}
-  - {fileID: 3439937073325507759}
-  - {fileID: 1230376237746103144}
-  - {fileID: 8251938314229757548}
-  - {fileID: 2825453705751069096}
-  - {fileID: 3957895375127744419}
-  - {fileID: 5554190496521352191}
-  - {fileID: 7028784506867413044}
-  - {fileID: 2593619011689331713}
-  - {fileID: 4130131506090198833}
-  - {fileID: 8818766541847335906}
+  characterObjectList: []
   _allcharacterObjectList:
   - {fileID: 744174698154777451}
   - {fileID: 2363235888433644758}
@@ -21206,7 +21121,7 @@ MonoBehaviour:
   _fontSize: {x: 5, y: 5, z: 100}
   _capitalize: 0
   _lowercase: 0
-  _autoLetterSize: 0
+  _autoLetterSize: 1
   _wordSpacing: 1
   useModules: 1
   startAddingModuleFromChar: 0
@@ -21228,7 +21143,7 @@ MonoBehaviour:
   canBreakOutermostPrefab: 0
   assetPath: 
   meshPaths: []
-  updatedAfterStyleUpdateOnPrefabInstances: 1
+  updatedAfterStyleUpdateOnPrefabInstances: 0
   debugLogs: 0
   hideOverwrittenVariablesFromInspector: 1
   updateTextOncePerFrame: 0
@@ -21490,7 +21405,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3640868024064230408
 Transform:
   m_ObjectHideFlags: 0
@@ -22518,7 +22433,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5851590936092840591
 Transform:
   m_ObjectHideFlags: 0
@@ -24122,12 +24037,7 @@ MonoBehaviour:
   oldText: Nurse
   wordArray:
   - Nurse
-  characterObjectList:
-  - {fileID: 5260857768417409582}
-  - {fileID: 8623921197031066525}
-  - {fileID: 5281996085970251972}
-  - {fileID: 6023253697137583156}
-  - {fileID: 2826220470133703154}
+  characterObjectList: []
   _allcharacterObjectList:
   - {fileID: 5260857768417409582}
   - {fileID: 8623921197031066525}
@@ -24140,7 +24050,7 @@ MonoBehaviour:
   _fontSize: {x: 5, y: 5, z: 100}
   _capitalize: 0
   _lowercase: 0
-  _autoLetterSize: 0
+  _autoLetterSize: 1
   _wordSpacing: 1
   useModules: 1
   startAddingModuleFromChar: 0
@@ -24162,7 +24072,7 @@ MonoBehaviour:
   canBreakOutermostPrefab: 0
   assetPath: 
   meshPaths: []
-  updatedAfterStyleUpdateOnPrefabInstances: 1
+  updatedAfterStyleUpdateOnPrefabInstances: 0
   debugLogs: 0
   hideOverwrittenVariablesFromInspector: 1
   updateTextOncePerFrame: 0
@@ -24442,7 +24352,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8816607573575014822
 Transform:
   m_ObjectHideFlags: 0
@@ -24631,7 +24541,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1394872124032495837
 Transform:
   m_ObjectHideFlags: 0
@@ -24736,7 +24646,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4360960014358491235
 Transform:
   m_ObjectHideFlags: 0
@@ -25471,7 +25381,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7950795676624888341
 Transform:
   m_ObjectHideFlags: 0
@@ -25908,7 +25818,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1050353641816969500
 Transform:
   m_ObjectHideFlags: 0
@@ -26118,7 +26028,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3826744358418880227
 Transform:
   m_ObjectHideFlags: 0
@@ -26328,7 +26238,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8109458918442978223
 Transform:
   m_ObjectHideFlags: 0
@@ -27298,13 +27208,7 @@ MonoBehaviour:
 
 '
   - 
-  characterObjectList:
-  - {fileID: 4407939342529740296}
-  - {fileID: 7163139172419073314}
-  - {fileID: 1942290992779303462}
-  - {fileID: 4251411234138548265}
-  - {fileID: 4944788759062224712}
-  - {fileID: 4358546136106808084}
+  characterObjectList: []
   _allcharacterObjectList:
   - {fileID: 4407939342529740296}
   - {fileID: 7163139172419073314}
@@ -27318,7 +27222,7 @@ MonoBehaviour:
   _fontSize: {x: 5, y: 5, z: 100}
   _capitalize: 0
   _lowercase: 0
-  _autoLetterSize: 0
+  _autoLetterSize: 1
   _wordSpacing: 1
   useModules: 1
   startAddingModuleFromChar: 0
@@ -27340,7 +27244,7 @@ MonoBehaviour:
   canBreakOutermostPrefab: 0
   assetPath: 
   meshPaths: []
-  updatedAfterStyleUpdateOnPrefabInstances: 1
+  updatedAfterStyleUpdateOnPrefabInstances: 0
   debugLogs: 0
   hideOverwrittenVariablesFromInspector: 1
   updateTextOncePerFrame: 0

@@ -13,10 +13,13 @@ public class DebuggerClass : MonoBehaviour
 
     private WordReciteManager _wordReciteManager;
 
+    private LevelTransition _levelTransition;
+
     public Modular3DText debugText;
     // Start is called before the first frame update
     void Start()
     {
+        _levelTransition = FindObjectOfType<LevelTransition>();
         _wordReciteManager = GetComponent<WordReciteManager>();
         _freeSpeechManager = GetComponent<FreeSpeechManager>();
         _witListeningStateManager = GetComponent<WitListeningStateManager>();
@@ -30,18 +33,18 @@ public class DebuggerClass : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.Space)) {
-            _wordReciteManager.enabled = true;
+            _freeSpeechManager.HandleFullTranscription("resume");
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha1)) {
-            _freeSpeechManager.HandleFullTranscription("word practice");
+            _levelTransition.BeginSpecificLevelTransition("Level1");
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2)) {
-            _freeSpeechManager.HandleFullTranscription("phrase practice");
+            _levelTransition.BeginSpecificLevelTransition("Level2");
         }
         if (Input.GetKeyDown(KeyCode.Alpha3)) {
-            _freeSpeechManager.HandleFullTranscription("Level 3");
+            _levelTransition.BeginSpecificLevelTransition("Level3");
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha4)) {

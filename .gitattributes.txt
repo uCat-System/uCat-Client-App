@@ -1,0 +1,4 @@
+level transitions:
+
+- 2 audios playing (when not doing from menu)
+- menu board remains open
