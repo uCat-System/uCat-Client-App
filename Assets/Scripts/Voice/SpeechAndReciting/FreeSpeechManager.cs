@@ -16,6 +16,7 @@ using MText;
         public Material greenText;
         private LevelTransition _levelTransition;
         private LevelManager _levelManager;
+        private DialogueManager _dialogueManager;
 
         private UIManager _uiManager;
         private WordReciteManager _wordReciteManager;
@@ -44,6 +45,7 @@ using MText;
         void Start()
         {   
             _wordReciteManager = GetComponent<WordReciteManager>();
+            _dialogueManager = GetComponent<DialogueManager>();
             _witListeningStateManager = GetComponent<WitListeningStateManager>();
             _uiManager = GetComponent<UIManager>();
             _levelManager = GetComponent<LevelManager>();
@@ -129,7 +131,8 @@ using MText;
                 _levelTransition.BeginLevelTransition();
                 break;
             case EProceedResponseType.NEGATIVE_PROCEED_RESPONSE:
-                _levelManager.RepeatLevel();
+                _dialogueManager.SkipDialogueAndGoStraightToTask();
+                // _levelManager.RepeatLevel();
                 break;
             case EProceedResponseType.UNKNOWN_PROCEED_RESPONSE:
                 partialText3D.UpdateText(ConfirmationHandler.proceedResponses[proceedResponse]);
