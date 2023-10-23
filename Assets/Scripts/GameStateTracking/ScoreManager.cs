@@ -13,7 +13,7 @@ public class ScoreManager : MonoBehaviour
     private int level2CurrentScore = 0;
     
     private int level1MaxScore = 20;
-    public int level2MaxScore = 10;
+    private int level2MaxScore = 10;
 
     public int Level1MaxScore
     {
