@@ -60,9 +60,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 152d5475be6dca949b8fc9151dd56460, type: 3}
   - {fileID: 8300000, guid: bb942939d7fb98149a86df49607d02e1, type: 3}
   level2ScriptDialogueOptions:
-  - Something
-  level2ScriptDialogueAnimations: 01000000
-  level2ScriptDialogueAudio: []
+  - As before, do your best to repeat sentences when the dots disappear.
+  - "Let\u2019s begin!"
+  level2ScriptDialogueAnimations: 0000000001000000
+  level2ScriptDialogueAudio:
+  - {fileID: 8300000, guid: 5e1e55e42782b1b42bde326ad5bd272c, type: 3}
+  - {fileID: 8300000, guid: af4e9b0720fbaf142b74b2f412c46f7c, type: 3}
   level3ScriptDialogueOptions: []
   level3ScriptDialogueAnimations: 
   level3ScriptDialogueAudio: []
