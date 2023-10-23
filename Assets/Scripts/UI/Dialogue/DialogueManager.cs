@@ -214,7 +214,7 @@ public class DialogueManager : MonoBehaviour
         DialogueHandler.currentDialogueOptionIndex = 0;
         catAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Idle;
         dialogueText.UpdateText("");
-        _levelTransition.BeginLevelTransition();
+        // _levelTransition.BeginLevelTransition();
     }
 
 }
