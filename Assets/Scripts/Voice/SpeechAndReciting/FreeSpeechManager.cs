@@ -60,7 +60,7 @@ using MText;
         public void HandlePartialTranscription(string text)
         {
             // Always update subtitles when attempting speech
-            subtitleText3D.UpdateText(text);
+            // subtitleText3D.UpdateText(text);
             if (_witListeningStateManager.RecitingWordsIsAllowed()) {
                 partialText3D.UpdateText(text);
             }
@@ -81,7 +81,7 @@ using MText;
 
         public void HandleFullTranscription(string text)
         {
-            subtitleText3D.UpdateText(text);
+            // subtitleText3D.UpdateText(text);
             Debug.Log("Handling full transcription: " + text);
             if (_witListeningStateManager.MenuActivationCommandsAreAllowed()) {
                 Debug.Log("Menu command allowed: " + text);  
