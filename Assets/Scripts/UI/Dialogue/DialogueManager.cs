@@ -132,12 +132,17 @@ public class DialogueManager : MonoBehaviour
             micIcon.SetActive(micState);
 
             //in the Intro, uCat wants to show the user the board from an appropriate time (not immediately)
-            if(DialogueHandler.currentDialogueOptionIndex >= boardActivationDialogueIndex) boardComponent.SetActive(true);
+            if(DialogueHandler.currentDialogueOptionIndex >= boardActivationDialogueIndex) ActivateBoard();
         }
         else
         {
             Debug.LogError("Invalid current dialogue option index: " + DialogueHandler.currentDialogueOptionIndex);
         }
+    }
+
+    private void ActivateBoard() {
+        boardComponent.SetActive(true);
+        GameObject.FindWithTag("ReciteText3D").GetComponent<Modular3DText>().UpdateText("...Hello...");
     }
 
     private IEnumerator CycleThroughDialogue() {
