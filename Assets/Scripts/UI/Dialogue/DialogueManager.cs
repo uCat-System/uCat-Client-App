@@ -66,6 +66,12 @@ public class DialogueManager : MonoBehaviour
         _wordReciteManager.enabled = false;
         ChangeDialogueState(DialogueState.IsPlayingDialogueOnly);
         StartCoroutine(CycleThroughDialogue());
+
+        if (_levelManager.currentLevel == "Intro") {
+            // Hide the board and mic icon
+            boardComponent.SetActive(false);
+            micIcon.SetActive(false);
+        }
     }
 
     public void ChangeDialogueState(DialogueState newDialogueState) {
