@@ -12077,12 +12077,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4596960383964532437}
-  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -0.023, z: 0}
-  m_LocalScale: {x: 0.02, y: 0.60054386, z: 0.20255262}
+  m_LocalRotation: {x: -0, y: -0, z: 0.70710677, w: 0.70710677}
+  m_LocalPosition: {x: 0, y: -0.1461343, z: 0}
+  m_LocalScale: {x: 0.1270734, y: 7.5010223, z: 0.0050638146}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5499405243298256656}
+  m_Father: {fileID: 2343159258805039421}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!33 &4038334002726953235
@@ -14769,7 +14769,7 @@ GameObject:
   - component: {fileID: 5499405243298256660}
   m_Layer: 0
   m_Name: ReciteBoard
-  m_TagString: ReciteBoard
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14787,7 +14787,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2343159258805039421}
-  - {fileID: 766456050940891818}
   m_Father: {fileID: 5499405244049733615}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -24557,8 +24556,8 @@ GameObject:
   - component: {fileID: 3220224104160648013}
   - component: {fileID: 8979735709199169473}
   m_Layer: 0
-  m_Name: Mesh
-  m_TagString: Untagged
+  m_Name: ReciteBoardMesh
+  m_TagString: ReciteBoard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24574,7 +24573,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0.000017341174}
   m_LocalScale: {x: 0.08006162, y: 0.15738937, z: 40}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 766456050940891818}
   m_Father: {fileID: 5499405243298256656}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

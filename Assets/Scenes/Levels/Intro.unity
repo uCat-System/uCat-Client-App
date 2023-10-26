@@ -2104,6 +2104,14 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5499405243298256657, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
+      propertyPath: m_TagString
+      value: ReciteBoard
+      objectReference: {fileID: 0}
+    - target: {fileID: 5499405243298256662, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5852176482910047555, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
       propertyPath: _text
       value: 
@@ -2140,6 +2148,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 246492693}
+    - target: {fileID: 7977662135408551094, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 8118725612353646467, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -2152,6 +2164,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1177110400}
+    - target: {fileID: 8979735709199169473, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}

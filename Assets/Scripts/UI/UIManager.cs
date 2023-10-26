@@ -13,8 +13,6 @@ public class UIManager : MonoBehaviour
 
     private LevelManager _levelManager;
     private Animator menuBoardAnimator;
-    private GameObject textElements;
-
     private DialogueManager _dialogueManager;
 
     private GameObject reciteBoard;
@@ -28,12 +26,9 @@ public class UIManager : MonoBehaviour
     {
         _wordReciteManager = FindObjectOfType<WordReciteManager>();
         _witListeningStateManager = FindObjectOfType<WitListeningStateManager>();
-        textElements = GameObject.FindWithTag("TextElements");
         reciteBoard = GameObject.FindWithTag("ReciteBoard");
         _levelManager = FindObjectOfType<LevelManager>();
         _dialogueManager = FindObjectOfType<DialogueManager>();
-
-        reciteBoard = GameObject.FindWithTag("ReciteBoard");
         menuBoardAnimator = menu.GetComponent<Animator>();
         menu.SetActive(false);
 
@@ -56,7 +51,8 @@ public class UIManager : MonoBehaviour
     IEnumerator StartMenuOpenAnimation() {
         if (!menu.activeInHierarchy)
         {
-            textElements.SetActive(false);
+            Debug.LogError("Called start menu - broken in ui 54");
+            reciteBoard.SetActive(false);
             menu.SetActive(true);
             menuBoardAnimator.SetTrigger("Open");
             yield return new WaitForSeconds(1.5f);
@@ -84,12 +80,15 @@ public class UIManager : MonoBehaviour
 
         if (_dialogueManager.currentDialogueState == EDialogueState.IsPerformingATask) {
             Debug.Log("Resuming task");
+            reciteBoard.SetActive(true);
             _wordReciteManager.enabled = true;
             _wordReciteManager.RepeatSameWord();
-            textElements.SetActive(true);
         } else if (_dialogueManager.currentDialogueState == EDialogueState.IsPlayingDialogueOnly) {
-            Debug.Log("Resuming dialogue");
+            Debug.Log("Resuming dialogue and activating board");
              _dialogueManager.StartDialogue();
+            if (DialogueHandler.currentDialogueOptionIndex >= _dialogueManager.boardActivationDialogueIndex) {
+                 reciteBoard.SetActive(true);
+            }
         }
 
         DeactivateMenu();
