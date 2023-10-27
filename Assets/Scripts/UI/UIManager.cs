@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
+
     private static UIManager instance;
 
     private LevelManager _levelManager;
@@ -51,7 +52,7 @@ public class UIManager : MonoBehaviour
     IEnumerator StartMenuOpenAnimation() {
         if (!menu.activeInHierarchy)
         {
-            Debug.LogError("Called start menu - broken in ui 54");
+            GameObject.FindWithTag("ReciteText3D").GetComponent<MeshRenderer>().enabled = false; 
             reciteBoard.SetActive(false);
             menu.SetActive(true);
             menuBoardAnimator.SetTrigger("Open");
@@ -77,6 +78,7 @@ public class UIManager : MonoBehaviour
         // Set the dialogue and Wit state back to what they were before menu activation
          _dialogueManager.ChangeDialogueState(_dialogueManager.previousDialogueState);
         _witListeningStateManager.TransitionToState(EListeningState.ListeningForMenuActivationCommandsOnly);
+        GameObject.FindWithTag("ReciteText3D").GetComponent<MeshRenderer>().enabled = true; 
 
         if (_dialogueManager.currentDialogueState == EDialogueState.IsPerformingATask) {
             Debug.Log("Resuming task");

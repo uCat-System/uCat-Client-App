@@ -11,8 +11,7 @@ using MText;
 
 
     public class FreeSpeechManager : MonoBehaviour
-    {
-
+    {        
         public Material greenText;
         private LevelTransition _levelTransition;
         private LevelManager _levelManager;

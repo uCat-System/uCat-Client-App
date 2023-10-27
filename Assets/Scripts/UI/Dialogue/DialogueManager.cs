@@ -65,6 +65,8 @@ public class DialogueManager : MonoBehaviour
         Debug.Log("Starting dialogue. Index is " + DialogueHandler.currentDialogueOptionIndex);
         _wordReciteManager.enabled = false;
         ChangeDialogueState(DialogueState.IsPlayingDialogueOnly);
+        // if there is a coroutine running of dialogue cycling, stop it
+        StopAllCoroutines();
         StartCoroutine(CycleThroughDialogue());
 
         if (_levelManager.currentLevel == "Intro") {

@@ -92,7 +92,6 @@ public static class DialogueHandler
     public static void PopulateDictionaries(List<string> dialogueOptions, List<AnimationDriver.CatAnimations> 
         animationOptions, List<AudioClip> dialogueAudio, Dictionary<int, string> dialogueDict, Dictionary<int, AnimationDriver.CatAnimations> animationDict, Dictionary<int, AudioClip> audioDict) {
          // // Populate the dictionary with the dialogue options
-         Debug.Log("populating" + dialogueOptions.Count);
         for (int i = 0; i < dialogueOptions.Count; i++)
         {
             string dialogueOption = dialogueOptions[i];
