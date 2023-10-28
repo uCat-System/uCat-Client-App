@@ -1873,7 +1873,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 634249619582277015}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 7.81}
+  m_LocalPosition: {x: 0, y: 0, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -12064,7 +12064,7 @@ GameObject:
   - component: {fileID: 5743432471835303545}
   - component: {fileID: 2666891187276836717}
   m_Layer: 0
-  m_Name: SplitLine (1)
+  m_Name: SplitLine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12077,12 +12077,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4596960383964532437}
-  m_LocalRotation: {x: -0, y: -0, z: 0.70710677, w: 0.70710677}
-  m_LocalPosition: {x: 0, y: -0.1461343, z: 0}
-  m_LocalScale: {x: 0.1270734, y: 7.5010223, z: 0.0050638146}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: -0.022999985, z: 0.00010982744}
+  m_LocalScale: {x: 0.020000001, y: 0.60054386, z: 0.20255259}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2343159258805039421}
+  m_Father: {fileID: 5499405243298256656}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!33 &4038334002726953235
@@ -13517,10 +13517,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45d100e06f4a0744c8728e86700b5472, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: ...Hello...
-  oldText: ...Hello...
+  _text: 
+  oldText: 
   wordArray:
-  - ...Hello...
+  - 
   characterObjectList: []
   _allcharacterObjectList: []
   autoSaveMesh: 0
@@ -13551,7 +13551,7 @@ MonoBehaviour:
   canBreakOutermostPrefab: 0
   assetPath: 
   meshPaths: []
-  updatedAfterStyleUpdateOnPrefabInstances: 1
+  updatedAfterStyleUpdateOnPrefabInstances: 0
   debugLogs: 0
   hideOverwrittenVariablesFromInspector: 1
   updateTextOncePerFrame: 0
@@ -14769,7 +14769,7 @@ GameObject:
   - component: {fileID: 5499405243298256660}
   m_Layer: 0
   m_Name: ReciteBoard
-  m_TagString: Untagged
+  m_TagString: ReciteBoard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14787,6 +14787,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2343159258805039421}
+  - {fileID: 766456050940891818}
   m_Father: {fileID: 5499405244049733615}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -24557,7 +24558,7 @@ GameObject:
   - component: {fileID: 8979735709199169473}
   m_Layer: 0
   m_Name: ReciteBoardMesh
-  m_TagString: ReciteBoard
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24573,8 +24574,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0.000017341174}
   m_LocalScale: {x: 0.08006162, y: 0.15738937, z: 40}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 766456050940891818}
+  m_Children: []
   m_Father: {fileID: 5499405243298256656}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

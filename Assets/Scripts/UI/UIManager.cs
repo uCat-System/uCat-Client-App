@@ -16,7 +16,7 @@ public class UIManager : MonoBehaviour
     private Animator menuBoardAnimator;
     private DialogueManager _dialogueManager;
 
-    // private GameObject reciteBoard;
+    private GameObject reciteBoard;
 
     private WitListeningStateManager _witListeningStateManager;
     private WordReciteManager _wordReciteManager;
@@ -27,7 +27,7 @@ public class UIManager : MonoBehaviour
     {
         _wordReciteManager = FindObjectOfType<WordReciteManager>();
         _witListeningStateManager = FindObjectOfType<WitListeningStateManager>();
-        // reciteBoard = GameObject.FindWithTag("ReciteBoard");
+        reciteBoard = GameObject.FindWithTag("ReciteBoard");
         _levelManager = FindObjectOfType<LevelManager>();
         _dialogueManager = FindObjectOfType<DialogueManager>();
         menuBoardAnimator = menu.GetComponent<Animator>();
@@ -40,6 +40,12 @@ public class UIManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+    }
+
+    public void ToggleReciteBoardMesh() {
+        foreach (Transform child in reciteBoard.transform) {
+            child.GetComponent<MeshRenderer>().enabled = !child.GetComponent<MeshRenderer>().enabled;
         }
     }
 
