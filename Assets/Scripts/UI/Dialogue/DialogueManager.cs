@@ -19,7 +19,7 @@ public class DialogueManager : MonoBehaviour
 
     // Variables exposing UI elements which uCat will show/hide during the Intro dialogue
     private GameObject micIcon;
-    private GameObject boardComponent;
+    // private GameObject boardComponent;
 
     public int currentDialogueOptionIndex;
 
@@ -54,7 +54,7 @@ public class DialogueManager : MonoBehaviour
         _wordReciteManager = FindObjectOfType<WordReciteManager>();
         catAudioSource = GameObject.FindWithTag("uCat").GetComponent<AudioSource>();
         _levelTransition = FindObjectOfType<LevelTransition>();
-        boardComponent = GameObject.FindWithTag("ReciteBoard");
+        // boardComponent = GameObject.FindWithTag("ReciteBoard");
         micIcon = GameObject.FindWithTag("MicIcon");
         catAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Idle;
         SetDialogueTaskIndexes();
@@ -71,7 +71,7 @@ public class DialogueManager : MonoBehaviour
 
         if (_levelManager.currentLevel == "Intro") {
             // Hide the board and mic icon
-            boardComponent.SetActive(false);
+            // boardComponent.SetActive(false);
             micIcon.SetActive(false);
         }
     }
@@ -143,7 +143,7 @@ public class DialogueManager : MonoBehaviour
     }
 
     private void ActivateBoard() {
-        boardComponent.SetActive(true);
+        // boardComponent.SetActive(true);
         GameObject.FindWithTag("ReciteText3D").GetComponent<Modular3DText>().UpdateText("...Hello...");
     }
 

@@ -16,7 +16,7 @@ public class UIManager : MonoBehaviour
     private Animator menuBoardAnimator;
     private DialogueManager _dialogueManager;
 
-    private GameObject reciteBoard;
+    // private GameObject reciteBoard;
 
     private WitListeningStateManager _witListeningStateManager;
     private WordReciteManager _wordReciteManager;
@@ -27,7 +27,7 @@ public class UIManager : MonoBehaviour
     {
         _wordReciteManager = FindObjectOfType<WordReciteManager>();
         _witListeningStateManager = FindObjectOfType<WitListeningStateManager>();
-        reciteBoard = GameObject.FindWithTag("ReciteBoard");
+        // reciteBoard = GameObject.FindWithTag("ReciteBoard");
         _levelManager = FindObjectOfType<LevelManager>();
         _dialogueManager = FindObjectOfType<DialogueManager>();
         menuBoardAnimator = menu.GetComponent<Animator>();
@@ -53,7 +53,7 @@ public class UIManager : MonoBehaviour
         if (!menu.activeInHierarchy)
         {
             GameObject.FindWithTag("ReciteText3D").GetComponent<MeshRenderer>().enabled = false; 
-            reciteBoard.SetActive(false);
+            // reciteBoard.SetActive(false);
             menu.SetActive(true);
             menuBoardAnimator.SetTrigger("Open");
             yield return new WaitForSeconds(1.5f);
@@ -82,15 +82,15 @@ public class UIManager : MonoBehaviour
 
         if (_dialogueManager.currentDialogueState == EDialogueState.IsPerformingATask) {
             Debug.Log("Resuming task");
-            reciteBoard.SetActive(true);
+            // reciteBoard.SetActive(true);
             _wordReciteManager.enabled = true;
             _wordReciteManager.RepeatSameWord();
         } else if (_dialogueManager.currentDialogueState == EDialogueState.IsPlayingDialogueOnly) {
             Debug.Log("Resuming dialogue and activating board");
              _dialogueManager.StartDialogue();
-            if (DialogueHandler.currentDialogueOptionIndex >= _dialogueManager.boardActivationDialogueIndex) {
-                 reciteBoard.SetActive(true);
-            }
+            // if (DialogueHandler.currentDialogueOptionIndex >= _dialogueManager.boardActivationDialogueIndex) {
+            //      reciteBoard.SetActive(true);
+            // }
         }
 
         DeactivateMenu();

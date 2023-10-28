@@ -4,6 +4,7 @@ using UnityEngine;
 
 public static class DialogueHandler
 {
+
     // Variable to track the current dialogue option
     public static int currentDialogueOptionIndex;
 

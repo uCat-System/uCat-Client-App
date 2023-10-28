@@ -5,7 +5,6 @@ using MText;
 
 public class DebuggerClass : MonoBehaviour
 {
-
     public Animator boardAnimator;
     public FreeSpeechManager _freeSpeechManager;
 
