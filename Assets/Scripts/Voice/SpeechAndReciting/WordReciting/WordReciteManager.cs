@@ -74,7 +74,7 @@ public class WordReciteManager : MonoBehaviour
         subtitleText3D = GameObject.FindWithTag("SubtitleText3D").GetComponent<Modular3DText>();
         partialText3D = GameObject.FindWithTag("PartialText3D").GetComponent<Modular3DText>();
         reciteText3D = GameObject.FindWithTag("ReciteText3D").GetComponent<Modular3DText>();
-        // reciteBoardAudioSource = GameObject.FindWithTag("ReciteBoard").GetComponent<AudioSource>();
+        reciteBoardAudioSource = GameObject.FindWithTag("ReciteBoard").GetComponent<AudioSource>();
         dialogueText3D = GameObject.FindWithTag("DialogueText3D").GetComponent<Modular3DText>();
 
         // Managers
@@ -142,8 +142,8 @@ public class WordReciteManager : MonoBehaviour
 
         // Play sound
 
-        // reciteBoardAudioSource.clip = wordSounds[0];
-        // reciteBoardAudioSource.Play();
+        reciteBoardAudioSource.clip = wordSounds[0];
+        reciteBoardAudioSource.Play();
 
         if (_witListeningStateManager.currentListeningState == EListeningState.ListeningForTaskMenuCommandsOnly)
         {

@@ -127,7 +127,6 @@ public class DialogueManager : MonoBehaviour
             catAnimationDriver.catAnimation = dialogueAnimations[DialogueHandler.currentDialogueOptionIndex];
 
             // Play the dialogue audio
-            // catAudioSource.clip = dialogueAudio[UcatDialogueHandler.currentDialogueOptionIndex];
             catAudioSource.PlayOneShot(dialogueAudio[DialogueHandler.currentDialogueOptionIndex]);
 
             //in the Intro, uCat wants to show the user what icon would be displayed when she is listening to them
