@@ -43,9 +43,9 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void ToggleReciteBoardMesh() {
+    public void ShowOrHideReciteMesh (bool shouldBeEnabled) {
         foreach (Transform child in reciteBoard.transform) {
-            child.GetComponent<MeshRenderer>().enabled = !child.GetComponent<MeshRenderer>().enabled;
+            child.GetComponent<MeshRenderer>().enabled = shouldBeEnabled;
         }
     }
 

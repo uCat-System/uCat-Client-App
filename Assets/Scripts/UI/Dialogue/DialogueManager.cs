@@ -72,7 +72,7 @@ public class DialogueManager : MonoBehaviour
 
         if (_levelManager.currentLevel == "Intro") {
             // Hide the board and mic icon
-            _uiManager.ToggleReciteBoardMesh();
+            _uiManager.ShowOrHideReciteMesh(false);
             micIcon.SetActive(false);
         }
     }
@@ -144,7 +144,7 @@ public class DialogueManager : MonoBehaviour
     }
 
     private void ActivateBoard() {
-        _uiManager.ToggleReciteBoardMesh();
+        _uiManager.ShowOrHideReciteMesh(true);
         GameObject.FindWithTag("ReciteText3D").GetComponent<Modular3DText>().UpdateText("...Hello...");
     }
 

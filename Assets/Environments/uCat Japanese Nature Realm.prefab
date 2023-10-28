@@ -5287,7 +5287,7 @@ MonoBehaviour:
   canBreakOutermostPrefab: 0
   assetPath: 
   meshPaths: []
-  updatedAfterStyleUpdateOnPrefabInstances: 0
+  updatedAfterStyleUpdateOnPrefabInstances: 1
   debugLogs: 0
   hideOverwrittenVariablesFromInspector: 1
   updateTextOncePerFrame: 0
@@ -9593,7 +9593,7 @@ MonoBehaviour:
   canBreakOutermostPrefab: 0
   assetPath: 
   meshPaths: []
-  updatedAfterStyleUpdateOnPrefabInstances: 0
+  updatedAfterStyleUpdateOnPrefabInstances: 1
   debugLogs: 0
   hideOverwrittenVariablesFromInspector: 1
   updateTextOncePerFrame: 0
@@ -12049,7 +12049,7 @@ Transform:
   - {fileID: 6345532630162526283}
   - {fileID: 4583368551910381232}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4596960383964532437
 GameObject:
@@ -13551,7 +13551,7 @@ MonoBehaviour:
   canBreakOutermostPrefab: 0
   assetPath: 
   meshPaths: []
-  updatedAfterStyleUpdateOnPrefabInstances: 0
+  updatedAfterStyleUpdateOnPrefabInstances: 1
   debugLogs: 0
   hideOverwrittenVariablesFromInspector: 1
   updateTextOncePerFrame: 0
@@ -14765,7 +14765,6 @@ GameObject:
   - component: {fileID: 5499405243298256656}
   - component: {fileID: 5499405243298256661}
   - component: {fileID: 5499405243298256662}
-  - component: {fileID: 5499405243298256663}
   - component: {fileID: 5499405243298256660}
   m_Layer: 0
   m_Name: ReciteBoard
@@ -14840,19 +14839,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5499405243298256663
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5499405243298256657}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!82 &5499405243298256660
 AudioSource:
   m_ObjectHideFlags: 0
@@ -20803,7 +20789,7 @@ MonoBehaviour:
   canBreakOutermostPrefab: 0
   assetPath: 
   meshPaths: []
-  updatedAfterStyleUpdateOnPrefabInstances: 0
+  updatedAfterStyleUpdateOnPrefabInstances: 1
   debugLogs: 0
   hideOverwrittenVariablesFromInspector: 1
   updateTextOncePerFrame: 0
@@ -21098,7 +21084,7 @@ MonoBehaviour:
   canBreakOutermostPrefab: 0
   assetPath: 
   meshPaths: []
-  updatedAfterStyleUpdateOnPrefabInstances: 0
+  updatedAfterStyleUpdateOnPrefabInstances: 1
   debugLogs: 0
   hideOverwrittenVariablesFromInspector: 1
   updateTextOncePerFrame: 0
@@ -24133,7 +24119,7 @@ MonoBehaviour:
   canBreakOutermostPrefab: 0
   assetPath: 
   meshPaths: []
-  updatedAfterStyleUpdateOnPrefabInstances: 0
+  updatedAfterStyleUpdateOnPrefabInstances: 1
   debugLogs: 0
   hideOverwrittenVariablesFromInspector: 1
   updateTextOncePerFrame: 0
@@ -27350,7 +27336,7 @@ MonoBehaviour:
   canBreakOutermostPrefab: 0
   assetPath: 
   meshPaths: []
-  updatedAfterStyleUpdateOnPrefabInstances: 0
+  updatedAfterStyleUpdateOnPrefabInstances: 1
   debugLogs: 0
   hideOverwrittenVariablesFromInspector: 1
   updateTextOncePerFrame: 0
