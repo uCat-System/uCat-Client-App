@@ -47,7 +47,7 @@ public class LevelTransition : MonoBehaviour
     // Update is called once per frame
     void Start()
     {
-        // crossFadeImage.SetActive(true);
+        crossFadeImage.SetActive(true);
     }
 
     public void BeginLevelTransition()

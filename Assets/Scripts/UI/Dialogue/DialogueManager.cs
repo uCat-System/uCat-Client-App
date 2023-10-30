@@ -60,6 +60,12 @@ public class DialogueManager : MonoBehaviour
         catAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Idle;
         SetDialogueTaskIndexes();
         StartDialogue();
+
+        if (_levelManager.currentLevel == "Intro") {
+            // Hide the board and mic icon
+            _uiManager.ShowOrHideReciteMesh(false);
+            micIcon.SetActive(false);
+        }
     }
 
     public void StartDialogue() {
@@ -69,12 +75,6 @@ public class DialogueManager : MonoBehaviour
         // if there is a coroutine running of dialogue cycling, stop it
         StopAllCoroutines();
         StartCoroutine(CycleThroughDialogue());
-
-        if (_levelManager.currentLevel == "Intro") {
-            // Hide the board and mic icon
-            _uiManager.ShowOrHideReciteMesh(false);
-            micIcon.SetActive(false);
-        }
     }
 
     public void ChangeDialogueState(DialogueState newDialogueState) {
@@ -233,7 +233,7 @@ public class DialogueManager : MonoBehaviour
         DialogueHandler.currentDialogueOptionIndex = 0;
         catAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Idle;
         dialogueText.UpdateText("");
-        // _levelTransition.BeginLevelTransition();
+        _levelTransition.BeginLevelTransition();
     }
 
 }

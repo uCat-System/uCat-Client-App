@@ -140,8 +140,8 @@ using MText;
 
         private IEnumerator ProceedBasedOnConfirmation(EConfirmationResponseType confirmationResponse, string originallyUtteredText) {
 
-            string confirmationText = ConfirmationHandler.confirmationResponses[confirmationResponse];
-            confirmationText3D.UpdateText(confirmationText);
+            // string confirmationText = ConfirmationHandler.confirmationResponses[confirmationResponse];
+            // confirmationText3D.UpdateText(confirmationText);
             yield return new WaitForSeconds(ConfirmationHandler.confirmationWaitTimeInSeconds);
 
             switch (confirmationResponse) {
@@ -195,7 +195,7 @@ using MText;
             if (_witListeningStateManager.TimeoutCountingIsAllowed()) {
                 _witListeningStateManager.TransitionToState(EListeningState.NotListening);
                 isCurrentlyCountingTowardsTimeout = false;
-                subtitleText3D.UpdateText("INACTIVITY" + currentTimeoutTimerInSeconds + " seconds");
+                // subtitleText3D.UpdateText("INACTIVITY" + currentTimeoutTimerInSeconds + " seconds");
                 currentTimeoutTimerInSeconds = 0;
                 _wordReciteManager.OnMicrophoneTimeOut();
             }
