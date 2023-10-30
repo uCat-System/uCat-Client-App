@@ -14959,8 +14959,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5499405244474768460}
-  m_LocalRotation: {x: -0, y: 0.50073254, z: -0, w: 0.86560214}
-  m_LocalPosition: {x: 78.33028, y: 2.75, z: 55.28709}
+  m_LocalRotation: {x: -0, y: -0.8191521, z: -0, w: 0.57357645}
+  m_LocalPosition: {x: 150.21, y: 26.16, z: 117.26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -27898,6 +27898,9 @@ MonoBehaviour:
     _overriddenCallbacks:
     - onPartialTranscription
     - onFullTranscription
+    - OnStartListening
+    - OnStoppedListening
+    - OnMinimumWakeThresholdHit
     _onRequestOptionSetup:
       m_PersistentCalls:
         m_Calls: []
@@ -27912,7 +27915,19 @@ MonoBehaviour:
         m_Calls: []
     _onMinimumWakeThresholdHit:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 4583368551910381196}
+          m_TargetAssemblyTypeName: FreeSpeechManager, Assembly-CSharp
+          m_MethodName: UserSaidSomething
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     _onMicDataSent:
       m_PersistentCalls:
         m_Calls: []
@@ -27951,10 +27966,34 @@ MonoBehaviour:
         m_Calls: []
     _onStartListening:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 4583368551910381196}
+          m_TargetAssemblyTypeName: FreeSpeechManager, Assembly-CSharp
+          m_MethodName: OnStartListening
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     _onStoppedListening:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 4583368551910381196}
+          m_TargetAssemblyTypeName: FreeSpeechManager, Assembly-CSharp
+          m_MethodName: OnStoppedListening
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     _onMicLevelChanged:
       m_PersistentCalls:
         m_Calls: []

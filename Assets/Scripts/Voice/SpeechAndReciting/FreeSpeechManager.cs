@@ -162,10 +162,8 @@ using MText;
         }
 
         public void OnStartListening() {
-            // Clear the text
-            // subtitleText3D.UpdateText("STARTED LISTENING");
-            isCurrentlyCountingTowardsTimeout = true;
             if (_witListeningStateManager.TimeoutCountingIsAllowed()) {
+                isCurrentlyCountingTowardsTimeout = true;
                 currentTimeoutTimerInSeconds = 0;
             }
         }
