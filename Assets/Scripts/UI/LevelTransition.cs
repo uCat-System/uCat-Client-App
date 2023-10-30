@@ -12,21 +12,6 @@ public class LevelTransition : MonoBehaviour
 
     private static LevelTransition instance;
 
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            // This is the first instance, so make it persist through scene changes.
-            DontDestroyOnLoad(gameObject);
-            instance = this;
-        }
-        else if (instance != this)
-        {
-            // This is a duplicate, so destroy it.
-            Destroy(gameObject);
-        }
-    }
-
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
