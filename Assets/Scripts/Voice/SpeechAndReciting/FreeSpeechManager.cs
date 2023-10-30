@@ -140,9 +140,8 @@ using MText;
 
         private IEnumerator ProceedBasedOnConfirmation(EConfirmationResponseType confirmationResponse, string originallyUtteredText) {
 
-            // string confirmationText = ConfirmationHandler.confirmationResponses[confirmationResponse];
-            // confirmationText3D.UpdateText(confirmationText);
             yield return new WaitForSeconds(ConfirmationHandler.confirmationWaitTimeInSeconds);
+            confirmationText3D.UpdateText("");
 
             switch (confirmationResponse) {
                 case EConfirmationResponseType.POSITIVE_CONFIRMATION_RESPONSE:

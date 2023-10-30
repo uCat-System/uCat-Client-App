@@ -62,11 +62,7 @@ public class WitListeningStateManager : MonoBehaviour
         _wordReciteManager = GetComponent<WordReciteManager>();
         wit = GameObject.FindWithTag("Wit");
         scene = SceneManager.GetActiveScene().name;
-        if (scene == "Level3") {
-            TransitionToState(ListeningState.ListeningForEverything);
-        } else {
-            TransitionToState(ListeningState.ListeningForMenuActivationCommandsOnly);
-        }
+        TransitionToState(ListeningState.ListeningForMenuActivationCommandsOnly);
     }
 
     public bool CurrentStateIsAllowedInDictionary(Dictionary<ListeningState, bool> dictToSearch) {
@@ -119,7 +115,7 @@ public class WitListeningStateManager : MonoBehaviour
     }
 
     public void TransitionToRelevantMenuNavigationStateBasedOnLevel() {
-        if (scene != "Level3") {
+        if (scene != "Lobby") {
             TransitionToState(ListeningState.ListeningForTaskMenuCommandsOnly);
         } else {
             TransitionToState(ListeningState.ListeningForLobbyMenuCommandsOnly);

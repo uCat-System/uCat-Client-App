@@ -81,7 +81,9 @@ MonoBehaviour:
   - "When you stop talking, I\u2019ll stop listening."
   - "My ears are a bit rusty, but you\u2019ll have a chance to correct me."
   - You can use this exercise as a way of tracking your moods.
-  level3ScriptDialogueAnimations: 01000000000000000300000000000000010000000100000000000000000000000400000000000000
+  - test
+  - test2
+  level3ScriptDialogueAnimations: 010000000000000003000000000000000100000001000000000000000000000004000000000000000100000001000000
   level3ScriptDialogueAudio:
   - {fileID: 8300000, guid: f860a127975c0d845be13d232c3e31ce, type: 3}
   - {fileID: 8300000, guid: ef31bce6259f12642808658e44f7ba6c, type: 3}
@@ -93,4 +95,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: dd23d866a07e8ca41b1cb9bc833ab0f3, type: 3}
   - {fileID: 8300000, guid: a5dd97cf3ad83bf45b1bfdae674192b9, type: 3}
   - {fileID: 8300000, guid: c1a46f4794559c741aaf333539654b12, type: 3}
+  - {fileID: 8300000, guid: 9b3d477709f5dc04da3a82bc28bcd552, type: 3}
+  - {fileID: 8300000, guid: 9b3d477709f5dc04da3a82bc28bcd552, type: 3}
   timeBetweenLinesInSeconds: 1

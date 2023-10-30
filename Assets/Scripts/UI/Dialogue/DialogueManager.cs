@@ -89,7 +89,7 @@ public class DialogueManager : MonoBehaviour
 
     public void SkipDialogueAndGoStraightToTask() {
         ChangeDialogueState(DialogueState.IsPlayingDialogueOnly);
-        DialogueHandler.currentDialogueOptionIndex = taskActivationDialogueIndex;
+        DialogueHandler.currentDialogueOptionIndex = taskActivationDialogueIndex-1;
         StartCoroutine(CycleThroughDialogue());
     }
 
