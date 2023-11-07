@@ -12049,7 +12049,7 @@ Transform:
   - {fileID: 6345532630162526283}
   - {fileID: 4583368551910381232}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4596960383964532437
 GameObject:
@@ -14959,8 +14959,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5499405244474768460}
-  m_LocalRotation: {x: -0, y: -0.8191521, z: -0, w: 0.57357645}
-  m_LocalPosition: {x: 150.21, y: 26.16, z: 117.26}
+  m_LocalRotation: {x: -0, y: 0.50073254, z: -0, w: 0.86560214}
+  m_LocalPosition: {x: 78.33028, y: 2.75, z: 55.28709}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -26751,7 +26751,7 @@ Terrain:
   m_GameObject: {fileID: 9064261763184276902}
   m_Enabled: 1
   serializedVersion: 6
-  m_TerrainData: {fileID: 15600000, guid: 16e434f4ac1d748f79888bf647d0ae8f, type: 2}
+  m_TerrainData: {fileID: 0}
   m_TreeDistance: 3135
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 200
@@ -26785,7 +26785,7 @@ TerrainCollider:
   m_GameObject: {fileID: 9064261763184276902}
   m_Material: {fileID: 0}
   m_Enabled: 1
-  m_TerrainData: {fileID: 15600000, guid: 16e434f4ac1d748f79888bf647d0ae8f, type: 2}
+  m_TerrainData: {fileID: 0}
   m_EnableTreeColliders: 1
 --- !u!114 &5499405243938365825
 MonoBehaviour:
@@ -26799,7 +26799,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39b40226b9e565f468d4bcb487d3d58a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  terrainData: {fileID: 15600000, guid: 16e434f4ac1d748f79888bf647d0ae8f, type: 2}
+  terrainData: {fileID: 0}
 --- !u!1 &9079532736721307561
 GameObject:
   m_ObjectHideFlags: 0
