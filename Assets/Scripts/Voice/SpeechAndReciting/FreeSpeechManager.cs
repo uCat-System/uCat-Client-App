@@ -80,24 +80,21 @@ using MText;
 
         public void HandleFullTranscription(string text)
         {
-            // subtitleText3D.UpdateText(text);
-            Debug.Log("Handling full transcription: " + text);
+            
+            // Listen for menu activation
             if (_witListeningStateManager.MenuActivationCommandsAreAllowed()) {
-                Debug.Log("Menu command allowed: " + text);  
-                // Listen for menu activation
                 EMenuActivationResponseType menuActivationResponse = UICommandHandler.CheckIfMenuActivationCommandsWereSpoken(text);
                 HandleMenuActivationResponse(menuActivationResponse);
             }
 
+            // Listen for commands within the menu
             if (_witListeningStateManager.MenuNavigationCommandsAreAllowed()) {
-                // Listen for commands within the menu
-                Debug.Log("Menu navigation command allowed: " + text);
+                subtitleText3D.UpdateText(text);
                 EMenuNavigationResponseType menuNavigationResponse = UICommandHandler.CheckIfMenuNavigationCommandsWereSpoken(text);
                 _uiManager.ActivateMenuNavigationCommandsBasedOnResponse(menuNavigationResponse);
             }
 
             if (_witListeningStateManager.currentListeningState == EListeningState.ListeningForConfirmation) {
-                Debug.Log("Checking if confirmation was spoken: " + text);
                 //Listen for 'yes' or 'no?' (confirmation)
                 EConfirmationResponseType confirmationResponse = ConfirmationHandler.CheckIfConfirmationWasSpoken(text);
                 StartCoroutine(ProceedBasedOnConfirmation(confirmationResponse, originallyUtteredText));
@@ -105,19 +102,17 @@ using MText;
 
             if (_witListeningStateManager.currentListeningState == EListeningState.ListeningForNextOrRepeat) {
                 // Listen for 'next' or 'repeat' (word recite)
-                Debug.Log("Checking if next or repeat was spoken: " + text);
                 EProceedResponseType proceedResponse = ConfirmationHandler.CheckIfProceedPhraseWasSpoken(text);
                 HandleProceedResponse(proceedResponse, text);
             }
             if (_witListeningStateManager.RecitingWordsIsAllowed()) {
-                Debug.Log("About to activate recite stuff");
                 // Activate Tasks (recite words, etc) if in any valid reciting states
                 ActivateTasksBasedOnTranscription(text);
             }
 
             else {
                 // Turn mic back on if we are in the menu and it didn't recognise anything
-                Debug.LogError("Did not activate word task with phrase " + text + " . You are probably in the menu: " + _witListeningStateManager.currentListeningState);
+                Debug.Log("Did not activate word task with phrase " + text + " . You are probably in the menu: " + _witListeningStateManager.currentListeningState);
                  if (_witListeningStateManager.MenuNavigationCommandsAreAllowed()) {
                     _witListeningStateManager.ReactivateToTryMenuNavigationCommandsAgain();
                  }
