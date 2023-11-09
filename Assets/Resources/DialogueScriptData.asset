@@ -64,10 +64,12 @@ MonoBehaviour:
   level2ScriptDialogueOptions:
   - As before, do your best to repeat sentences when the dots disappear.
   - "Let\u2019s begin!"
-  level2ScriptDialogueAnimations: 0000000001000000
+  - Good job, let's continue! [placeholder]
+  level2ScriptDialogueAnimations: 000000000100000005000000
   level2ScriptDialogueAudio:
   - {fileID: 8300000, guid: 5e1e55e42782b1b42bde326ad5bd272c, type: 3}
   - {fileID: 8300000, guid: af4e9b0720fbaf142b74b2f412c46f7c, type: 3}
+  - {fileID: 8300000, guid: 494bd1721199a40c5a79fa3011793556, type: 3}
   level3ScriptDialogueOptions:
   - "Wow, you\u2019ve done a lot of hard work, hopefully there weren\u2019t any glitches
     on the way."
