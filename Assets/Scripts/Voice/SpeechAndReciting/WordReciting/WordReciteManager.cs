@@ -66,6 +66,9 @@ public class WordReciteManager : MonoBehaviour
 
     public AudioClip[] wordSounds;
 
+    public void BeginTask() {
+        StartCoroutine(StartCurrentWordCountdown());
+    }
     void Start()
     {
         // Assigning gameobjects
@@ -106,8 +109,6 @@ public class WordReciteManager : MonoBehaviour
 
         // Start the first word
         reciteText3D.Material = defaultColour;
-        
-        StartCoroutine(StartCurrentWordCountdown());
     }
 
     void SetWordAndUiListsBasedOnLevel() {
@@ -220,7 +221,7 @@ public class WordReciteManager : MonoBehaviour
             StartCoroutine(StartCurrentWordCountdown());
         } else {
             // End of list
-            GameOver();
+            LevelTaskIsComplete();
         }
     }
     public void RepeatSameWord()
@@ -349,7 +350,7 @@ public class WordReciteManager : MonoBehaviour
         {
             currentWordOrSentenceIndex = 0;
             reciteText3D.UpdateText("Finished!");
-            GameOver();
+            LevelTaskIsComplete();
         }
         else if (wordListComplete && !uiComplete)
         { 
@@ -368,15 +369,8 @@ public class WordReciteManager : MonoBehaviour
         }
     }
 
-    public void GameOver()
+    public void LevelTaskIsComplete()
     {
-        _dialogueManager.ChangeDialogueState(EDialogueState.IsPlayingDialogueOnly);
         _dialogueManager.StartDialogue();
-        // // If in the intro, we want to skip the confirmation.
-        // if (_levelManager.currentLevel == "Intro") {
-        // } else {
-        //     reciteText3D.UpdateText("Say 'next' to proceed.\nOr 'repeat' to repeat.");
-        //     _witListeningStateManager.TransitionToState(EListeningState.ListeningForNextOrRepeat);
-        // }
     }
 }

@@ -39,7 +39,6 @@ public class WitListeningStateManager : MonoBehaviour
 
     private static Dictionary<ListeningState, bool> validMenuNavigationStates = new Dictionary<ListeningState, bool>
     {
-        { ListeningState.ListeningForEverything, true},
         { ListeningState.ListeningForLobbyMenuCommandsOnly, true },
         { ListeningState.ListeningForTaskMenuCommandsOnly, true },
     };

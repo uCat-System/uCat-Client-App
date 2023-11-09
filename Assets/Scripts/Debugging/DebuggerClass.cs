@@ -48,12 +48,9 @@ public class DebuggerClass : MonoBehaviour
             _levelTransition.BeginSpecificLevelTransition("Level3");
         }
 
-        // if (Input.GetKeyDown(KeyCode.Alpha4)) {
-        //     _dialogueManager.SkipDialogueAndGoStraightToTask();
-        // }
         if (Input.GetKeyDown(KeyCode.Alpha4)) {
             _wordReciteManager.StopAllCoroutines();
-            _wordReciteManager.GameOver();
+            _wordReciteManager.LevelTaskIsComplete();
         }
 
         if (Input.GetKeyDown(KeyCode.F5)) {

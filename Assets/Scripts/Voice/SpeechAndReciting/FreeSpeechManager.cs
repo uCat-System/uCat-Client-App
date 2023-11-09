@@ -89,6 +89,7 @@ using MText;
 
             // Listen for commands within the menu
             if (_witListeningStateManager.MenuNavigationCommandsAreAllowed()) {
+                Debug.Log("MENU NAV ALLOWED - SUB PRODUCED");
                 subtitleText3D.UpdateText(text);
                 EMenuNavigationResponseType menuNavigationResponse = UICommandHandler.CheckIfMenuNavigationCommandsWereSpoken(text);
                 _uiManager.ActivateMenuNavigationCommandsBasedOnResponse(menuNavigationResponse);

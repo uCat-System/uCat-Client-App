@@ -5,6 +5,7 @@ using System.Collections;
 
 public class DialogueManager : MonoBehaviour
 {
+    public int dialogueStartingDelayInSeconds = 2;
     private Modular3DText dialogueText;
 
     private AnimationDriver catAnimationDriver;
@@ -59,7 +60,7 @@ public class DialogueManager : MonoBehaviour
         micIcon = GameObject.FindWithTag("MicIcon");
         catAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Idle;
         SetDialogueTaskIndexes();
-        StartDialogue();
+        StartCoroutine(WaitABitAndThenStartDialogue());
 
         if (_levelManager.currentLevel == "Intro") {
             // Hide the board and mic icon
@@ -68,10 +69,14 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    public IEnumerator WaitABitAndThenStartDialogue() {
+        yield return new WaitForSeconds(dialogueStartingDelayInSeconds);
+        StartDialogue();
+    }
+
     public void StartDialogue() {
-        Debug.Log("Starting dialogue. Index is " + DialogueHandler.currentDialogueOptionIndex);
-        _wordReciteManager.enabled = false;
         ChangeDialogueState(DialogueState.IsPlayingDialogueOnly);
+        _wordReciteManager.enabled = false;
         // if there is a coroutine running of dialogue cycling, stop it
         StopAllCoroutines();
         StartCoroutine(CycleThroughDialogue());
@@ -83,7 +88,8 @@ public class DialogueManager : MonoBehaviour
     }
     
     void ActivateTaskAndPauseDialogue() {
-        _wordReciteManager.enabled = true;
+        // _wordReciteManager.enabled = true;
+        _wordReciteManager.BeginTask();
         ChangeDialogueState(DialogueState.IsPerformingATask);
     }
 

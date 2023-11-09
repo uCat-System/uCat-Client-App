@@ -90,6 +90,7 @@ public class UIManager : MonoBehaviour
             Debug.Log("Resuming task");
             // reciteBoard.SetActive(true);
             _wordReciteManager.enabled = true;
+            // _wordReciteManager.BeginTask();
             _wordReciteManager.RepeatSameWord();
         } else if (_dialogueManager.currentDialogueState == EDialogueState.IsPlayingDialogueOnly) {
             Debug.Log("Resuming dialogue and activating board");

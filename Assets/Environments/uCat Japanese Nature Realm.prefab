@@ -12049,7 +12049,7 @@ Transform:
   - {fileID: 6345532630162526283}
   - {fileID: 4583368551910381232}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4596960383964532437
 GameObject:
@@ -18805,10 +18805,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45d100e06f4a0744c8728e86700b5472, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: 
-  oldText: 
+  _text: asfasfasfasfawfawfawfawf
+  oldText: asfasfasfasfawfawfawfawf
   wordArray:
-  - 
+  - asfasfasfasfawfawfawfawf
   characterObjectList: []
   _allcharacterObjectList:
   - {fileID: 0}
@@ -18978,258 +18978,8 @@ MonoBehaviour:
   lines:
   - gameObjects: []
     meshLayouts:
-    - mesh: {fileID: 3691470777183678932, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: -1.2627126, y: 0.194175, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.0574
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 7291849962772829004, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: -1.2084626, y: 0.194175, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.051099997
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 2831765613864003007, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: -1.1659813, y: 0.194175, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.033862498
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 7291849962772829004, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: -1.1235, y: 0.194175, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.051099997
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 0}
-      position: {x: -1.0867938, y: 0.194175, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.0223125
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: -6777547315282205831, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: -1.0644376, y: 0.194175, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.022400001
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 577414915169887996, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: -1.0302689, y: 0.194175, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.045937497
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 0}
-      position: {x: -0.9961439, y: 0.194175, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.0223125
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 5072937830167969668, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: -0.96495014, y: 0.194175, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.040075
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 7291849962772829004, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: -0.91936266, y: 0.194175, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.051099997
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 5479750698418991483, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: -0.8678689, y: 0.194175, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.051887497
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 5072937830167969668, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: -0.8218877, y: 0.194175, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.040075
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 0}
-      position: {x: -0.79069394, y: 0.194175, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.0223125
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 2643118189362193646, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: -0.75149393, y: 0.194175, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.056087498
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 7291849962772829004, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: -0.6979002, y: 0.194175, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.051099997
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 5351012424668800489, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: -0.66115016, y: 0.194175, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.022400001
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 1310200468738824447, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: -0.6230439, y: 0.194175, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.0538125
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: -3084372389207648469, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: -0.5614877, y: 0.194175, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.069299996
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 0}
-      position: {x: -0.51568145, y: 0.194175, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.0223125
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 5072937830167969668, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: -0.48448768, y: 0.194175, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.040075
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 2165268729312200526, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: -0.43754393, y: 0.194175, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.0538125
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 7291849962772829004, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: -0.38508767, y: 0.194175, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.051099997
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 0}
-      position: {x: -0.3483814, y: 0.194175, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.0223125
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 2643118189362193646, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: -0.3091814, y: 0.194175, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.056087498
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 1310200468738824447, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: -0.2542314, y: 0.194175, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.0538125
-      height: 0.07
-      depth: 0
-      lineBreak: 0
     - mesh: {fileID: -8247881981589294774, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: -0.2020814, y: 0.194175, z: 0}
+      position: {x: -0.56083125, y: 0.194175, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       xOffset: 0
       yOffset: 0
@@ -19238,168 +18988,18 @@ MonoBehaviour:
       height: 0.07
       depth: 0
       lineBreak: 0
-    - mesh: {fileID: 2831765613864003007, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: -0.1599064, y: 0.194175, z: 0}
+    - mesh: {fileID: 577414915169887996, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
+      position: {x: -0.5126187, y: 0.194175, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       xOffset: 0
       yOffset: 0
       zOffset: 0
-      width: 0.033862498
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: -897946385937810357, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: -0.114931405, y: 0.194175, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.056087498
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 0}
-      position: {x: -0.07573141, y: 0.194175, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.0223125
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: -3084372389207648469, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: -0.029925168, y: 0.194175, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.069299996
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 2165268729312200526, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: 0.031631082, y: 0.194175, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.0538125
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: -6777547315282205831, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: 0.06973734, y: 0.194175, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.022400001
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 255534942573115785, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: 0.10683734, y: 0.194175, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.0518
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 2165268729312200526, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: 0.15964359, y: 0.194175, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.0538125
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 0}
-      position: {x: 0.19770609, y: 0.194175, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.0223125
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 7291849962772829004, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: 0.23441233, y: 0.194175, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.051099997
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 5479750698418991483, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: 0.28590608, y: 0.194175, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.051887497
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 7291849962772829004, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: 0.33739984, y: 0.194175, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.051099997
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 3263236228162272613, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: 0.4004436, y: 0.194175, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.0749875
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: -7071029389703924821, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: 0.46598113, y: 0.194175, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.056087498
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 5351012424668800489, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: 0.5052249, y: 0.194175, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.022400001
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: -6777547315282205831, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: 0.5276249, y: 0.194175, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.022400001
+      width: 0.045937497
       height: 0.07
       depth: 0
       lineBreak: 0
     - mesh: {fileID: -4163432161809046074, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: 0.55803114, y: 0.194175, z: 0}
+      position: {x: -0.47044373, y: 0.194175, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       xOffset: 0
       yOffset: 0
@@ -19408,148 +19008,8 @@ MonoBehaviour:
       height: 0.07
       depth: 0
       lineBreak: 0
-    - mesh: {fileID: -6777547315282205831, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: 0.5884374, y: 0.194175, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.022400001
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 7291849962772829004, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: 0.6251874, y: 0.194175, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.051099997
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 577414915169887996, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: 0.6737062, y: 0.194175, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.045937497
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 0}
-      position: {x: 0.7078312, y: 0.194175, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.0223125
-      height: 0.07
-      depth: 0
-      lineBreak: 0
     - mesh: {fileID: -8247881981589294774, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: 0.7442312, y: 0.194175, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.0504875
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 0}
-      position: {x: 0.78063124, y: 0.194175, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.0223125
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 5351012424668800489, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: 0.8029875, y: 0.194175, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.022400001
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 1310200468738824447, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: 0.8410938, y: 0.194175, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.0538125
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 7214169709343993779, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: 0.8949063, y: 0.194175, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.0538125
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: -6213784604127989636, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: 0.94981253, y: 0.194175, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.055999998
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 0}
-      position: {x: 0.9889688, y: 0.194175, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.0223125
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: -7071029389703924821, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: 1.0281688, y: 0.194175, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.056087498
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 2165268729312200526, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: 1.0831188, y: 0.194175, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.0538125
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 2831765613864003007, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: 1.1269563, y: 0.194175, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.033862498
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: -8247881981589294774, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: 1.1691314, y: 0.194175, z: 0}
+      position: {x: -0.4259937, y: 0.194175, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       xOffset: 0
       yOffset: 0
@@ -19559,7 +19019,7 @@ MonoBehaviour:
       depth: 0
       lineBreak: 0
     - mesh: {fileID: 577414915169887996, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: 1.2173439, y: 0.194175, z: 0}
+      position: {x: -0.3777812, y: 0.194175, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       xOffset: 0
       yOffset: 0
@@ -19568,164 +19028,28 @@ MonoBehaviour:
       height: 0.07
       depth: 0
       lineBreak: 0
-    - mesh: {fileID: 7291849962772829004, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: 1.2658627, y: 0.194175, z: 0}
+    - mesh: {fileID: -4163432161809046074, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
+      position: {x: -0.33560622, y: 0.194175, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       xOffset: 0
       yOffset: 0
       zOffset: 0
-      width: 0.051099997
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    width: 2.7495127
-    individualYSpace: 0
-    widthIfNextObjectWasHere: 2.7895877
-    editorNote: Word isn't too big
-  - gameObjects: []
-    meshLayouts:
-    - mesh: {fileID: 5072937830167969668, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: -1.0919999, y: 0.082525015, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.040075
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 2165268729312200526, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: -1.0450561, y: 0.082525015, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.0538125
+      width: 0.0384125
       height: 0.07
       depth: 0
       lineBreak: 0
     - mesh: {fileID: -8247881981589294774, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: -0.9929061, y: 0.082525015, z: 0}
+      position: {x: -0.2911562, y: 0.194175, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       xOffset: 0
       yOffset: 0
       zOffset: 0
       width: 0.0504875
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 5072937830167969668, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: -0.94762486, y: 0.082525015, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.040075
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 0}
-      position: {x: -0.9164311, y: 0.082525015, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.0223125
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 3962432059509789040, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: -0.87841237, y: 0.082525015, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.053725
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: -3427367356003862547, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: -0.8234186, y: 0.082525015, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.0562625
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: -8247881981589294774, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: -0.7700436, y: 0.082525015, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.0504875
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 5072937830167969668, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: -0.7247624, y: 0.082525015, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.040075
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 0}
-      position: {x: -0.69356865, y: 0.082525015, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.0223125
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 3263236228162272613, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: -0.6449186, y: 0.082525015, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.0749875
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: -8247881981589294774, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: -0.5821811, y: 0.082525015, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.0504875
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: -582155655883477047, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: -0.53007483, y: 0.082525015, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.053725
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 0}
-      position: {x: -0.49205607, y: 0.082525015, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.0223125
       height: 0.07
       depth: 0
       lineBreak: 0
     - mesh: {fileID: 577414915169887996, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: -0.45793107, y: 0.082525015, z: 0}
+      position: {x: -0.24294369, y: 0.194175, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       xOffset: 0
       yOffset: 0
@@ -19734,8 +19058,18 @@ MonoBehaviour:
       height: 0.07
       depth: 0
       lineBreak: 0
+    - mesh: {fileID: -4163432161809046074, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
+      position: {x: -0.20076868, y: 0.194175, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      xOffset: 0
+      yOffset: 0
+      zOffset: 0
+      width: 0.0384125
+      height: 0.07
+      depth: 0
+      lineBreak: 0
     - mesh: {fileID: -8247881981589294774, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: -0.40971857, y: 0.082525015, z: 0}
+      position: {x: -0.15631868, y: 0.194175, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       xOffset: 0
       yOffset: 0
@@ -19744,178 +19078,38 @@ MonoBehaviour:
       height: 0.07
       depth: 0
       lineBreak: 0
-    - mesh: {fileID: -582155655883477047, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: -0.3576123, y: 0.082525015, z: 0}
+    - mesh: {fileID: 577414915169887996, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
+      position: {x: -0.10810619, y: 0.194175, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       xOffset: 0
       yOffset: 0
       zOffset: 0
-      width: 0.053725
+      width: 0.045937497
       height: 0.07
       depth: 0
       lineBreak: 0
-    - mesh: {fileID: 237684115741986076, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: -0.3186748, y: 0.082525015, z: 0}
+    - mesh: {fileID: -4163432161809046074, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
+      position: {x: -0.06593119, y: 0.194175, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       xOffset: 0
       yOffset: 0
       zOffset: 0
-      width: 0.024149999
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 0}
-      position: {x: -0.29544353, y: 0.082525015, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.0223125
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 78805013435653583, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: -0.25663728, y: 0.082525015, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.0553
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 2831765613864003007, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: -0.21205603, y: 0.082525015, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.033862498
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 7291849962772829004, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: -0.16957478, y: 0.082525015, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.051099997
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 0}
-      position: {x: -0.13286854, y: 0.082525015, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.0223125
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: -582155655883477047, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: -0.094849795, y: 0.082525015, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.053725
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 1310200468738824447, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: -0.04108104, y: 0.082525015, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.0538125
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 3962432059509789040, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: 0.012687709, y: 0.082525015, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.053725
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 0}
-      position: {x: 0.050706457, y: 0.082525015, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.0223125
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 2165268729312200526, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: 0.08876896, y: 0.082525015, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.0538125
+      width: 0.0384125
       height: 0.07
       depth: 0
       lineBreak: 0
     - mesh: {fileID: -8247881981589294774, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: 0.14091896, y: 0.082525015, z: 0}
+      position: {x: -0.021481195, y: 0.194175, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       xOffset: 0
       yOffset: 0
       zOffset: 0
       width: 0.0504875
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: -7071029389703924821, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: 0.19420645, y: 0.082525015, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.056087498
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: -7071029389703924821, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: 0.25029394, y: 0.082525015, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.056087498
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: -582155655883477047, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: 0.3052002, y: 0.082525015, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.053725
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 0}
-      position: {x: 0.34321895, y: 0.082525015, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.0223125
       height: 0.07
       depth: 0
       lineBreak: 0
     - mesh: {fileID: -3084372389207648469, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: 0.3890252, y: 0.082525015, z: 0}
+      position: {x: 0.038412552, y: 0.194175, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       xOffset: 0
       yOffset: 0
@@ -19924,179 +19118,109 @@ MonoBehaviour:
       height: 0.07
       depth: 0
       lineBreak: 0
-    - mesh: {fileID: -6777547315282205831, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: 0.43487522, y: 0.082525015, z: 0}
+    - mesh: {fileID: -4163432161809046074, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
+      position: {x: 0.0922688, y: 0.194175, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       xOffset: 0
       yOffset: 0
       zOffset: 0
-      width: 0.022400001
+      width: 0.0384125
       height: 0.07
       depth: 0
       lineBreak: 0
-    - mesh: {fileID: 5072937830167969668, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: 0.46611273, y: 0.082525015, z: 0}
+    - mesh: {fileID: -8247881981589294774, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
+      position: {x: 0.1367188, y: 0.194175, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       xOffset: 0
       yOffset: 0
       zOffset: 0
-      width: 0.040075
+      width: 0.0504875
       height: 0.07
       depth: 0
       lineBreak: 0
-    - mesh: {fileID: 2165268729312200526, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: 0.51305646, y: 0.082525015, z: 0}
+    - mesh: {fileID: -3084372389207648469, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
+      position: {x: 0.19661254, y: 0.194175, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       xOffset: 0
       yOffset: 0
       zOffset: 0
-      width: 0.0538125
+      width: 0.069299996
       height: 0.07
       depth: 0
       lineBreak: 0
-    - mesh: {fileID: 0}
-      position: {x: 0.55111897, y: 0.082525015, z: 0}
+    - mesh: {fileID: -4163432161809046074, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
+      position: {x: 0.2504688, y: 0.194175, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       xOffset: 0
       yOffset: 0
       zOffset: 0
-      width: 0.0223125
+      width: 0.0384125
       height: 0.07
       depth: 0
       lineBreak: 0
-    - mesh: {fileID: 5072937830167969668, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: 0.5823127, y: 0.082525015, z: 0}
+    - mesh: {fileID: -8247881981589294774, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
+      position: {x: 0.2949188, y: 0.194175, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       xOffset: 0
       yOffset: 0
       zOffset: 0
-      width: 0.040075
+      width: 0.0504875
       height: 0.07
       depth: 0
       lineBreak: 0
-    - mesh: {fileID: 2165268729312200526, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: 0.6292564, y: 0.082525015, z: 0}
+    - mesh: {fileID: -3084372389207648469, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
+      position: {x: 0.35481256, y: 0.194175, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       xOffset: 0
       yOffset: 0
       zOffset: 0
-      width: 0.0538125
+      width: 0.069299996
       height: 0.07
       depth: 0
       lineBreak: 0
-    - mesh: {fileID: 7291849962772829004, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: 0.6817127, y: 0.082525015, z: 0}
+    - mesh: {fileID: -4163432161809046074, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
+      position: {x: 0.40866882, y: 0.194175, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       xOffset: 0
       yOffset: 0
       zOffset: 0
-      width: 0.051099997
+      width: 0.0384125
       height: 0.07
       depth: 0
       lineBreak: 0
-    - mesh: {fileID: 0}
-      position: {x: 0.71841896, y: 0.082525015, z: 0}
+    - mesh: {fileID: -8247881981589294774, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
+      position: {x: 0.45311883, y: 0.194175, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       xOffset: 0
       yOffset: 0
       zOffset: 0
-      width: 0.0223125
+      width: 0.0504875
       height: 0.07
       depth: 0
       lineBreak: 0
-    - mesh: {fileID: 577414915169887996, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: 0.752544, y: 0.082525015, z: 0}
+    - mesh: {fileID: -3084372389207648469, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
+      position: {x: 0.5130126, y: 0.194175, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       xOffset: 0
       yOffset: 0
       zOffset: 0
-      width: 0.045937497
+      width: 0.069299996
       height: 0.07
       depth: 0
       lineBreak: 0
-    - mesh: {fileID: 3962432059509789040, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: 0.80237526, y: 0.082525015, z: 0}
+    - mesh: {fileID: -4163432161809046074, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
+      position: {x: 0.56686884, y: 0.194175, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       xOffset: 0
       yOffset: 0
       zOffset: 0
-      width: 0.053725
+      width: 0.0384125
       height: 0.07
       depth: 0
       lineBreak: 0
-    - mesh: {fileID: 2643118189362193646, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: 0.8572815, y: 0.082525015, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.056087498
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 5072937830167969668, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: 0.9053627, y: 0.082525015, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.040075
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: -6777547315282205831, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: 0.9366002, y: 0.082525015, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.022400001
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 5072937830167969668, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: 0.9678377, y: 0.082525015, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.040075
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 5351012424668800489, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: 0.9990752, y: 0.082525015, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.022400001
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 7291849962772829004, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: 1.0358251, y: 0.082525015, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.051099997
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    - mesh: {fileID: 5740661459276452945, guid: d7ab435485b60af40bea1d98b65afa43, type: 3}
-      position: {x: 1.0867064, y: 0.082525015, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      xOffset: 0
-      yOffset: 0
-      zOffset: 0
-      width: 0.0506625
-      height: 0.07
-      depth: 0
-      lineBreak: 0
-    width: 2.2641501
+    width: 1.17215
     individualYSpace: 0
-    widthIfNextObjectWasHere: 2.2641501
+    widthIfNextObjectWasHere: 1.17215
     editorNote: 
 --- !u!33 &6972111452151734867
 MeshFilter:
@@ -22649,7 +21773,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7603611011650967468}
   m_LocalRotation: {x: 0.13917309, y: 0, z: 0, w: 0.9902681}
-  m_LocalPosition: {x: 0.14, y: 0.66, z: 3.88}
+  m_LocalPosition: {x: 0, y: -1.26, z: 2.26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -27617,6 +26741,10 @@ PrefabInstance:
     - target: {fileID: 3505799383072129518, guid: eeb381f8f105aa04aab5137abf3cd87b, type: 3}
       propertyPath: currentDialogueOptionIndex
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8343668746282422105, guid: eeb381f8f105aa04aab5137abf3cd87b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8343668746282422105, guid: eeb381f8f105aa04aab5137abf3cd87b, type: 3}
       propertyPath: reciteText3D
