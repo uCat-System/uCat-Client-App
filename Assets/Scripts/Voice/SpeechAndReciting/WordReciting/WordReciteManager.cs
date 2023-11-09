@@ -370,13 +370,13 @@ public class WordReciteManager : MonoBehaviour
 
     public void GameOver()
     {
-        // If in the intro, we want to skip the confirmation.
-        if (_levelManager.currentLevel == "Intro") {
-            _dialogueManager.ChangeDialogueState(EDialogueState.IsPlayingDialogueOnly);
-            _dialogueManager.StartDialogue();
-        } else {
-            reciteText3D.UpdateText("Say 'next' to proceed.\nOr 'repeat' to repeat.");
-            _witListeningStateManager.TransitionToState(EListeningState.ListeningForNextOrRepeat);
-        }
+        _dialogueManager.ChangeDialogueState(EDialogueState.IsPlayingDialogueOnly);
+        _dialogueManager.StartDialogue();
+        // // If in the intro, we want to skip the confirmation.
+        // if (_levelManager.currentLevel == "Intro") {
+        // } else {
+        //     reciteText3D.UpdateText("Say 'next' to proceed.\nOr 'repeat' to repeat.");
+        //     _witListeningStateManager.TransitionToState(EListeningState.ListeningForNextOrRepeat);
+        // }
     }
 }

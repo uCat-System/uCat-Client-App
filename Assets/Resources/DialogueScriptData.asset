@@ -51,7 +51,8 @@ MonoBehaviour:
   - Like we did before, I'm going to give you some words for you to repeat back.
   - When the dots disappear, repeat the word on the top half of the screen.
   - " We\u2019ll be having a conversation in no time."
-  level1ScriptDialogueAnimations: 000000000200000001000000000000000000000001000000
+  - How about a change of scenery?
+  level1ScriptDialogueAnimations: 00000000020000000100000000000000000000000100000002000000
   level1ScriptDialogueAudio:
   - {fileID: 8300000, guid: 29c75bdc53610754db205f45d6c0d397, type: 3}
   - {fileID: 8300000, guid: 1eba2df4fa0dd1b4ca84bf178f74ea23, type: 3}
@@ -59,6 +60,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b72e6f3d235b89043a055b5f56a7b12f, type: 3}
   - {fileID: 8300000, guid: 152d5475be6dca949b8fc9151dd56460, type: 3}
   - {fileID: 8300000, guid: bb942939d7fb98149a86df49607d02e1, type: 3}
+  - {fileID: 8300000, guid: 72ca93600dc7843419a2903028f3195d, type: 3}
   level2ScriptDialogueOptions:
   - As before, do your best to repeat sentences when the dots disappear.
   - "Let\u2019s begin!"
