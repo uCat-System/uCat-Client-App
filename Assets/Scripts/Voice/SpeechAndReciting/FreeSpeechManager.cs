@@ -22,6 +22,8 @@ using MText;
         private WitListeningStateManager _witListeningStateManager;
         private Modular3DText partialText3D;
 
+        private Modular3DText reciteText3D;
+
         private Modular3DText confirmationText3D;
         private Modular3DText subtitleText3D;
 
@@ -49,6 +51,7 @@ using MText;
             _uiManager = GetComponent<UIManager>();
             _levelManager = GetComponent<LevelManager>();
             _levelTransition = FindObjectOfType<LevelTransition>();
+            reciteText3D = GameObject.FindWithTag("ReciteText3D").GetComponent<Modular3DText>();
             partialText3D = GameObject.FindWithTag("PartialText3D").GetComponent<Modular3DText>();
             confirmationText3D = GameObject.FindWithTag("ConfirmationText3D").GetComponent<Modular3DText>();
             subtitleText3D = GameObject.FindWithTag("SubtitleText3D").GetComponent<Modular3DText>();
@@ -62,6 +65,10 @@ using MText;
             // subtitleText3D.UpdateText(text);
             if (_witListeningStateManager.RecitingWordsIsAllowed()) {
                 partialText3D.UpdateText(text);
+            }
+
+            if (_witListeningStateManager.currentListeningState == EListeningState.ListeningForFreestyleResponse) {
+                reciteText3D.UpdateText(text);
             }
         }
 
@@ -109,6 +116,11 @@ using MText;
             if (_witListeningStateManager.RecitingWordsIsAllowed()) {
                 // Activate Tasks (recite words, etc) if in any valid reciting states
                 ActivateTasksBasedOnTranscription(text);
+            }
+
+            if (_witListeningStateManager.currentListeningState == EListeningState.ListeningForFreestyleResponse) {
+                // Activate Tasks (recite words, etc) if in any valid reciting states
+                HandleFreestyleResponse(text);
             }
 
             else {
@@ -220,6 +232,10 @@ using MText;
                     ConfirmWhatUserSaid(text);
                 }
             }
+        }
+
+        public void HandleFreestyleResponse(string text) {
+            reciteText3D.UpdateText(text);
         }
         
         public void ConfirmWhatUserSaid(string originallyUtteredText) {

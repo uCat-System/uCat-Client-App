@@ -18,6 +18,10 @@ public class UIManager : MonoBehaviour
 
     private GameObject reciteBoard;
 
+    private GameObject textElements;
+
+    private GameObject freeStyleTextElements;
+
     private WitListeningStateManager _witListeningStateManager;
     private WordReciteManager _wordReciteManager;
 
@@ -25,6 +29,8 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
+        textElements = GameObject.FindWithTag("TextElements");
+        freeStyleTextElements = GameObject.FindWithTag("FreestyleTextElements");
         _wordReciteManager = FindObjectOfType<WordReciteManager>();
         _witListeningStateManager = FindObjectOfType<WitListeningStateManager>();
         reciteBoard = GameObject.FindWithTag("ReciteBoard");
@@ -41,6 +47,19 @@ public class UIManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    void Start() {
+          Debug.Log("lv 3 found? " + _levelManager.currentLevel);
+        if (_levelManager.currentLevel == "Level3")
+        {
+            textElements.SetActive(false);
+            freeStyleTextElements.SetActive(true);
+        } else {
+            textElements.SetActive(true);
+            freeStyleTextElements.SetActive(false);
+        }
+
     }
 
     public void ShowOrHideReciteMesh (bool shouldBeEnabled) {
@@ -90,7 +109,7 @@ public class UIManager : MonoBehaviour
             Debug.Log("Resuming task");
             // reciteBoard.SetActive(true);
             _wordReciteManager.enabled = true;
-            // _wordReciteManager.BeginTask();
+            // _wordReciteManager.BeginReciteTask();
             _wordReciteManager.RepeatSameWord();
         } else if (_dialogueManager.currentDialogueState == EDialogueState.IsPlayingDialogueOnly) {
             Debug.Log("Resuming dialogue and activating board");

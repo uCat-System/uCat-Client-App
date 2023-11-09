@@ -76,7 +76,8 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue() {
         ChangeDialogueState(DialogueState.IsPlayingDialogueOnly);
-        _wordReciteManager.enabled = false;
+        // _wordReciteManager.enabled = false;
+        _wordReciteManager.StopAllCoroutines();
         // if there is a coroutine running of dialogue cycling, stop it
         StopAllCoroutines();
         StartCoroutine(CycleThroughDialogue());
@@ -88,8 +89,7 @@ public class DialogueManager : MonoBehaviour
     }
     
     void ActivateTaskAndPauseDialogue() {
-        // _wordReciteManager.enabled = true;
-        _wordReciteManager.BeginTask();
+        _wordReciteManager.BeginReciteTask();
         ChangeDialogueState(DialogueState.IsPerformingATask);
     }
 
@@ -150,7 +150,9 @@ public class DialogueManager : MonoBehaviour
 
     private void ActivateBoard() {
         _uiManager.ShowOrHideReciteMesh(true);
-        GameObject.FindWithTag("ReciteText3D").GetComponent<Modular3DText>().UpdateText("...Hello...");
+        if (_levelManager.currentLevel != "Level3") {
+            GameObject.FindWithTag("ReciteText3D").GetComponent<Modular3DText>().UpdateText("...Hello...");
+        }
     }
 
     private IEnumerator CycleThroughDialogue() {

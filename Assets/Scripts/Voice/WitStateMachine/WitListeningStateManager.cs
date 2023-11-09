@@ -19,6 +19,7 @@ public class WitListeningStateManager : MonoBehaviour
         ListeningForNextOrRepeat,
 
         ListeningForLobbyMenuCommandsOnly, // including memo mode
+        ListeningForFreestyleResponse,
     }
     private string scene;
     private UIManager _uiManager;
@@ -184,6 +185,11 @@ public class WitListeningStateManager : MonoBehaviour
                     micIcon.SetActive(true);
                     break;
                 case ListeningState.ListeningForNextOrRepeat:
+                    StartCoroutine(TurnWitActivationOffAndOn());
+                    micIcon.SetActive(true);
+                    break;
+
+                 case ListeningState.ListeningForFreestyleResponse:
                     StartCoroutine(TurnWitActivationOffAndOn());
                     micIcon.SetActive(true);
                     break;

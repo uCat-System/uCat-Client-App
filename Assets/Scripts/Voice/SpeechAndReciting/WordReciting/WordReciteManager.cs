@@ -66,8 +66,36 @@ public class WordReciteManager : MonoBehaviour
 
     public AudioClip[] wordSounds;
 
-    public void BeginTask() {
-        StartCoroutine(StartCurrentWordCountdown());
+    public void BeginReciteTask() {
+        if (_levelManager.currentLevel == "Level3") {
+            BeginFreestyleTask();
+        } else {
+            StartCoroutine(StartCurrentWordCountdown());
+        }
+    }
+
+    public void BeginFreestyleTask() {
+        // Cycle through the word list in a similar way to the countdown,
+        // but:
+        // - play them instantly (no countdown)
+        // - play audio along with them (tbd)
+        // - make the questions display in dialogueText instead of the board
+        // - make the user's response display in the board instead of the dialogueText
+
+        reciteBoardAudioSource.clip = wordSounds[0]; // replace this with ucat voice later
+        reciteBoardAudioSource.Play();
+
+        subtitleText3D.UpdateText("");
+
+        string question = activeList[currentWordOrSentenceIndex];    
+        dialogueText3D.UpdateText(question);
+        reciteText3D.Material = defaultColour;
+        // if (_witListeningStateManager.currentListeningState == EListeningState.ListeningForTaskMenuCommandsOnly)
+        // {
+        //     yield break;
+        // }
+
+         _witListeningStateManager.TransitionToState(EListeningState.ListeningForFreestyleResponse);
     }
     void Start()
     {
