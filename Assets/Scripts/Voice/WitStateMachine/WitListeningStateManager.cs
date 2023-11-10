@@ -63,6 +63,7 @@ public class WitListeningStateManager : MonoBehaviour
         wit = GameObject.FindWithTag("Wit");
         scene = SceneManager.GetActiveScene().name;
         TransitionToState(ListeningState.ListeningForMenuActivationCommandsOnly);
+        InvokeRepeating("EnableWitEverySoOften", 0f, 2f);
     }
 
     public bool CurrentStateIsAllowedInDictionary(Dictionary<ListeningState, bool> dictToSearch) {
@@ -148,10 +149,17 @@ public class WitListeningStateManager : MonoBehaviour
         wit.SetActive(false);
     }
 
+    void EnableWitEverySoOften(){
+        // Activate it again.
+        Debug.Log("Enabling Wit on timer");
+        wit.SetActive(true);
+        Wit witComponent = wit.GetComponent<Wit>();
+        witComponent.Activate();
+    }
+
+
     void Update() {
-        if (Input.GetKeyDown(KeyCode.Alpha1)) {
-            StartCoroutine(TurnWitActivationOffAndOn());
-        }
+       
     }
  
     // This is called from the WitListeningStateMachine script using actual enum values.

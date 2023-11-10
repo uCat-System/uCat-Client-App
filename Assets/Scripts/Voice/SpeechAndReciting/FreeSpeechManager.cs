@@ -61,6 +61,8 @@ using MText;
 
         public void HandlePartialTranscription(string text)
         {
+            // TODO delete!
+             subtitleText3D.UpdateText(text);
             // Always update subtitles when attempting speech
             // subtitleText3D.UpdateText(text);
             if (_witListeningStateManager.RecitingWordsIsAllowed()) {
@@ -87,7 +89,7 @@ using MText;
 
         public void HandleFullTranscription(string text)
         {
-            
+             subtitleText3D.UpdateText(text);
             // Listen for menu activation
             if (_witListeningStateManager.MenuActivationCommandsAreAllowed()) {
                 EMenuActivationResponseType menuActivationResponse = UICommandHandler.CheckIfMenuActivationCommandsWereSpoken(text);

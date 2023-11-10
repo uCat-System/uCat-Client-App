@@ -1864,8 +1864,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 507172945, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
-      propertyPath: witRuntimeConfiguration.soundWakeThreshold
-      value: 0.005
+      propertyPath: witRuntimeConfiguration.maxRecordingTime
+      value: 10.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 507172945, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
+      propertyPath: witRuntimeConfiguration.minKeepAliveTimeInSeconds
+      value: 2.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 507172945, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
+      propertyPath: witRuntimeConfiguration.minTranscriptionKeepAliveTimeInSeconds
+      value: 10.7
       objectReference: {fileID: 0}
     - target: {fileID: 12765828808819145, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
       propertyPath: m_Mesh
@@ -1939,10 +1947,6 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1895837521}
-    - target: {fileID: 5499405243298256662, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6077588429730477223, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
       propertyPath: m_Mesh
       value: 
