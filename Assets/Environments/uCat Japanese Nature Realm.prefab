@@ -13358,7 +13358,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.727
   m_Pitch: 1
   Loop: 0
@@ -16327,7 +16327,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5499405243298256657}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -20398,7 +20398,7 @@ MonoBehaviour:
   canBreakOutermostPrefab: 0
   assetPath: 
   meshPaths: []
-  updatedAfterStyleUpdateOnPrefabInstances: 0
+  updatedAfterStyleUpdateOnPrefabInstances: 1
   debugLogs: 0
   hideOverwrittenVariablesFromInspector: 1
   updateTextOncePerFrame: 0
@@ -28462,11 +28462,11 @@ MonoBehaviour:
     minKeepAliveVolume: 0.0005
     minKeepAliveTimeInSeconds: 2.09
     minTranscriptionKeepAliveTimeInSeconds: 1
-    maxRecordingTime: 1.75
-    soundWakeThreshold: 0.0005
+    maxRecordingTime: 16.15
+    soundWakeThreshold: 0.005
     sampleLengthInMs: 10
     micBufferLengthInSeconds: 1
-    maxConcurrentRequests: 5
+    maxConcurrentRequests: 1
     sendAudioToWit: 1
     customTranscriptionProvider: {fileID: 0}
     alwaysRecord: 0

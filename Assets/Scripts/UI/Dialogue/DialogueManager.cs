@@ -36,6 +36,7 @@ public class DialogueManager : MonoBehaviour
     public int level1TaskActivationIndex;
     public int level2TaskActivationIndex;
     public int level3TaskActivationIndex;
+    public bool dialogueIsPaused;
 
     public enum DialogueState {
         IsPlayingDialogueOnly, // Eg during intro (before screen appears)
@@ -61,6 +62,7 @@ public class DialogueManager : MonoBehaviour
         catAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Idle;
         SetDialogueTaskIndexes();
         StartCoroutine(WaitABitAndThenStartDialogue());
+        dialogueIsPaused = false;
 
         if (_levelManager.currentLevel == "Intro") {
             // Hide the board and mic icon
@@ -74,9 +76,18 @@ public class DialogueManager : MonoBehaviour
         StartDialogue();
     }
 
+    public void StartDialogueFromPreviousLine() {
+        ChangeDialogueState(DialogueState.IsPlayingDialogueOnly);
+        // decrement  DialogueHandler.currentDialogueOptionIndex so that we start from the previous line
+        // unless we are at the start of the dialogue
+        if (DialogueHandler.currentDialogueOptionIndex > 0) {
+            DialogueHandler.currentDialogueOptionIndex--;
+        }
+        StopAllCoroutines();
+        StartCoroutine(CycleThroughDialogue());
+    }
     public void StartDialogue() {
         ChangeDialogueState(DialogueState.IsPlayingDialogueOnly);
-        // _wordReciteManager.enabled = false;
         _wordReciteManager.StopAllCoroutines();
         // if there is a coroutine running of dialogue cycling, stop it
         StopAllCoroutines();
@@ -132,8 +143,7 @@ public class DialogueManager : MonoBehaviour
             // Play the relevant animation
             catAnimationDriver.catAnimation = dialogueAnimations[DialogueHandler.currentDialogueOptionIndex];
 
-            // Play the dialogue audio
-            catAudioSource.PlayOneShot(dialogueAudio[DialogueHandler.currentDialogueOptionIndex]);
+            PlayDialogueAudio(dialogueAudio[DialogueHandler.currentDialogueOptionIndex]);
 
             //in the Intro, uCat wants to show the user what icon would be displayed when she is listening to them
             var micState = (DialogueHandler.currentDialogueOptionIndex == micActivationDialogueIndex) ? true : false;
@@ -146,6 +156,37 @@ public class DialogueManager : MonoBehaviour
         {
             Debug.LogError("Invalid current dialogue option index: " + DialogueHandler.currentDialogueOptionIndex);
         }
+    }
+
+    void PlayDialogueAudio(AudioClip currentClip) {
+        Debug.Log("is it paused? " + dialogueIsPaused);
+
+        // if (dialogueIsPaused) {
+        //     Debug.Log("Unpausing now");
+        //     catAudioSource.UnPause();
+        //     dialogueIsPaused = false;
+        // }
+        // else {
+        //     Debug.Log("Playing now");
+        //     catAudioSource.clip = currentClip;
+        //     catAudioSource.Play();
+        //     // dialogueIsPaused = false;
+        // }
+
+        catAudioSource.clip = currentClip;
+        catAudioSource.Play();
+    }
+
+    public void PauseDialogueAudio() {
+        catAudioSource.Stop();
+        // dialogueIsPaused = true;
+    }
+
+    public void SkipToNextLine() {
+        catAudioSource.Stop();
+        DialogueHandler.IncrementDialogueOption();
+        StopAllCoroutines();
+        StartCoroutine(CycleThroughDialogue());
     }
 
     private void ActivateBoard() {

@@ -54,7 +54,7 @@ public class DebuggerClass : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.F5)) {
-            _witListeningStateManager.TurnWitActivationOffAndOn();
+            _dialogueManager.SkipToNextLine();
         }
     }
 

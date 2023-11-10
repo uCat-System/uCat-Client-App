@@ -72,6 +72,7 @@ public class UIManager : MonoBehaviour
     }
 
     public void ActivateMenu() {
+        _dialogueManager.PauseDialogueAudio();
         _witListeningStateManager.TransitionToRelevantMenuNavigationStateBasedOnLevel();
         _dialogueManager.ChangeDialogueState(EDialogueState.IsInMenu);
         StartCoroutine(StartMenuOpenAnimation());
@@ -80,8 +81,8 @@ public class UIManager : MonoBehaviour
     IEnumerator StartMenuOpenAnimation() {
         if (!menu.activeInHierarchy)
         {
-            GameObject.FindWithTag("ReciteText3D").GetComponent<MeshRenderer>().enabled = false; 
-            // reciteBoard.SetActive(false);
+
+            EnableOrDiableReciteBoard(false);
             menu.SetActive(true);
             menuBoardAnimator.SetTrigger("Open");
             yield return new WaitForSeconds(1.5f);
@@ -99,6 +100,13 @@ public class UIManager : MonoBehaviour
         menu.SetActive(false);
     }
 
+    private void EnableOrDiableReciteBoard(bool shouldBeEnabled) {
+        GameObject reciteBoard = GameObject.FindWithTag("ReciteBoard");
+        if (reciteBoard != null) {
+            GameObject.FindWithTag("ReciteBoard").GetComponent<MeshRenderer>().enabled = shouldBeEnabled; 
+        }
+    }
+
     public void Resume() {
         // Repeat task if it was in progress, otherwise continue dialogue
 
@@ -107,13 +115,11 @@ public class UIManager : MonoBehaviour
         // Set the dialogue and Wit state back to what they were before menu activation
          _dialogueManager.ChangeDialogueState(_dialogueManager.previousDialogueState);
         _witListeningStateManager.TransitionToState(EListeningState.ListeningForMenuActivationCommandsOnly);
-        GameObject.FindWithTag("ReciteText3D").GetComponent<MeshRenderer>().enabled = true; 
+        EnableOrDiableReciteBoard(true);
 
         if (_dialogueManager.currentDialogueState == EDialogueState.IsPerformingATask) {
             Debug.Log("Resuming task");
-            // reciteBoard.SetActive(true);
             _wordReciteManager.enabled = true;
-            // _wordReciteManager.BeginReciteTask();
             _wordReciteManager.RepeatSameWord();
         } else if (_dialogueManager.currentDialogueState == EDialogueState.IsPlayingDialogueOnly) {
             Debug.Log("Resuming dialogue and activating board");
