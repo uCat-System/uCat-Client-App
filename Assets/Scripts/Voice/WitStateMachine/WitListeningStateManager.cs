@@ -35,7 +35,6 @@ public class WitListeningStateManager : MonoBehaviour
     {
         { ListeningState.ListeningForEverything, true},
         { ListeningState.ListeningForRecitedWordsOnly, true },
-        { ListeningState.ListeningForConfirmation, true },
     };
 
     private static Dictionary<ListeningState, bool> validMenuNavigationStates = new Dictionary<ListeningState, bool>

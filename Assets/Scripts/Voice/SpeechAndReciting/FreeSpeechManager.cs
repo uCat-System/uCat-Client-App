@@ -121,7 +121,7 @@ using MText;
             }
 
             if (_witListeningStateManager.currentListeningState == EListeningState.ListeningForFreestyleResponse) {
-                // Activate Tasks (recite words, etc) if in any valid reciting states
+                // Level 3 Task
                 HandleFreestyleResponse(text);
             }
 
@@ -143,7 +143,7 @@ using MText;
                 _levelManager.RepeatLevel();
                 break;
             case EProceedResponseType.UNKNOWN_PROCEED_RESPONSE:
-                partialText3D.UpdateText(ConfirmationHandler.proceedResponses[proceedResponse]);
+                Debug.LogError("Unknown proceed response type: " + proceedResponse);
                 _witListeningStateManager.TransitionToState(EListeningState.ListeningForConfirmation);
                 break;}
     }
@@ -238,6 +238,7 @@ using MText;
 
         public void HandleFreestyleResponse(string text) {
             reciteText3D.UpdateText(text);
+            ConfirmWhatUserSaid(text);
         }
         
         public void ConfirmWhatUserSaid(string originallyUtteredText) {

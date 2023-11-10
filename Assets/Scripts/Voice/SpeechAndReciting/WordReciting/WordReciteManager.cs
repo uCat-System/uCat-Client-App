@@ -81,6 +81,9 @@ public class WordReciteManager : MonoBehaviour
         // - play audio along with them (tbd)
         // - make the questions display in dialogueText instead of the board
         // - make the user's response display in the board instead of the dialogueText
+        dialogueText3D.UpdateText("");
+        subtitleText3D.UpdateText("");
+        reciteText3D.UpdateText("");
 
         reciteBoardAudioSource.clip = wordSounds[0]; // replace this with ucat voice later
         reciteBoardAudioSource.Play();
@@ -246,16 +249,17 @@ public class WordReciteManager : MonoBehaviour
             currentWordOrSentenceIndex++;
             Debug.Log("going to next word " + currentWordOrSentenceIndex);
             _witListeningStateManager.TransitionToState(EListeningState.ListeningForMenuActivationCommandsOnly);
-            StartCoroutine(StartCurrentWordCountdown());
+            BeginReciteTask();
         } else {
             // End of list
             LevelTaskIsComplete();
         }
     }
+
     public void RepeatSameWord()
     {
         _witListeningStateManager.TransitionToState(EListeningState.ListeningForMenuActivationCommandsOnly);
-        StartCoroutine(StartCurrentWordCountdown());
+         BeginReciteTask();
     }
     public void StartWordCheck(string transcription)
     {
@@ -288,7 +292,6 @@ public class WordReciteManager : MonoBehaviour
                 // subtitleText3D.UpdateText(CheckRecitedWordHandler.correctResponses[responseType]);
                 catAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Happy;
                 reciteText3D.Material = correctColour;
-                Debug.LogError("WAITING (POS)");
                 yield return new WaitForSeconds(CheckRecitedWordHandler.timeBetweenWordsInSeconds);
                 dialogueText3D.UpdateText("");
                 catAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Idle;
@@ -377,7 +380,7 @@ public class WordReciteManager : MonoBehaviour
         if (wordListComplete && uiComplete || openQuestionsComplete)
         {
             currentWordOrSentenceIndex = 0;
-            reciteText3D.UpdateText("Finished!");
+            // reciteText3D.UpdateText("Finished!");
             LevelTaskIsComplete();
         }
         else if (wordListComplete && !uiComplete)
@@ -387,7 +390,7 @@ public class WordReciteManager : MonoBehaviour
             reciteText3D.UpdateText("Great! Moving onto UI word list.");
 
             yield return new WaitForSeconds(2);
-            StartCoroutine(StartCurrentWordCountdown());
+            BeginReciteTask();
             
         }
 
