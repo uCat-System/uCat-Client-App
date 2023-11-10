@@ -10,7 +10,6 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
-
     private static UIManager instance;
 
     private LevelManager _levelManager;
@@ -53,16 +52,18 @@ public class UIManager : MonoBehaviour
     }
 
     void Start() {
-          Debug.Log("lv 3 found? " + _levelManager.currentLevel);
-        if (_levelManager.currentLevel == "Level3")
-        {
-            textElements.SetActive(false);
-            freeStyleTextElements.SetActive(true);
-        } else {
-            textElements.SetActive(true);
-            freeStyleTextElements.SetActive(false);
-        }
+        SelectReciteBoardBasedOnLevel();
+    }
 
+    void SelectReciteBoardBasedOnLevel() {
+         if (_levelManager.currentLevel == "Level3")
+            {
+                textElements.SetActive(false);
+                freeStyleTextElements.SetActive(true);
+            } else {
+                textElements.SetActive(true);
+                freeStyleTextElements.SetActive(false);
+        }
     }
 
     public void ShowOrHideReciteMesh (bool shouldBeEnabled) {
@@ -81,7 +82,6 @@ public class UIManager : MonoBehaviour
     IEnumerator StartMenuOpenAnimation() {
         if (!menu.activeInHierarchy)
         {
-
             EnableOrDiableReciteBoard(false);
             menu.SetActive(true);
             menuBoardAnimator.SetTrigger("Open");
@@ -109,32 +109,22 @@ public class UIManager : MonoBehaviour
 
     public void Resume() {
         // Repeat task if it was in progress, otherwise continue dialogue
-
-        Debug.Log("Resuming, prev state was " + _dialogueManager.previousDialogueState.ToString() );
-
         // Set the dialogue and Wit state back to what they were before menu activation
          _dialogueManager.ChangeDialogueState(_dialogueManager.previousDialogueState);
         _witListeningStateManager.TransitionToState(EListeningState.ListeningForMenuActivationCommandsOnly);
         EnableOrDiableReciteBoard(true);
 
         if (_dialogueManager.currentDialogueState == EDialogueState.IsPerformingATask) {
-            Debug.Log("Resuming task");
             _wordReciteManager.enabled = true;
             _wordReciteManager.RepeatSameWord();
         } else if (_dialogueManager.currentDialogueState == EDialogueState.IsPlayingDialogueOnly) {
-            Debug.Log("Resuming dialogue and activating board");
             _dialogueManager.StartDialogueFromPreviousLine();
-            // if (DialogueHandler.currentDialogueOptionIndex >= _dialogueManager.boardActivationDialogueIndex) {
-            //      reciteBoard.SetActive(true);
-            // }
         }
 
         DeactivateMenu();
     }
 
     public void ActivateMenuNavigationCommandsBasedOnResponse(EMenuNavigationResponseType navigationCommand) {
-
-        Debug.Log("MENU NAV COMMAND: " + navigationCommand.ToString());
         LevelTransition _levelTransition = FindObjectOfType<LevelTransition>();
 
         switch (navigationCommand) {
@@ -152,7 +142,6 @@ public class UIManager : MonoBehaviour
                 _levelTransition.BeginSpecificLevelTransition("Level1");
                 break;
             case EMenuNavigationResponseType.RECITE_SENTENCES_RESPONSE:
-                Debug.Log("Sentences called");
                 _levelTransition.BeginSpecificLevelTransition("Level2");
                 break;
             case EMenuNavigationResponseType.RECITE_OPEN_QUESTIONS_RESPONSE:

@@ -60,6 +60,8 @@ public class DialogueManager : MonoBehaviour
         _levelTransition = FindObjectOfType<LevelTransition>();
         micIcon = GameObject.FindWithTag("MicIcon");
         catAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Idle;
+
+        // Start dialogue
         SetDialogueTaskIndexes();
         StartCoroutine(WaitABitAndThenStartDialogue());
         dialogueIsPaused = false;
@@ -78,8 +80,6 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogueFromPreviousLine() {
         ChangeDialogueState(DialogueState.IsPlayingDialogueOnly);
-        // decrement  DialogueHandler.currentDialogueOptionIndex so that we start from the previous line
-        // unless we are at the start of the dialogue
         if (DialogueHandler.currentDialogueOptionIndex > 0) {
             DialogueHandler.currentDialogueOptionIndex--;
         }
@@ -89,7 +89,6 @@ public class DialogueManager : MonoBehaviour
     public void StartDialogue() {
         ChangeDialogueState(DialogueState.IsPlayingDialogueOnly);
         _wordReciteManager.StopAllCoroutines();
-        // if there is a coroutine running of dialogue cycling, stop it
         StopAllCoroutines();
         StartCoroutine(CycleThroughDialogue());
     }
@@ -159,27 +158,12 @@ public class DialogueManager : MonoBehaviour
     }
 
     void PlayDialogueAudio(AudioClip currentClip) {
-        Debug.Log("is it paused? " + dialogueIsPaused);
-
-        // if (dialogueIsPaused) {
-        //     Debug.Log("Unpausing now");
-        //     catAudioSource.UnPause();
-        //     dialogueIsPaused = false;
-        // }
-        // else {
-        //     Debug.Log("Playing now");
-        //     catAudioSource.clip = currentClip;
-        //     catAudioSource.Play();
-        //     // dialogueIsPaused = false;
-        // }
-
         catAudioSource.clip = currentClip;
         catAudioSource.Play();
     }
 
     public void PauseDialogueAudio() {
         catAudioSource.Stop();
-        // dialogueIsPaused = true;
     }
 
     public void SkipToNextLine() {
@@ -198,9 +182,6 @@ public class DialogueManager : MonoBehaviour
 
     private IEnumerator CycleThroughDialogue() {
         // TODO move this out of ienumerator, only need to do it once
-        Debug.Log("Cycling through with level " + _levelManager.currentLevel);
-        Debug.Log("Current index is " + DialogueHandler.currentDialogueOptionIndex);
-
         Dictionary<int, string> currentDialogueList;
         Dictionary<int, AnimationDriver.CatAnimations> currentAnimationList;
         Dictionary<int, AudioClip> currentAudioList;
@@ -235,25 +216,23 @@ public class DialogueManager : MonoBehaviour
                 break;
         }
 
+        // Catching error states
+
         if (currentDialogueList.Count == 0)
         {
-            Debug.LogError("No dialogue lines found");
             yield break;
         }
 
         if (currentDialogueState != DialogueState.IsPlayingDialogueOnly) {
-            Debug.Log("Not playing dialogue only. Breaking out.");
             yield break;
         }
 
 
         // Trigger the task to begin, and pause dialogue
         if (DialogueHandler.currentDialogueOptionIndex == taskActivationDialogueIndex) {
-            Debug.Log("Activating task");
             ActivateTaskAndPauseDialogue();
             // Increment so that when we return from task we are on the next line
             DialogueHandler.IncrementDialogueOption();
-            Debug.Log("Breaking out");
             yield break;
         }
 
@@ -261,14 +240,13 @@ public class DialogueManager : MonoBehaviour
         yield return new WaitWhile(() => catAudioSource.isPlaying);
         yield return new WaitForSeconds(DialogueHandler.timeBetweenLinesInSeconds);
     
+        bool noMoreDialogue = DialogueHandler.currentDialogueOptionIndex >= currentDialogueList.Count-1 || currentDialogueList == null || currentAnimationList == null;
 
-        if (DialogueHandler.currentDialogueOptionIndex >= currentDialogueList.Count-1 || currentDialogueList == null || currentAnimationList == null) {
+        if (noMoreDialogue) {
             // Do not continue incrementing if we are at the end
-            Debug.Log("End of dialogue");
             EndOfDialogue();
             yield break;
         } else {
-            Debug.Log("Not end of dialogue");
             DialogueHandler.IncrementDialogueOption();
             // Otherwise, start the next line as long as user is not performing a task
             if (currentDialogueState == DialogueState.IsPlayingDialogueOnly) {

@@ -77,7 +77,6 @@ using MText;
                     _uiManager.ActivateMenu();
                     break;
                 case EMenuActivationResponseType.UNKNOWN_ACTIVATION_RESPONSE:
-                    Debug.Log("Activating menu was allowed but phrase was invalid: " + menuActivationResponse);
                     break;
                 default:
                     break;
@@ -94,7 +93,6 @@ using MText;
 
             // Listen for commands within the menu
             if (_witListeningStateManager.MenuNavigationCommandsAreAllowed()) {
-                Debug.Log("MENU NAV ALLOWED - SUB PRODUCED");
                 subtitleText3D.UpdateText(text);
                 EMenuNavigationResponseType menuNavigationResponse = UICommandHandler.CheckIfMenuNavigationCommandsWereSpoken(text);
                 _uiManager.ActivateMenuNavigationCommandsBasedOnResponse(menuNavigationResponse);
@@ -174,22 +172,15 @@ using MText;
         }
 
         public void UserSaidSomething() {
-            // Clear the text
-            // subtitleText3D.UpdateText("MIC DATA SENT");
-            Debug.Log("MIC DATA SENT");
             currentTimeoutTimerInSeconds = 0;
             isCurrentlyCountingTowardsTimeout = false;
         }
 
         public void OnStoppedListening() {
-            // Clear the text
-            // subtitleText3D.UpdateText("STOPPED LISTENING: " + currentTimeoutTimerInSeconds + " seconds");
             isCurrentlyCountingTowardsTimeout = false;
         }
 
         public void OnTimeOut() {
-            // Clear the text
-            // subtitleText3D.UpdateText("TIMED OUT " + currentTimeoutTimerInSeconds + " seconds");
             isCurrentlyCountingTowardsTimeout = false;
         }
 
@@ -198,7 +189,6 @@ using MText;
             if (_witListeningStateManager.TimeoutCountingIsAllowed()) {
                 _witListeningStateManager.TransitionToState(EListeningState.NotListening);
                 isCurrentlyCountingTowardsTimeout = false;
-                // subtitleText3D.UpdateText("INACTIVITY" + currentTimeoutTimerInSeconds + " seconds");
                 currentTimeoutTimerInSeconds = 0;
                 _wordReciteManager.OnMicrophoneTimeOut();
             }
@@ -208,7 +198,6 @@ using MText;
             // Only count seconds if the mic is active and we are reciting words (not in menu etc)
             if (isCurrentlyCountingTowardsTimeout && _witListeningStateManager.TimeoutCountingIsAllowed()) {
                 currentTimeoutTimerInSeconds += Time.deltaTime;
-                // subtitleText3D.UpdateText("TIMEOUT: " + currentTimeoutTimerInSeconds + " seconds");
             }
 
             if (currentTimeoutTimerInSeconds > timeoutInSeconds) {
@@ -238,7 +227,6 @@ using MText;
         }
         
         public void ConfirmWhatUserSaid(string originallyUtteredText) {
-            Debug.Log("Setting state to confirtmation mode ");
             _witListeningStateManager.TransitionToState(EListeningState.ListeningForConfirmation);
             // Ask them to confirm
             confirmationText3D.UpdateText("Did you say \"" + originallyUtteredText + "\"?\n(Yes/No)");

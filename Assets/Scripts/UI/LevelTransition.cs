@@ -22,13 +22,6 @@ public class LevelTransition : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        // This method is called whenever a new scene is loaded.
-        // You can put your logic here to handle the changes needed when the scene changes.
-        Debug.Log("OnSceneLoaded: " + scene.name);
-    }
-
     // Update is called once per frame
     void Start()
     {
@@ -67,7 +60,6 @@ public class LevelTransition : MonoBehaviour
 
     public IEnumerator TransitionToSpecificLevel(string sceneName)
     {
-        Debug.Log("Transitioning to " + sceneName);
         DialogueHandler.ResetDialogueIndex();
 
         transition.SetTrigger("Start");
