@@ -123,7 +123,7 @@ public class UIManager : MonoBehaviour
             _wordReciteManager.RepeatSameWord();
         } else if (_dialogueManager.currentDialogueState == EDialogueState.IsPlayingDialogueOnly) {
             Debug.Log("Resuming dialogue and activating board");
-             _dialogueManager.StartDialogue();
+            _dialogueManager.StartDialogueFromPreviousLine();
             // if (DialogueHandler.currentDialogueOptionIndex >= _dialogueManager.boardActivationDialogueIndex) {
             //      reciteBoard.SetActive(true);
             // }
