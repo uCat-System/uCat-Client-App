@@ -9,6 +9,34 @@ using System.Collections.Generic;
 public class WitListeningStateManager : MonoBehaviour
 {
     public enum ListeningState
+    // Turn into a struct? TODO
+    // maps {ListeningState => appropriate boolean}
+    // maybe use quirins boilerplate for static classes
+    // eg {ListeningForEverything --> {ableToListen: true, micIcon: true}}
+
+    /*
+
+        struct ListeningState
+        {
+            public EListeningState Id; --> ListeningForEverything
+            public bool AbleToListen; --> 
+            public bool ShowMicIcon;
+            public Enum[] AllowedTransitions; --> deal with permuations of transitions
+        }
+
+
+        readonly var ListeningState ListeningForEverything = new() {
+            Id = EListeningState.ListeningForEverything,
+            AbleToListen = true,
+            ShowMicIcon = true
+
+        }
+
+        // ListeningForEverything.AbleToListen --> true
+        // CurrentState = ListeningForEverything --> fire an event to show mic etc
+
+    */
+
     {
         NotListening,
         ListeningForEverything,
@@ -137,6 +165,9 @@ public class WitListeningStateManager : MonoBehaviour
 
     public IEnumerator TurnWitActivationOffAndOn() {
         // Turn it off and on
+        // transition was made: this fires, works.
+        // wit stops listening, but no transition was requested. 
+
         wit.SetActive(true);
         Wit witComponent = wit.GetComponent<Wit>();
         witComponent.Deactivate();
@@ -165,6 +196,11 @@ public class WitListeningStateManager : MonoBehaviour
 
     public void TransitionToState(ListeningState nextState)
         {
+            // Once struct in place, switch here using the ListeningState.Id enum
+            // micIcon.SetActive(ListeningState.ShowMicIcon);
+            
+            // Maybe also check the current state to catch bugs
+            // eg if transition from a to b is invalid, make it throw something
             switch (nextState)
             {
                 case ListeningState.NotListening:
@@ -172,6 +208,7 @@ public class WitListeningStateManager : MonoBehaviour
                     micIcon.SetActive(false);
                     break;
                 case ListeningState.ListeningForMenuActivationCommandsOnly:
+                    // turn on wit here only TODO if AbleToListen is true for this id in the struct.
                     StartCoroutine(TurnWitActivationOffAndOn());
                     micIcon.SetActive(false);
                     break;
