@@ -1863,14 +1863,6 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1717368787, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
-      propertyPath: updatedAfterStyleUpdateOnPrefabInstances
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1815153631, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
-      propertyPath: updatedAfterStyleUpdateOnPrefabInstances
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 12765828808819145, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -1943,10 +1935,6 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1895837521}
-    - target: {fileID: 5852176482910047555, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
-      propertyPath: updatedAfterStyleUpdateOnPrefabInstances
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6077588429730477223, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -1955,25 +1943,9 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1395204209}
-    - target: {fileID: 6972111452151734867, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6972111452151734870, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
-      propertyPath: _text
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6972111452151734870, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
-      propertyPath: oldText
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6972111452151734870, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
-      propertyPath: wordArray.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 6972111452151734870, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
       propertyPath: updatedAfterStyleUpdateOnPrefabInstances
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7513729703987040677, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
       propertyPath: m_Mesh

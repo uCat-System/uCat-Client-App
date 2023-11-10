@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MText;
 using System.Linq;
 using EListeningState = WitListeningStateManager.ListeningState;
 using EMenuNavigationResponseType = UICommandHandler.MenuNavigationResponseType;
@@ -21,6 +22,7 @@ public class UIManager : MonoBehaviour
     private GameObject textElements;
 
     private GameObject freeStyleTextElements;
+    private Modular3DText subtitleText3D;
 
     private WitListeningStateManager _witListeningStateManager;
     private WordReciteManager _wordReciteManager;
@@ -29,6 +31,7 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
+        subtitleText3D = GameObject.FindWithTag("SubtitleText3D").GetComponent<Modular3DText>();
         textElements = GameObject.FindWithTag("TextElements");
         freeStyleTextElements = GameObject.FindWithTag("FreestyleTextElements");
         _wordReciteManager = FindObjectOfType<WordReciteManager>();
@@ -85,6 +88,7 @@ public class UIManager : MonoBehaviour
         }
     }
     public void DeactivateMenu() {
+        subtitleText3D.UpdateText("");
         StartCoroutine(StartMenuCloseAnimation());
     }
 
