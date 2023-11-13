@@ -50,7 +50,7 @@ MonoBehaviour:
   - We should take our time adjusting to the BCI.
   - Like we did before, I'm going to give you some words for you to repeat back.
   - When the dots disappear, repeat the word on the top half of the screen.
-  - " We\u2019ll be having a conversation in no time."
+  - "We\u2019ll be having a conversation in no time."
   - How about a change of scenery?
   level1ScriptDialogueAnimations: 00000000020000000100000000000000000000000100000002000000
   level1ScriptDialogueAudio:
@@ -62,14 +62,18 @@ MonoBehaviour:
   - {fileID: 8300000, guid: bb942939d7fb98149a86df49607d02e1, type: 3}
   - {fileID: 8300000, guid: 72ca93600dc7843419a2903028f3195d, type: 3}
   level2ScriptDialogueOptions:
+  - "Wow, we\u2019ll get through a dictionary in no time\u2026"
+  - Aw catnip, I really am a chatterbox.
+  - "I think It\u2019s high time for you to begin practicing full sentences!"
   - As before, do your best to repeat sentences when the dots disappear.
-  - "Let\u2019s begin!"
-  - Good job, let's continue! [placeholder]
-  level2ScriptDialogueAnimations: 000000000100000005000000
+  - Let's begin!
+  level2ScriptDialogueAnimations: 0200000003000000010000000000000001000000
   level2ScriptDialogueAudio:
+  - {fileID: 8300000, guid: 3d900d73ff4b2a34c988598be1ad1b91, type: 3}
+  - {fileID: 8300000, guid: eb7cf49c096a59e42875706cfca1333a, type: 3}
+  - {fileID: 8300000, guid: f873e1d79f8a88b44a86d15478c284ae, type: 3}
   - {fileID: 8300000, guid: 5e1e55e42782b1b42bde326ad5bd272c, type: 3}
   - {fileID: 8300000, guid: af4e9b0720fbaf142b74b2f412c46f7c, type: 3}
-  - {fileID: 8300000, guid: 494bd1721199a40c5a79fa3011793556, type: 3}
   level3ScriptDialogueOptions:
   - "Wow, you\u2019ve done a lot of hard work, hopefully there weren\u2019t any glitches
     on the way."

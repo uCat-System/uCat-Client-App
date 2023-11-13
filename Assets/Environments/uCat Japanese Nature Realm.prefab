@@ -28025,7 +28025,7 @@ PrefabInstance:
       objectReference: {fileID: 732535182235797359}
     - target: {fileID: 3505799383072129518, guid: eeb381f8f105aa04aab5137abf3cd87b, type: 3}
       propertyPath: level2TaskActivationIndex
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3505799383072129518, guid: eeb381f8f105aa04aab5137abf3cd87b, type: 3}
       propertyPath: level3TaskActivationIndex
