@@ -1236,10 +1236,6 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1717368787, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
-      propertyPath: updatedAfterStyleUpdateOnPrefabInstances
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 12765828808819145, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -1312,10 +1308,6 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1680036211}
-    - target: {fileID: 5852176482910047555, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
-      propertyPath: updatedAfterStyleUpdateOnPrefabInstances
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6077588429730477223, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -1344,6 +1336,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1322213123}
+    - target: {fileID: 9004619904802723902, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
+      propertyPath: level3TaskActivationIndex
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
