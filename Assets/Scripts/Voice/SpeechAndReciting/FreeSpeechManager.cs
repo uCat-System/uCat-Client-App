@@ -144,6 +144,7 @@ using MText;
 
         private IEnumerator ProceedBasedOnConfirmation(EConfirmationResponseType confirmationResponse, string originallyUtteredText) {
 
+            partialText3D.UpdateText("");
             yield return new WaitForSeconds(ConfirmationHandler.confirmationWaitTimeInSeconds);
             confirmationText3D.UpdateText("");
 

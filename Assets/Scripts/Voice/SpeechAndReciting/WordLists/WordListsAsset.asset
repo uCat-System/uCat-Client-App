@@ -35,11 +35,11 @@ MonoBehaviour:
   - Bring my glasses here
   - My family is here
   level3OpenQuestionsList:
-  - What is your name?
-  - How are you today?
-  - What is your favourite food?
+  - How are you feeling today?
+  - What's your name?
+  - What's your favourite food?
   - What is your favourite animal?
-  - What is your favourite movie?
+  - What's your favourite movie?
   level1UiList:
   - One
   - Two

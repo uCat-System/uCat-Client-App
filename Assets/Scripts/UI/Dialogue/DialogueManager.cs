@@ -149,7 +149,11 @@ public class DialogueManager : MonoBehaviour
             micIcon.SetActive(micState);
 
             //in the Intro, uCat wants to show the user the board from an appropriate time (not immediately)
-            if(DialogueHandler.currentDialogueOptionIndex >= boardActivationDialogueIndex) ActivateBoard();
+            // if the task is complete, hide the board.
+            if(DialogueHandler.currentDialogueOptionIndex >= boardActivationDialogueIndex)  
+            {
+                ActivateBoard();
+            }
         }
         else
         {

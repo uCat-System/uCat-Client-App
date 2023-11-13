@@ -34,11 +34,11 @@ public class DebuggerClass : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.Space)) {
-            _freeSpeechManager.HandleFullTranscription("resume");
+            _freeSpeechManager.HandleFullTranscription("milk");
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha1)) {
-            _levelTransition.BeginSpecificLevelTransition("Level1");
+             _freeSpeechManager.HandleFullTranscription("Yes");
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2)) {

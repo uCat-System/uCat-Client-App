@@ -49,6 +49,7 @@ public class WordReciteManager : MonoBehaviour
     private  WitListeningStateManager _witListeningStateManager;
 
     private ScoreManager _scoreManager;
+    private UIManager _uiManager;
     private LevelManager _levelManager;
     private DialogueManager _dialogueManager;
 
@@ -106,6 +107,7 @@ public class WordReciteManager : MonoBehaviour
 
         // Managers
 
+        _uiManager = GetComponent<UIManager>();
         _freeSpeechManager = GetComponent<FreeSpeechManager>();
         _witListeningStateManager = GetComponent<WitListeningStateManager>();
         _scoreManager = GetComponent<ScoreManager>();
@@ -348,7 +350,10 @@ public class WordReciteManager : MonoBehaviour
             if (activeList == currentWordOrSentenceList) { wordListComplete = true; }
             // No UI list in intro
             if (activeList == currentUiList || _levelManager.currentLevel == "Intro") { uiComplete = true; }
-            if (_levelManager.currentLevel == "Level3") { openQuestionsComplete = true; }
+            if (_levelManager.currentLevel == "Level3") { 
+                openQuestionsComplete = true;
+                LevelTaskIsComplete();
+             }
             StartCoroutine(CheckWordListStatus());
         }
     }
@@ -378,6 +383,11 @@ public class WordReciteManager : MonoBehaviour
 
     public void LevelTaskIsComplete()
     {
+        StopAllCoroutines();
+        // This ensures the timer will stop counting (once levels done)
+        _freeSpeechManager.OnStoppedListening();
+        _uiManager.ShowOrHideReciteMesh(false);
+        reciteText3D.UpdateText("");
         _dialogueManager.StartDialogue();
     }
 }
