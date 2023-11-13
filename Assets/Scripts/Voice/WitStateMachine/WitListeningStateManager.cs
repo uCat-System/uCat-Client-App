@@ -55,6 +55,8 @@ public class WitListeningStateManager : MonoBehaviour
     private WordReciteManager _wordReciteManager;
     private GameObject wit;
 
+    public float witAutomaticReactivationTimer;
+
     public GameObject micIcon;
 
     // This dict will return true if we are in any of the allowed reciting states
@@ -90,7 +92,7 @@ public class WitListeningStateManager : MonoBehaviour
         wit = GameObject.FindWithTag("Wit");
         scene = SceneManager.GetActiveScene().name;
         TransitionToState(ListeningState.ListeningForMenuActivationCommandsOnly);
-        InvokeRepeating("EnableWitEverySoOften", 0f, 2f);
+        InvokeRepeating("EnableWitEverySoOften", 0f, witAutomaticReactivationTimer);
     }
 
     public bool CurrentStateIsAllowedInDictionary(Dictionary<ListeningState, bool> dictToSearch) {
