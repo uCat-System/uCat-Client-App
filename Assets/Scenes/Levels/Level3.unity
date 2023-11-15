@@ -1135,6 +1135,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1389989321}
+    - target: {fileID: 4583368551910381197, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
+      propertyPath: witAutomaticReactivationTimer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4587402927007815856, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
       propertyPath: m_Name
       value: uCat Japanese Nature Realm

@@ -23,8 +23,10 @@ public class WordReciteManager : MonoBehaviour
     // This is the list that is active, either words/sentences OR UI list
     private List<string> activeList;
 
-    // Scriptable asset for externally stored word lists
+    // Scriptable asset for externally stored word lists and audio
     public WordLists wordLists;
+
+    private AudioClip[] uCatOpenQuestionAudioList;
 
     // Track if the lists have been completed
     bool wordListComplete;
@@ -66,7 +68,6 @@ public class WordReciteManager : MonoBehaviour
     private AudioSource uCatAudioSource;
 
     public AudioClip[] wordSounds;
-
     public void BeginReciteTask() {
         if (_levelManager.currentLevel == "Level3") {
             BeginFreestyleTask();
@@ -88,10 +89,11 @@ public class WordReciteManager : MonoBehaviour
 
         subtitleText3D.UpdateText("");
 
-        string question = activeList[currentWordOrSentenceIndex];    
+        string question = activeList[currentWordOrSentenceIndex]; 
+        uCatAudioSource.PlayOneShot(uCatOpenQuestionAudioList[currentWordOrSentenceIndex]);
+
         dialogueText3D.UpdateText(question);
         reciteText3D.Material = defaultColour;
-
         _witListeningStateManager.TransitionToState(EListeningState.ListeningForFreestyleResponse);
     }
     void Start()
@@ -122,10 +124,12 @@ public class WordReciteManager : MonoBehaviour
         // Initialise Word Lists
         SetWordAndUiListsBasedOnLevel();
         activeList = currentWordOrSentenceList;
-
         currentWordOrSentenceIndex = 0;
-
         incorrectWordAttempts = 0;
+
+        // Initialise word audio (for open questions)
+        uCatOpenQuestionAudioList = new AudioClip[currentWordOrSentenceList.Count];
+        uCatOpenQuestionAudioList = wordLists.level3OpenQuestionsAudioList.ToArray();
 
         // Set score based on amount of words in lists
         if (_levelManager.currentLevel == "Level1" || _levelManager.currentLevel == "Level2")
@@ -346,7 +350,7 @@ public class WordReciteManager : MonoBehaviour
         else
         {
             // Mark the current list as complete, and move on to the next (if any) via changing booleans
-            _witListeningStateManager.TransitionToState(EListeningState.ListeningForEverything);
+            _witListeningStateManager.TransitionToState(EListeningState.ListeningForMenuActivationCommandsOnly);
             if (activeList == currentWordOrSentenceList) { wordListComplete = true; }
             // No UI list in intro
             if (activeList == currentUiList || _levelManager.currentLevel == "Intro") { uiComplete = true; }
@@ -384,6 +388,7 @@ public class WordReciteManager : MonoBehaviour
     public void LevelTaskIsComplete()
     {
         StopAllCoroutines();
+        Debug.Log("Task is complete");
         // This ensures the timer will stop counting (once levels done)
         _freeSpeechManager.OnStoppedListening();
         _uiManager.ShowOrHideReciteMesh(false);

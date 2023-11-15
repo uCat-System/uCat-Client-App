@@ -36,10 +36,16 @@ MonoBehaviour:
   - My family is here
   level3OpenQuestionsList:
   - How are you feeling today?
-  - What's your name?
-  - What's your favourite food?
-  - What is your favourite animal?
-  - What's your favourite movie?
+  - What's the weather like?
+  - What do you have planned for today?
+  - Describe your progress in the uCat world.
+  - Are there anymore thoughts you'd like to share?
+  level3OpenQuestionsAudioList:
+  - {fileID: 8300000, guid: 95098c75a53026b4b8e7f14d68f45c08, type: 3}
+  - {fileID: 8300000, guid: 7eb5906cdf4824347891088dda114ede, type: 3}
+  - {fileID: 8300000, guid: caa53ec11ac7bc642ab60c3fd8d274d1, type: 3}
+  - {fileID: 8300000, guid: a2cf1135c63e2f846a4a8928f05ab921, type: 3}
+  - {fileID: 8300000, guid: 84f8f338dbc49db49a139a4bd0e970c9, type: 3}
   level1UiList:
   - One
   - Two

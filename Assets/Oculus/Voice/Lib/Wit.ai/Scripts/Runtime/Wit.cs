@@ -86,7 +86,7 @@ namespace Meta.WitAi
 
         public override void Deactivate()
         {
-            Debug.LogError("Wit Deactivated from Wit.cs");
+            Debug.Log("Wit Deactivated from Wit.cs");
             witService.Deactivate();
         }
 
