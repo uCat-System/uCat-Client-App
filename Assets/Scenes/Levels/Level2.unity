@@ -870,14 +870,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
-  m_LocalRotation: {x: -0.010427639, y: 0.45613372, z: -0.6973166, w: -0.5527955}
+  m_LocalRotation: {x: 0.6720525, y: 0.40203705, z: 0.1862915, w: 0.5933019}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 40.366, y: 320, z: 87.948006}
+  m_LocalEulerAnglesHint: {x: 40.366, y: 107.3, z: 87.948006}
 --- !u!114 &705507996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1240,6 +1240,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 127530128}
+    - target: {fileID: 634249619582277015, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 877146348916210106, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -1308,6 +1312,62 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1680036211}
+    - target: {fileID: 5499405244384656609, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
+      propertyPath: levelPositions.Array.data[2].position.x
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 5499405244384656609, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
+      propertyPath: levelPositions.Array.data[2].position.y
+      value: 25.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5499405244384656609, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
+      propertyPath: levelPositions.Array.data[2].position.z
+      value: 115.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5499405244384656609, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
+      propertyPath: levelPositions.Array.data[2].rotation.w
+      value: -0.5863724
+      objectReference: {fileID: 0}
+    - target: {fileID: 5499405244384656609, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
+      propertyPath: levelPositions.Array.data[2].rotation.y
+      value: 0.8100416
+      objectReference: {fileID: 0}
+    - target: {fileID: 5499405244474768435, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 5499405244474768435, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 25.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5499405244474768435, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 115.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5499405244474768435, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.5863723
+      objectReference: {fileID: 0}
+    - target: {fileID: 5499405244474768435, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5499405244474768435, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.8100417
+      objectReference: {fileID: 0}
+    - target: {fileID: 5499405244474768435, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5499405244474768435, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 251.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5499405244474768460, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6077588429730477223, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -1336,6 +1396,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1322213123}
+    - target: {fileID: 8869986731298829731, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9004619904802723902, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
       propertyPath: level3TaskActivationIndex
       value: 10
