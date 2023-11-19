@@ -24,13 +24,13 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/Level3.unity
     guid: 1db90665bab3018439b1da970c415e14
   - enabled: 0
-    path: Assets/Scenes/Levels/Level1Old.unity
+    path: Assets/Scenes/BackupsOldScenes/Level1Old.unity
     guid: f07ac48b6b1c7534f88197e6d3d7c206
   - enabled: 0
-    path: Assets/Scenes/Levels/Level2Old.unity
+    path: Assets/Scenes/BackupsOldScenes/Level2Old.unity
     guid: f954c7fb04fdff448bb3ed26c8bf8040
   - enabled: 0
-    path: Assets/Scenes/Levels/Level3Old.unity
+    path: Assets/Scenes/BackupsOldScenes/Level3Old.unity
     guid: 08ed11eddf2990343b3a6e1272fdd538
   - enabled: 0
     path: Assets/Scenes/Levels/Lobby.unity

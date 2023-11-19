@@ -50,8 +50,9 @@ MonoBehaviour:
   - We should take our time adjusting to the BCI.
   - Like we did before, I'm going to give you some words for you to repeat back.
   - When the dots disappear, repeat the word on the top half of the screen.
-  - " We\u2019ll be having a conversation in no time."
-  level1ScriptDialogueAnimations: 000000000200000001000000000000000000000001000000
+  - "We\u2019ll be having a conversation in no time."
+  - How about a change of scenery?
+  level1ScriptDialogueAnimations: 00000000020000000100000000000000000000000100000002000000
   level1ScriptDialogueAudio:
   - {fileID: 8300000, guid: 29c75bdc53610754db205f45d6c0d397, type: 3}
   - {fileID: 8300000, guid: 1eba2df4fa0dd1b4ca84bf178f74ea23, type: 3}
@@ -59,11 +60,59 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b72e6f3d235b89043a055b5f56a7b12f, type: 3}
   - {fileID: 8300000, guid: 152d5475be6dca949b8fc9151dd56460, type: 3}
   - {fileID: 8300000, guid: bb942939d7fb98149a86df49607d02e1, type: 3}
+  - {fileID: 8300000, guid: 72ca93600dc7843419a2903028f3195d, type: 3}
   level2ScriptDialogueOptions:
-  - Something
-  level2ScriptDialogueAnimations: 01000000
-  level2ScriptDialogueAudio: []
-  level3ScriptDialogueOptions: []
-  level3ScriptDialogueAnimations: 
-  level3ScriptDialogueAudio: []
+  - "Wow, we\u2019ll get through a dictionary in no time\u2026"
+  - Aw catnip, I really am a chatterbox.
+  - "I think It\u2019s high time for you to begin practicing full sentences!"
+  - As before, do your best to repeat sentences when the dots disappear.
+  - Let's begin!
+  level2ScriptDialogueAnimations: 0200000003000000010000000000000001000000
+  level2ScriptDialogueAudio:
+  - {fileID: 8300000, guid: 3d900d73ff4b2a34c988598be1ad1b91, type: 3}
+  - {fileID: 8300000, guid: eb7cf49c096a59e42875706cfca1333a, type: 3}
+  - {fileID: 8300000, guid: f873e1d79f8a88b44a86d15478c284ae, type: 3}
+  - {fileID: 8300000, guid: 5e1e55e42782b1b42bde326ad5bd272c, type: 3}
+  - {fileID: 8300000, guid: af4e9b0720fbaf142b74b2f412c46f7c, type: 3}
+  level3ScriptDialogueOptions:
+  - "Wow, you\u2019ve done a lot of hard work, hopefully there weren\u2019t any glitches
+    on the way."
+  - "This technology is very new, and I\u2019m sure the folks out there are working
+    their paws off to make sure any bugs will be squashed!"
+  - "Wait, not real bugs\u2026! I\u2019m terrified of them!"
+  - 'We just need to do one more thing before you can freely do what you want in
+    this world. '
+  - "Now, I won\u2019t throw anymore words at you\u2026"
+  - "It\u2019s time for you to try freestyle!"
+  - "Let\u2019s start with the small talk. I\u2019ll ask you a few casual questions
+    to begin with. "
+  - "When you stop talking, I\u2019ll stop listening."
+  - "My ears are a bit rusty, but you\u2019ll have a chance to correct me."
+  - You can use this exercise as a way of tracking your moods.
+  - "Congratulations, you\u2019re talking and able to navigate your virtual space."
+  - This is only the beginning. Soon you will be able to customize your voice, your
+    avatar and your environment. Or even start a video chat!
+  - "I\u2019m crossing my paws that these features will be available to you soon. "
+  - While I work on that, be sure to explore the app. You need to practice often
+    to fine-tune your BCI skills.
+  - "But don\u2019t worry, it\u2019s not a competition!"
+  - I'll bring us back home. Remember to say 'Hey uCat' to summon me.
+  level3ScriptDialogueAnimations: 01000000000000000300000000000000010000000100000000000000000000000300000000000000010000000000000002000000000000000100000000000000
+  level3ScriptDialogueAudio:
+  - {fileID: 8300000, guid: f860a127975c0d845be13d232c3e31ce, type: 3}
+  - {fileID: 8300000, guid: ef31bce6259f12642808658e44f7ba6c, type: 3}
+  - {fileID: 8300000, guid: c260fcd07fb6ffe45a98a82ee3e2a7e8, type: 3}
+  - {fileID: 8300000, guid: 3023c6d20a349444f955e201534da793, type: 3}
+  - {fileID: 8300000, guid: a5557f6970f0ac34e8bbbef8abd53fba, type: 3}
+  - {fileID: 8300000, guid: b7bdd565321bae44aab7e39237e767b4, type: 3}
+  - {fileID: 8300000, guid: 8ff8e23d38fdfdc4dbb65cb7c2b0dfff, type: 3}
+  - {fileID: 8300000, guid: dd23d866a07e8ca41b1cb9bc833ab0f3, type: 3}
+  - {fileID: 8300000, guid: a5dd97cf3ad83bf45b1bfdae674192b9, type: 3}
+  - {fileID: 8300000, guid: c1a46f4794559c741aaf333539654b12, type: 3}
+  - {fileID: 8300000, guid: ce2b9867828111c43b2ded65b668344d, type: 3}
+  - {fileID: 8300000, guid: 41c862fbc09d8ef4fa82381084d9440d, type: 3}
+  - {fileID: 8300000, guid: 646fd6f8bbfb8664aa6f78c4427edb45, type: 3}
+  - {fileID: 8300000, guid: 9764e4d10c9aa294ca131c88d45f1483, type: 3}
+  - {fileID: 8300000, guid: 7c9510f873f68254aa21f92e4fd98eb5, type: 3}
+  - {fileID: 8300000, guid: 610402e8a8ceb32409b44a99808529df, type: 3}
   timeBetweenLinesInSeconds: 1

@@ -10,6 +10,7 @@ public class WordLists : ScriptableObject
     public List<string> level1WordList;
     public List<string> level2SentenceList;
     public List<string> level3OpenQuestionsList;
+    public List<AudioClip> level3OpenQuestionsAudioList;
     public List<string> level1UiList;
     public List<string> level2UiList;
 }

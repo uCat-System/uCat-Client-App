@@ -10,12 +10,31 @@ public class LevelTransition : MonoBehaviour
 
     public GameObject crossFadeImage;
 
-    // Update is called once per frame
+    private static LevelTransition instance;
 
-    void Start() 
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // This method is called whenever a new scene is loaded.
+        // You can put your logic here to handle the changes needed when the scene changes.
+        Debug.Log("OnSceneLoaded: " + scene.name);
+    }
+
+    // Update is called once per frame
+    void Start()
     {
         crossFadeImage.SetActive(true);
     }
+
     public void BeginLevelTransition()
     {
         StartCoroutine(TransitionToNextLevel());
@@ -28,13 +47,12 @@ public class LevelTransition : MonoBehaviour
 
     public IEnumerator TransitionToNextLevel()
     {
-
         DialogueHandler.ResetDialogueIndex();
         transition.SetTrigger("Start");
 
         yield return new WaitForSeconds(transitionTime);
 
-        // Go to next scene using LevelManager
+        // Go to the next scene using LevelManager
 
         LevelManager levelManager = FindObjectOfType<LevelManager>();
         if (levelManager != null)
@@ -49,6 +67,7 @@ public class LevelTransition : MonoBehaviour
 
     public IEnumerator TransitionToSpecificLevel(string sceneName)
     {
+        Debug.Log("Transitioning to " + sceneName);
         DialogueHandler.ResetDialogueIndex();
 
         transition.SetTrigger("Start");

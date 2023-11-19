@@ -7,12 +7,10 @@ using ECorrectResponseType = CheckRecitedWordHandler.CorrectResponseType;
 using EDialogueState = DialogueManager.DialogueState;
 
 public class WordReciteManager : MonoBehaviour
-{
-    public AudioSource catAudioSource;
-    
-    public AnimationDriver catAnimationDriver;
+{    
+    private AnimationDriver catAnimationDriver;
 
-    public Modular3DText dialogueText3D;
+    private Modular3DText dialogueText3D;
     
     // Current word tracking
     int currentWordOrSentenceIndex;
@@ -25,8 +23,10 @@ public class WordReciteManager : MonoBehaviour
     // This is the list that is active, either words/sentences OR UI list
     private List<string> activeList;
 
-    // Scriptable asset for externally stored word lists
+    // Scriptable asset for externally stored word lists and audio
     public WordLists wordLists;
+
+    private AudioClip[] uCatOpenQuestionAudioList;
 
     // Track if the lists have been completed
     bool wordListComplete;
@@ -46,32 +46,75 @@ public class WordReciteManager : MonoBehaviour
 
     // External Managers
 
-    public FreeSpeechManager _freeSpeechManager;
+    private FreeSpeechManager _freeSpeechManager;
 
-    public  WitListeningStateManager _witListeningStateManager;
+    private  WitListeningStateManager _witListeningStateManager;
 
-    public ScoreManager _scoreManager;
-    public LevelManager _levelManager;
-    public DialogueManager _dialogueManager;
-    public Modular3DText reciteText3D;
-    public Modular3DText partialText3D;
+    private ScoreManager _scoreManager;
+    private UIManager _uiManager;
+    private LevelManager _levelManager;
+    private DialogueManager _dialogueManager;
 
-    public Modular3DText subtitleText3D;
+    // 3D Text 
 
-    public AudioSource reciteBoardAudioSource;
-    public AudioSource uCatAudioSource;
+    private Modular3DText reciteText3D;
+    private Modular3DText partialText3D;
+
+    private Modular3DText subtitleText3D;
+
+    // Audio
+
+    private AudioSource reciteBoardAudioSource;
+    private AudioSource uCatAudioSource;
 
     public AudioClip[] wordSounds;
+    public void BeginReciteTask() {
+        if (_levelManager.currentLevel == "Level3") {
+            BeginFreestyleTask();
+        } else {
+            StartCoroutine(StartCurrentWordCountdown());
+        }
+    }
 
+    public void BeginFreestyleTask() {
+        // Freestyle (open questions) task
+        // Words come up instantly and take up the whole board (alternate board)
+        // - play audio along with them (tbd)
+        dialogueText3D.UpdateText("");
+        subtitleText3D.UpdateText("");
+        reciteText3D.UpdateText("");
+
+        reciteBoardAudioSource.clip = wordSounds[0]; // replace this with ucat voice later
+        reciteBoardAudioSource.Play();
+
+        subtitleText3D.UpdateText("");
+
+        string question = activeList[currentWordOrSentenceIndex]; 
+        uCatAudioSource.PlayOneShot(uCatOpenQuestionAudioList[currentWordOrSentenceIndex]);
+
+        dialogueText3D.UpdateText(question);
+        reciteText3D.Material = defaultColour;
+        _witListeningStateManager.TransitionToState(EListeningState.ListeningForFreestyleResponse);
+    }
     void Start()
     {
         // Assigning gameobjects
-        reciteBoardAudioSource = GameObject.FindWithTag("ReciteBoard").GetComponent<AudioSource>();
         uCatAudioSource = GameObject.FindWithTag("uCat").GetComponent<AudioSource>();
+        catAnimationDriver = GameObject.FindWithTag("uCat").GetComponent<AnimationDriver>();
         subtitleText3D = GameObject.FindWithTag("SubtitleText3D").GetComponent<Modular3DText>();
         partialText3D = GameObject.FindWithTag("PartialText3D").GetComponent<Modular3DText>();
         reciteText3D = GameObject.FindWithTag("ReciteText3D").GetComponent<Modular3DText>();
         reciteBoardAudioSource = GameObject.FindWithTag("ReciteBoard").GetComponent<AudioSource>();
+        dialogueText3D = GameObject.FindWithTag("DialogueText3D").GetComponent<Modular3DText>();
+
+        // Managers
+
+        _uiManager = GetComponent<UIManager>();
+        _freeSpeechManager = GetComponent<FreeSpeechManager>();
+        _witListeningStateManager = GetComponent<WitListeningStateManager>();
+        _scoreManager = GetComponent<ScoreManager>();
+        _levelManager = GetComponent<LevelManager>();
+        _dialogueManager = GetComponent<DialogueManager>();
 
        
         // Game state variables
@@ -81,10 +124,12 @@ public class WordReciteManager : MonoBehaviour
         // Initialise Word Lists
         SetWordAndUiListsBasedOnLevel();
         activeList = currentWordOrSentenceList;
-
         currentWordOrSentenceIndex = 0;
-
         incorrectWordAttempts = 0;
+
+        // Initialise word audio (for open questions)
+        uCatOpenQuestionAudioList = new AudioClip[currentWordOrSentenceList.Count];
+        uCatOpenQuestionAudioList = wordLists.level3OpenQuestionsAudioList.ToArray();
 
         // Set score based on amount of words in lists
         if (_levelManager.currentLevel == "Level1" || _levelManager.currentLevel == "Level2")
@@ -94,8 +139,6 @@ public class WordReciteManager : MonoBehaviour
 
         // Start the first word
         reciteText3D.Material = defaultColour;
-        
-        StartCoroutine(StartCurrentWordCountdown());
     }
 
     void SetWordAndUiListsBasedOnLevel() {
@@ -121,7 +164,6 @@ public class WordReciteManager : MonoBehaviour
 
     public IEnumerator StartCurrentWordCountdown()
     {
-
         dialogueText3D.UpdateText("");
         _witListeningStateManager.TransitionToState(EListeningState.ListeningForMenuActivationCommandsOnly);
 
@@ -157,7 +199,6 @@ public class WordReciteManager : MonoBehaviour
                         break;
                     case 2:
                         reciteText3D.UpdateText("." + word + ".");
-
                         // Discard anything said during countdown and start fresh
                         _witListeningStateManager.TransitionToState(EListeningState.NotListening);
                         break;
@@ -175,7 +216,6 @@ public class WordReciteManager : MonoBehaviour
             reciteText3D.UpdateText(word);
             reciteText3D.Material = listeningColour;
         }
-
     }
 
     public void OnMicrophoneTimeOut()
@@ -203,18 +243,18 @@ public class WordReciteManager : MonoBehaviour
         if (currentWordOrSentenceIndex < activeList.Count-1)
         {
             currentWordOrSentenceIndex++;
-            Debug.Log("going to next word " + currentWordOrSentenceIndex);
             _witListeningStateManager.TransitionToState(EListeningState.ListeningForMenuActivationCommandsOnly);
-            StartCoroutine(StartCurrentWordCountdown());
+            BeginReciteTask();
         } else {
             // End of list
-            GameOver();
+            LevelTaskIsComplete();
         }
     }
+
     public void RepeatSameWord()
     {
         _witListeningStateManager.TransitionToState(EListeningState.ListeningForMenuActivationCommandsOnly);
-        StartCoroutine(StartCurrentWordCountdown());
+         BeginReciteTask();
     }
     public void StartWordCheck(string transcription)
     {
@@ -223,7 +263,6 @@ public class WordReciteManager : MonoBehaviour
    
     public IEnumerator CheckRecitedWord(string text)
     {
-        Debug.Log("Checking word, reciting allowed? " + _witListeningStateManager.RecitingWordsIsAllowed());
         if (!_witListeningStateManager.RecitingWordsIsAllowed()) {
             // Menu
             yield break;
@@ -236,18 +275,12 @@ public class WordReciteManager : MonoBehaviour
     }
     
     public IEnumerator HandleWordOrSentenceCorrectOrIncorrect(ECorrectResponseType responseType) {
-        // The text is coming back as positive or negative currently.
-        // We need to expand this to be variable based on how many times they have gotten it wrong.
-        // We also need to add in the audio for the cat.
         switch (responseType) {
 
             // If the word was right
-
             case ECorrectResponseType.POSITIVE_CORRECT_RESPONSE:
-                dialogueText3D.UpdateText(CheckRecitedWordHandler.correctResponses[responseType]);
                 catAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Happy;
                 reciteText3D.Material = correctColour;
-                Debug.LogError("WAITING (POS)");
                 yield return new WaitForSeconds(CheckRecitedWordHandler.timeBetweenWordsInSeconds);
                 dialogueText3D.UpdateText("");
                 catAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Idle;
@@ -262,9 +295,7 @@ public class WordReciteManager : MonoBehaviour
                 catAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Sad;
                 reciteText3D.Material = incorrectColour;
 
-                //Debug.Log("Length? " + CheckRecitedWordHandler.negativeCorrectResponseAudio[incorrectWordAttempts].length);
                 // Wait for the amount of seconds that the audio clip goes for, so we don't overlap
-                Debug.LogError("WAITING (NEG)");
 
                 if (uCatAudioSource.isPlaying) {
                     yield return new WaitWhile(() => uCatAudioSource.isPlaying);
@@ -285,7 +316,6 @@ public class WordReciteManager : MonoBehaviour
 
     void PlayIncorrectWordDialogue() {
         string incorrectResponseText; 
-        Debug.LogError("incorrectWordAttempts: " + incorrectWordAttempts);
         if (incorrectWordAttempts <= 2) {
             incorrectResponseText = CheckRecitedWordHandler.negativeCorrectResponses[incorrectWordAttempts];
             // Play audio clip number x HERE
@@ -320,11 +350,14 @@ public class WordReciteManager : MonoBehaviour
         else
         {
             // Mark the current list as complete, and move on to the next (if any) via changing booleans
-            _witListeningStateManager.TransitionToState(EListeningState.ListeningForEverything);
+            _witListeningStateManager.TransitionToState(EListeningState.ListeningForMenuActivationCommandsOnly);
             if (activeList == currentWordOrSentenceList) { wordListComplete = true; }
             // No UI list in intro
             if (activeList == currentUiList || _levelManager.currentLevel == "Intro") { uiComplete = true; }
-            if (_levelManager.currentLevel == "Level3") { openQuestionsComplete = true; }
+            if (_levelManager.currentLevel == "Level3") { 
+                openQuestionsComplete = true;
+                LevelTaskIsComplete();
+             }
             StartCoroutine(CheckWordListStatus());
         }
     }
@@ -332,22 +365,18 @@ public class WordReciteManager : MonoBehaviour
     private IEnumerator CheckWordListStatus()
     {
         // Either proceed to next word list (ui), or end the game.
-        // If level 1/2 have both lists done, or level 3 has open questions done, end the game.
         if (wordListComplete && uiComplete || openQuestionsComplete)
         {
             currentWordOrSentenceIndex = 0;
-            reciteText3D.UpdateText("Finished!");
-            GameOver();
+            LevelTaskIsComplete();
         }
         else if (wordListComplete && !uiComplete)
         { 
             activeList = currentUiList;
             currentWordOrSentenceIndex = 0;
             reciteText3D.UpdateText("Great! Moving onto UI word list.");
-
             yield return new WaitForSeconds(2);
-            StartCoroutine(StartCurrentWordCountdown());
-            
+            BeginReciteTask();    
         }
 
         else
@@ -356,15 +385,14 @@ public class WordReciteManager : MonoBehaviour
         }
     }
 
-    public void GameOver()
+    public void LevelTaskIsComplete()
     {
-        // If in the intro, we want to skip the confirmation.
-        if (_levelManager.currentLevel == "Intro") {
-            _dialogueManager.ChangeDialogueState(EDialogueState.IsPlayingDialogueOnly);
-            _dialogueManager.StartDialogue();
-        } else {
-            reciteText3D.UpdateText("Say 'next' to proceed.\nOr 'repeat' to repeat.");
-            _witListeningStateManager.TransitionToState(EListeningState.ListeningForNextOrRepeat);
-        }
+        StopAllCoroutines();
+        Debug.Log("Task is complete");
+        // This ensures the timer will stop counting (once levels done)
+        _freeSpeechManager.OnStoppedListening();
+        _uiManager.ShowOrHideReciteMesh(false);
+        reciteText3D.UpdateText("");
+        _dialogueManager.StartDialogue();
     }
 }

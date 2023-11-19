@@ -9,6 +9,34 @@ using System.Collections.Generic;
 public class WitListeningStateManager : MonoBehaviour
 {
     public enum ListeningState
+    // Turn into a struct? TODO
+    // maps {ListeningState => appropriate boolean}
+    // maybe use quirins boilerplate for static classes
+    // eg {ListeningForEverything --> {ableToListen: true, micIcon: true}}
+
+    /*
+
+        struct ListeningState
+        {
+            public EListeningState Id; --> ListeningForEverything
+            public bool AbleToListen; --> 
+            public bool ShowMicIcon;
+            public Enum[] AllowedTransitions; --> deal with permuations of transitions
+        }
+
+
+        readonly var ListeningState ListeningForEverything = new() {
+            Id = EListeningState.ListeningForEverything,
+            AbleToListen = true,
+            ShowMicIcon = true
+
+        }
+
+        // ListeningForEverything.AbleToListen --> true
+        // CurrentState = ListeningForEverything --> fire an event to show mic etc
+
+    */
+
     {
         NotListening,
         ListeningForEverything,
@@ -19,14 +47,15 @@ public class WitListeningStateManager : MonoBehaviour
         ListeningForNextOrRepeat,
 
         ListeningForLobbyMenuCommandsOnly, // including memo mode
+        ListeningForFreestyleResponse,
     }
-    public Modular3DText listeningText3D;
-
-    public string scene;
-    public UIManager _uiManager;
+    private string scene;
+    private UIManager _uiManager;
     public ListeningState currentListeningState;
-    public WordReciteManager _wordReciteManager;
-    public GameObject wit;
+    private WordReciteManager _wordReciteManager;
+    private GameObject wit;
+
+    public float witAutomaticReactivationTimer;
 
     public GameObject micIcon;
 
@@ -36,12 +65,10 @@ public class WitListeningStateManager : MonoBehaviour
     {
         { ListeningState.ListeningForEverything, true},
         { ListeningState.ListeningForRecitedWordsOnly, true },
-        { ListeningState.ListeningForConfirmation, true },
     };
 
     private static Dictionary<ListeningState, bool> validMenuNavigationStates = new Dictionary<ListeningState, bool>
     {
-        { ListeningState.ListeningForEverything, true},
         { ListeningState.ListeningForLobbyMenuCommandsOnly, true },
         { ListeningState.ListeningForTaskMenuCommandsOnly, true },
     };
@@ -57,6 +84,16 @@ public class WitListeningStateManager : MonoBehaviour
         { ListeningState.ListeningForEverything, true },
         { ListeningState.ListeningForRecitedWordsOnly, true },
     };
+
+    private void Start()
+    {   
+        _uiManager = GetComponent<UIManager>();
+        _wordReciteManager = GetComponent<WordReciteManager>();
+        wit = GameObject.FindWithTag("Wit");
+        scene = SceneManager.GetActiveScene().name;
+        TransitionToState(ListeningState.ListeningForMenuActivationCommandsOnly);
+        InvokeRepeating("EnableWitEverySoOften", 0f, witAutomaticReactivationTimer);
+    }
 
     public bool CurrentStateIsAllowedInDictionary(Dictionary<ListeningState, bool> dictToSearch) {
         // Go through every enum value
@@ -108,19 +145,10 @@ public class WitListeningStateManager : MonoBehaviour
     }
 
     public void TransitionToRelevantMenuNavigationStateBasedOnLevel() {
-        if (scene != "Level3") {
+        if (scene != "Lobby") {
             TransitionToState(ListeningState.ListeningForTaskMenuCommandsOnly);
         } else {
             TransitionToState(ListeningState.ListeningForLobbyMenuCommandsOnly);
-        }
-    }
-    private void Start()
-    {        
-        scene = SceneManager.GetActiveScene().name;
-        if (scene == "Level3") {
-            TransitionToState(ListeningState.ListeningForEverything);
-        } else {
-            TransitionToState(ListeningState.ListeningForMenuActivationCommandsOnly);
         }
     }
 
@@ -139,6 +167,9 @@ public class WitListeningStateManager : MonoBehaviour
 
     public IEnumerator TurnWitActivationOffAndOn() {
         // Turn it off and on
+        // transition was made: this fires, works.
+        // wit stops listening, but no transition was requested. 
+
         wit.SetActive(true);
         Wit witComponent = wit.GetComponent<Wit>();
         witComponent.Deactivate();
@@ -150,17 +181,28 @@ public class WitListeningStateManager : MonoBehaviour
         wit.SetActive(false);
     }
 
+    void EnableWitEverySoOften(){
+        // Activate it again.
+        Debug.Log("Enabling Wit on timer");
+        wit.SetActive(true);
+        Wit witComponent = wit.GetComponent<Wit>();
+        witComponent.Activate();
+    }
+
+
     void Update() {
-        if (Input.GetKeyDown(KeyCode.Alpha1)) {
-            StartCoroutine(TurnWitActivationOffAndOn());
-        }
+       
     }
  
     // This is called from the WitListeningStateMachine script using actual enum values.
 
     public void TransitionToState(ListeningState nextState)
         {
-            listeningText3D.UpdateText(nextState.ToString());
+            // Once struct in place, switch here using the ListeningState.Id enum
+            // micIcon.SetActive(ListeningState.ShowMicIcon);
+            
+            // Maybe also check the current state to catch bugs
+            // eg if transition from a to b is invalid, make it throw something
             switch (nextState)
             {
                 case ListeningState.NotListening:
@@ -168,6 +210,7 @@ public class WitListeningStateManager : MonoBehaviour
                     micIcon.SetActive(false);
                     break;
                 case ListeningState.ListeningForMenuActivationCommandsOnly:
+                    // turn on wit here only TODO if AbleToListen is true for this id in the struct.
                     StartCoroutine(TurnWitActivationOffAndOn());
                     micIcon.SetActive(false);
                     break;
@@ -188,6 +231,11 @@ public class WitListeningStateManager : MonoBehaviour
                     micIcon.SetActive(true);
                     break;
                 case ListeningState.ListeningForNextOrRepeat:
+                    StartCoroutine(TurnWitActivationOffAndOn());
+                    micIcon.SetActive(true);
+                    break;
+
+                 case ListeningState.ListeningForFreestyleResponse:
                     StartCoroutine(TurnWitActivationOffAndOn());
                     micIcon.SetActive(true);
                     break;

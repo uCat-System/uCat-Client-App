@@ -1,0 +1,27 @@
+level transitions:
+
+- 2 audios playing (when not doing from menu)
+- menu board remains open
+- level 2 teleports randomly (dialogue index issue)
+
+
+general: 
+
+cannot currently have dialogue options after task is finished (should be able to just continue dialogue indexes?)
+
+intro: 
+
+
+level 1: 
+
+timer doesnt start for skip
+word stays on 'help' at the end, should be blank when asking to go to next level 
+
+2:
+
+wit deactivates during next/repeat bit at end of level
+
+3: need to add in menu tutorial
+need to disable mic during dialogue (except menu maybe?)
+wit sometimes stops during yes/no confirmation stage
+if repeating, need to reset dialogue index.. but also skip dialogue and go to task
