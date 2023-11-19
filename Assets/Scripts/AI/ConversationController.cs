@@ -26,7 +26,7 @@ public class ConversationController : MonoBehaviour
 
 
     void Start(){
-        api = new OpenAIAPI("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");
+        api = new OpenAIAPI("");
         StartConversation();
         submitEvery5s = StartCoroutine(SubmitToOpenAI(5));
         

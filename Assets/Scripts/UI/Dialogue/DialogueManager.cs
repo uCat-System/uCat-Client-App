@@ -123,6 +123,9 @@ public class DialogueManager : MonoBehaviour
             case "Level3":
                 taskActivationDialogueIndex = level3TaskActivationIndex;
                 break;
+            case "ConvoMode":
+                taskActivationDialogueIndex = level3TaskActivationIndex;
+                break;
             default:
                 Debug.LogError("No dialogue task indexes set for level " + _levelManager.currentLevel);
                 break;
@@ -180,7 +183,7 @@ public class DialogueManager : MonoBehaviour
     private void ActivateBoard() {
         _uiManager.ShowOrHideReciteMesh(true);
         if (_levelManager.currentLevel != "Level3") {
-            GameObject.FindWithTag("ReciteText3D").GetComponent<Modular3DText>().UpdateText("...Hello...");
+            //GameObject.FindWithTag("ReciteText3D").GetComponent<Modular3DText>().UpdateText("...Hello...");
         }
     }
 
