@@ -2003,6 +2003,22 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1879540904}
+    - target: {fileID: 9004619904802723902, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
+      propertyPath: introTaskActivationIndex
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 9004619904802723902, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
+      propertyPath: micActivationDialogueIndex
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9004619904802723902, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
+      propertyPath: taskActivationDialogueIndex
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9004619904802723902, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
+      propertyPath: boardActivationDialogueIndex
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}

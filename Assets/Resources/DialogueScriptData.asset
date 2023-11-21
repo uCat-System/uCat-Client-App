@@ -16,20 +16,18 @@ MonoBehaviour:
   - "Hi! I\u2019m so glad to see you here."
   - "I'm uCat, your AI guide for your BCI. I\u2019m here to take you through your
     calibration program."
-  - For the past few weeks you practiced repeating a ton of words.
+  - For the past few weeks you've practiced repeating a ton of words.
   - "Don\u2019t you think it's time to learn how to use them to your advantage?"
   - As usual, try to repeat the phrase when the dots disappear.
   - Imagine you are mouthing the words to someone across the room.
-  - 'This time, however, I will play your inner voice back to you. '
-  - "Don\u2019t be shocked if it doesn\u2019t sound like you \u2013 we\u2019ll work
-    on changing that later! "
   - "This icon will appear when I\u2019m listening to you. It indicates that it\u2019s
     your turn to talk."
   - 'When dots disappear, repeat after me:'
   - "\u201C\u2026Hello\u2026\u201D"
-  - Wow..!
+  - '[delete me]'
+  - Wow
   - That was too easy!
-  introScriptDialogueAnimations: 00000000010000000000000000000000000000000000000001000000020000000000000000000000000000000200000002000000
+  introScriptDialogueAnimations: 000000000100000000000000040000000000000000000000020000000000000000000000020000000200000002000000
   introScriptDialogueAudio:
   - {fileID: 8300000, guid: 28188cd7fbfc8de4e94c323a2a39d080, type: 3}
   - {fileID: 8300000, guid: bbcd5d10a0ada184fabbb325b8533dce, type: 3}
@@ -37,11 +35,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: acfc4a90ae0c7cc48a2b6de5c20b6171, type: 3}
   - {fileID: 8300000, guid: 034411083329f554c90f6f37fa174c90, type: 3}
   - {fileID: 8300000, guid: 695bcf3271376484ca32419317f1f3e9, type: 3}
-  - {fileID: 8300000, guid: 5f769ec4ead7c474b8b598362dd17c39, type: 3}
-  - {fileID: 8300000, guid: bde1103d4cef60b4ba1cb0072091bab3, type: 3}
   - {fileID: 8300000, guid: d9dba0625619fcf4a951c217a7c2597e, type: 3}
   - {fileID: 8300000, guid: a3fa4fa0079e85748a70a7d80c144931, type: 3}
   - {fileID: 8300000, guid: efde3b098b8f2e64e843d57b2da2519b, type: 3}
+  - {fileID: 8300000, guid: aba758770cdcfe24aa77f484b69eff91, type: 3}
   - {fileID: 8300000, guid: 5f2cc11dae8c82f45904c889030c20e0, type: 3}
   - {fileID: 8300000, guid: aba758770cdcfe24aa77f484b69eff91, type: 3}
   level1ScriptDialogueOptions:

@@ -15,25 +15,25 @@ MonoBehaviour:
   introWordList:
   - Hello
   level1WordList:
-  - Hello
   - Computer
-  - Choice
-  - Day
-  - Kite
-  - Though
-  - Veto
-  - Were
-  - Tired
+  - With
+  - Phone
+  - Want
+  - Different
+  - Fast
+  - Stop
+  - Drink
+  - Finished
   - Nurse
   level2SentenceList:
-  - How do you like my music
-  - My glasses are comfortable
-  - What do you do
-  - You are not right
+  - My family is here
+  - I think I need a little air
+  - I want to show you something
+  - You are wrong
   - That is very clean
   - I do not feel comfortable
   - Bring my glasses here
-  - My family is here
+  - Where are we going
   level3OpenQuestionsList:
   - How are you feeling today?
   - What's the weather like?
