@@ -32,10 +32,15 @@ public class ConversationManager : MonoBehaviour
     private WitListeningStateManager _witListeningStateManager;
     private LevelManager _levelManager;
 
+    public bool isCurrentlyCountingTowardsTimeout;
+    public float uCatResponseTimeoutLimit;
+    public float uCatResponseTimeout;
+
 
 
     void Start(){
-
+        
+        uCatResponseTimeout = 0;
         _uiManager = GetComponent<UIManager>();
         _levelManager = GetComponent<LevelManager>();
         _witListeningStateManager = GetComponent<WitListeningStateManager>();
@@ -122,6 +127,7 @@ public class ConversationManager : MonoBehaviour
         // _subtitle.UpdateText("");
 
         //send entire chat to OpenAI to get its response
+        isCurrentlyCountingTowardsTimeout = true;
         var chatResult = await api.Chat.CreateChatCompletionAsync(new ChatRequest(){
             Model = Model.ChatGPTTurbo,
             Temperature = 0.7,
@@ -136,18 +142,42 @@ public class ConversationManager : MonoBehaviour
         //debugging
         Debug.Log(string.Format("{0}: {1}", responseMessage.rawRole, responseMessage.Content));
 
-        //TTS speak uCat's response
-        _uCatSpeaker.Speak(responseMessage.Content);
+        if (responseMessage.Content.Length > 0) {
+            //TTS speak uCat's response
+            _uCatSpeaker.Speak(responseMessage.Content);
+            isCurrentlyCountingTowardsTimeout = false;
+            uCatResponseTimeout = 0;
+            //add the response to the total list of messages
+            messages.Add(responseMessage);
+            // _dialogue.UpdateText(string.Format("You: {0}\n\nuCat: {1}", userMessage.Content, responseMessage.Content));
+        }
 
-        //add the response to the total list of messages
-        messages.Add(responseMessage);
+        else {
+            // Catch it if API has an error somehow
+            Debug.LogError("OpenAI API returned an empty response");
+            Debug.Log(responseMessage.Content);
+            _witListeningStateManager.TransitionToState(EListeningState.ListeningForConversationModeInput);
+        }
+
 
         //update the response text field
-        // _dialogue.UpdateText(string.Format("You: {0}\n\nuCat: {1}", userMessage.Content, responseMessage.Content));
     }
 
     public void UcatIsDoneSpeaking() {
         Debug.Log("UcatIsDoneSpeaking called");
+        _uCatSpeaker.Stop();
         _witListeningStateManager.TransitionToState(EListeningState.ListeningForConversationModeInput);
+    }
+
+    void Update() {
+        if (isCurrentlyCountingTowardsTimeout) {
+            uCatResponseTimeout += Time.deltaTime;
+        }
+
+        if (uCatResponseTimeout > uCatResponseTimeoutLimit) {
+                isCurrentlyCountingTowardsTimeout = false;
+                uCatResponseTimeout = 0;
+                UcatIsDoneSpeaking();
+         }
     }
 }

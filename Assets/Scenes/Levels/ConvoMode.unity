@@ -1722,6 +1722,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _uCatSpeaker: {fileID: 1050020837}
   _userSpeaker: {fileID: 272987215}
+  isCurrentlyCountingTowardsTimeout: 0
+  uCatResponseTimeoutLimit: 20
+  uCatResponseTimeout: 0
 --- !u!43 &1566689329
 Mesh:
   m_ObjectHideFlags: 0

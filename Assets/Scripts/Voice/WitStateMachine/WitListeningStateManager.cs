@@ -184,10 +184,13 @@ public class WitListeningStateManager : MonoBehaviour
 
     void EnableWitEverySoOften(){
         // Activate it again.
-        // Debug.Log("Enabling Wit on timer");
-        wit.SetActive(true);
-        Wit witComponent = wit.GetComponent<Wit>();
-        witComponent.Activate();
+
+        if (currentListeningState != ListeningState.WaitingForConversationResponse) {
+        Debug.Log("Enabling Wit on timer");
+            wit.SetActive(true);
+            Wit witComponent = wit.GetComponent<Wit>();
+            witComponent.Activate();
+        }
     }
 
 
