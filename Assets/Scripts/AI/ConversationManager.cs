@@ -7,6 +7,7 @@ using MText;
 using OpenAI_API;
 using OpenAI_API.Chat;
 using OpenAI_API.Models;
+using System.Linq;
 using Meta.WitAi;
 using Meta.WitAi.TTS.Utilities;
 using CandyCoded.env;
@@ -37,24 +38,31 @@ public class ConversationManager : MonoBehaviour
     public float uCatResponseTimeout;
 
     private AnimationDriver uCatAnimationDriver;
-
+    public string standardInitializationMessage;
+    public string advancedInitializationMessage;
 
 
     void Start(){
-
-        _uCatSpeaker.Speak("Meow, I'm uCat. Let's have a conversation!");
-        uCatAnimationDriver = GameObject.FindWithTag("uCat").GetComponent<AnimationDriver>();
-        uCatAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Happy;
-        uCatResponseTimeout = 0;
+        // Assign scripts
         _uiManager = GetComponent<UIManager>();
         _levelManager = GetComponent<LevelManager>();
         _witListeningStateManager = GetComponent<WitListeningStateManager>();
+        uCatAnimationDriver = GameObject.FindWithTag("uCat").GetComponent<AnimationDriver>();
 
+        standardInitializationMessage =  "Your name is 'uCat'. You are a humble, kind-hearted, compassionate, and sassy robocat. Sometimes you say \"meow\" when you speak. You help me learn how to use my implanted brain-computer interfaces to move inside the metaverse. You keep your responses short and to the point.";
+        advancedInitializationMessage =  
+        "Your name is 'uCat'. You are a humble, kind-hearted, compassionate, and sassy robocat. Sometimes you say \"meow\" when you speak. You help me learn how to use my implanted brain-computer interfaces to move inside the metaverse. You keep your responses short and to the point. At the end of each response, categorise your response into one of the following categories: 'happy' 'sad' 'confused' 'neutral' 'cheeky'. The category should be the last sentence of your response and just consist of the word by itself, e.g., 'Happy.'";
         if (_levelManager.currentLevel != "ConvoMode") {
             Debug.Log("ConversationManager.cs: Not in ConvoMode, returning");
             this.enabled = false;
             return;
         }
+
+
+        // Initial dialogue and animation
+        uCatAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Happy;
+        uCatResponseTimeout = 0;
+
         uCatAudioSource = GameObject.FindWithTag("uCatConversationAudioSource").GetComponent<AudioSource>();
         InitiliazeUcatConversation();
         _witListeningStateManager.TransitionToState(EListeningState.ListeningForConversationModeInput);
@@ -78,7 +86,7 @@ public class ConversationManager : MonoBehaviour
                 api = new OpenAIAPI(apiKey);
                 messages = new List<ChatMessage>
                 {
-                    new ChatMessage(ChatMessageRole.System, "Your name is 'uCat'. You are a humble, kind-hearted, compassionate, and sassy robocat. Sometimes you say \"meow\" when you speak. You help me learn how to use my implanted brain-computer interfaces to move inside the metaverse. You keep your responses short and to the point.")
+                    new ChatMessage(ChatMessageRole.System, advancedInitializationMessage)
                 };
         }
 
@@ -123,25 +131,30 @@ public class ConversationManager : MonoBehaviour
 
         //get OpenAI response
         ChatMessage responseMessage = new ChatMessage();
-        responseMessage.Role = chatResult.Choices[0].Message.Role;
-        responseMessage.Content = chatResult.Choices[0].Message.Content;
-        //debugging
-        Debug.Log(string.Format("{0}: {1}", responseMessage.rawRole, responseMessage.Content));
+        string response = chatResult.Choices[0].Message.Content;
 
-        if (responseMessage.Content.Length > 0) {
+        // This object will be added to the total messages
+        responseMessage.Role = chatResult.Choices[0].Message.Role;
+        responseMessage.Content = response;
+
+        if (response.Length > 0) {
+            string lastWord = GetLastWordOfLastSentence(response);
+            // Get the normal sentence so uCat says it normally.
+            string sentenceWithoutEmotion = response.Substring(0, response.Length - (lastWord.Length+1));
+
+            // Play animation based on emotion catewgory
+            PlayEmotionAnimation(lastWord);
             //TTS speak uCat's response
-            _uCatSpeaker.Speak(responseMessage.Content);
+            _uCatSpeaker.Speak(sentenceWithoutEmotion);
             isCurrentlyCountingTowardsTimeout = false;
             uCatResponseTimeout = 0;
             //add the response to the total list of messages
             messages.Add(responseMessage);
-            // _dialogue.UpdateText(string.Format("You: {0}\n\nuCat: {1}", userMessage.Content, responseMessage.Content));
         }
 
         else {
             // Catch it if API has an error somehow
             Debug.LogError("OpenAI API returned an empty response");
-            Debug.Log(responseMessage.Content);
             _witListeningStateManager.TransitionToState(EListeningState.ListeningForConversationModeInput);
         }
 
@@ -149,9 +162,57 @@ public class ConversationManager : MonoBehaviour
         //update the response text field
     }
 
+    string GetLastWordOfLastSentence(string text)
+    {
+        // Split the text into sentences
+        string[] sentences = text.Split(new char[] { '.', '!', '?' }, StringSplitOptions.RemoveEmptyEntries);
+        
+        // Get the last sentence
+        string lastSentence = sentences.LastOrDefault()?.Trim();
+
+        if (string.IsNullOrEmpty(lastSentence))
+        {
+            return string.Empty;
+        }
+
+        // Split the last sentence into words
+        string[] words = lastSentence.Split(new char[] { ' ', ',', ';', ':' }, StringSplitOptions.RemoveEmptyEntries);
+
+        // Return the last word
+        return words.LastOrDefault();
+    }
+
+    void PlayEmotionAnimation(string text) {
+        // get the last sentence from the string, which should be the emotion. remove the period at the end
+        // may also need to split on exclamation marks and question marks        
+
+        switch (text.ToLower()) {
+            case "happy":
+                uCatAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Happy;
+                break;
+            case "sad":
+                 uCatAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Sad;
+                break;
+            case "confused":
+                uCatAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Confused;
+                break;
+            case "neutral":
+                uCatAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Idle;
+                break;
+            case "cheeky":
+                uCatAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Peeking;
+                break;
+            default:
+                Debug.LogError("ExtractEmotionFromText: emotion not recognised");
+                break;
+        }
+
+    }
+
     public void UcatIsDoneSpeaking() {
         Debug.Log("UcatIsDoneSpeaking called");
         _uCatSpeaker.Stop();
+        uCatAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Idle;
         _witListeningStateManager.TransitionToState(EListeningState.ListeningForConversationModeInput);
     }
 
