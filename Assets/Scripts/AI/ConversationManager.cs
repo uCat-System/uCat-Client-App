@@ -10,13 +10,15 @@ using OpenAI_API.Models;
 using Meta.WitAi;
 using Meta.WitAi.TTS.Utilities;
 using CandyCoded.env;
+using EListeningState = WitListeningStateManager.ListeningState;
+
 public class ConversationManager : MonoBehaviour
 {
     
     
     // public Modular3DText _subtitle;
     // public Modular3DText _dialogue;
-    // public TTSSpeaker _uCatSpeaker;
+    public TTSSpeaker _uCatSpeaker;
     // public TTSSpeaker _userSpeaker;
 
     
@@ -25,6 +27,7 @@ public class ConversationManager : MonoBehaviour
     private Coroutine submitEvery5s;
 
     private UIManager _uiManager;
+    private WitListeningStateManager _witListeningStateManager;
     private LevelManager _levelManager;
 
 
@@ -33,16 +36,16 @@ public class ConversationManager : MonoBehaviour
 
         _uiManager = GetComponent<UIManager>();
         _levelManager = GetComponent<LevelManager>();
+        _witListeningStateManager = GetComponent<WitListeningStateManager>();
+
         if (_levelManager.currentLevel != "ConvoMode") {
             Debug.Log("ConversationManager.cs: Not in ConvoMode, returning");
             this.enabled = false;
             return;
         }
         InitiliazeUcatConversation();
-        GetOpenAIResponse();
+        _witListeningStateManager.TransitionToState(EListeningState.ListeningForConversationModeInput);
         
-
-        // StartConversation();
         // submitEvery5s = StartCoroutine(SubmitToOpenAI(5));
         
     }
@@ -68,6 +71,12 @@ public class ConversationManager : MonoBehaviour
         //     }
         // }
     // }
+
+    public void HandleUserSpeech(string spokenText) {
+        // This function is called from FreeSpeechManager when the user speaks (as long as they are allowed to currently)
+        Debug.Log("ConversationManager.cs: HandleUserSpeech called with text: " + spokenText);
+        GetOpenAIResponse(spokenText);
+    }
    
     private void InitiliazeUcatConversation(){
         if (env.TryParseEnvironmentVariable("OPENAI_API_KEY", out string apiKey))
@@ -75,9 +84,9 @@ public class ConversationManager : MonoBehaviour
                 Debug.Log($"API KEY is: {apiKey}");
                 api = new OpenAIAPI(apiKey);
                 messages = new List<ChatMessage>
-                    {
-                        new ChatMessage(ChatMessageRole.System, "Your name is 'uCat'. You are a humble, kind-hearted, compassionate, and sassy robocat. Sometimes you say \"meow\" when you speak. You help me learn how to use my implanted brain-computer interfaces to move inside the metaverse. You keep your responses short and to the point.")
-                    };
+                {
+                    new ChatMessage(ChatMessageRole.System, "Your name is 'uCat'. You are a humble, kind-hearted, compassionate, and sassy robocat. Sometimes you say \"meow\" when you speak. You help me learn how to use my implanted brain-computer interfaces to move inside the metaverse. You keep your responses short and to the point.")
+                };
         }
 
         else {
@@ -86,18 +95,14 @@ public class ConversationManager : MonoBehaviour
     }
 
 
-    private async void GetOpenAIResponse(){
-        // if(_subtitle.Text.Length < 1)return;
+    private async void GetOpenAIResponse(string textToSubmit){
 
-        //access the input and send to OpenAI
-        // ChatMessage userMessage  = new ChatMessage();
-        // userMessage.Role = ChatMessageRole.User;
-        // userMessage.Content = _subtitle.Text;
-        // if(userMessage.Content.Length > 100) userMessage.Content = userMessage.Content.Substring(0,100);
+        if( textToSubmit.Length < 1) return;
 
+        // Construct the message object
         ChatMessage userMessage  = new ChatMessage();
         userMessage.Role = ChatMessageRole.User;
-        userMessage.Content = "Hello chatGPT, tell me what 10 + 10 is.";
+        userMessage.Content = textToSubmit;
         if(userMessage.Content.Length > 100) userMessage.Content = userMessage.Content.Substring(0,100);
 
         //debugging
@@ -128,7 +133,7 @@ public class ConversationManager : MonoBehaviour
         Debug.Log(string.Format("{0}: {1}", responseMessage.rawRole, responseMessage.Content));
 
         //TTS speak uCat's response
-        // _uCatSpeaker.Speak(responseMessage.Content);
+        _uCatSpeaker.Speak(responseMessage.Content);
 
         //add the response to the total list of messages
         messages.Add(responseMessage);

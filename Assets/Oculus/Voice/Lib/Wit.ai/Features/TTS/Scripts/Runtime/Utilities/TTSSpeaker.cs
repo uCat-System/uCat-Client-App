@@ -595,6 +595,7 @@ namespace Meta.WitAi.TTS.Utilities
         /// <param name="addToQueue">Whether or not this phrase should be enqueued into the playback queue</param>
         private void Speak(string textToSpeak, TTSDiskCacheSettings diskCacheSettings, TTSSpeakerClipEvents playbackEvents, bool addToQueue)
         {
+            Debug.Log("Firing speech with " +textToSpeak);
             // Ensure voice settings exist
             TTSVoiceSettings voiceSettings = VoiceSettings;
             if (voiceSettings == null)

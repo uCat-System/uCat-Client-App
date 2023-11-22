@@ -48,6 +48,7 @@ public class WitListeningStateManager : MonoBehaviour
 
         ListeningForLobbyMenuCommandsOnly, // including memo mode
         ListeningForFreestyleResponse,
+        ListeningForConversationModeInput,
     }
     private string scene;
     private UIManager _uiManager;
@@ -183,7 +184,7 @@ public class WitListeningStateManager : MonoBehaviour
 
     void EnableWitEverySoOften(){
         // Activate it again.
-        // Debug.Log("Enabling Wit on timer");
+        Debug.Log("Enabling Wit on timer");
         wit.SetActive(true);
         Wit witComponent = wit.GetComponent<Wit>();
         witComponent.Activate();
@@ -236,6 +237,11 @@ public class WitListeningStateManager : MonoBehaviour
                     break;
 
                  case ListeningState.ListeningForFreestyleResponse:
+                    StartCoroutine(TurnWitActivationOffAndOn());
+                    micIcon.SetActive(true);
+                    break;
+
+                case ListeningState.ListeningForConversationModeInput:
                     StartCoroutine(TurnWitActivationOffAndOn());
                     micIcon.SetActive(true);
                     break;

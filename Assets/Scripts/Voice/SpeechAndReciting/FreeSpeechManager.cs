@@ -17,6 +17,8 @@ using MText;
         private LevelManager _levelManager;
         private DialogueManager _dialogueManager;
 
+        private ConversationManager _conversationManager;
+
         private UIManager _uiManager;
         private WordReciteManager _wordReciteManager;
         private WitListeningStateManager _witListeningStateManager;
@@ -48,6 +50,7 @@ using MText;
             _wordReciteManager = GetComponent<WordReciteManager>();
             _dialogueManager = GetComponent<DialogueManager>();
             _witListeningStateManager = GetComponent<WitListeningStateManager>();
+            _conversationManager = GetComponent<ConversationManager>();
             _uiManager = GetComponent<UIManager>();
             _levelManager = GetComponent<LevelManager>();
             _levelTransition = FindObjectOfType<LevelTransition>();
@@ -87,8 +90,7 @@ using MText;
 
         public void HandleFullTranscription(string text)
         {
-            Debug.Log(text);
-
+            Debug.Log("Full " + text);
             // Listen for menu activation
             if (_witListeningStateManager.MenuActivationCommandsAreAllowed()) {
                 EMenuActivationResponseType menuActivationResponse = UICommandHandler.CheckIfMenuActivationCommandsWereSpoken(text);
@@ -124,6 +126,10 @@ using MText;
             }
 
             // Add use case for conversation mode
+            if (_witListeningStateManager.currentListeningState == EListeningState.ListeningForConversationModeInput) {
+                // if we have just received something the user said and they are allowed to speak in convo mode
+                _conversationManager.HandleUserSpeech(text);
+            }
 
             else {
                 // Turn mic back on if we are in the menu and it didn't recognise anything

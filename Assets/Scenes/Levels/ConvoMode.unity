@@ -1305,6 +1305,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 422064425}
+    - target: {fileID: 4583368551910381193, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4587402927007815856, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
       propertyPath: m_Name
       value: uCat Japanese Nature Realm
@@ -1321,6 +1325,14 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1793772055}
+    - target: {fileID: 6972111452065200284, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6972111452065200284, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7513729703987040677, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -1819,10 +1831,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89bd061fface22242a2014d18ef5b642, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _subtitle: {fileID: 0}
-  _dialogue: {fileID: 0}
-  _uCatSpeaker: {fileID: 0}
-  _userSpeaker: {fileID: 0}
+  _uCatSpeaker: {fileID: 1942374883}
 --- !u!1001 &1447176293
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2864,7 +2873,7 @@ MonoBehaviour:
     OnClipDataPlaybackFinished:
       m_PersistentCalls:
         m_Calls: []
-  PrependedText: 
+  PrependedText: hi
   AppendedText: 
   AudioSource: {fileID: 1349135310}
   _cloneAudioSource: 0
