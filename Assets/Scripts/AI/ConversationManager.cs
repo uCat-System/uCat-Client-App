@@ -36,10 +36,15 @@ public class ConversationManager : MonoBehaviour
     public float uCatResponseTimeoutLimit;
     public float uCatResponseTimeout;
 
+    private AnimationDriver uCatAnimationDriver;
+
 
 
     void Start(){
-        
+
+        _uCatSpeaker.Speak("Meow, I'm uCat. Let's have a conversation!");
+        uCatAnimationDriver = GameObject.FindWithTag("uCat").GetComponent<AnimationDriver>();
+        uCatAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Happy;
         uCatResponseTimeout = 0;
         _uiManager = GetComponent<UIManager>();
         _levelManager = GetComponent<LevelManager>();
@@ -54,35 +59,14 @@ public class ConversationManager : MonoBehaviour
         InitiliazeUcatConversation();
         _witListeningStateManager.TransitionToState(EListeningState.ListeningForConversationModeInput);
         
-        // submitEvery5s = StartCoroutine(SubmitToOpenAI(5));
         
     }
-
-    // IEnumerator SubmitToOpenAI(int t){
-        // int count = 1;
-
-        // while(count < 6){
-        //     yield return new WaitForSeconds(t);
-
-        //     if (_subtitle.Text.Length > 1){
-        //         //TTS speak user's input
-                // _userSpeaker.Speak(_subtitle.Text);
-        //         GetOpenAIResponse();
-                
-        //         /*
-        //         //simulating whether my coroutine would submit new voice decoding to OpenAI every couple s      
-        //         dialogue.UpdateText(string.Format("You: {0}", subtitle.Text));
-        //         subtitle.UpdateText("");
-        //         */
-        //         Debug.Log(string.Format("#{0} : OpenAI submission", count));
-        //         count++;
-        //     }
-        // }
-    // }
 
     public void HandleUserSpeech(string spokenText) {
         // This function is called from FreeSpeechManager when the user speaks (as long as they are allowed to currently)
         Debug.Log("ConversationManager.cs: HandleUserSpeech called with text: " + spokenText);
+        uCatAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Confused;
+
         _userSpeaker.Speak(spokenText);
         GetOpenAIResponse(spokenText);
         _witListeningStateManager.TransitionToState(EListeningState.WaitingForConversationResponse);
@@ -134,6 +118,8 @@ public class ConversationManager : MonoBehaviour
             MaxTokens = 50,
             Messages = messages
         });
+        
+        uCatAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Idle;
 
         //get OpenAI response
         ChatMessage responseMessage = new ChatMessage();
