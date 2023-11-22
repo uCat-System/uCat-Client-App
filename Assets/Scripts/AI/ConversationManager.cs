@@ -9,6 +9,7 @@ using OpenAI_API.Chat;
 using OpenAI_API.Models;
 using Meta.WitAi;
 using Meta.WitAi.TTS.Utilities;
+using CandyCoded.env;
 public class ConversationManager : MonoBehaviour
 {
     
@@ -69,10 +70,19 @@ public class ConversationManager : MonoBehaviour
     // }
    
     private void InitiliazeUcatConversation(){
-        api = new OpenAIAPI("");
-        messages = new List<ChatMessage>{
-            new ChatMessage(ChatMessageRole.System, "Your name is 'uCat'. You are a humble, kind-hearted, compassionate, and sassy robocat. Sometimes you say \"meow\" when you speak. You help me learn how to use my implanted brain-computer interfaces to move inside the metaverse. You keep your responses short and to the point.")
-        };
+        if (env.TryParseEnvironmentVariable("OPENAI_API_KEY", out string apiKey))
+            {
+                Debug.Log($"API KEY is: {apiKey}");
+                api = new OpenAIAPI(apiKey);
+                messages = new List<ChatMessage>
+                    {
+                        new ChatMessage(ChatMessageRole.System, "Your name is 'uCat'. You are a humble, kind-hearted, compassionate, and sassy robocat. Sometimes you say \"meow\" when you speak. You help me learn how to use my implanted brain-computer interfaces to move inside the metaverse. You keep your responses short and to the point.")
+                    };
+        }
+
+        else {
+            Debug.LogError("No API key found.");
+        }
     }
 
 
