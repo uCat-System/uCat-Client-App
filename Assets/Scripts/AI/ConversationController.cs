@@ -23,9 +23,20 @@ public class ConversationController : MonoBehaviour
     private List<ChatMessage> messages;
     private Coroutine submitEvery5s;
 
+    private UIManager _uiManager;
+    private LevelManager _levelManager;
+
 
 
     void Start(){
+
+        _uiManager = GetComponent<UIManager>();
+        _levelManager = GetComponent<LevelManager>();
+        if (_levelManager.currentLevel != "ConvoMode") {
+            Debug.Log("ConversationController.cs: Not in ConvoMode, returning");
+            this.enabled = false;
+            return;
+        }
         api = new OpenAIAPI("");
         StartConversation();
         submitEvery5s = StartCoroutine(SubmitToOpenAI(5));

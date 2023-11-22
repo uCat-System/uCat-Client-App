@@ -127,10 +127,6 @@ public class WordReciteManager : MonoBehaviour
         currentWordOrSentenceIndex = 0;
         incorrectWordAttempts = 0;
 
-        // Initialise word audio (for open questions)
-        uCatOpenQuestionAudioList = new AudioClip[currentWordOrSentenceList.Count];
-        uCatOpenQuestionAudioList = wordLists.level3OpenQuestionsAudioList.ToArray();
-
         // Set score based on amount of words in lists
         if (_levelManager.currentLevel == "Level1" || _levelManager.currentLevel == "Level2")
         {
@@ -157,6 +153,10 @@ public class WordReciteManager : MonoBehaviour
                 break;
             case "Level3":
                 currentWordOrSentenceList = wordLists.level3OpenQuestionsList;
+                
+                // Initialise word audio (for open questions)
+                uCatOpenQuestionAudioList = new AudioClip[currentWordOrSentenceList.Count];
+                uCatOpenQuestionAudioList = wordLists.level3OpenQuestionsAudioList.ToArray();
                 break;
         }
     }

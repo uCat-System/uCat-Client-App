@@ -61,6 +61,8 @@ using MText;
 
         public void HandlePartialTranscription(string text)
         {
+            Debug.Log("Partial " + text);
+
             // Always update subtitles when attempting speech
             if (_witListeningStateManager.RecitingWordsIsAllowed()) {
                 partialText3D.UpdateText(text);
@@ -85,6 +87,8 @@ using MText;
 
         public void HandleFullTranscription(string text)
         {
+            Debug.Log(text);
+
             // Listen for menu activation
             if (_witListeningStateManager.MenuActivationCommandsAreAllowed()) {
                 EMenuActivationResponseType menuActivationResponse = UICommandHandler.CheckIfMenuActivationCommandsWereSpoken(text);
@@ -118,6 +122,8 @@ using MText;
                 // Level 3 Task
                 HandleFreestyleResponse(text);
             }
+
+            // Add use case for conversation mode
 
             else {
                 // Turn mic back on if we are in the menu and it didn't recognise anything
