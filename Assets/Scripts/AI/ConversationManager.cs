@@ -37,8 +37,10 @@ public class ConversationManager : MonoBehaviour
             this.enabled = false;
             return;
         }
+        InitiliazeUcatConversation();
+        GetOpenAIResponse();
         
-        // api = new OpenAIAPI("");
+
         // StartConversation();
         // submitEvery5s = StartCoroutine(SubmitToOpenAI(5));
         
@@ -66,56 +68,62 @@ public class ConversationManager : MonoBehaviour
         // }
     // }
    
-    private void StartConversation(){
-        // messages = new List<ChatMessage>{
-        //     new ChatMessage(ChatMessageRole.System, "Your name is 'uCat'. You are a humble, kind-hearted, compassionate, and sassy robocat. Sometimes you say \"meow\" when you speak. You help me learn how to use my implanted brain-computer interfaces to move inside the metaverse. You keep your responses short and to the point.")
-        // };
+    private void InitiliazeUcatConversation(){
+        api = new OpenAIAPI("");
+        messages = new List<ChatMessage>{
+            new ChatMessage(ChatMessageRole.System, "Your name is 'uCat'. You are a humble, kind-hearted, compassionate, and sassy robocat. Sometimes you say \"meow\" when you speak. You help me learn how to use my implanted brain-computer interfaces to move inside the metaverse. You keep your responses short and to the point.")
+        };
     }
 
 
     private async void GetOpenAIResponse(){
-    //     if(_subtitle.Text.Length < 1)return;
+        // if(_subtitle.Text.Length < 1)return;
 
-    //     //access the input and send to OpenAI
-    //     ChatMessage userMessage  = new ChatMessage();
-    //     userMessage.Role = ChatMessageRole.User;
-    //     userMessage.Content = _subtitle.Text;
-    //     if(userMessage.Content.Length > 100) userMessage.Content = userMessage.Content.Substring(0,100);
+        //access the input and send to OpenAI
+        // ChatMessage userMessage  = new ChatMessage();
+        // userMessage.Role = ChatMessageRole.User;
+        // userMessage.Content = _subtitle.Text;
+        // if(userMessage.Content.Length > 100) userMessage.Content = userMessage.Content.Substring(0,100);
 
-    //     //debugging
-    //     Debug.Log(string.Format("{0}: {1}", userMessage.rawRole, userMessage.Content));
+        ChatMessage userMessage  = new ChatMessage();
+        userMessage.Role = ChatMessageRole.User;
+        userMessage.Content = "Hello chatGPT, tell me what 10 + 10 is.";
+        if(userMessage.Content.Length > 100) userMessage.Content = userMessage.Content.Substring(0,100);
 
-    //     //add message to the list
-    //     messages.Add(userMessage);
+        //debugging
+        Debug.Log(string.Format("{0}: {1}", userMessage.rawRole, userMessage.Content));
 
-    //     //update textfield with user message
-    //     _dialogue.UpdateText(string.Format("You: {0}", userMessage.Content));
+        //add message to the list
+        messages.Add(userMessage);
 
-    //     //clear the input field
-    //     _subtitle.UpdateText("");
+        //update textfield with user message
+        // _dialogue.UpdateText(string.Format("You: {0}", userMessage.Content));
 
-    //     //send entire chat to OpenAI to get its response
-    //     var chatResult = await api.Chat.CreateChatCompletionAsync(new ChatRequest(){
-    //         Model = Model.ChatGPTTurbo,
-    //         Temperature = 0.7,
-    //         MaxTokens = 50,
-    //         Messages = messages
-    //     });
+        //clear the input field
+        // _subtitle.UpdateText("");
 
-    //     //get OpenAI response
-    //     ChatMessage responseMessage = new ChatMessage();
-    //     responseMessage.Role = chatResult.Choices[0].Message.Role;
-    //     responseMessage.Content = chatResult.Choices[0].Message.Content;
-    //     //debugging
-    //     Debug.Log(string.Format("{0}: {1}", responseMessage.rawRole, responseMessage.Content));
+        //send entire chat to OpenAI to get its response
+        var chatResult = await api.Chat.CreateChatCompletionAsync(new ChatRequest(){
+            Model = Model.ChatGPTTurbo,
+            Temperature = 0.7,
+            MaxTokens = 50,
+            Messages = messages
+        });
 
-    //     //TTS speak uCat's response
-    //     _uCatSpeaker.Speak(responseMessage.Content);
+        //get OpenAI response
+        ChatMessage responseMessage = new ChatMessage();
+        responseMessage.Role = chatResult.Choices[0].Message.Role;
+        responseMessage.Content = chatResult.Choices[0].Message.Content;
+        //debugging
+        Debug.Log(string.Format("{0}: {1}", responseMessage.rawRole, responseMessage.Content));
 
-    //     //add the response to the total list of messages
-    //     messages.Add(responseMessage);
+        //TTS speak uCat's response
+        // _uCatSpeaker.Speak(responseMessage.Content);
 
-    //     //update the response text field
-    //     _dialogue.UpdateText(string.Format("You: {0}\n\nuCat: {1}", userMessage.Content, responseMessage.Content));
+        //add the response to the total list of messages
+        messages.Add(responseMessage);
+
+        //update the response text field
+        // _dialogue.UpdateText(string.Format("You: {0}\n\nuCat: {1}", userMessage.Content, responseMessage.Content));
     }
 }
