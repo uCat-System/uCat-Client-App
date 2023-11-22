@@ -19,7 +19,7 @@ public class ConversationManager : MonoBehaviour
     // public Modular3DText _subtitle;
     // public Modular3DText _dialogue;
     public TTSSpeaker _uCatSpeaker;
-    // public TTSSpeaker _userSpeaker;
+    public TTSSpeaker _userSpeaker;
 
     
     private OpenAIAPI api;
@@ -58,7 +58,7 @@ public class ConversationManager : MonoBehaviour
 
         //     if (_subtitle.Text.Length > 1){
         //         //TTS speak user's input
-        //         _userSpeaker.Speak(_subtitle.Text);
+                // _userSpeaker.Speak(_subtitle.Text);
         //         GetOpenAIResponse();
                 
         //         /*
@@ -75,6 +75,7 @@ public class ConversationManager : MonoBehaviour
     public void HandleUserSpeech(string spokenText) {
         // This function is called from FreeSpeechManager when the user speaks (as long as they are allowed to currently)
         Debug.Log("ConversationManager.cs: HandleUserSpeech called with text: " + spokenText);
+        _userSpeaker.Speak(spokenText);
         GetOpenAIResponse(spokenText);
     }
    
