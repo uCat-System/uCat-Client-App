@@ -14289,7 +14289,7 @@ MonoBehaviour:
   canBreakOutermostPrefab: 0
   assetPath: 
   meshPaths: []
-  updatedAfterStyleUpdateOnPrefabInstances: 0
+  updatedAfterStyleUpdateOnPrefabInstances: 1
   debugLogs: 0
   hideOverwrittenVariablesFromInspector: 1
   updateTextOncePerFrame: 0
@@ -27305,7 +27305,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8343668746282422108, guid: eeb381f8f105aa04aab5137abf3cd87b, type: 3}
   m_PrefabInstance: {fileID: 5499405243972180432}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4583368551910381247}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d3a9918f74891044fb65f815fa1f3dc7, type: 3}
@@ -27316,27 +27316,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8343668746282422112, guid: eeb381f8f105aa04aab5137abf3cd87b, type: 3}
   m_PrefabInstance: {fileID: 5499405243972180432}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &4583368551910381247 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8343668746282422127, guid: eeb381f8f105aa04aab5137abf3cd87b, type: 3}
-  m_PrefabInstance: {fileID: 5499405243972180432}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &8167790363203547499
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4583368551910381247}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89bd061fface22242a2014d18ef5b642, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _subtitle: {fileID: 0}
-  _dialogue: {fileID: 0}
-  _uCatSpeaker: {fileID: 0}
-  _userSpeaker: {fileID: 0}
 --- !u!1001 &5499405244454797758
 PrefabInstance:
   m_ObjectHideFlags: 0

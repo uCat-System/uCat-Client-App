@@ -1802,6 +1802,27 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1424736477 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4583368551910381247, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
+  m_PrefabInstance: {fileID: 1085219282}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1424736487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1424736477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89bd061fface22242a2014d18ef5b642, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _subtitle: {fileID: 0}
+  _dialogue: {fileID: 0}
+  _uCatSpeaker: {fileID: 0}
+  _userSpeaker: {fileID: 0}
 --- !u!1001 &1447176293
 PrefabInstance:
   m_ObjectHideFlags: 0
