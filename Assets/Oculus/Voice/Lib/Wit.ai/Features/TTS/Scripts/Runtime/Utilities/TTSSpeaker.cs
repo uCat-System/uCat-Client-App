@@ -920,6 +920,10 @@ namespace Meta.WitAi.TTS.Utilities
                 _waitForCompletion = null;
             }
 
+            Debug.LogError("Playback is COMPLETE!  "  + stopped);
+            // maybe here fire something
+
+
             // Keep last request data
             TTSSpeakerRequestData lastRequestData = _speakingRequest;
             // Clear speaking request

@@ -49,6 +49,7 @@ public class WitListeningStateManager : MonoBehaviour
         ListeningForLobbyMenuCommandsOnly, // including memo mode
         ListeningForFreestyleResponse,
         ListeningForConversationModeInput,
+        WaitingForConversationResponse
     }
     private string scene;
     private UIManager _uiManager;
@@ -133,7 +134,6 @@ public class WitListeningStateManager : MonoBehaviour
     }
 
     public bool MenuNavigationCommandsAreAllowed() {
-        Debug.Log("MenuNavigationCommandsAreAllowed? " + currentListeningState);
         return CurrentStateIsAllowedInDictionary(validMenuNavigationStates);
     }
 
@@ -184,7 +184,7 @@ public class WitListeningStateManager : MonoBehaviour
 
     void EnableWitEverySoOften(){
         // Activate it again.
-        Debug.Log("Enabling Wit on timer");
+        // Debug.Log("Enabling Wit on timer");
         wit.SetActive(true);
         Wit witComponent = wit.GetComponent<Wit>();
         witComponent.Activate();
@@ -244,6 +244,11 @@ public class WitListeningStateManager : MonoBehaviour
                 case ListeningState.ListeningForConversationModeInput:
                     StartCoroutine(TurnWitActivationOffAndOn());
                     micIcon.SetActive(true);
+                    break;
+
+                case ListeningState.WaitingForConversationResponse:
+                    DisableWit();
+                    micIcon.SetActive(false);
                     break;
                 default:
                     Debug.LogError("Invalid state transition." + nextState);

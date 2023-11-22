@@ -21,6 +21,8 @@ public class ConversationManager : MonoBehaviour
     public TTSSpeaker _uCatSpeaker;
     public TTSSpeaker _userSpeaker;
 
+    private AudioSource uCatAudioSource;
+
     
     private OpenAIAPI api;
     private List<ChatMessage> messages;
@@ -43,6 +45,7 @@ public class ConversationManager : MonoBehaviour
             this.enabled = false;
             return;
         }
+        uCatAudioSource = GameObject.FindWithTag("uCatConversationAudioSource").GetComponent<AudioSource>();
         InitiliazeUcatConversation();
         _witListeningStateManager.TransitionToState(EListeningState.ListeningForConversationModeInput);
         
@@ -77,12 +80,12 @@ public class ConversationManager : MonoBehaviour
         Debug.Log("ConversationManager.cs: HandleUserSpeech called with text: " + spokenText);
         _userSpeaker.Speak(spokenText);
         GetOpenAIResponse(spokenText);
+        _witListeningStateManager.TransitionToState(EListeningState.WaitingForConversationResponse);
     }
    
     private void InitiliazeUcatConversation(){
         if (env.TryParseEnvironmentVariable("OPENAI_API_KEY", out string apiKey))
             {
-                Debug.Log($"API KEY is: {apiKey}");
                 api = new OpenAIAPI(apiKey);
                 messages = new List<ChatMessage>
                 {
@@ -141,5 +144,10 @@ public class ConversationManager : MonoBehaviour
 
         //update the response text field
         // _dialogue.UpdateText(string.Format("You: {0}\n\nuCat: {1}", userMessage.Content, responseMessage.Content));
+    }
+
+    public void UcatIsDoneSpeaking() {
+        Debug.Log("UcatIsDoneSpeaking called");
+        _witListeningStateManager.TransitionToState(EListeningState.ListeningForConversationModeInput);
     }
 }
