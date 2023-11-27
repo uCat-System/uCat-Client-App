@@ -41,12 +41,15 @@ public class ConversationManager : MonoBehaviour
     public string standardInitializationMessage;
     public string advancedInitializationMessage;
 
+    private Modular3DText subtitleText;
+
 
     void Start(){
         // Assign scripts
         _uiManager = GetComponent<UIManager>();
         _levelManager = GetComponent<LevelManager>();
         _witListeningStateManager = GetComponent<WitListeningStateManager>();
+        subtitleText = GameObject.FindWithTag("SubtitleText3D").GetComponent<Modular3DText>();
         uCatAnimationDriver = GameObject.FindWithTag("uCat").GetComponent<AnimationDriver>();
 
         standardInitializationMessage =  "Your name is 'uCat'. You are a humble, kind-hearted, compassionate, and sassy robocat. Sometimes you say \"meow\" when you speak. You help me learn how to use my implanted brain-computer interfaces to move inside the metaverse. You keep your responses short and to the point.";
@@ -70,12 +73,17 @@ public class ConversationManager : MonoBehaviour
         
     }
 
+    public void HandlePartialSpeech(string text) {
+        subtitleText.UpdateText(text);
+    }
+
     public void HandleUserSpeech(string spokenText) {
         // This function is called from FreeSpeechManager when the user speaks (as long as they are allowed to currently)
         Debug.Log("ConversationManager.cs: HandleUserSpeech called with text: " + spokenText);
         uCatAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Confused;
 
         _userSpeaker.Speak(spokenText);
+        subtitleText.UpdateText(spokenText);
         GetOpenAIResponse(spokenText);
         _witListeningStateManager.TransitionToState(EListeningState.WaitingForConversationResponse);
     }
@@ -183,9 +191,9 @@ public class ConversationManager : MonoBehaviour
     }
 
     void PlayEmotionAnimation(string text) {
-        // get the last sentence from the string, which should be the emotion. remove the period at the end
-        // may also need to split on exclamation marks and question marks        
+        // Play the appropriate animation based on the emotion category
 
+        Debug.Log("Emotion word: " + text);
         switch (text.ToLower()) {
             case "happy":
                 uCatAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Happy;
