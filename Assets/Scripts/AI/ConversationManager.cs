@@ -98,6 +98,7 @@ public class ConversationManager : MonoBehaviour
 
     private async void GetOpenAIResponse(string textToSubmit){
 
+        // Test commit change (safe)
         if( textToSubmit.Length < 1) return;
 
         // Construct the message object
