@@ -64,15 +64,17 @@ using MText;
 
         public void HandlePartialTranscription(string text)
         {
-            Debug.Log("Partial " + text);
 
-            // Always update subtitles when attempting speech
             if (_witListeningStateManager.RecitingWordsIsAllowed()) {
                 partialText3D.UpdateText(text);
             }
 
             if (_witListeningStateManager.currentListeningState == EListeningState.ListeningForFreestyleResponse) {
                 reciteText3D.UpdateText(text);
+            }
+
+            if (_witListeningStateManager.currentListeningState == EListeningState.ListeningForConversationModeInput) {
+                _conversationManager.HandlePartialSpeech(text);
             }
         }
 
