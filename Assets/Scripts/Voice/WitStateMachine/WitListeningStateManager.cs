@@ -93,7 +93,11 @@ public class WitListeningStateManager : MonoBehaviour
         _wordReciteManager = GetComponent<WordReciteManager>();
         wit = GameObject.FindWithTag("Wit");
         scene = SceneManager.GetActiveScene().name;
-        TransitionToState(ListeningState.ListeningForMenuActivationCommandsOnly);
+        if (scene == "ConvoMode") {
+            TransitionToState(ListeningState.ListeningForConversationModeInput);
+        } else {
+            TransitionToState(ListeningState.ListeningForTaskMenuCommandsOnly);
+        }
         InvokeRepeating("EnableWitEverySoOften", 0f, witAutomaticReactivationTimer);
     }
 

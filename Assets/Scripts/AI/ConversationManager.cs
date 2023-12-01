@@ -52,6 +52,8 @@ public class ConversationManager : MonoBehaviour
         subtitleText = GameObject.FindWithTag("SubtitleText3D").GetComponent<Modular3DText>();
         uCatAnimationDriver = GameObject.FindWithTag("uCat").GetComponent<AnimationDriver>();
 
+        _witListeningStateManager.TransitionToState(EListeningState.ListeningForConversationModeInput);
+
         standardInitializationMessage =  "Your name is 'uCat'. You are a humble, kind-hearted, compassionate, and sassy robocat. Sometimes you say \"meow\" when you speak. You help me learn how to use my implanted brain-computer interfaces to move inside the metaverse. You keep your responses short and to the point.";
         advancedInitializationMessage =  
         "Your name is 'uCat'. You are a humble, kind-hearted, compassionate, and sassy robocat. Sometimes you say \"meow\" when you speak. You help me learn how to use my implanted brain-computer interfaces to move inside the metaverse. You keep your responses short and to the point. At the end of each response, categorise your response into one of the following categories: 'happy' 'sad' 'confused' 'neutral' 'cheeky'. The category should be the last sentence of your response and just consist of the word by itself, e.g., 'Happy.'";
@@ -61,14 +63,13 @@ public class ConversationManager : MonoBehaviour
             return;
         }
 
+        InitiliazeUcatConversation();
 
         // Initial dialogue and animation
         uCatAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Happy;
         uCatResponseTimeout = 0;
 
         uCatAudioSource = GameObject.FindWithTag("uCatConversationAudioSource").GetComponent<AudioSource>();
-        InitiliazeUcatConversation();
-        _witListeningStateManager.TransitionToState(EListeningState.ListeningForConversationModeInput);
         
         
     }
