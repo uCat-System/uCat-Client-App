@@ -54,7 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2469344243081291117, guid: 0db783cdeabf5cb42914739b68fa999d, type: 3}
       propertyPath: m_Name
-      value: PlayerAndBoard
+      value: ConversationModePlayerAndBoard
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
