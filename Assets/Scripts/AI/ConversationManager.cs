@@ -90,18 +90,18 @@ public class ConversationManager : MonoBehaviour
     }
    
     private void InitiliazeUcatConversation(){
-        if (env.TryParseEnvironmentVariable("OPENAI_API_KEY", out string apiKey))
-            {
-                api = new OpenAIAPI(apiKey);
-                messages = new List<ChatMessage>
-                {
-                    new ChatMessage(ChatMessageRole.System, advancedInitializationMessage)
-                };
-        }
+        api = new OpenAIAPI('apiKey');
+        messages = new List<ChatMessage>
+        {
+            new ChatMessage(ChatMessageRole.System, advancedInitializationMessage)
+        };
+        // if (env.TryParseEnvironmentVariable("OPENAI_API_KEY", out string apiKey))
+        //     {
+        // }
 
-        else {
-            Debug.LogError("No API key found.");
-        }
+        // else {
+        //     Debug.LogError("No API key found.");
+        // }
     }
 
 
