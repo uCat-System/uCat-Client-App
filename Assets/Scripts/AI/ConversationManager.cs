@@ -42,6 +42,7 @@ public class ConversationManager : MonoBehaviour
     public string advancedInitializationMessage;
 
     private Modular3DText subtitleText;
+    private Modular3DText uCatSpeechText;
 
 
     void Start(){
@@ -50,6 +51,7 @@ public class ConversationManager : MonoBehaviour
         _levelManager = GetComponent<LevelManager>();
         _witListeningStateManager = GetComponent<WitListeningStateManager>();
         subtitleText = GameObject.FindWithTag("SubtitleText3D").GetComponent<Modular3DText>();
+        uCatSpeechText = GameObject.FindWithTag("uCatSpeechText").GetComponent<Modular3DText>();
         uCatAnimationDriver = GameObject.FindWithTag("uCat").GetComponent<AnimationDriver>();
 
         _witListeningStateManager.TransitionToState(EListeningState.ListeningForConversationModeInput);
@@ -90,7 +92,7 @@ public class ConversationManager : MonoBehaviour
     }
    
     private void InitiliazeUcatConversation(){
-        api = new OpenAIAPI("");
+        api = new OpenAIAPI("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");
         messages = new List<ChatMessage>
         {
             new ChatMessage(ChatMessageRole.System, advancedInitializationMessage)
@@ -156,6 +158,7 @@ public class ConversationManager : MonoBehaviour
             PlayEmotionAnimation(lastWord);
             //TTS speak uCat's response
             _uCatSpeaker.Speak(sentenceWithoutEmotion);
+            uCatSpeechText.UpdateText(sentenceWithoutEmotion);
             isCurrentlyCountingTowardsTimeout = false;
             uCatResponseTimeout = 0;
             //add the response to the total list of messages
