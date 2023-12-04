@@ -92,7 +92,7 @@ public class ConversationManager : MonoBehaviour
     }
    
     private void InitiliazeUcatConversation(){
-        api = new OpenAIAPI("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");
+        api = new OpenAIAPI("");
         messages = new List<ChatMessage>
         {
             new ChatMessage(ChatMessageRole.System, advancedInitializationMessage)
