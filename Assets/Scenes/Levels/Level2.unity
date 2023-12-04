@@ -1240,10 +1240,6 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 127530128}
-    - target: {fileID: 634249619582277015, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 877146348916210106, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -1308,86 +1304,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: uCat Japanese Nature Realm
       objectReference: {fileID: 0}
-    - target: {fileID: 4797872199784467907, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.4000044
-      objectReference: {fileID: 0}
-    - target: {fileID: 4797872199784467907, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 3.780004
-      objectReference: {fileID: 0}
-    - target: {fileID: 4797872199784467907, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4797872199784467907, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4797872199784467907, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
     - target: {fileID: 5041674868437309079, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1680036211}
-    - target: {fileID: 5499405244384656609, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
-      propertyPath: levelPositions.Array.data[2].position.x
-      value: 150
-      objectReference: {fileID: 0}
-    - target: {fileID: 5499405244384656609, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
-      propertyPath: levelPositions.Array.data[2].position.y
-      value: 25.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5499405244384656609, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
-      propertyPath: levelPositions.Array.data[2].position.z
-      value: 115.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5499405244384656609, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
-      propertyPath: levelPositions.Array.data[2].rotation.w
-      value: -0.5863724
-      objectReference: {fileID: 0}
-    - target: {fileID: 5499405244384656609, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
-      propertyPath: levelPositions.Array.data[2].rotation.y
-      value: 0.8100416
-      objectReference: {fileID: 0}
-    - target: {fileID: 5499405244474768435, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 150
-      objectReference: {fileID: 0}
-    - target: {fileID: 5499405244474768435, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 25.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5499405244474768435, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 115.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5499405244474768435, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.58637244
-      objectReference: {fileID: 0}
-    - target: {fileID: 5499405244474768435, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5499405244474768435, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.81004167
-      objectReference: {fileID: 0}
-    - target: {fileID: 5499405244474768435, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5499405244474768435, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 251.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 5499405244474768460, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6077588429730477223, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -1412,38 +1332,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 341695344}
-    - target: {fileID: 8367143154643579042, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.4000044
-      objectReference: {fileID: 0}
-    - target: {fileID: 8367143154643579042, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 3.780004
-      objectReference: {fileID: 0}
-    - target: {fileID: 8367143154643579042, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8367143154643579042, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8367143154643579042, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
     - target: {fileID: 8451501784664804950, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1322213123}
-    - target: {fileID: 8869986731298829731, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9004619904802723902, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
-      propertyPath: level3TaskActivationIndex
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
