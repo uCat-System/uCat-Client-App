@@ -5249,7 +5249,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1697384517
 Transform:
   m_ObjectHideFlags: 0
@@ -20522,7 +20522,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   greenText: {fileID: 2100000, guid: 5562c698b21c8924a84fa2abb367f9cd, type: 2}
-  debugText: {fileID: 1697384521}
   cachedText: 
   isCurrentlyCountingTowardsTimeout: 0
   currentTimeoutTimerInSeconds: 0
