@@ -17,6 +17,7 @@ public class LevelTransition : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
+
     private void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;

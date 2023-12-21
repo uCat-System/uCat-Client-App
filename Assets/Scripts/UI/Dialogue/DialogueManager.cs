@@ -188,7 +188,9 @@ public class DialogueManager : MonoBehaviour
     }
 
     private IEnumerator CycleThroughDialogue() {
+        Debug.Log("CycleThroughDialogue() called");
         // TODO move this out of ienumerator, only need to do it once
+        // this is really bad for performance, fix pls
         Dictionary<int, string> currentDialogueList;
         Dictionary<int, AnimationDriver.CatAnimations> currentAnimationList;
         Dictionary<int, AudioClip> currentAudioList;
@@ -242,6 +244,8 @@ public class DialogueManager : MonoBehaviour
         }
 
         SetDialogueTextAnimationAndSound(currentDialogueList, currentAnimationList, currentAudioList);
+
+        // possible cpu load
         yield return new WaitWhile(() => catAudioSource.isPlaying);
         yield return new WaitForSeconds(DialogueHandler.timeBetweenLinesInSeconds);
     
@@ -255,6 +259,7 @@ public class DialogueManager : MonoBehaviour
             DialogueHandler.IncrementDialogueOption();
             // Otherwise, start the next line as long as user is not performing a task
             if (currentDialogueState == DialogueState.IsPlayingDialogueOnly) {
+                // This could be causing the cpu lag
                 StartCoroutine(CycleThroughDialogue());
             }
         }
