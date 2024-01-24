@@ -3779,25 +3779,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!114 &1424736487
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4583368552995600237}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89bd061fface22242a2014d18ef5b642, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _uCatSpeaker: {fileID: 1050020837}
-  _userSpeaker: {fileID: 272987215}
-  isCurrentlyCountingTowardsTimeout: 0
-  uCatResponseTimeoutLimit: 20
-  uCatResponseTimeout: 0
-  standardInitializationMessage: 
-  advancedInitializationMessage: 
 --- !u!1 &1477049404
 GameObject:
   m_ObjectHideFlags: 0
@@ -12520,7 +12501,7 @@ PrefabInstance:
     - target: {fileID: 3298500220593411034, guid: ae1817be214e60c4bb521cdde68948ad, type: 3}
       propertyPath: _events._onPlaybackComplete.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1424736487}
+      objectReference: {fileID: 0}
     - target: {fileID: 3298500220593411034, guid: ae1817be214e60c4bb521cdde68948ad, type: 3}
       propertyPath: _events.OnTextPlaybackFinished.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
@@ -12528,7 +12509,7 @@ PrefabInstance:
     - target: {fileID: 3298500220593411034, guid: ae1817be214e60c4bb521cdde68948ad, type: 3}
       propertyPath: _events.OnTextPlaybackFinished.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1424736487}
+      objectReference: {fileID: 0}
     - target: {fileID: 3298500220593411034, guid: ae1817be214e60c4bb521cdde68948ad, type: 3}
       propertyPath: _events._onPlaybackComplete.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -12552,7 +12533,7 @@ PrefabInstance:
     - target: {fileID: 3298500220593411034, guid: ae1817be214e60c4bb521cdde68948ad, type: 3}
       propertyPath: _events.OnAudioClipPlaybackFinished.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1424736487}
+      objectReference: {fileID: 0}
     - target: {fileID: 3298500220593411034, guid: ae1817be214e60c4bb521cdde68948ad, type: 3}
       propertyPath: _events.OnAudioClipPlaybackFinished.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -19106,7 +19087,7 @@ GameObject:
   - component: {fileID: 4583368552995600216}
   - component: {fileID: 9004619903734561260}
   - component: {fileID: 5499405243675572265}
-  - component: {fileID: 1424736487}
+  - component: {fileID: 9004619903734561261}
   m_Layer: 0
   m_Name: ManagersContainer
   m_TagString: Untagged
@@ -30605,6 +30586,25 @@ MonoBehaviour:
   dialogueIsPaused: 0
   currentDialogueState: 0
   previousDialogueState: 0
+--- !u!114 &9004619903734561261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4583368552995600237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f1ed41ee5d6d9b4d828dfdda887cc9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _uCatSpeaker: {fileID: 1050020837}
+  _userSpeaker: {fileID: 272987215}
+  isCurrentlyCountingTowardsTimeout: 0
+  uCatResponseTimeoutLimit: 5
+  uCatResponseTimeout: 0
+  standardInitializationMessage: 
+  advancedInitializationMessage: 
 --- !u!33 &9006990568208337351
 MeshFilter:
   m_ObjectHideFlags: 0
