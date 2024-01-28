@@ -56,7 +56,7 @@ public class UIManager : MonoBehaviour
     }
 
     void SelectReciteBoardBasedOnLevel() {
-         if (_levelManager.currentLevel == "Level3" && textElements != null && freeStyleTextElements != null)
+         if (_levelManager.CurrentLevel == "Level3" && textElements != null && freeStyleTextElements != null)
             {
                 textElements.SetActive(false);
                 freeStyleTextElements.SetActive(true);

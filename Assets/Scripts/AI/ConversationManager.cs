@@ -55,7 +55,7 @@ public class ConversationManager : MonoBehaviour
         standardInitializationMessage =  "Your name is 'uCat'. You are a humble, kind-hearted, compassionate, and sassy robocat. Sometimes you say \"meow\" when you speak. You help me learn how to use my implanted brain-computer interfaces to move inside the metaverse. You keep your responses short and to the point.";
         advancedInitializationMessage =  
         "Your name is 'uCat'. You are a humble, kind-hearted, compassionate, and sassy robocat. Sometimes you say \"meow\" when you speak. You help me learn how to use my implanted brain-computer interfaces to move inside the metaverse. You keep your responses short and to the point. At the end of each response, categorise your response into one of the following categories: 'happy' 'sad' 'confused' 'neutral' 'cheeky'. The category should be the last sentence of your response and just consist of the word by itself, e.g., 'Happy.'";
-        if (_levelManager.currentLevel != "ConvoMode") {
+        if (_levelManager.CurrentLevel != "ConvoMode") {
             this.enabled = false;
             return;
         }

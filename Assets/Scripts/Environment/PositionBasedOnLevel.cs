@@ -10,11 +10,9 @@ using UnityEditor;
 public class PositionBasedOnLevel : MonoBehaviour
 {
     public List<LevelPosition> levelPositions;
-    private string currentLevel;
 
     private void Start()
     {
-        currentLevel = SceneManager.GetActiveScene().name;
         PositionObjectBasedOnLevel();
     }
 
@@ -23,7 +21,7 @@ public class PositionBasedOnLevel : MonoBehaviour
         // Check if the current level name matches one of your predetermined levels
         foreach (var levelPosition in levelPositions)
         {
-            if (levelPosition.levelName == currentLevel)
+            if (levelPosition.levelName == FindObjectOfType<LevelManager>().CurrentLevel)
             {
                 transform.position = levelPosition.position;
                 transform.rotation = levelPosition.rotation;

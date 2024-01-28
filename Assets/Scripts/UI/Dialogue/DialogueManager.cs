@@ -66,7 +66,7 @@ public class DialogueManager : MonoBehaviour
         StartCoroutine(WaitABitAndThenStartDialogue());
         dialogueIsPaused = false;
 
-        if (_levelManager.currentLevel == "Intro") {
+        if (_levelManager.CurrentLevel == "Intro") {
             // Hide the board and mic icon
             _uiManager.ShowOrHideReciteMesh(false);
             micIcon.SetActive(false);
@@ -110,7 +110,7 @@ public class DialogueManager : MonoBehaviour
     }
 
     void SetDialogueTaskIndexes() {
-        switch (_levelManager.currentLevel) {
+        switch (_levelManager.CurrentLevel) {
             case "Intro":
                 taskActivationDialogueIndex = introTaskActivationIndex;
                 break;
@@ -127,7 +127,7 @@ public class DialogueManager : MonoBehaviour
                 taskActivationDialogueIndex = level3TaskActivationIndex;
                 break;
             default:
-                Debug.LogError("No dialogue task indexes set for level " + _levelManager.currentLevel);
+                Debug.LogError("No dialogue task indexes set for level " + _levelManager.CurrentLevel);
                 break;
         }
     }
@@ -182,7 +182,7 @@ public class DialogueManager : MonoBehaviour
 
     private void ActivateBoard() {
         _uiManager.ShowOrHideReciteMesh(true);
-        if (_levelManager.currentLevel != "Level3") {
+        if (_levelManager.CurrentLevel != "Level3") {
             //GameObject.FindWithTag("ReciteText3D").GetComponent<Modular3DText>().UpdateText("...Hello...");
         }
     }
@@ -195,7 +195,7 @@ public class DialogueManager : MonoBehaviour
         Dictionary<int, AudioClip> currentAudioList;
         
         // We pass in different dictionaries based on the scene
-        switch (_levelManager.currentLevel) {
+        switch (_levelManager.CurrentLevel) {
             case "Intro":
                 currentDialogueList = DialogueHandler.uCatIntroDialogue;
                 currentAnimationList = DialogueHandler.uCatIntroDialogueAnimations;
@@ -220,7 +220,7 @@ public class DialogueManager : MonoBehaviour
                 currentDialogueList = null;
                 currentAnimationList = null;
                 currentAudioList = null;
-                Debug.LogError("Dictionary not setup for: " + _levelManager.currentLevel);
+                Debug.LogError("Dictionary not setup for: " + _levelManager.CurrentLevel);
                 break;
         }
 

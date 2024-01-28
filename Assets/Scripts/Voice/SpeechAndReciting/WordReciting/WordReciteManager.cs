@@ -66,7 +66,7 @@ public class WordReciteManager : MonoBehaviour
 
     public AudioClip[] wordSounds;
     public void BeginReciteTask() {
-        if (_levelManager.currentLevel == "Level3") {
+        if (_levelManager.CurrentLevel == "Level3") {
             BeginFreestyleTask();
         } else {
             StartCoroutine(StartCurrentWordCountdown());
@@ -128,7 +128,7 @@ public class WordReciteManager : MonoBehaviour
     }
 
     void SetWordAndUiListsBasedOnLevel() {
-        switch (_levelManager.currentLevel) {
+        switch (_levelManager.CurrentLevel) {
             case "Intro":
                 currentWordOrSentenceList = wordLists.introWordList;
                 currentUiList = null;
@@ -327,8 +327,8 @@ public class WordReciteManager : MonoBehaviour
             _witListeningStateManager.TransitionToState(EListeningState.ListeningForMenuActivationCommandsOnly);
             if (activeList == currentWordOrSentenceList) { wordListComplete = true; }
             // No UI list in intro
-            if (activeList == currentUiList || _levelManager.currentLevel == "Intro") { uiComplete = true; }
-            if (_levelManager.currentLevel == "Level3") { 
+            if (activeList == currentUiList || _levelManager.CurrentLevel == "Intro") { uiComplete = true; }
+            if (_levelManager.CurrentLevel == "Level3") { 
                 openQuestionsComplete = true;
                 LevelTaskIsComplete();
              }

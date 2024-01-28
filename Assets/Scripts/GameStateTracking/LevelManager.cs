@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
 public class LevelManager : MonoBehaviour
 {
-
-    /* 
+    /*
         <Summary>
         * This class is responsible for tracking the current level and switching between levels.
         * Intro level : User repeats the word "Hello"
@@ -15,29 +15,38 @@ public class LevelManager : MonoBehaviour
         </Summary>
     */
 
-    // TODO set this to be read-only (private)
-    public string currentLevel;
+    // Private field to store the current level
+    private string _currentLevel;
 
+    // Public property to access the current level (read-only)
+    public string CurrentLevel
+    {
+        get { return _currentLevel; }
+    }
+
+    // Awake method to set the current level when the script starts
     public void Awake()
     {
         Scene scene = SceneManager.GetActiveScene();
-        currentLevel = scene.name;
+        _currentLevel = scene.name;
     }
 
-    public void RepeatLevel() {
+    // Method to repeat the current level
+    public void RepeatLevel()
+    {
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
     }
 
+    // Method to go to the next level sequentially
     public void GoToNextLevelSequentially()
     {
-        // Switch scenes based on score
-        Scene scene = SceneManager.GetActiveScene();
-        switch (scene.name)
+        // Switch scenes based on the current level
+        switch (_currentLevel)
         {
             case "Intro":
                 SceneManager.LoadScene("Level1");
-                break; 
+                break;
             case "Level1":
                 SceneManager.LoadScene("Level2");
                 break;
@@ -51,7 +60,6 @@ public class LevelManager : MonoBehaviour
                 break;
             default:
                 break;
-
         }
     }
 }
