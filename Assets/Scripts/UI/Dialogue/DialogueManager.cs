@@ -198,7 +198,7 @@ public class DialogueManager : MonoBehaviour
             // if the task is complete, hide the board.
             if(DialogueHandler.currentDialogueOptionIndex >= boardActivationDialogueIndex)  
             {
-                ActivateBoard();
+                _uiManager.ShowOrHideReciteMesh(true);
             }
         }
         else
@@ -221,10 +221,6 @@ public class DialogueManager : MonoBehaviour
         DialogueHandler.IncrementDialogueOption();
         StopAllCoroutines();
         StartCoroutine(CycleThroughDialogue());
-    }
-
-    private void ActivateBoard() {
-        _uiManager.ShowOrHideReciteMesh(true);
     }
 
     private IEnumerator CycleThroughDialogue()
