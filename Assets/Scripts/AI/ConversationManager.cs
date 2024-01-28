@@ -56,7 +56,6 @@ public class ConversationManager : MonoBehaviour
         advancedInitializationMessage =  
         "Your name is 'uCat'. You are a humble, kind-hearted, compassionate, and sassy robocat. Sometimes you say \"meow\" when you speak. You help me learn how to use my implanted brain-computer interfaces to move inside the metaverse. You keep your responses short and to the point. At the end of each response, categorise your response into one of the following categories: 'happy' 'sad' 'confused' 'neutral' 'cheeky'. The category should be the last sentence of your response and just consist of the word by itself, e.g., 'Happy.'";
         if (_levelManager.currentLevel != "ConvoMode") {
-            Debug.Log("ConversationManager.cs: Not in ConvoMode, returning");
             this.enabled = false;
             return;
         }
@@ -78,7 +77,6 @@ public class ConversationManager : MonoBehaviour
 
     public void HandleUserSpeech(string spokenText) {
         // This function is called from FreeSpeechManager when the user speaks (as long as they are allowed to currently)
-        Debug.Log("ConversationManager.cs: HandleUserSpeech called with text: " + spokenText);
         uCatAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Confused;
 
         _userSpeaker.Speak(spokenText);
@@ -93,13 +91,6 @@ public class ConversationManager : MonoBehaviour
         {
             new ChatMessage(ChatMessageRole.System, advancedInitializationMessage)
         };
-        // if (env.TryParseEnvironmentVariable("OPENAI_API_KEY", out string apiKey))
-        //     {
-        // }
-
-        // else {
-        //     Debug.LogError("No API key found.");
-        // }
     }
 
 
@@ -115,7 +106,6 @@ public class ConversationManager : MonoBehaviour
         if(userMessage.Content.Length > 100) userMessage.Content = userMessage.Content.Substring(0,100);
 
         //debugging
-        Debug.Log(string.Format("{0}: {1}", userMessage.rawRole, userMessage.Content));
 
         //add message to the list
         messages.Add(userMessage);
@@ -163,7 +153,6 @@ public class ConversationManager : MonoBehaviour
 
         else {
             // Catch it if API has an error somehow
-            Debug.LogError("OpenAI API returned an empty response");
             _witListeningStateManager.TransitionToState(EListeningState.ListeningForConversationModeInput);
         }
 
@@ -194,7 +183,6 @@ public class ConversationManager : MonoBehaviour
     void PlayEmotionAnimation(string text) {
         // Play the appropriate animation based on the emotion category
 
-        Debug.Log("Emotion word: " + text);
         switch (text.ToLower()) {
             case "happy":
                 uCatAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Happy;
@@ -212,14 +200,12 @@ public class ConversationManager : MonoBehaviour
                 uCatAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Peeking;
                 break;
             default:
-                Debug.LogError("ExtractEmotionFromText: emotion not recognised");
                 break;
         }
 
     }
 
     public void UcatIsDoneSpeaking() {
-        Debug.Log("UcatIsDoneSpeaking called");
         _uCatSpeaker.Stop();
         uCatAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Idle;
         _witListeningStateManager.TransitionToState(EListeningState.ListeningForConversationModeInput);

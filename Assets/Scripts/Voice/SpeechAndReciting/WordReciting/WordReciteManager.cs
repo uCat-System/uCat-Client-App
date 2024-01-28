@@ -4,7 +4,6 @@ using UnityEngine;
 using MText;
 using EListeningState = WitListeningStateManager.ListeningState;
 using ECorrectResponseType = CheckRecitedWordHandler.CorrectResponseType;
-using EDialogueState = DialogueManager.DialogueState;
 
 public class WordReciteManager : MonoBehaviour
 {    
@@ -306,7 +305,6 @@ public class WordReciteManager : MonoBehaviour
         string incorrectResponseText; 
         if (incorrectWordAttempts <= 2) {
             incorrectResponseText = CheckRecitedWordHandler.negativeCorrectResponses[incorrectWordAttempts];
-            // Play audio clip number x HERE
             uCatAudioSource.PlayOneShot(CheckRecitedWordHandler.negativeCorrectResponseAudio[incorrectWordAttempts]);
         } else {
             incorrectResponseText = CheckRecitedWordHandler.negativeCorrectResponses[3];
@@ -314,7 +312,6 @@ public class WordReciteManager : MonoBehaviour
 
         dialogueText3D.UpdateText(incorrectResponseText);
         incorrectWordAttempts++;
-
     }
 
     public void MoveOnIfMoreWordsInList ()
@@ -365,7 +362,6 @@ public class WordReciteManager : MonoBehaviour
     public void LevelTaskIsComplete()
     {
         StopAllCoroutines();
-        Debug.Log("Task is complete");
         // This ensures the timer will stop counting (once levels done)
         _freeSpeechManager.OnStoppedListening();
         _uiManager.ShowOrHideReciteMesh(false);

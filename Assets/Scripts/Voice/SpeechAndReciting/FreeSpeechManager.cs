@@ -92,7 +92,6 @@ using MText;
 
         public void HandleFullTranscription(string text)
         {
-            Debug.Log("Full " + text);
             // Listen for menu activation
             if (_witListeningStateManager.MenuActivationCommandsAreAllowed()) {
                 EMenuActivationResponseType menuActivationResponse = UICommandHandler.CheckIfMenuActivationCommandsWereSpoken(text);
@@ -135,7 +134,6 @@ using MText;
 
             else {
                 // Turn mic back on if we are in the menu and it didn't recognise anything
-                Debug.Log("Did not activate word task with phrase " + text + " . You are probably in the menu: " + _witListeningStateManager.currentListeningState);
                  if (_witListeningStateManager.MenuNavigationCommandsAreAllowed()) {
                     _witListeningStateManager.ReactivateToTryMenuNavigationCommandsAgain();
                  }

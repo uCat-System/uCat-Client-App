@@ -179,7 +179,6 @@ public class WitListeningStateManager : MonoBehaviour
         // Activate it again.
 
         if (currentListeningState != ListeningState.WaitingForConversationResponse) {
-        Debug.Log("Enabling Wit on timer");
             wit.SetActive(true);
             Wit witComponent = wit.GetComponent<Wit>();
             witComponent.Activate();

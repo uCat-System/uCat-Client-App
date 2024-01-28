@@ -127,7 +127,6 @@ public class UICommandHandler
 
         if (menuActivationActions.ContainsKey(lowercaseText))
         {
-            Debug.Log("Menu activation command is contained in list: " + lowercaseText);
             return menuActivationActions[lowercaseText];
         }
         else
@@ -137,7 +136,6 @@ public class UICommandHandler
     }
     public static MenuNavigationResponseType CheckIfMenuNavigationCommandsWereSpoken(string text)
     {
-        Debug.Log("Checking if menu commands were spoken?" + text);
         // check if any of the arguments are null
         if (text == null)
         {

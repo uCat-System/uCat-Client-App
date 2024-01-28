@@ -49,13 +49,9 @@ public class LevelTransition : MonoBehaviour
 
     public IEnumerator TransitionToSpecificLevel(string sceneName)
     {
-        Debug.Log("Transitioning to " + sceneName);
         DialogueHandler.ResetDialogueIndex();
-
         transition.SetTrigger("Start");
-
         yield return new WaitForSeconds(transitionTime);
-
         SceneManager.LoadScene(sceneName);
     }
 }

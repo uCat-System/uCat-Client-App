@@ -188,7 +188,6 @@ public class DialogueManager : MonoBehaviour
     }
 
     private IEnumerator CycleThroughDialogue() {
-        Debug.Log("CycleThroughDialogue() called");
         // TODO move this out of ienumerator, only need to do it once
         // this is really bad for performance, fix pls
         Dictionary<int, string> currentDialogueList;
