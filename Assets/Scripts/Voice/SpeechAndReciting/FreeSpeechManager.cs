@@ -1,6 +1,4 @@
 using UnityEngine;
-using Oculus.Voice;
-using UnityEngine.SceneManagement;
 using EListeningState = WitListeningStateManager.ListeningState;
 using EConfirmationResponseType = ConfirmationHandler.ConfirmationResponseType;
 using EMenuActivationResponseType = UICommandHandler.MenuActivationResponseType;
@@ -8,47 +6,36 @@ using EMenuNavigationResponseType = UICommandHandler.MenuNavigationResponseType;
 using EProceedResponseType = ConfirmationHandler.ProceedResponseType;
 using System.Collections;
 using MText;
-
-
     public class FreeSpeechManager : MonoBehaviour
     {        
         public Material greenText;
+    
+        // External classes
         private LevelTransition _levelTransition;
         private LevelManager _levelManager;
-        private DialogueManager _dialogueManager;
-
         private ConversationManager _conversationManager;
-
         private UIManager _uiManager;
         private WordReciteManager _wordReciteManager;
         private WitListeningStateManager _witListeningStateManager;
+    
+        // 3D Text
         private Modular3DText partialText3D;
-
         private Modular3DText reciteText3D;
-
         private Modular3DText confirmationText3D;
         private Modular3DText subtitleText3D;
 
         // Used to cache the text when we are in a confirmation state
-        private string originallyUtteredText;
-
-
         public string cachedText = "";
 
         public bool isCurrentlyCountingTowardsTimeout;
 
         public float currentTimeoutTimerInSeconds;
 
-        private AudioSource catAudioSource;
-
         public int timeoutInSeconds;
-
-        Scene scene;
 
         void Start()
         {   
             _wordReciteManager = GetComponent<WordReciteManager>();
-            _dialogueManager = GetComponent<DialogueManager>();
             _witListeningStateManager = GetComponent<WitListeningStateManager>();
             _conversationManager = GetComponent<ConversationManager>();
             _uiManager = GetComponent<UIManager>();
@@ -58,8 +45,6 @@ using MText;
             partialText3D = GameObject.FindWithTag("PartialText3D").GetComponent<Modular3DText>();
             confirmationText3D = GameObject.FindWithTag("ConfirmationText3D").GetComponent<Modular3DText>();
             subtitleText3D = GameObject.FindWithTag("SubtitleText3D").GetComponent<Modular3DText>();
-            catAudioSource = GameObject.FindWithTag("uCat").GetComponent<AudioSource>();
-            scene = SceneManager.GetActiveScene();
         }
 
         public void HandlePartialTranscription(string text)
@@ -108,13 +93,13 @@ using MText;
             if (_witListeningStateManager.currentListeningState == EListeningState.ListeningForConfirmation) {
                 //Listen for 'yes' or 'no?' (confirmation)
                 EConfirmationResponseType confirmationResponse = ConfirmationHandler.CheckIfConfirmationWasSpoken(text);
-                StartCoroutine(ProceedBasedOnConfirmation(confirmationResponse, originallyUtteredText));
+                StartCoroutine(ProceedBasedOnConfirmation(confirmationResponse));
             }
 
             if (_witListeningStateManager.currentListeningState == EListeningState.ListeningForNextOrRepeat) {
                 // Listen for 'next' or 'repeat' (word recite)
                 EProceedResponseType proceedResponse = ConfirmationHandler.CheckIfProceedPhraseWasSpoken(text);
-                HandleProceedResponse(proceedResponse, text);
+                HandleProceedResponse(proceedResponse);
             }
             if (_witListeningStateManager.RecitingWordsIsAllowed()) {
                 // Activate Tasks (recite words, etc) if in any valid reciting states
@@ -140,7 +125,7 @@ using MText;
             }
         }
 
-        public void HandleProceedResponse(EProceedResponseType proceedResponse, string originallyUtteredText) { 
+        public void HandleProceedResponse(EProceedResponseType proceedResponse) { 
         switch (proceedResponse) {
             case EProceedResponseType.POSITIVE_PROCEED_RESPONSE:
                 _levelTransition.BeginLevelTransition();
@@ -154,7 +139,7 @@ using MText;
                 break;}
     }
 
-        private IEnumerator ProceedBasedOnConfirmation(EConfirmationResponseType confirmationResponse, string originallyUtteredText) {
+        private IEnumerator ProceedBasedOnConfirmation(EConfirmationResponseType confirmationResponse) {
 
             partialText3D.UpdateText("");
             yield return new WaitForSeconds(ConfirmationHandler.confirmationWaitTimeInSeconds);
@@ -220,7 +205,7 @@ using MText;
 
         public void ActivateTasksBasedOnTranscription(string text)
         {        
-            if (SceneManager.GetActiveScene().name != "Level3") 
+            if (_levelManager.CurrentLevel != "Level3") 
             {
                 _wordReciteManager.StartWordCheck(text);
           
@@ -248,8 +233,7 @@ using MText;
      void CalculateCachedText(string newText) {
         // Prevent the text log becoming too long
         int maxLengthBasedOnScene = 0;
-        Scene scene = SceneManager.GetActiveScene();
-        switch (scene.name) {
+        switch (_levelManager.CurrentLevel) {
             case "Level1":
                 maxLengthBasedOnScene = 40;
                 break;
