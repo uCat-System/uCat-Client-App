@@ -49,8 +49,6 @@ public class WordReciteManager : MonoBehaviour
     private FreeSpeechManager _freeSpeechManager;
 
     private  WitListeningStateManager _witListeningStateManager;
-
-    private ScoreManager _scoreManager;
     private UIManager _uiManager;
     private LevelManager _levelManager;
     private DialogueManager _dialogueManager;
@@ -112,7 +110,6 @@ public class WordReciteManager : MonoBehaviour
         _uiManager = GetComponent<UIManager>();
         _freeSpeechManager = GetComponent<FreeSpeechManager>();
         _witListeningStateManager = GetComponent<WitListeningStateManager>();
-        _scoreManager = GetComponent<ScoreManager>();
         _levelManager = GetComponent<LevelManager>();
         _dialogueManager = GetComponent<DialogueManager>();
 
@@ -126,12 +123,6 @@ public class WordReciteManager : MonoBehaviour
         activeList = currentWordOrSentenceList;
         currentWordOrSentenceIndex = 0;
         incorrectWordAttempts = 0;
-
-        // Set score based on amount of words in lists
-        if (_levelManager.currentLevel == "Level1" || _levelManager.currentLevel == "Level2")
-        {
-            _scoreManager.SetMaxScoreBasedOnWordListCount(currentWordOrSentenceList.Count + currentUiList.Count);
-        }
 
         // Start the first word
         reciteText3D.Material = defaultColour;
@@ -220,7 +211,6 @@ public class WordReciteManager : MonoBehaviour
 
     public void OnMicrophoneTimeOut()
     {
-        // Do not add to score
         StartCoroutine(ChangeTimeOutText());
     }
 
@@ -233,7 +223,6 @@ public class WordReciteManager : MonoBehaviour
 
     public void OnMicrophoneInactivity()
     {
-        // Do not add to score
         StartCoroutine(ChangeTimeOutText());
     }
 
@@ -284,7 +273,6 @@ public class WordReciteManager : MonoBehaviour
                 yield return new WaitForSeconds(CheckRecitedWordHandler.timeBetweenWordsInSeconds);
                 dialogueText3D.UpdateText("");
                 catAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Idle;
-                AddScoreToScoreManager();
                 MoveOnIfMoreWordsInList();
                 break;
 
@@ -327,17 +315,6 @@ public class WordReciteManager : MonoBehaviour
         dialogueText3D.UpdateText(incorrectResponseText);
         incorrectWordAttempts++;
 
-    }
-    void AddScoreToScoreManager()
-    {
-         if (_levelManager.currentLevel == "Level1")
-        {
-            _scoreManager.Level1CurrentScore = _scoreManager.Level1CurrentScore + 1;
-        }
-        else if (_levelManager.currentLevel == "Level2")
-        {
-            _scoreManager.Level2CurrentScore = _scoreManager.Level2CurrentScore + 1;
-        }
     }
 
     public void MoveOnIfMoreWordsInList ()

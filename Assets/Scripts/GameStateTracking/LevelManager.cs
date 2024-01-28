@@ -15,9 +15,6 @@ public class LevelManager : MonoBehaviour
         </Summary>
     */
 
-
-    public ScoreManager _scoreManager;
-
     // TODO set this to be read-only (private)
     public string currentLevel;
 
