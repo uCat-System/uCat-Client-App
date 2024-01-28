@@ -129,8 +129,7 @@ public class UIManager : MonoBehaviour
 
         switch (navigationCommand) {
             case EMenuNavigationResponseType.NURSE_RESPONSE:
-                // TODO implement later
-                // SceneManager.LoadScene("Nurse");
+                Debug.Log("Nurse functionality not implemented yet");
                 break;
             case EMenuNavigationResponseType.RESTART_LEVEL_RESPONSE:
                 _levelManager.RepeatLevel();

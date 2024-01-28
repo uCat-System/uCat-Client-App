@@ -38,6 +38,10 @@ public class DialogueManager : MonoBehaviour
     public int level3TaskActivationIndex;
     public bool dialogueIsPaused;
 
+    Dictionary<int, string> currentDialogueList;
+    Dictionary<int, AnimationDriver.CatAnimations> currentAnimationList;
+    Dictionary<int, AudioClip> currentAudioList;
+
     public enum DialogueState {
         IsPlayingDialogueOnly, // Eg during intro (before screen appears)
         IsPerformingATask, // Eg during a word countdown
@@ -61,6 +65,9 @@ public class DialogueManager : MonoBehaviour
         micIcon = GameObject.FindWithTag("MicIcon");
         catAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Idle;
 
+        // Setup dictionaries for this level
+        PopulateDialogueDictionaries();
+
         // Start dialogue
         SetDialogueTaskIndexes();
         StartCoroutine(WaitABitAndThenStartDialogue());
@@ -70,6 +77,40 @@ public class DialogueManager : MonoBehaviour
             // Hide the board and mic icon
             _uiManager.ShowOrHideReciteMesh(false);
             micIcon.SetActive(false);
+        }
+    }
+
+    void PopulateDialogueDictionaries()
+    {
+        // We pass in different dictionaries based on the scene
+        switch (_levelManager.CurrentLevel)
+        {
+            case "Intro":
+                currentDialogueList = DialogueHandler.uCatIntroDialogue;
+                currentAnimationList = DialogueHandler.uCatIntroDialogueAnimations;
+                currentAudioList = DialogueHandler.uCatIntroDialogueAudio;
+                break;
+            case "Level1":
+                currentDialogueList = DialogueHandler.uCatLevel1Dialogue;
+                currentAnimationList = DialogueHandler.uCatLevel1DialogueAnimations;
+                currentAudioList = DialogueHandler.uCatLevel1DialogueAudio;
+                break;
+            case "Level2":
+                currentDialogueList = DialogueHandler.uCatLevel2Dialogue;
+                currentAnimationList = DialogueHandler.uCatLevel2DialogueAnimations;
+                currentAudioList = DialogueHandler.uCatLevel2DialogueAudio;
+                break;
+            case "Level3":
+                currentDialogueList = DialogueHandler.uCatLevel3Dialogue;
+                currentAnimationList = DialogueHandler.uCatLevel3DialogueAnimations;
+                currentAudioList = DialogueHandler.uCatLevel3DialogueAudio;
+                break;
+            default:
+                currentDialogueList = null;
+                currentAnimationList = null;
+                currentAudioList = null;
+                Debug.LogError("Dictionary not setup for: " + _levelManager.CurrentLevel);
+                break;
         }
     }
 
@@ -89,6 +130,7 @@ public class DialogueManager : MonoBehaviour
     public void StartDialogue() {
         ChangeDialogueState(DialogueState.IsPlayingDialogueOnly);
         _wordReciteManager.StopAllCoroutines();
+        // Prevent overlapping dialogue start calls
         StopAllCoroutines();
         StartCoroutine(CycleThroughDialogue());
     }
@@ -110,6 +152,7 @@ public class DialogueManager : MonoBehaviour
     }
 
     void SetDialogueTaskIndexes() {
+        // These indexes are the lines of dialogue when various tasks (reciting) should occur in each level
         switch (_levelManager.CurrentLevel) {
             case "Intro":
                 taskActivationDialogueIndex = introTaskActivationIndex;
@@ -190,39 +233,7 @@ public class DialogueManager : MonoBehaviour
     private IEnumerator CycleThroughDialogue() {
         // TODO move this out of ienumerator, only need to do it once
         // this is really bad for performance, fix pls
-        Dictionary<int, string> currentDialogueList;
-        Dictionary<int, AnimationDriver.CatAnimations> currentAnimationList;
-        Dictionary<int, AudioClip> currentAudioList;
-        
-        // We pass in different dictionaries based on the scene
-        switch (_levelManager.CurrentLevel) {
-            case "Intro":
-                currentDialogueList = DialogueHandler.uCatIntroDialogue;
-                currentAnimationList = DialogueHandler.uCatIntroDialogueAnimations;
-                currentAudioList = DialogueHandler.uCatIntroDialogueAudio;
-                break;
-            case "Level1":
-                currentDialogueList = DialogueHandler.uCatLevel1Dialogue;
-                currentAnimationList = DialogueHandler.uCatLevel1DialogueAnimations;
-                currentAudioList = DialogueHandler.uCatLevel1DialogueAudio;
-                break;
-            case "Level2":
-                currentDialogueList = DialogueHandler.uCatLevel2Dialogue;
-                currentAnimationList = DialogueHandler.uCatLevel2DialogueAnimations;
-                currentAudioList = DialogueHandler.uCatLevel2DialogueAudio;
-                break;
-            case "Level3":
-                currentDialogueList = DialogueHandler.uCatLevel3Dialogue;
-                currentAnimationList = DialogueHandler.uCatLevel3DialogueAnimations;
-                currentAudioList = DialogueHandler.uCatLevel3DialogueAudio;
-                break;
-            default:
-                currentDialogueList = null;
-                currentAnimationList = null;
-                currentAudioList = null;
-                Debug.LogError("Dictionary not setup for: " + _levelManager.CurrentLevel);
-                break;
-        }
+
 
         if ( currentDialogueList == null || currentDialogueList.Count == 0)
         {
