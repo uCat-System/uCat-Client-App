@@ -225,56 +225,40 @@ public class DialogueManager : MonoBehaviour
 
     private void ActivateBoard() {
         _uiManager.ShowOrHideReciteMesh(true);
-        if (_levelManager.CurrentLevel != "Level3") {
-            //GameObject.FindWithTag("ReciteText3D").GetComponent<Modular3DText>().UpdateText("...Hello...");
-        }
     }
 
-    private IEnumerator CycleThroughDialogue() {
-        // TODO move this out of ienumerator, only need to do it once
-        // this is really bad for performance, fix pls
+    private IEnumerator CycleThroughDialogue()
+    {
+        if (currentDialogueList == null || currentDialogueList.Count == 0)
+            yield break;
 
-
-        if ( currentDialogueList == null || currentDialogueList.Count == 0)
+        while (DialogueHandler.currentDialogueOptionIndex < currentDialogueList.Count)
         {
-            yield break;
-        }
+            if (currentDialogueState != DialogueState.IsPlayingDialogueOnly)
+                yield break;
 
-        if (currentDialogueState != DialogueState.IsPlayingDialogueOnly) {
-            yield break;
-        }
-
-
-        // Trigger the task to begin, and pause dialogue
-        if (DialogueHandler.currentDialogueOptionIndex == taskActivationDialogueIndex) {
-            ActivateTaskAndPauseDialogue();
-            // Increment so that when we return from task we are on the next line
-            DialogueHandler.IncrementDialogueOption();
-            yield break;
-        }
-
-        SetDialogueTextAnimationAndSound(currentDialogueList, currentAnimationList, currentAudioList);
-
-        // possible cpu load
-        yield return new WaitWhile(() => catAudioSource.isPlaying);
-        yield return new WaitForSeconds(DialogueHandler.timeBetweenLinesInSeconds);
-    
-        bool noMoreDialogue = DialogueHandler.currentDialogueOptionIndex >= currentDialogueList.Count-1 || currentDialogueList == null || currentAnimationList == null;
-
-        if (noMoreDialogue) {
-            // Do not continue incrementing if we are at the end
-            EndOfDialogue();
-            yield break;
-        } else {
-            DialogueHandler.IncrementDialogueOption();
-            // Otherwise, start the next line as long as user is not performing a task
-            if (currentDialogueState == DialogueState.IsPlayingDialogueOnly) {
-                // This could be causing the cpu lag
-                StartCoroutine(CycleThroughDialogue());
+            // Trigger the task to begin, and pause dialogue
+            if (DialogueHandler.currentDialogueOptionIndex == taskActivationDialogueIndex)
+            {
+                ActivateTaskAndPauseDialogue();
+                // Increment so that when we return from task we are on the next line
+                DialogueHandler.IncrementDialogueOption();
+                yield break;
             }
+
+            SetDialogueTextAnimationAndSound(currentDialogueList, currentAnimationList, currentAudioList);
+
+            // Wait for audio to finish playing and then wait for a specified time before proceeding
+            yield return new WaitUntil(() => !catAudioSource.isPlaying);
+            yield return new WaitForSeconds(DialogueHandler.timeBetweenLinesInSeconds);
+
+            DialogueHandler.IncrementDialogueOption();
         }
 
+        // End of dialogue
+        EndOfDialogue();
     }
+
 
     void EndOfDialogue() {
         DialogueHandler.currentDialogueOptionIndex = 0;
