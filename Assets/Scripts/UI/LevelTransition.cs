@@ -12,25 +12,6 @@ public class LevelTransition : MonoBehaviour
 
     private static LevelTransition instance;
 
-    private void OnEnable()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-
-    private void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
-
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        // This method is called whenever a new scene is loaded.
-        // You can put your logic here to handle the changes needed when the scene changes.
-        Debug.Log("OnSceneLoaded: " + scene.name);
-    }
-
-    // Update is called once per frame
     void Start()
     {
         crossFadeImage.SetActive(true);
