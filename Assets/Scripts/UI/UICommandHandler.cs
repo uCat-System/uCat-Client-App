@@ -28,7 +28,6 @@ public class UICommandHandler
         RECITE_WORDS_RESPONSE,
         RECITE_SENTENCES_RESPONSE,
         RECITE_OPEN_QUESTIONS_RESPONSE,
-        LOBBY_RESPONSE,
         WRITING_RESPONSE,
         CONVERSATION_RESPONSE,
         SETTINGS_RESPONSE,
@@ -49,7 +48,6 @@ public class UICommandHandler
             // { navigationInputData.reciteWordsInput, MenuNavigationResponseType.RECITE_WORDS_RESPONSE },
             // { navigationInputData.reciteSentencesInput, MenuNavigationResponseType.RECITE_SENTENCES_RESPONSE },
             // { navigationInputData.reciteOpenQuestionsInput, MenuNavigationResponseType.RECITE_OPEN_QUESTIONS_RESPONSE },
-            // { navigationInputData.lobbyInput, MenuNavigationResponseType.LOBBY_RESPONSE }
         };
 
         foreach (string nurseInput in navigationInputData.nurseInputs)
@@ -80,11 +78,6 @@ public class UICommandHandler
         foreach (string reciteOpenQuestionsInput in navigationInputData.reciteOpenQuestionsInputs)
         {
              menuNavigationActions[reciteOpenQuestionsInput] = MenuNavigationResponseType.RECITE_OPEN_QUESTIONS_RESPONSE;
-        }
-
-        foreach (string lobbyInput in navigationInputData.lobbyInputs)
-        {
-             menuNavigationActions[lobbyInput] = MenuNavigationResponseType.LOBBY_RESPONSE;
         }
 
         foreach (string writingInput in navigationInputData.writingInputs)

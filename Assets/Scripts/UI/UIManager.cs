@@ -74,7 +74,7 @@ public class UIManager : MonoBehaviour
 
     public void ActivateMenu() {
         _dialogueManager.PauseDialogueAudio();
-        _witListeningStateManager.TransitionToRelevantMenuNavigationStateBasedOnLevel();
+        _witListeningStateManager.TransitionToState(EListeningState.ListeningForTaskMenuCommandsOnly);
         _dialogueManager.ChangeDialogueState(EDialogueState.IsInMenu);
         StartCoroutine(StartMenuOpenAnimation());
     }
@@ -146,9 +146,6 @@ public class UIManager : MonoBehaviour
                 break;
             case EMenuNavigationResponseType.RECITE_OPEN_QUESTIONS_RESPONSE:
                 _levelTransition.BeginSpecificLevelTransition("Level3");
-                break;
-            case EMenuNavigationResponseType.LOBBY_RESPONSE:
-                _levelTransition.BeginSpecificLevelTransition("Lobby");
                 break;
             case EMenuNavigationResponseType.WRITING_RESPONSE:
                 Debug.Log("Writing not implemented yet");

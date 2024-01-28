@@ -45,8 +45,6 @@ public class WitListeningStateManager : MonoBehaviour
         ListeningForTaskMenuCommandsOnly, // navigates within the menu
         ListeningForConfirmation,
         ListeningForNextOrRepeat,
-
-        ListeningForLobbyMenuCommandsOnly, // including memo mode
         ListeningForFreestyleResponse,
         ListeningForConversationModeInput,
         WaitingForConversationResponse
@@ -71,7 +69,6 @@ public class WitListeningStateManager : MonoBehaviour
 
     private static Dictionary<ListeningState, bool> validMenuNavigationStates = new Dictionary<ListeningState, bool>
     {
-        { ListeningState.ListeningForLobbyMenuCommandsOnly, true },
         { ListeningState.ListeningForTaskMenuCommandsOnly, true },
     };
 
@@ -134,7 +131,7 @@ public class WitListeningStateManager : MonoBehaviour
         // Wait a few seconds before reactivating
         yield return new WaitForSeconds(1);
         // Reactivate
-        TransitionToRelevantMenuNavigationStateBasedOnLevel();
+        TransitionToState(ListeningState.ListeningForTaskMenuCommandsOnly);
     }
 
     public bool MenuNavigationCommandsAreAllowed() {
@@ -147,14 +144,6 @@ public class WitListeningStateManager : MonoBehaviour
 
     public bool TimeoutCountingIsAllowed() {
         return CurrentStateIsAllowedInDictionary(validTimeoutCountingStates);
-    }
-
-    public void TransitionToRelevantMenuNavigationStateBasedOnLevel() {
-        if (scene != "Lobby") {
-            TransitionToState(ListeningState.ListeningForTaskMenuCommandsOnly);
-        } else {
-            TransitionToState(ListeningState.ListeningForLobbyMenuCommandsOnly);
-        }
     }
 
     public void StoppedListening() {
@@ -231,10 +220,6 @@ public class WitListeningStateManager : MonoBehaviour
                     micIcon.SetActive(true);
                     break;
                 case ListeningState.ListeningForConfirmation:
-                    StartCoroutine(TurnWitActivationOffAndOn());
-                    micIcon.SetActive(true);
-                    break;
-                case ListeningState.ListeningForLobbyMenuCommandsOnly:
                     StartCoroutine(TurnWitActivationOffAndOn());
                     micIcon.SetActive(true);
                     break;

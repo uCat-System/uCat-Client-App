@@ -259,6 +259,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2054124464517824472}
+  - component: {fileID: 7009908253950923006}
   m_Layer: 0
   m_Name: TTS
   m_TagString: Untagged
@@ -282,8 +283,23 @@ Transform:
   - {fileID: 3298500219130392671}
   - {fileID: 3298500220593411033}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7009908253950923006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2054124464517824475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f767c914d607dfa49b40f8f8fb45874f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kind: 0
+  message: Contains TextToSpeech users (voices), as well as an instance of Wit.
+  isEditing: 0
 --- !u!1001 &2054124463645098819
 PrefabInstance:
   m_ObjectHideFlags: 0

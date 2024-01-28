@@ -44,15 +44,14 @@ public class LevelManager : MonoBehaviour
             case "Level2":
                 SceneManager.LoadScene("Level3");
                 break;
-
             case "Level3":
-                SceneManager.LoadScene("Lobby");
+                SceneManager.LoadScene("ConvoMode");
                 break;
             case "ConvoMode":
-                SceneManager.LoadScene("ConvoMode");
-                break;    
+                break;
+            default:
+                break;
 
         }
-
     }
 }

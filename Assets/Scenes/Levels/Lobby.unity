@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.33134493, g: 0.56136495, b: 1.0086116, a: 1}
+  m_IndirectSpecularColor: {r: 0.55916, g: 0.80883837, b: 0.98748887, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1645,6 +1645,7 @@ GameObject:
   m_Component:
   - component: {fileID: 705507995}
   - component: {fileID: 705507994}
+  - component: {fileID: 705507996}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -1729,6 +1730,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 40.366, y: 302.75598, z: 87.948006}
+--- !u!114 &705507996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705507993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &723296574
 GameObject:
   m_ObjectHideFlags: 0
@@ -2080,16 +2101,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3a9918f74891044fb65f815fa1f3dc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _uiManager: {fileID: 0}
-  _levelManager: {fileID: 0}
-  _wordReciteManager: {fileID: 0}
-  partialText3D: {fileID: 3211107781437779076}
-  subtitleText3D: {fileID: 1656460658}
-  _witListeningStateManager: {fileID: 0}
+  greenText: {fileID: 0}
   cachedText: 
   isCurrentlyCountingTowardsTimeout: 0
   currentTimeoutTimerInSeconds: 0
-  catAudioSource: {fileID: 0}
+  timeoutInSeconds: 0
 --- !u!1 &1442449950
 GameObject:
   m_ObjectHideFlags: 0
@@ -2134,10 +2150,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc45d88a8119af14aa4ebaaf255ce6c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levelManager: {fileID: 0}
-  textElements: {fileID: 8890741824386749451}
-  _witListeningStateManager: {fileID: 0}
-  _wordReciteManager: {fileID: 0}
   menu: {fileID: 940584468}
 --- !u!1001 &1549551115
 PrefabInstance:
@@ -2430,17 +2442,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1656460658 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3758072563938281339, guid: bc1649d7f04813e489242af621cbf300, type: 3}
-  m_PrefabInstance: {fileID: 418587317}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45d100e06f4a0744c8728e86700b5472, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1688403768
 GameObject:
   m_ObjectHideFlags: 0
@@ -2791,7 +2792,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9a437155e5944c4db5504225301bff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scoreManager: {fileID: 803375946}
   currentLevel: 
 --- !u!1 &1951320423
 GameObject:
@@ -5055,6 +5055,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2199566122139729808}
   - component: {fileID: 2199566122139729839}
+  - component: {fileID: 2199566122139729840}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -5124,6 +5125,26 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &2199566122139729840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2199566122139729838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1001 &2199566122222711796
 PrefabInstance:
   m_ObjectHideFlags: 0
