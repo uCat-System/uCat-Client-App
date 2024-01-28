@@ -5,21 +5,23 @@ using System.Collections;
 
 public class DialogueManager : MonoBehaviour
 {
-    public Modular3DText dialogueText;
+    public int dialogueStartingDelayInSeconds = 2;
+    private Modular3DText dialogueText;
 
-    public AnimationDriver catAnimationDriver;
+    private AnimationDriver catAnimationDriver;
 
-    public LevelManager _levelManager;
+    private LevelManager _levelManager;
 
-    public WordReciteManager _wordReciteManager;
+    private WordReciteManager _wordReciteManager;
 
-    public LevelTransition _levelTransition;
+    private LevelTransition _levelTransition;
 
-    public AudioSource catAudioSource;
+    private UIManager _uiManager;
+
+    private AudioSource catAudioSource;
 
     // Variables exposing UI elements which uCat will show/hide during the Intro dialogue
-    public GameObject micIcon;
-    public GameObject boardComponent;
+    private GameObject micIcon;
 
     public int currentDialogueOptionIndex;
 
@@ -34,8 +36,7 @@ public class DialogueManager : MonoBehaviour
     public int level1TaskActivationIndex;
     public int level2TaskActivationIndex;
     public int level3TaskActivationIndex;
-
-    // public DialogueState currentDialogueState;
+    public bool dialogueIsPaused;
 
     public enum DialogueState {
         IsPlayingDialogueOnly, // Eg during intro (before screen appears)
@@ -50,14 +51,45 @@ public class DialogueManager : MonoBehaviour
     void Start()
     {
         // uCat begins idle so that the first anim can play properly
+        dialogueText = GameObject.FindWithTag("DialogueText3D").GetComponent<Modular3DText>();
+        catAnimationDriver = GameObject.FindWithTag("uCat").GetComponent<AnimationDriver>();
+        _levelManager = FindObjectOfType<LevelManager>();
+        _wordReciteManager = FindObjectOfType<WordReciteManager>();
+        _uiManager = FindObjectOfType<UIManager>();
+        catAudioSource = GameObject.FindWithTag("uCat").GetComponent<AudioSource>();
         _levelTransition = FindObjectOfType<LevelTransition>();
+        micIcon = GameObject.FindWithTag("MicIcon");
         catAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Idle;
+
+        // Start dialogue
         SetDialogueTaskIndexes();
+        StartCoroutine(WaitABitAndThenStartDialogue());
+        dialogueIsPaused = false;
+
+        if (_levelManager.currentLevel == "Intro") {
+            // Hide the board and mic icon
+            _uiManager.ShowOrHideReciteMesh(false);
+            micIcon.SetActive(false);
+        }
+    }
+
+    public IEnumerator WaitABitAndThenStartDialogue() {
+        yield return new WaitForSeconds(dialogueStartingDelayInSeconds);
         StartDialogue();
     }
 
+    public void StartDialogueFromPreviousLine() {
+        ChangeDialogueState(DialogueState.IsPlayingDialogueOnly);
+        if (DialogueHandler.currentDialogueOptionIndex > 0) {
+            DialogueHandler.currentDialogueOptionIndex--;
+        }
+        StopAllCoroutines();
+        StartCoroutine(CycleThroughDialogue());
+    }
     public void StartDialogue() {
-        Debug.Log("Starting dialogue. Index is " + DialogueHandler.currentDialogueOptionIndex);
+        ChangeDialogueState(DialogueState.IsPlayingDialogueOnly);
+        _wordReciteManager.StopAllCoroutines();
+        StopAllCoroutines();
         StartCoroutine(CycleThroughDialogue());
     }
 
@@ -65,10 +97,16 @@ public class DialogueManager : MonoBehaviour
         previousDialogueState = currentDialogueState;
         currentDialogueState = newDialogueState;
     }
-
+    
     void ActivateTaskAndPauseDialogue() {
-        _wordReciteManager.enabled = true;
+        _wordReciteManager.BeginReciteTask();
         ChangeDialogueState(DialogueState.IsPerformingATask);
+    }
+
+    public void SkipDialogueAndGoStraightToTask() {
+        ChangeDialogueState(DialogueState.IsPlayingDialogueOnly);
+        DialogueHandler.currentDialogueOptionIndex = taskActivationDialogueIndex-1;
+        StartCoroutine(CycleThroughDialogue());
     }
 
     void SetDialogueTaskIndexes() {
@@ -83,6 +121,9 @@ public class DialogueManager : MonoBehaviour
                 taskActivationDialogueIndex = level2TaskActivationIndex;
                 break;
             case "Level3":
+                taskActivationDialogueIndex = level3TaskActivationIndex;
+                break;
+            case "ConvoMode":
                 taskActivationDialogueIndex = level3TaskActivationIndex;
                 break;
             default:
@@ -104,17 +145,18 @@ public class DialogueManager : MonoBehaviour
             // Play the relevant animation
             catAnimationDriver.catAnimation = dialogueAnimations[DialogueHandler.currentDialogueOptionIndex];
 
-            // Play the dialogue audio
-            // catAudioSource.clip = dialogueAudio[UcatDialogueHandler.currentDialogueOptionIndex];
-            catAudioSource.PlayOneShot(dialogueAudio[DialogueHandler.currentDialogueOptionIndex]);
+            PlayDialogueAudio(dialogueAudio[DialogueHandler.currentDialogueOptionIndex]);
 
             //in the Intro, uCat wants to show the user what icon would be displayed when she is listening to them
             var micState = (DialogueHandler.currentDialogueOptionIndex == micActivationDialogueIndex) ? true : false;
             micIcon.SetActive(micState);
 
             //in the Intro, uCat wants to show the user the board from an appropriate time (not immediately)
-            boardComponent.SetActive(false);
-            if(DialogueHandler.currentDialogueOptionIndex >= boardActivationDialogueIndex) boardComponent.SetActive(true);
+            // if the task is complete, hide the board.
+            if(DialogueHandler.currentDialogueOptionIndex >= boardActivationDialogueIndex)  
+            {
+                ActivateBoard();
+            }
         }
         else
         {
@@ -122,11 +164,33 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    private IEnumerator CycleThroughDialogue() {
-        // TODO move this out of ienumerator, only need to do it once
-        Debug.Log("Cycling through with level " + _levelManager.currentLevel);
-        Debug.Log("Current index is " + DialogueHandler.currentDialogueOptionIndex);
+    void PlayDialogueAudio(AudioClip currentClip) {
+        catAudioSource.clip = currentClip;
+        catAudioSource.Play();
+    }
 
+    public void PauseDialogueAudio() {
+        catAudioSource.Stop();
+    }
+
+    public void SkipToNextLine() {
+        catAudioSource.Stop();
+        DialogueHandler.IncrementDialogueOption();
+        StopAllCoroutines();
+        StartCoroutine(CycleThroughDialogue());
+    }
+
+    private void ActivateBoard() {
+        _uiManager.ShowOrHideReciteMesh(true);
+        if (_levelManager.currentLevel != "Level3") {
+            //GameObject.FindWithTag("ReciteText3D").GetComponent<Modular3DText>().UpdateText("...Hello...");
+        }
+    }
+
+    private IEnumerator CycleThroughDialogue() {
+        Debug.Log("CycleThroughDialogue() called");
+        // TODO move this out of ienumerator, only need to do it once
+        // this is really bad for performance, fix pls
         Dictionary<int, string> currentDialogueList;
         Dictionary<int, AnimationDriver.CatAnimations> currentAnimationList;
         Dictionary<int, AudioClip> currentAudioList;
@@ -161,43 +225,41 @@ public class DialogueManager : MonoBehaviour
                 break;
         }
 
-        if (currentDialogueList.Count == 0)
+        if ( currentDialogueList == null || currentDialogueList.Count == 0)
         {
-            Debug.LogError("No dialogue lines found");
             yield break;
         }
 
         if (currentDialogueState != DialogueState.IsPlayingDialogueOnly) {
-            Debug.Log("Not playing dialogue only. Breaking out.");
             yield break;
         }
 
 
         // Trigger the task to begin, and pause dialogue
         if (DialogueHandler.currentDialogueOptionIndex == taskActivationDialogueIndex) {
-            Debug.Log("Activating task");
             ActivateTaskAndPauseDialogue();
             // Increment so that when we return from task we are on the next line
             DialogueHandler.IncrementDialogueOption();
-            Debug.Log("Breaking out");
             yield break;
         }
 
         SetDialogueTextAnimationAndSound(currentDialogueList, currentAnimationList, currentAudioList);
+
+        // possible cpu load
         yield return new WaitWhile(() => catAudioSource.isPlaying);
         yield return new WaitForSeconds(DialogueHandler.timeBetweenLinesInSeconds);
     
+        bool noMoreDialogue = DialogueHandler.currentDialogueOptionIndex >= currentDialogueList.Count-1 || currentDialogueList == null || currentAnimationList == null;
 
-        if (DialogueHandler.currentDialogueOptionIndex >= currentDialogueList.Count-1 || currentDialogueList == null || currentAnimationList == null) {
+        if (noMoreDialogue) {
             // Do not continue incrementing if we are at the end
-            Debug.Log("End of dialogue");
             EndOfDialogue();
             yield break;
         } else {
-            Debug.Log("Not end of dialogue");
             DialogueHandler.IncrementDialogueOption();
             // Otherwise, start the next line as long as user is not performing a task
             if (currentDialogueState == DialogueState.IsPlayingDialogueOnly) {
+                // This could be causing the cpu lag
                 StartCoroutine(CycleThroughDialogue());
             }
         }

@@ -17,7 +17,7 @@ public class ConfirmationHandler
     public static Dictionary<Enum, string> proceedResponses;
 
     public static Dictionary<Enum, string> confirmationResponses;
-    public static float confirmationWaitTimeInSeconds = 2f;
+    public static float confirmationWaitTimeInSeconds = 1f;
 
 
     public static AudioClip positiveConfirmationAudio;

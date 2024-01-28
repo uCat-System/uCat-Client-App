@@ -24,17 +24,20 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/Level3.unity
     guid: 1db90665bab3018439b1da970c415e14
   - enabled: 0
-    path: Assets/Scenes/Levels/Level1Old.unity
+    path: Assets/Scenes/BackupsOldScenes/Level1Old.unity
     guid: f07ac48b6b1c7534f88197e6d3d7c206
   - enabled: 0
-    path: Assets/Scenes/Levels/Level2Old.unity
+    path: Assets/Scenes/BackupsOldScenes/Level2Old.unity
     guid: f954c7fb04fdff448bb3ed26c8bf8040
   - enabled: 0
-    path: Assets/Scenes/Levels/Level3Old.unity
+    path: Assets/Scenes/BackupsOldScenes/Level3Old.unity
     guid: 08ed11eddf2990343b3a6e1272fdd538
   - enabled: 0
     path: Assets/Scenes/Levels/Lobby.unity
     guid: 3d0c5379edc93234a9e32e9462834e9f
+  - enabled: 1
+    path: Assets/Scenes/Levels/ConvoMode.unity
+    guid: 56aa1ead4b0cf0147b7c2ab8629b667e
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfd339ae94797324b9b221432741be17, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: bbf721aae3597e64c82e4895233f3073, type: 2}
