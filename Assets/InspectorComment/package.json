@@ -1,0 +1,15 @@
+{
+    "name": "com.k5factory.unityinspectorcomment",
+    "displayName": "Inspector Comment",
+    "author": "K5 Factory GmbH",
+    "version": "1.1.0",
+    "unity": "2020.3",
+    "description": "Leave comments in the Hierarchy like you would in code.\nInspector Comment is an invaluable documentation and communication tool for Tech Artists and Developers. \n\n© 2022 K5 Factory GmbH",
+    "keywords": ["custom inspector", "editor tool", "productivity"],
+    "category": "Tools",
+	"license": "All Rights Reserved",
+	"hideInEditor": false,
+    "documentationUrl": "",
+    "changelogUrl": "",
+    "type": "library"
+}
