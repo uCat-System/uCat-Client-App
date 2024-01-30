@@ -16,6 +16,10 @@ public class DebuggerClass : MonoBehaviour
     private DialogueManager _dialogueManager;
 
     public Modular3DText debugText;
+    public string correctPhrase;
+    public string incorrectPhrase;
+
+    public string fillerPhrase;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,19 +37,17 @@ public class DebuggerClass : MonoBehaviour
             ActivateMenuViaVoice();
         }
 
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            _freeSpeechManager.HandleFullTranscription("milk");
-        }
-
         if (Input.GetKeyDown(KeyCode.Alpha1)) {
-             _freeSpeechManager.HandleFullTranscription("Yes");
+            _freeSpeechManager.HandleFullTranscription(correctPhrase);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2)) {
-            _levelTransition.BeginSpecificLevelTransition("Level2");
+             _freeSpeechManager.HandleFullTranscription(incorrectPhrase);
         }
+
+        
         if (Input.GetKeyDown(KeyCode.Alpha3)) {
-            _levelTransition.BeginSpecificLevelTransition("Level3");
+            _freeSpeechManager.HandleFullTranscription(fillerPhrase);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha4)) {

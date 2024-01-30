@@ -93,7 +93,7 @@ public class WitListeningStateManager : MonoBehaviour
         if (scene == "ConvoMode") {
             TransitionToState(ListeningState.ListeningForConversationModeInput);
         } else {
-            TransitionToState(ListeningState.ListeningForTaskMenuCommandsOnly);
+            TransitionToState(ListeningState.ListeningForMenuActivationCommandsOnly);
         }
         InvokeRepeating("EnableWitEverySoOften", 0f, witAutomaticReactivationTimer);
     }

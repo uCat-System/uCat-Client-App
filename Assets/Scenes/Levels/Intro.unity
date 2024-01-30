@@ -1755,6 +1755,14 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1895837521}
+    - target: {fileID: 5499405244756187643, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
+      propertyPath: correctPhrase
+      value: Hello
+      objectReference: {fileID: 0}
+    - target: {fileID: 5499405244756187643, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
+      propertyPath: incorrectPhrase
+      value: Milk
+      objectReference: {fileID: 0}
     - target: {fileID: 6077588429730477223, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
       propertyPath: m_Mesh
       value: 
