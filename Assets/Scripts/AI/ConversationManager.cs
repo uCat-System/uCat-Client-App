@@ -29,7 +29,7 @@ public class ConversationManager : MonoBehaviour
     private WitListeningStateManager _witListeningStateManager;
     private LevelManager _levelManager;
 
-    public bool isCurrentlyCountingTowardsTimeout;
+    public bool uCatHasStartedSpeaking;
     public float uCatResponseTimeoutLimit;
     public float uCatResponseTimeout;
 
@@ -54,7 +54,12 @@ public class ConversationManager : MonoBehaviour
 
         standardInitializationMessage =  "Your name is 'uCat'. You are a humble, kind-hearted, compassionate, and sassy robocat. Sometimes you say \"meow\" when you speak. You help me learn how to use my implanted brain-computer interfaces to move inside the metaverse. You keep your responses short and to the point.";
         advancedInitializationMessage =  
-        "Your name is 'uCat'. You are a humble, kind-hearted, compassionate, and sassy robocat. Sometimes you say \"meow\" when you speak. You help me learn how to use my implanted brain-computer interfaces to move inside the metaverse. You keep your responses short and to the point. At the end of each response, categorise your response into one of the following categories: 'happy' 'sad' 'confused' 'neutral' 'cheeky'. The category should be the last sentence of your response and just consist of the word by itself, e.g., 'Happy.'";
+        "Your name is 'uCat'. You are a humble, kind-hearted, compassionate, and sassy robocat." +
+        " Sometimes you say \"meow\" when you speak. You help me learn how to use my implanted brain-computer interfaces to move inside the metaverse. You should sometimes give me suggestions of different exercises I can do, which are the following: Practice words, practice phrases, and daily check in. " +
+        " You keep your responses short and to the point." +
+        " You should aim to assist the user in rehabilitating their socialisation, and help them get back to a healthy and happy life." +
+        " At the end of each response, categorise your response into one of the following categories: 'happy' 'sad' 'confused' 'neutral' 'cheeky'." +
+        " The category should be the last sentence of your response and just consist of the word by itself, e.g., 'Happy.'";
         if (_levelManager.CurrentLevel != "ConvoMode") {
             this.enabled = false;
             return;
@@ -81,8 +86,15 @@ public class ConversationManager : MonoBehaviour
 
         _userSpeaker.Speak(spokenText);
         subtitleText.UpdateText(spokenText);
-        GetOpenAIResponse(spokenText);
         _witListeningStateManager.TransitionToState(EListeningState.WaitingForConversationResponse);
+        
+        // Send the text to the server
+        GetOpenAIResponse(spokenText);
+    }
+
+    public void UserSpeechAudioHasBeenPlayed()
+    {
+        subtitleText.UpdateText("");
     }
    
     private void InitiliazeUcatConversation(){
@@ -105,19 +117,11 @@ public class ConversationManager : MonoBehaviour
         userMessage.Content = textToSubmit;
         if(userMessage.Content.Length > 100) userMessage.Content = userMessage.Content.Substring(0,100);
 
-        //debugging
-
-        //add message to the list
+        //Add message to the ongoing conversation
         messages.Add(userMessage);
 
-        //update textfield with user message
-        // _dialogue.UpdateText(string.Format("You: {0}", userMessage.Content));
-
-        //clear the input field
-        // _subtitle.UpdateText("");
-
         //send entire chat to OpenAI to get its response
-        isCurrentlyCountingTowardsTimeout = true;
+        uCatHasStartedSpeaking = true;
         var chatResult = await api.Chat.CreateChatCompletionAsync(new ChatRequest(){
             Model = Model.ChatGPTTurbo,
             Temperature = 0.7,
@@ -126,6 +130,8 @@ public class ConversationManager : MonoBehaviour
         });
         
         uCatAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Idle;
+
+        // TODO handle no response error here, make uCat say 'something went wrong'
 
         //get OpenAI response
         ChatMessage responseMessage = new ChatMessage();
@@ -145,7 +151,7 @@ public class ConversationManager : MonoBehaviour
             //TTS speak uCat's response
             _uCatSpeaker.Speak(sentenceWithoutEmotion);
             uCatSpeechText.UpdateText(sentenceWithoutEmotion);
-            isCurrentlyCountingTowardsTimeout = false;
+            uCatHasStartedSpeaking = false;
             uCatResponseTimeout = 0;
             //add the response to the total list of messages
             messages.Add(responseMessage);
@@ -155,9 +161,6 @@ public class ConversationManager : MonoBehaviour
             // Catch it if API has an error somehow
             _witListeningStateManager.TransitionToState(EListeningState.ListeningForConversationModeInput);
         }
-
-
-        //update the response text field
     }
 
     string GetLastWordOfLastSentence(string text)
@@ -207,17 +210,18 @@ public class ConversationManager : MonoBehaviour
 
     public void UcatIsDoneSpeaking() {
         _uCatSpeaker.Stop();
+        uCatSpeechText.UpdateText("");
         uCatAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Idle;
         _witListeningStateManager.TransitionToState(EListeningState.ListeningForConversationModeInput);
     }
 
     void Update() {
-        if (isCurrentlyCountingTowardsTimeout) {
+        if (uCatHasStartedSpeaking) {
             uCatResponseTimeout += Time.deltaTime;
         }
 
         if (uCatResponseTimeout > uCatResponseTimeoutLimit) {
-                isCurrentlyCountingTowardsTimeout = false;
+                uCatHasStartedSpeaking = false;
                 uCatResponseTimeout = 0;
                 UcatIsDoneSpeaking();
          }

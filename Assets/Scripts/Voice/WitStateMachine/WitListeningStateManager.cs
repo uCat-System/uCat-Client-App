@@ -6,8 +6,10 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 
+
 public class WitListeningStateManager : MonoBehaviour
 {
+    public Modular3DText debugText;
     public enum ListeningState
     // Turn into a struct? TODO
     // maps {ListeningState => appropriate boolean}
@@ -54,6 +56,7 @@ public class WitListeningStateManager : MonoBehaviour
     public ListeningState currentListeningState;
     private WordReciteManager _wordReciteManager;
     private GameObject wit;
+    Wit witComponent;
 
     public float witAutomaticReactivationTimer;
 
@@ -89,6 +92,8 @@ public class WitListeningStateManager : MonoBehaviour
         _uiManager = GetComponent<UIManager>();
         _wordReciteManager = GetComponent<WordReciteManager>();
         wit = GameObject.FindWithTag("Wit");
+        witComponent = wit.GetComponent<Wit>();
+
         scene = SceneManager.GetActiveScene().name;
         if (scene == "ConvoMode") {
             TransitionToState(ListeningState.ListeningForConversationModeInput);
@@ -165,13 +170,13 @@ public class WitListeningStateManager : MonoBehaviour
         // wit stops listening, but no transition was requested. 
 
         wit.SetActive(true);
-        Wit witComponent = wit.GetComponent<Wit>();
         witComponent.Deactivate();
         yield return new WaitForSeconds(0.0000001f);
         witComponent.Activate();
     }
 
     void DisableWit() {
+        witComponent.DeactivateAndAbortRequest();
         wit.SetActive(false);
     }
 
@@ -180,26 +185,26 @@ public class WitListeningStateManager : MonoBehaviour
 
         if (currentListeningState != ListeningState.WaitingForConversationResponse) {
             wit.SetActive(true);
-            Wit witComponent = wit.GetComponent<Wit>();
             witComponent.Activate();
         }
     }
 
 
     void Update() {
-       
     }
  
     // This is called from the WitListeningStateMachine script using actual enum values.
 
     public void TransitionToState(ListeningState nextState)
         {
-            // Once struct in place, switch here using the ListeningState.Id enum
-            // micIcon.SetActive(ListeningState.ShowMicIcon);
-            
-            // Maybe also check the current state to catch bugs
-            // eg if transition from a to b is invalid, make it throw something
-            switch (nextState)
+
+        Debug.Log("Listening: " + witComponent.Active + ", Mic on: " + witComponent.MicActive + " req: " + witComponent.IsRequestActive);
+        // Once struct in place, switch here using the ListeningState.Id enum
+        // micIcon.SetActive(ListeningState.ShowMicIcon);
+
+        // Maybe also check the current state to catch bugs
+        // eg if transition from a to b is invalid, make it throw something
+        switch (nextState)
             {
                 case ListeningState.NotListening:
                     DisableWit();
