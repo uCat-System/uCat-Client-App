@@ -80,3 +80,5 @@ ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json
 ProjectSettings/ProjectSettings.asset
 /[Aa]ssets/PolytopeStudio/*
 /[Aa]ssets/TerrainSampleAssets/*
+Assets/secrets.json
+Assets/secrets.json.meta
