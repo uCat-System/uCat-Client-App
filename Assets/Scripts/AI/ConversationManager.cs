@@ -8,7 +8,7 @@ using OpenAI_API;
 using OpenAI_API.Chat;
 using OpenAI_API.Models;
 using System.Linq;
-using Meta.WitAi;
+using System.IO;
 using Meta.WitAi.TTS.Utilities;
 using CandyCoded.env;
 using EListeningState = WitListeningStateManager.ListeningState;
@@ -39,6 +39,12 @@ public class ConversationManager : MonoBehaviour
 
     private Modular3DText subtitleText;
     private Modular3DText uCatSpeechText;
+
+    [System.Serializable]
+    public class Secrets
+    {
+        public string OPENAI_API_KEY;
+    }
 
 
     void Start(){
@@ -76,6 +82,24 @@ public class ConversationManager : MonoBehaviour
         
     }
 
+    string apiKeyFromJson()
+    {
+        string filePath = Path.Combine(Application.dataPath, "secrets.json");
+
+        if (File.Exists(filePath))
+        {
+            string dataAsJson = File.ReadAllText(filePath);
+            Secrets myData = JsonUtility.FromJson<Secrets>(dataAsJson);
+            Debug.Log("JSON loaded successfully");
+            return myData.OPENAI_API_KEY;
+        }
+        else
+        {
+            Debug.LogError("Cannot find JSON file at: " + filePath);
+            return null;
+        }
+    }
+
     public void HandlePartialSpeech(string text) {
         subtitleText.UpdateText(text);
     }
@@ -98,7 +122,7 @@ public class ConversationManager : MonoBehaviour
     }
    
     private void InitiliazeUcatConversation(){
-        api = new OpenAIAPI("");
+        api = new OpenAIAPI(apiKeyFromJson());
         messages = new List<ChatMessage>
         {
             new ChatMessage(ChatMessageRole.System, advancedInitializationMessage)
