@@ -11,6 +11,7 @@ using System.Linq;
 using System.IO;
 using Meta.WitAi.TTS.Utilities;
 using CandyCoded.env;
+using UnityEngine.EventSystems;
 using EListeningState = WitListeningStateManager.ListeningState;
 
 public class ConversationManager : MonoBehaviour
@@ -40,13 +41,26 @@ public class ConversationManager : MonoBehaviour
     private Modular3DText subtitleText;
     private Modular3DText uCatSpeechText;
 
+    public string userSpeechText;
+
     [System.Serializable]
     public class Secrets
     {
         public string OPENAI_API_KEY;
     }
 
+    public delegate void ApiSubmissionEvent(string textToSubmit);
+    public static event ApiSubmissionEvent OnUserFinishedSpeaking;
 
+    private void OnEnable()
+    {
+        OnUserFinishedSpeaking += GetOpenAIResponse;
+    }
+
+    private void OnDisable()
+    {
+        OnUserFinishedSpeaking -= GetOpenAIResponse;
+    }
     void Start(){
         // Assign scripts
         _uiManager = GetComponent<UIManager>();
@@ -61,13 +75,13 @@ public class ConversationManager : MonoBehaviour
         standardInitializationMessage =  "Your name is 'uCat'. You are a humble, kind-hearted, compassionate, and sassy robocat. Sometimes you say \"meow\" when you speak. You help me learn how to use my implanted brain-computer interfaces to move inside the metaverse. You keep your responses short and to the point.";
         advancedInitializationMessage =  
         "Your name is 'uCat'. You are a humble, kind-hearted, compassionate, and sassy robocat." +
-        " Sometimes you say \"meow\" when you speak. You help me learn how to use my implanted brain-computer interfaces to move inside the metaverse. You should sometimes give me suggestions of different exercises I can do, which are the following: Practice words, practice phrases, and daily check in. " +
-        " You keep your responses short and to the point." +
-        " You should aim to assist the user in rehabilitating their socialisation, and help them get back to a healthy and happy life." +
+        " Sometimes you say \"meow\" when you speak. You help me learn how to use my implanted brain-computer interfaces to move inside the metaverse." +
+        " You keep your responses short and to the point" +
+        "." + "Your response to the initial question 'Where am I?' should be `Good question! You spent the whole day fine tuning your Speech BCI and now you're having your first conversation in the metaverse.`" +
         " At the end of each response, categorise your response into one of the following categories: 'happy' 'sad' 'confused' 'neutral' 'cheeky'." +
         " The category should be the last sentence of your response and just consist of the word by itself, e.g., 'Happy.'";
         if (_levelManager.CurrentLevel != "ConvoMode") {
-            this.enabled = false;
+            this.enabled = false; 
             return;
         }
 
@@ -107,18 +121,23 @@ public class ConversationManager : MonoBehaviour
     public void HandleUserSpeech(string spokenText) {
         // This function is called from FreeSpeechManager when the user speaks (as long as they are allowed to currently)
         uCatAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Confused;
-
+        
+        // Assign to the global variable to be used by the event callback
+        userSpeechText = spokenText;
+        
         _userSpeaker.Speak(spokenText);
         subtitleText.UpdateText(spokenText);
         _witListeningStateManager.TransitionToState(EListeningState.WaitingForConversationResponse);
         
         // Send the text to the server
-        GetOpenAIResponse(spokenText);
+        //GetOpenAIResponse(spokenText);
     }
 
     public void UserSpeechAudioHasBeenPlayed()
     {
         subtitleText.UpdateText("");
+        OnUserFinishedSpeaking?.Invoke(userSpeechText);
+        userSpeechText = "";
     }
    
     private void InitiliazeUcatConversation(){
@@ -206,6 +225,8 @@ public class ConversationManager : MonoBehaviour
         // Return the last word
         return words.LastOrDefault();
     }
+
+    
 
     void PlayEmotionAnimation(string text) {
         // Play the appropriate animation based on the emotion category
