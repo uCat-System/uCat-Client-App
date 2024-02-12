@@ -83,9 +83,12 @@ public class UIManager : MonoBehaviour
     }
 
     public void ActivateMenu() {
-        _dialogueManager.PauseDialogueAudio();
+        if (_dialogueManager != null && _dialogueManager.isActiveAndEnabled)
+        {
+            _dialogueManager?.PauseDialogueAudio();
+            _dialogueManager?.ChangeDialogueState(EDialogueState.IsInMenu);
+        }
         _witListeningStateManager.TransitionToState(EListeningState.ListeningForTaskMenuCommandsOnly);
-        _dialogueManager.ChangeDialogueState(EDialogueState.IsInMenu);
         StartCoroutine(StartMenuOpenAnimation());
     }
 
