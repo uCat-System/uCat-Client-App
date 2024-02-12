@@ -1,0 +1,31 @@
+ManifestFileVersion: 0
+CRC: 1380373162
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 8821c361ac030e31906147fe432830c5
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: b0363f7088f9761414f730641bf9a24b
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/TerrainSampleAssets/Textures/Terrain/Rock_Normal.tif
+- Assets/TerrainSampleAssets/Textures/Terrain/Pebbles_C_MaskMap.tif
+- Assets/TerrainSampleAssets/Textures/Terrain/Soil_Rocks_BaseColor.tif
+- Assets/TerrainSampleAssets/Textures/Terrain/Rock_MaskMap.tif
+- Assets/TerrainSampleAssets/Textures/Terrain/Grass_Soil_BaseColor.tif
+- Assets/TerrainSampleAssets/Textures/Terrain/Rock_BaseColor.tif
+- Assets/TerrainSampleAssets/Textures/Terrain/Soil_Rocks_MaskMap.tif
+- Assets/TerrainSampleAssets/Textures/Terrain/Pebbles_C_Normal.tif
+- Assets/TerrainSampleAssets/Textures/Terrain/Grass_Soil_Normal.tif
+- Assets/TerrainSampleAssets/Textures/Terrain/Snow_MaskMap.tif
+- Assets/TerrainSampleAssets/Textures/Terrain/Snow_Normal.tif
+- Assets/TerrainSampleAssets/Textures/Terrain/Grass_Soil_MaskMap.tif
+- Assets/TerrainSampleAssets/Textures/Terrain/Pebbles_C_BaseColor.tif
+- Assets/TerrainSampleAssets/Textures/Terrain/Snow_BaseColor.tif
+- Assets/TerrainSampleAssets/Textures/Terrain/Soil_Rocks_Normal.tif
+Dependencies: []

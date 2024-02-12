@@ -1,0 +1,86 @@
+ManifestFileVersion: 0
+CRC: 4202203608
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: d16316735010f2aa11dc4d5e35828a1b
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 47395dbe30cc1426b40ae2b524ff7033
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 83
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 0b2db86121404754db890f4c8dfe81b2, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 0be5a1666715533478e3fcde2906ab54, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 4ac03f583a899fd43ba438d84cadfb45, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: ae5a46bda3295124c99b0e6537ac7252, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 156
+  Script: {instanceID: 0}
+- Class: 1953259897
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers:
+- AssemblyName: Assembly-CSharp-firstpass
+  ClassName: MText.MText_Character
+- AssemblyName: Meta.WitAi.Lib
+  ClassName: Meta.WitAi.Data.Info.WitAppInfo
+- AssemblyName: Meta.WitAi.Lib
+  ClassName: Meta.WitAi.Data.Info.WitComposerInfo
+- AssemblyName: Meta.WitAi.Lib
+  ClassName: Meta.WitAi.Data.Info.WitEntityInfo
+- AssemblyName: Meta.WitAi.Lib
+  ClassName: Meta.WitAi.Data.Info.WitEntityKeywordInfo
+- AssemblyName: Meta.WitAi.Lib
+  ClassName: Meta.WitAi.Data.Info.WitEntityRoleInfo
+- AssemblyName: Meta.WitAi.Lib
+  ClassName: Meta.WitAi.Data.Info.WitIntentEntityInfo
+- AssemblyName: Meta.WitAi.Lib
+  ClassName: Meta.WitAi.Data.Info.WitIntentInfo
+- AssemblyName: Meta.WitAi.Lib
+  ClassName: Meta.WitAi.Data.Info.WitVoiceInfo
+- AssemblyName: Meta.WitAi
+  ClassName: Meta.WitAi.Configuration.WitEndpointConfig
+- AssemblyName: Unity.RenderPipelines.Core.Runtime
+  ClassName: UnityEngine.Rendering.BoolParameter
+- AssemblyName: Unity.RenderPipelines.Core.Runtime
+  ClassName: UnityEngine.Rendering.ClampedFloatParameter
+- AssemblyName: Unity.RenderPipelines.Core.Runtime
+  ClassName: UnityEngine.Rendering.ClampedIntParameter
+- AssemblyName: Unity.RenderPipelines.Core.Runtime
+  ClassName: UnityEngine.Rendering.ColorParameter
+- AssemblyName: Unity.RenderPipelines.Core.Runtime
+  ClassName: UnityEngine.Rendering.MinFloatParameter
+- AssemblyName: Unity.RenderPipelines.Core.Runtime
+  ClassName: UnityEngine.Rendering.TextureParameter
+Assets:
+- Assets/Plugins/3D Text/Tiny Giant Studio/Modular 3D Text/Fonts/Germania One.asset
+- Assets/Characters/uCat/Post Processing/Sphere Volume Profile.asset
+- Assets/Environments/uCat Terrain Updated.asset
+- Assets/URP Settings/Global Volume Profile.asset
+- Assets/Wit.ai Config/lukeSettings.asset
+- Assets/UI/Space Grotesk Bold.asset
+- Assets/UI/new'/uCat_ UI Assets/TTF Fonts/Space Grotesk Medium.asset
+- Assets/Scripts/Voice/SpeechAndReciting/WordLists/WordListsAsset.asset
+Dependencies:
+- D:/UnityProjects/uCat/OVRAssetBundles/OVRMasterBundle/asset_aif0
+- D:/UnityProjects/uCat/OVRAssetBundles/OVRMasterBundle/asset_fbx0
+- D:/UnityProjects/uCat/OVRAssetBundles/OVRMasterBundle/asset_obj0
+- D:/UnityProjects/uCat/OVRAssetBundles/OVRMasterBundle/asset_png0
+- D:/UnityProjects/uCat/OVRAssetBundles/OVRMasterBundle/asset_png2
+- D:/UnityProjects/uCat/OVRAssetBundles/OVRMasterBundle/asset_prefab0
+- D:/UnityProjects/uCat/OVRAssetBundles/OVRMasterBundle/asset_prefab1
+- D:/UnityProjects/uCat/OVRAssetBundles/OVRMasterBundle/asset_terrainlayer0

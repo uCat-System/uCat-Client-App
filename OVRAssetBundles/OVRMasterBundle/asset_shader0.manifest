@@ -1,0 +1,30 @@
+ManifestFileVersion: 0
+CRC: 2371311746
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: bf7757ee2a621d55017b73497ad58376
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: c2a87e52d0f78337940abac886e413eb
+HashAppended: 0
+ClassTypes:
+- Class: 48
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Packages/com.unity.render-pipelines.universal/Shaders/Nature/SpeedTree7.shader
+- Packages/com.unity.render-pipelines.universal/Shaders/Terrain/TerrainLitBase.shader
+- Assets/Shaders/MultiPass_OutlineShader.shader
+- Packages/com.unity.render-pipelines.universal/Shaders/Unlit.shader
+- Assets/Polytope Studio/Lowpoly_Environments/Sources/Shaders/PT_Rock_Shader.shader
+- Assets/Shaders/SinglePass_OutlineShader.shader
+- Assets/Polytope Studio/Lowpoly_Environments/Sources/Shaders/PT_Vegetation_Opaque_Shader.shader
+- Packages/com.unity.render-pipelines.universal/Shaders/Nature/SpeedTree7Billboard.shader
+- Assets/Polytope Studio/Lowpoly_Environments/Sources/Shaders/PT_Vegetation_Flowers_Shader.shader
+- Packages/com.unity.render-pipelines.universal/Shaders/Terrain/TerrainLit.shader
+- Assets/Polytope Studio/Lowpoly_Environments/Sources/Shaders/PT_Vegetation_Foliage_Shader.shader
+- Assets/Polytope Studio/Lowpoly_Environments/Sources/Shaders/PT_Vegetation_Plants_Shader.shader
+- Packages/com.unity.render-pipelines.universal/Shaders/Lit.shader
+Dependencies:
+- D:/UnityProjects/uCat/OVRAssetBundles/OVRMasterBundle/asset_png1

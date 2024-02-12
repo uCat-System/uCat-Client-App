@@ -1,0 +1,43 @@
+ManifestFileVersion: 0
+CRC: 3974266692
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 59f9d655249a60f3393e5d3248c953de
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 2594a11eb59fead7d614b0d8a91cc74b
+HashAppended: 0
+ClassTypes:
+- Class: 74
+  Script: {instanceID: 0}
+- Class: 115
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Animations/Scene Transitions/Crossfade_End.anim
+- Assets/Animations/Mic Icon/TurnOn.anim
+- Assets/Characters/uCat/Animations/Confused_Exit.anim
+- Assets/Animations/Mic Icon/TurnOff.anim
+- Assets/Characters/uCat/Animations/Sad_Exit.anim
+- Assets/Characters/uCat/Animations/Surprised_Enter.anim
+- Assets/Characters/uCat/Animations/Error.anim
+- Assets/Animations/Scene Transitions/Crossfade_Start.anim
+- Assets/Characters/uCat/Animations/Confused_Enter.anim
+- Assets/Characters/uCat/Animations/Peeking_Exit.anim
+- Assets/Characters/uCat/Animations/Sad_Loop.anim
+- Assets/Characters/uCat/Animations/Peeking_Enter.anim
+- Assets/Animations/Menu Board/OpenClip.anim
+- Assets/Characters/uCat/Animations/Happy_Loop.anim
+- Assets/Characters/uCat/Animations/Surprised_Exit.anim
+- Assets/Characters/uCat/Animations/Idle.anim
+- Assets/Characters/uCat/Animations/Happy_Enter.anim
+- Assets/Characters/uCat/Animations/Surprised_Loop.anim
+- Assets/Animations/Menu Board/Invisible.anim
+- Assets/Characters/uCat/Animations/Peeking_Loop.anim
+- Assets/Animations/Menu Board/CloseClip.anim
+- Assets/Characters/uCat/Animations/Confused_Loop.anim
+- Assets/Characters/uCat/Animations/Sad_Enter.anim
+- Assets/Characters/uCat/Animations/Bobbing_Slow.anim
+- Assets/Characters/uCat/Animations/Happy_Exit.anim
+Dependencies: []

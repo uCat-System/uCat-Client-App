@@ -1,0 +1,23 @@
+ManifestFileVersion: 0
+CRC: 2656693937
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 9f03963c46ae75aa769250e930585a46
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 4a1b7ef0daf02bbac8fa6f9a792d9df0
+HashAppended: 0
+ClassTypes:
+- Class: 74
+  Script: {instanceID: 0}
+- Class: 91
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Animations/Mic Icon/MicIcon.controller
+- Assets/Characters/uCat/Animations/uCat Animator.controller
+- Assets/Animations/Menu Board/MenuAnimController.controller
+- Assets/Animations/Scene Transitions/Crossfade.controller
+Dependencies:
+- D:/UnityProjects/uCat/OVRAssetBundles/OVRMasterBundle/asset_anim0

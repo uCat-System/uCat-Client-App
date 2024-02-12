@@ -1,0 +1,36 @@
+ManifestFileVersion: 0
+CRC: 703716583
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 65f2eb8d41c45d1580c93d1e0564f33a
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: b0363f7088f9761414f730641bf9a24b
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Polytope Studio/Lowpoly_Environments/Sources/Textures/PT_Grass_03.png
+- Assets/Plugins/Environment/Fantasy Skybox FREE/Cubemaps/FS003/Images/FS003_Day_Cubemap_down.png
+- Assets/Characters/uCat/Textures/Textures Body/uCat_UV_tail.png
+- Assets/Plugins/Environment/Waldemarst/JapaneseGardenPackage/Textures/brocco_jg_rock_normal.png
+- Assets/Polytope Studio/Lowpoly_Environments/Sources/Textures/PT_Grass_01_Lighter.png
+- Assets/Plugins/Environment/Waldemarst/JapaneseGardenPackage/Prefabs/BlackPineTree_A_Textures/bark.png
+- Assets/Plugins/Environment/Fantasy Skybox FREE/Scenes/Texture_Rock_Diffuse.png
+- Packages/com.unity.render-pipelines.core/Editor/Volume/Icons/VolumeProfileAsset.png
+- Assets/Plugins/Environment/Waldemarst/JapaneseGardenPackage/Prefabs/SakuraTree_A_Textures/bark.png
+- Assets/Plugins/Environment/Waldemarst/JapaneseGardenPackage/Prefabs/SakuraTree_F_Textures/billboard.png
+- Assets/Plugins/Environment/Fantasy Skybox FREE/Scenes/Texure_Rock_Normal.png
+- Assets/Polytope Studio/Lowpoly_Environments/Sources/Textures/PT_Runes_02.png
+- Assets/Polytope Studio/Lowpoly_Environments/Sources/Textures/PT_Grass_High_01.png
+- Assets/Polytope Studio/Lowpoly_Environments/Sources/Textures/PT_Tree_Trunk_01.png
+- Assets/Plugins/Environment/Fantasy Skybox FREE/Cubemaps/FS003/Images/FS003_Day_Cubemap_back.png
+- Assets/Plugins/Environment/Waldemarst/JapaneseGardenPackage/Prefabs/SakuraTree_D_Textures/billboard.png
+- Assets/Plugins/Environment/Fantasy Skybox FREE/Panoramics/FS003/FS003_Sunset.png
+- Assets/UI/new'/uCat_ UI Assets/uCat_ UI Icons/Icons 256x256/uCat_UI_Icons_Word_256x256.png
+- Assets/Plugins/Environment/Waldemarst/JapaneseGardenPackage/Textures/GrassBillboards/billboardgrass0001.png
+- Assets/Plugins/Environment/Waldemarst/JapaneseGardenPackage/Prefabs/SakuraTree_D_Textures/billboard_normal.png
+Dependencies: []

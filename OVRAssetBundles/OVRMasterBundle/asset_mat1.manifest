@@ -1,0 +1,42 @@
+ManifestFileVersion: 0
+CRC: 1536040548
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 6c98a7e9a589682f01cab6bcc0e28302
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 844324cb0c52bf973d264449e459eef4
+HashAppended: 0
+ClassTypes:
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/UI/new'/uCat_ UI Assets/uCat_ UI Icons/Icons 256x256/Materials/uCat_UI_Icons_256x256.mat
+- Assets/Materials/MenuTextWhite.mat
+- Assets/Plugins/Environment/Fantasy Skybox FREE/Panoramics/FS003/FS003_Sunset.mat
+- Assets/Polytope Studio/Lowpoly_Environments/Sources/Materials/PT_Rocks_mat.mat
+- Assets/Characters/uCat/Materials/Mat_VisorRim.mat
+- Assets/Materials/GreenText.mat
+- Assets/Oculus/SampleFramework/Core/Locomotion/Materials/TeleportLaser.mat
+- Assets/UI/new'/uCat_ UI Assets/uCat_ UI Icons/Icons 256x256/Materials/uCat_UI_Icons_Word_256x256
+  1.mat
+- Assets/Materials/UserSpeechMat.mat
+- Assets/Polytope Studio/Lowpoly_Environments/Sources/Materials/PT_Fruit_Tree_Foliage_Mat.mat
+- Assets/Characters/uCat/Materials/Mat_Head.mat
+- Assets/Characters/uCat/Materials/Mat_Neck.mat
+- Assets/Plugins/Environment/Fantasy Skybox FREE/Cubemaps/FS003/FS003_Day_Cubemap.mat
+- Assets/Polytope Studio/Lowpoly_Environments/Sources/Materials/PT_Fruit_Tree_Foliage_Pink_Mat.mat
+- Assets/Materials/MenuTextPurple.mat
+- Assets/Polytope Studio/Lowpoly_Environments/Sources/Materials/PT_Grass_Mat.mat
+- Assets/Plugins/Tiny Giant Studio/Modular 3D Text/Media/Materials/MText_ Black.mat
+Dependencies:
+- D:/UnityProjects/uCat/OVRAssetBundles/OVRMasterBundle/asset_png0
+- D:/UnityProjects/uCat/OVRAssetBundles/OVRMasterBundle/asset_png1
+- D:/UnityProjects/uCat/OVRAssetBundles/OVRMasterBundle/asset_png2
+- D:/UnityProjects/uCat/OVRAssetBundles/OVRMasterBundle/asset_shader0

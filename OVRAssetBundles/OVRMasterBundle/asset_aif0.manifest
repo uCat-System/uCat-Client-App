@@ -1,0 +1,21 @@
+ManifestFileVersion: 0
+CRC: 3506245991
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: bf04ba454dd88fff62c824c59d38eb1a
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 9a2ca7bdbd1871f7131daf57de908e0c
+HashAppended: 0
+ClassTypes:
+- Class: 83
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Sounds/Dialogue/Level3TaskQuestions/uCat_Sounds_Voiceover_Checkin_Whatstheweather.aif
+- Assets/Sounds/Dialogue/Level3TaskQuestions/uCat_Sounds_Voiceover_Checkin_Whatdoyouhaveplanned.aif
+- Assets/Sounds/Dialogue/Level3TaskQuestions/uCat_Sounds_Voiceover_Checkin_Howareyoufeeling.aif
+- Assets/Sounds/Dialogue/Level3TaskQuestions/uCat_Sounds_Voiceover_Checkin_anymorethoughts.aif
+- Assets/Sounds/Dialogue/Level3TaskQuestions/uCat_Sounds_Voiceover_Checkin_describeyourprogress.aif
+Dependencies: []

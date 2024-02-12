@@ -1,0 +1,37 @@
+ManifestFileVersion: 0
+CRC: 2103513757
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: a8f916c4c5f30ad0e2b1825576ee063c
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 7b2a7039af95fabd4f2e1d8a36d64d3f
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/OBJ/uCat_UI_Board.obj
+- Assets/Plugins/3D Text/Tiny Giant Studio/Modular 3D Text/Fonts/Models/Germania
+  One.obj
+- Assets/UI/Space Grotesk Bold.obj
+- Assets/UI/new'/uCat_ UI Assets/TTF Fonts/Space Grotesk Medium.obj
+- Assets/Plugins/Environment/Waldemarst/JapaneseGardenPackage/Prefabs/torii.obj
+- Assets/Plugins/3D Text/Tiny Giant Studio/Modular 3D Text/Fonts/Models/McLaren.obj
+Dependencies:
+- D:/UnityProjects/uCat/OVRAssetBundles/OVRMasterBundle/asset_mat0
+- D:/UnityProjects/uCat/OVRAssetBundles/OVRMasterBundle/asset_shader0

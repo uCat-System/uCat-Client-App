@@ -1,0 +1,173 @@
+ManifestFileVersion: 0
+CRC: 746540747
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: f1fd88fb74c73f3118f7767b39424419
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 8ff2d784b426a43cdf71dcb8d77b0250
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 49
+  Script: {instanceID: 0}
+- Class: 83
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 2ba278f0a7927974b86e9968ac38f266, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 23fdc619dbf57034e8cbc426f77bfbfd, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 2705215ac5b84b70bacc50632be6e391, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: ad074644ff568a14187a3690cfbd7534, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: ad18da8e58f4dfd43b22d6885cf310ea, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 66067e97331453c499bde98c7a79b540, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 3408fc9c297a44c4bb4a00c196de3cb4, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: ab2114bdc8544297b417dfefe9f1e410, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 4ac03f583a899fd43ba438d84cadfb45, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 191492db6e452eb468b95433ec162164, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 52783dbffea06b7469b1f41aa01928f9, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 84a92b25f83d49b9bc132d206b370281, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 3863570e7e6387a40ae4f323d83291e5, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 690929a59dc7a42da9030305190d391f, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 128
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers:
+- AssemblyName: Assembly-CSharp-firstpass
+  ClassName: MText.MText_Character
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.FaceInfo_Legacy
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.FontAssetCreationSettings
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.KerningTable
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.TMP_Character
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.TMP_FontFeatureTable
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.TMP_FontWeightPair
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.TMP_GlyphAdjustmentRecord
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.TMP_GlyphPairAdjustmentRecord
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.TMP_GlyphValueRecord
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.TMP_Sprite
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.TMP_SpriteCharacter
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.TMP_SpriteGlyph
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.TMP_Style
+- AssemblyName: UnityEngine.TextCoreFontEngineModule
+  ClassName: UnityEngine.TextCore.FaceInfo
+- AssemblyName: UnityEngine.TextCoreFontEngineModule
+  ClassName: UnityEngine.TextCore.Glyph
+- AssemblyName: UnityEngine.TextCoreFontEngineModule
+  ClassName: UnityEngine.TextCore.GlyphMetrics
+- AssemblyName: UnityEngine.TextCoreFontEngineModule
+  ClassName: UnityEngine.TextCore.GlyphRect
+Assets:
+- Assets/Oculus/Voice/Lib/Wit.ai/Resources/witai.png
+- Assets/Plugins/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Drop
+  Shadow.mat
+- Assets/Resources/MenuActivationInputData.asset
+- Assets/Plugins/Oculus/Voice/Resources/ConduitManifest-b80bb82c-8b25-4d2d-97d0-71b5f962f0d6.json
+- Assets/Oculus/Voice/Resources/voicesdk_texts_en-us.json
+- Assets/Oculus/Interaction/Runtime/Resources/Shaders/DepthOverwrite.shader
+- Assets/Plugins/TextMesh Pro/Resources/Sprite Assets/EmojiOne.asset
+- Assets/Resources/OculusRuntimeSettings.asset
+- Assets/Oculus/Voice/Lib/Wit.ai/Resources/wit-ai-title.png
+- Assets/Resources/env.txt
+- Assets/Plugins/3D Text/Tiny Giant Studio/Modular 3D Text/Resources/Modular 3D Text/Window
+  Title.png
+- Assets/Plugins/3D Text/Tiny Giant Studio/Modular 3D Text/Resources/Modular 3D Text/Justice
+  Horizontal.png
+- Assets/Oculus/VR/Resources/OVRMRCameraFrameLit.shader
+- Assets/Plugins/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset
+- Assets/Oculus/VR/Resources/Cubemap Blit.shader
+- Assets/Oculus/VR/Resources/Underlay Impostor.shader
+- Assets/Oculus/Interaction/Runtime/Resources/Shaders/Imposter_AlphaBlended.shader
+- Assets/Plugins/3D Text/Tiny Giant Studio/Modular 3D Text/Resources/Modular 3D Text/M3D
+  Font.png
+- Assets/Resources/OVRBuildConfig.asset
+- Assets/Oculus/VR/Resources/Underlay Transparent Occluder.shader
+- Assets/Plugins/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Outline.mat
+- Assets/XRI/Settings/Resources/XRDeviceSimulatorSettings.asset
+- Assets/Oculus/Interaction/Runtime/Resources/Shaders/Imposter_Opaque.shader
+- Assets/Resources/ONSPSettings.asset
+- Assets/Plugins/3D Text/Tiny Giant Studio/Modular 3D Text/Resources/Modular 3D Text/Justice
+  Vertical.png
+- Assets/Plugins/TextMesh Pro/Resources/LineBreaking Following Characters.txt
+- Assets/Oculus/Interaction/Runtime/Resources/Shaders/Imposter_AlphaCutout.shader
+- Assets/Oculus/Interaction/Runtime/Resources/Shaders/Imposter_AlphaToMask.shader
+- Assets/InspectorComment/Resources/IC_Todo.png
+- Assets/Oculus/VR/Resources/OVRMRUnlitTransparent.shader
+- Assets/Oculus/Interaction/Runtime/Resources/Shaders/UIOverlay.shader
+- Assets/InspectorComment/Resources/IC_Warning.png
+- Assets/Plugins/Oculus/Voice/Resources/ConduitManifest-bebda135-d15b-4993-9461-4aa4ef6f436c.json
+- Assets/InspectorComment/Resources/IC_Information.png
+- Assets/Oculus/VR/Resources/OVRMRUnlit.shader
+- Assets/Oculus/Voice/Resources/voicesdk_heroart.png
+- Assets/Plugins/3D Text/Tiny Giant Studio/Modular 3D Text/Resources/Modular 3D Text/M3D.png
+- Assets/Oculus/Voice/Lib/Wit.ai/Resources/witai_texts_en-us.json
+- Assets/Resources/RecitedWordData.asset
+- Assets/Plugins/TextMesh Pro/Resources/TMP Settings.asset
+- Assets/Oculus/VR/Resources/OVRMRCameraFrame.shader
+- Assets/Resources/ConfirmationResponseData.asset
+- Assets/Oculus/Interaction/Runtime/Resources/Shaders/UnderlayTransparentOccluderImposter.shader
+- Assets/Resources/NavigationInputData.asset
+- Assets/Plugins/3D Text/Tiny Giant Studio/Modular 3D Text/Resources/Modular 3D Text/M
+  Text_Settings.asset
+- Assets/Resources/DialogueScriptData.asset
+- Assets/Plugins/3D Text/Tiny Giant Studio/Modular 3D Text/Resources/Modular 3D Text/M3D
+  Module.png
+- Assets/Oculus/Interaction/Runtime/Resources/Shaders/Imposter_Underlay.shader
+- Assets/XRI/Settings/Resources/InteractionLayerSettings.asset
+- Assets/Oculus/Interaction/Runtime/Resources/Shaders/Imposter_Underlay_AA.shader
+- Assets/Plugins/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset
+- Assets/Oculus/Voice/Lib/Wit.ai/Resources/continue-with-fb.png
+- Assets/Plugins/TextMesh Pro/Resources/Style Sheets/Default Style Sheet.asset
+- Assets/Resources/OVRPlatformToolSettings.asset
+- Assets/Oculus/VR/Resources/Texture2D Blit.shader
+- Assets/Plugins/TextMesh Pro/Resources/LineBreaking Leading Characters.txt
+- Assets/Oculus/VR/Resources/Unlit Transparent Color.shader
+Dependencies:
+- D:/UnityProjects/uCat/OVRAssetBundles/OVRMasterBundle/asset_mat0
+- D:/UnityProjects/uCat/OVRAssetBundles/OVRMasterBundle/asset_mat1
+- D:/UnityProjects/uCat/OVRAssetBundles/OVRMasterBundle/asset_shader0

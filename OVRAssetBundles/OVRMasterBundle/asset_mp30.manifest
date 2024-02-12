@@ -1,0 +1,17 @@
+ManifestFileVersion: 0
+CRC: 3334357971
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 4a292000adabf3cc14b6b06827f9934d
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 9a2ca7bdbd1871f7131daf57de908e0c
+HashAppended: 0
+ClassTypes:
+- Class: 83
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Sounds/Ambience/natureAmbience1.mp3
+Dependencies: []

@@ -1,0 +1,47 @@
+ManifestFileVersion: 0
+CRC: 369545103
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: d8487fab610cbf6286e7c89718878d4c
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: b0363f7088f9761414f730641bf9a24b
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Plugins/Environment/Waldemarst/JapaneseGardenPackage/Prefabs/SakuraTree_A_Textures/billboard.png
+- Assets/UI/new'/uCat_ UI Assets/uCat_ UI Board/2048x1024/Materials/uCat_UI_Board_HorizontalLine_2048x1024.png
+- Assets/Plugins/Environment/Fantasy Skybox FREE/Scenes/Brush_Flower.png
+- Assets/UI/new'/uCat_ UI Assets/uCat_ UI Icons/Icons 256x256/uCat_UI_Icons_Nurse_256x256.png
+- Assets/Plugins/Environment/Waldemarst/JapaneseGardenPackage/Textures/brocco_jg_torii_wood.png
+- Assets/Plugins/Environment/Fantasy Skybox FREE/Cubemaps/FS003/Images/FS003_Day_Cubemap_right.png
+- Assets/Plugins/Environment/Waldemarst/JapaneseGardenPackage/Prefabs/JapaneseMapleTree_C_Textures/bark.png
+- Assets/Polytope Studio/Lowpoly_Environments/Sources/Textures/PT_Grass_01.png
+- Assets/Plugins/Environment/Waldemarst/JapaneseGardenPackage/Prefabs/SakuraTree_F_Textures/atlas.png
+- Assets/Plugins/Environment/Waldemarst/JapaneseGardenPackage/Prefabs/BlackPineTree_A_Textures/atlas.png
+- Assets/UI/new'/uCat_ UI Assets/uCat_ UI Icons/Icons 256x256/uCat_UI_Icons_Phrase_256x256.png
+- Assets/Plugins/Environment/Waldemarst/JapaneseGardenPackage/Prefabs/SakuraTree_D_Textures/atlas.png
+- Assets/Polytope Studio/Lowpoly_Environments/Sources/Textures/PT_Fruit_Tree_Leaves_01.png
+- Assets/Plugins/Environment/Waldemarst/JapaneseGardenPackage/Prefabs/SakuraTree_C_Textures/bark.png
+- Assets/Plugins/Environment/Waldemarst/JapaneseGardenPackage/Prefabs/JapaneseMapleTree_D_Textures/atlas.png
+- Assets/UI/new'/uCat_ UI Assets/uCat_ UI Icons/Icons 256x256/uCat_UI_Icons_Conversation_256x256.png
+- Assets/Plugins/Environment/Waldemarst/JapaneseGardenPackage/Prefabs/SakuraTree_C_Textures/billboard.png
+- Assets/UI/new'/uCat_ UI Assets/uCat_ UI Icons/Icons 256x256/uCat_UI_Icons_Checkin_256x256
+  1.png
+- Assets/Characters/uCat/Textures/Textures Body/uCat_UV_body.png
+- Assets/Characters/uCat/Textures/Textures Face/Face_Happy.png
+- Assets/Characters/uCat/Textures/Textures Body/uCat_UV_R_Ear.png
+- Assets/Plugins/Environment/Waldemarst/JapaneseGardenPackage/Prefabs/JapaneseMapleTree_D_Textures/bark.png
+- Assets/Plugins/Environment/Waldemarst/JapaneseGardenPackage/Prefabs/SakuraTree_C_Textures/billboard_normal.png
+- Assets/Characters/uCat/Textures/Textures Face/Face_Normal.png
+- Assets/UI/new'/uCat_ UI Assets/uCat_ UI Icons/Icons 256x256/uCat_UI_Icons_Lobby_256x256.png
+- Assets/Plugins/Environment/Waldemarst/JapaneseGardenPackage/Prefabs/SakuraTree_D_Textures/bark.png
+- Assets/UI/new'/uCat_ UI Assets/uCat_ UI Icons/Icons 256x256/uCat_UI_Icons_Settings_256x256.png
+- Assets/Characters/uCat/Textures/Textures Body/uCat_UV_L_Ear.png
+- Assets/Plugins/Environment/Waldemarst/JapaneseGardenPackage/Prefabs/JapaneseMapleTree_C_Textures/billboard_normal.png
+- Assets/Plugins/Environment/Fantasy Skybox FREE/Cubemaps/FS003/Images/FS003_Day_Cubemap_front.png
+Dependencies: []

@@ -1,0 +1,33 @@
+ManifestFileVersion: 0
+CRC: 1476773352
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: f7f718668befa9322ff6002dde9eeab0
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 0b1b996afefcdb43727f3042384e65d2
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 1953259897
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Polytope Studio/Lowpoly_Demos/Environment_Free/Helpers/Ground_Layer_02.terrainlayer
+- Assets/TerrainSampleAssets/TerrainLayers/Snow_TerrainLayer.terrainlayer
+- Assets/Plugins/Environment/Fantasy Skybox FREE/Scenes/TerrainRock.terrainlayer
+- Assets/TerrainSampleAssets/TerrainLayers/Pebbles_C_TerrainLayer.terrainlayer
+- Assets/Polytope Studio/Lowpoly_Demos/Environment_Free/Helpers/Ground_Layer_01.terrainlayer
+- Assets/TerrainSampleAssets/TerrainLayers/Rock_TerrainLayer.terrainlayer
+- Assets/Plugins/Environment/Waldemarst/JapaneseGardenPackage/Textures/LayerRock.terrainlayer
+- Assets/Plugins/Environment/Waldemarst/JapaneseGardenPackage/Textures/LayerPebbles.terrainlayer
+- Assets/Plugins/Environment/Waldemarst/JapaneseGardenPackage/Textures/LayerGrass03.terrainlayer
+- Assets/TerrainSampleAssets/TerrainLayers/Soil_Rocks_TerrainLayer.terrainlayer
+- Assets/TerrainSampleAssets/TerrainLayers/Grass_Soil_TerrainLayer.terrainlayer
+Dependencies:
+- D:/UnityProjects/uCat/OVRAssetBundles/OVRMasterBundle/asset_jpg0
+- D:/UnityProjects/uCat/OVRAssetBundles/OVRMasterBundle/asset_png1
+- D:/UnityProjects/uCat/OVRAssetBundles/OVRMasterBundle/asset_png2
+- D:/UnityProjects/uCat/OVRAssetBundles/OVRMasterBundle/asset_tif0
