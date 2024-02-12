@@ -55,12 +55,12 @@ public class DialogueManager : MonoBehaviour
     void Start()
     {
         // uCat begins idle so that the first anim can play properly
-        dialogueText = GameObject.FindWithTag("DialogueText3D").GetComponent<Modular3DText>();
-        catAnimationDriver = GameObject.FindWithTag("uCat").GetComponent<AnimationDriver>();
+        dialogueText = GameObject.FindWithTag("DialogueText3D")?.GetComponent<Modular3DText>();
+        catAnimationDriver = GameObject.FindWithTag("uCat")?.GetComponent<AnimationDriver>();
         _levelManager = FindObjectOfType<LevelManager>();
         _wordReciteManager = FindObjectOfType<WordReciteManager>();
         _uiManager = FindObjectOfType<UIManager>();
-        catAudioSource = GameObject.FindWithTag("uCat").GetComponent<AudioSource>();
+        catAudioSource = GameObject.FindWithTag("uCat")?.GetComponent<AudioSource>();
         _levelTransition = FindObjectOfType<LevelTransition>();
         micIcon = GameObject.FindWithTag("MicIcon");
         catAnimationDriver.catAnimation = AnimationDriver.CatAnimations.Idle;

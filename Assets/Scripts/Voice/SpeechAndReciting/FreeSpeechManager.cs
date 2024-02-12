@@ -41,10 +41,10 @@ using MText;
             _uiManager = GetComponent<UIManager>();
             _levelManager = GetComponent<LevelManager>();
             _levelTransition = FindObjectOfType<LevelTransition>();
-            reciteText3D = GameObject.FindWithTag("ReciteText3D").GetComponent<Modular3DText>();
-            partialText3D = GameObject.FindWithTag("PartialText3D").GetComponent<Modular3DText>();
-            confirmationText3D = GameObject.FindWithTag("ConfirmationText3D").GetComponent<Modular3DText>();
-            subtitleText3D = GameObject.FindWithTag("SubtitleText3D").GetComponent<Modular3DText>();
+            reciteText3D = GameObject.FindWithTag("ReciteText3D")?.GetComponent<Modular3DText>();
+            partialText3D = GameObject.FindWithTag("PartialText3D")?.GetComponent<Modular3DText>();
+            confirmationText3D = GameObject.FindWithTag("ConfirmationText3D")?.GetComponent<Modular3DText>();
+            subtitleText3D = GameObject.FindWithTag("SubtitleText3D")?.GetComponent<Modular3DText>();
         }
 
         public void HandlePartialTranscription(string text)

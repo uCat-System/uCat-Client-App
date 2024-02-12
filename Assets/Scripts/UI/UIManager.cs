@@ -56,14 +56,20 @@ public class UIManager : MonoBehaviour
     }
 
     void SelectReciteBoardBasedOnLevel() {
-         if (_levelManager.CurrentLevel == "Level3" && textElements != null && freeStyleTextElements != null)
+        if (_levelManager.CurrentLevel != "ConvoMode")
+        {
+            if ( textElements != null && freeStyleTextElements != null)
             {
                 textElements.SetActive(false);
                 freeStyleTextElements.SetActive(true);
-            } else {
+            }
+            else
+            {
                 textElements.SetActive(true);
                 freeStyleTextElements.SetActive(false);
+            }
         }
+        
     }
 
     public void ShowOrHideReciteMesh (bool shouldBeEnabled) {

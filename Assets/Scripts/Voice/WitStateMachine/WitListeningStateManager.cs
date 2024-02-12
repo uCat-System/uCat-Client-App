@@ -79,6 +79,7 @@ public class WitListeningStateManager : MonoBehaviour
     {
         { ListeningState.ListeningForEverything, true },
         { ListeningState.ListeningForMenuActivationCommandsOnly, true },
+        { ListeningState.ListeningForConversationModeInput, true }
     };
 
     private static Dictionary<ListeningState, bool> validTimeoutCountingStates = new Dictionary<ListeningState, bool>
