@@ -38,7 +38,7 @@ public class DebuggerClass : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha1)) {
-            _freeSpeechManager.HandleFullTranscription(correctPhrase);
+            _wordReciteManager.GoToNextWordIfItExists();
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2)) {

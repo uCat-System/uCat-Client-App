@@ -67,8 +67,12 @@ public class UIManager : MonoBehaviour
     }
 
     public void ShowOrHideReciteMesh (bool shouldBeEnabled) {
+
         foreach (Transform child in reciteBoard.transform) {
-            child.GetComponent<MeshRenderer>().enabled = shouldBeEnabled;
+            if (child.GetComponent<MeshRenderer>() != null)
+            {
+                child.GetComponent<MeshRenderer>().enabled = shouldBeEnabled;
+            }
         }
     }
 
