@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 746540747
+CRC: 3699589604
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: f1fd88fb74c73f3118f7767b39424419
+    Hash: 0ed1b1cba216cdff0b8a7420380de645
   TypeTreeHash:
     serializedVersion: 2
     Hash: 8ff2d784b426a43cdf71dcb8d77b0250
@@ -113,7 +113,6 @@ Assets:
 - Assets/Plugins/TextMesh Pro/Resources/Sprite Assets/EmojiOne.asset
 - Assets/Resources/OculusRuntimeSettings.asset
 - Assets/Oculus/Voice/Lib/Wit.ai/Resources/wit-ai-title.png
-- Assets/Resources/env.txt
 - Assets/Plugins/3D Text/Tiny Giant Studio/Modular 3D Text/Resources/Modular 3D Text/Window
   Title.png
 - Assets/Plugins/3D Text/Tiny Giant Studio/Modular 3D Text/Resources/Modular 3D Text/Justice

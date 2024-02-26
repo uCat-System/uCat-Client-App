@@ -2199,6 +2199,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: uCat Japanese Nature Realm
       objectReference: {fileID: 0}
+    - target: {fileID: 4780370644634979120, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4780370644634979123, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.12
@@ -2331,7 +2335,8 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1508381018}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3411014529346134298, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
 --- !u!43 &1819422524
