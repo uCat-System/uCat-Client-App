@@ -487,6 +487,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FreestyleTextElements
       objectReference: {fileID: 0}
+    - target: {fileID: 4797872198218319489, guid: af12d3d657f0ff2409b3bc733a4c9f32, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4797872198218319494, guid: af12d3d657f0ff2409b3bc733a4c9f32, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -1206,7 +1210,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2469344243242837440, guid: 0db783cdeabf5cb42914739b68fa999d, type: 3}
       propertyPath: levelPositions.Array.data[2].position.y
-      value: 26.33
+      value: 2.75
       objectReference: {fileID: 0}
     - target: {fileID: 2469344243242837440, guid: 0db783cdeabf5cb42914739b68fa999d, type: 3}
       propertyPath: levelPositions.Array.data[2].position.z
