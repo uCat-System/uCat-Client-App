@@ -1810,6 +1810,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: uCat Japanese Nature Realm
       objectReference: {fileID: 0}
+    - target: {fileID: 4587402927007815856, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4780370644634979123, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.78
@@ -1858,6 +1862,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1895837521}
+    - target: {fileID: 5662748868847195550, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6077588429730477223, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
       propertyPath: m_Mesh
       value: 

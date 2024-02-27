@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2241537494
+CRC: 437725303
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: db16b5d09682a39d4cd9770f792dfa63
+    Hash: cd0f9eacaeb6153b5ce9145f2df0acf5
   TypeTreeHash:
     serializedVersion: 2
     Hash: 47395dbe30cc1426b40ae2b524ff7033
@@ -67,7 +67,6 @@ SerializeReferenceClassIdentifiers:
 - AssemblyName: Unity.RenderPipelines.Core.Runtime
   ClassName: UnityEngine.Rendering.TextureParameter
 Assets:
-- Assets/Plugins/3D Text/Tiny Giant Studio/Modular 3D Text/Fonts/Germania One.asset
 - Assets/Characters/uCat/Post Processing/Sphere Volume Profile.asset
 - Assets/Environments/uCat Terrain Updated.asset
 - Assets/URP Settings/Global Volume Profile.asset

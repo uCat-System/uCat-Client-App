@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2103513757
+CRC: 708044208
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 4dfa8b44b6afeb6fce58378fc900a6c6
+    Hash: fed6d4c9d365ac81fd212c418272d84d
   TypeTreeHash:
     serializedVersion: 2
     Hash: 7b2a7039af95fabd4f2e1d8a36d64d3f
@@ -26,8 +26,6 @@ ClassTypes:
 SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/OBJ/uCat_UI_Board.obj
-- Assets/Plugins/3D Text/Tiny Giant Studio/Modular 3D Text/Fonts/Models/Germania
-  One.obj
 - Assets/UI/Space Grotesk Bold.obj
 - Assets/UI/new'/uCat_ UI Assets/TTF Fonts/Space Grotesk Medium.obj
 - Assets/Plugins/Environment/Waldemarst/JapaneseGardenPackage/Prefabs/torii.obj

@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 4245824364
+CRC: 4215153752
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: cbaf3c39318816b0b628d02fdd44882b
+    Hash: 34ccb4bacd7a40e071a9145456d77a0b
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 825aa5aae35f882c5a9adab34e663a72
+    Hash: 240343092b2050ccb5b54cad7f29baf1
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -83,8 +83,6 @@ ClassTypes:
   Script: {fileID: 11500000, guid: fc45d88a8119af14aa4ebaaf255ce6c5, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 0be5a1666715533478e3fcde2906ab54, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: cfdea56143cd25c479b049efcc2d5e91, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 6d022da6541fe6144a0948571cfad5a1, type: 3}
 - Class: 114
@@ -210,6 +208,7 @@ Assets:
 - Assets/Environments/uCat Japanese Nature Realm.prefab
 - Assets/Polytope Studio/Lowpoly_Environments/Prefabs/Rocks/PT_Generic_Rock_01.prefab
 Dependencies:
+- D:/UnityProjects/uCat/OVRAssetBundles/OVRMasterBundle/asset_aif0
 - D:/UnityProjects/uCat/OVRAssetBundles/OVRMasterBundle/asset_asset0
 - D:/UnityProjects/uCat/OVRAssetBundles/OVRMasterBundle/asset_controller0
 - D:/UnityProjects/uCat/OVRAssetBundles/OVRMasterBundle/asset_fbx0

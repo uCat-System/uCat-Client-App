@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3715966373
+CRC: 2974939240
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 8b5645aa57035509549d6eb71ae2cb6f
+    Hash: 61010ff608a6dc94d5fd628177169ddc
   TypeTreeHash:
     serializedVersion: 2
     Hash: 844324cb0c52bf973d264449e459eef4
@@ -19,14 +19,11 @@ SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/UI/new'/uCat_ UI Assets/uCat_ UI Icons/Icons 256x256/Materials/uCat_UI_Icons_256x256.mat
 - Assets/Materials/MenuTextWhite.mat
-- Assets/Plugins/Environment/Fantasy Skybox FREE/Panoramics/FS003/FS003_Sunset.mat
 - Assets/Polytope Studio/Lowpoly_Environments/Sources/Materials/PT_Rocks_mat.mat
 - Assets/Characters/uCat/Materials/Mat_VisorRim.mat
 - Assets/Materials/GreenText.mat
-- Assets/Oculus/SampleFramework/Core/Locomotion/Materials/TeleportLaser.mat
 - Assets/UI/new'/uCat_ UI Assets/uCat_ UI Icons/Icons 256x256/Materials/uCat_UI_Icons_Word_256x256
   1.mat
-- Assets/Materials/UserSpeechMat.mat
 - Assets/Polytope Studio/Lowpoly_Environments/Sources/Materials/PT_Fruit_Tree_Foliage_Mat.mat
 - Assets/Characters/uCat/Materials/Mat_Head.mat
 - Assets/Characters/uCat/Materials/Mat_Neck.mat

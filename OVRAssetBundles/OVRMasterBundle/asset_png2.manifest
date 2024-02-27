@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 703716583
+CRC: 2390360704
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 6dc9975d842b2d52788d7d3cf9b0d595
+    Hash: b50c8c2cf9c09f979535fc342fb50bf4
   TypeTreeHash:
     serializedVersion: 2
     Hash: b0363f7088f9761414f730641bf9a24b
@@ -29,7 +29,6 @@ Assets:
 - Assets/Polytope Studio/Lowpoly_Environments/Sources/Textures/PT_Tree_Trunk_01.png
 - Assets/Plugins/Environment/Fantasy Skybox FREE/Cubemaps/FS003/Images/FS003_Day_Cubemap_back.png
 - Assets/Plugins/Environment/Waldemarst/JapaneseGardenPackage/Prefabs/SakuraTree_D_Textures/billboard.png
-- Assets/Plugins/Environment/Fantasy Skybox FREE/Panoramics/FS003/FS003_Sunset.png
 - Assets/UI/new'/uCat_ UI Assets/uCat_ UI Icons/Icons 256x256/uCat_UI_Icons_Word_256x256.png
 - Assets/Plugins/Environment/Waldemarst/JapaneseGardenPackage/Textures/GrassBillboards/billboardgrass0001.png
 - Assets/Plugins/Environment/Waldemarst/JapaneseGardenPackage/Prefabs/SakuraTree_D_Textures/billboard_normal.png
