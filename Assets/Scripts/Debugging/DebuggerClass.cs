@@ -28,6 +28,7 @@ public class DebuggerClass : MonoBehaviour
         _freeSpeechManager = GetComponent<FreeSpeechManager>();
         _witListeningStateManager = GetComponent<WitListeningStateManager>();
         _dialogueManager = GetComponent<DialogueManager>();
+        correctPhrase = _wordReciteManager.activeList[_wordReciteManager.currentWordOrSentenceIndex];
     }
 
     // Update is called once per frame
@@ -47,7 +48,9 @@ public class DebuggerClass : MonoBehaviour
 
         
         if (Input.GetKeyDown(KeyCode.Alpha3)) {
-            _freeSpeechManager.HandleFullTranscription(fillerPhrase);
+            Debug.Log(correctPhrase);
+            correctPhrase = _wordReciteManager.activeList[_wordReciteManager.currentWordOrSentenceIndex];
+            _freeSpeechManager.HandleFullTranscription(correctPhrase);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha4)) {

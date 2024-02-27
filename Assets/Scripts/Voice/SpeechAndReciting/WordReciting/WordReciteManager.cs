@@ -12,7 +12,7 @@ public class WordReciteManager : MonoBehaviour
     private Modular3DText dialogueText3D;
     
     // Current word tracking
-    int currentWordOrSentenceIndex;
+    public int currentWordOrSentenceIndex;
 
     // Word lists
     private List<string> currentWordOrSentenceList;
@@ -20,7 +20,7 @@ public class WordReciteManager : MonoBehaviour
     private List<string> currentUiList;
 
     // This is the list that is active, either words/sentences OR UI list
-    private List<string> activeList;
+    public List<string> activeList;
 
     // Scriptable asset for externally stored word lists and audio
     public WordLists wordLists;
