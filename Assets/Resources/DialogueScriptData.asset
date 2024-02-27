@@ -27,7 +27,7 @@ MonoBehaviour:
   - '[delete me]'
   - Wow
   - That was too easy!
-  introScriptDialogueAnimations: 000000000100000000000000040000000000000000000000020000000000000000000000020000000200000002000000
+  introScriptDialogueAnimations: 000000000100000000000000040000000000000000000000010000000000000000000000010000000100000001000000
   introScriptDialogueAudio:
   - {fileID: 8300000, guid: 28188cd7fbfc8de4e94c323a2a39d080, type: 3}
   - {fileID: 8300000, guid: bbcd5d10a0ada184fabbb325b8533dce, type: 3}
@@ -49,7 +49,7 @@ MonoBehaviour:
   - When the dots disappear, repeat the word on the top half of the screen.
   - "We\u2019ll be having a conversation in no time."
   - How about a change of scenery?
-  level1ScriptDialogueAnimations: 00000000020000000100000000000000000000000100000002000000
+  level1ScriptDialogueAnimations: 00000000010000000100000000000000000000000100000001000000
   level1ScriptDialogueAudio:
   - {fileID: 8300000, guid: 29c75bdc53610754db205f45d6c0d397, type: 3}
   - {fileID: 8300000, guid: 1eba2df4fa0dd1b4ca84bf178f74ea23, type: 3}
@@ -64,7 +64,7 @@ MonoBehaviour:
   - "I think It\u2019s high time for you to begin practicing full sentences!"
   - As before, do your best to repeat sentences when the dots disappear.
   - Let's begin!
-  level2ScriptDialogueAnimations: 0200000003000000010000000000000001000000
+  level2ScriptDialogueAnimations: 0100000003000000010000000000000001000000
   level2ScriptDialogueAudio:
   - {fileID: 8300000, guid: 3d900d73ff4b2a34c988598be1ad1b91, type: 3}
   - {fileID: 8300000, guid: eb7cf49c096a59e42875706cfca1333a, type: 3}
@@ -94,7 +94,7 @@ MonoBehaviour:
     to fine-tune your BCI skills.
   - "But don\u2019t worry, it\u2019s not a competition!"
   - I'll bring us back home. Remember to say 'Hey uCat' to summon me.
-  level3ScriptDialogueAnimations: 01000000000000000300000000000000010000000100000000000000000000000300000000000000010000000000000002000000000000000100000000000000
+  level3ScriptDialogueAnimations: 01000000000000000300000000000000010000000100000000000000000000000300000000000000010000000000000001000000000000000100000000000000
   level3ScriptDialogueAudio:
   - {fileID: 8300000, guid: f860a127975c0d845be13d232c3e31ce, type: 3}
   - {fileID: 8300000, guid: ef31bce6259f12642808658e44f7ba6c, type: 3}

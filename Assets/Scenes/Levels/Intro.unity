@@ -1922,6 +1922,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -1225
       objectReference: {fileID: 0}
+    - target: {fileID: 9004619904802723902, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
+      propertyPath: currentDialogueOptionIndex
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 9017249891480817423, guid: 4a4460dc10953e44d9afcb90e14bddbc, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1
