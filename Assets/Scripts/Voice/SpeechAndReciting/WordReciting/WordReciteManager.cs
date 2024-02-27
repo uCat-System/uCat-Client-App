@@ -81,7 +81,7 @@ public class WordReciteManager : MonoBehaviour
         subtitleText3D.UpdateText("");
         reciteText3D.UpdateText("");
 
-        reciteBoardAudioSource.clip = wordSounds[0]; // replace this with ucat voice later
+        reciteBoardAudioSource.clip = wordSounds[0]; 
         reciteBoardAudioSource.Play();
 
         subtitleText3D.UpdateText("");
