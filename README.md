@@ -9,7 +9,7 @@ Installation instructions:
 5. If you have a quest 2 or 3 headset, you can plug it into your PC in Oculus Link mode and it should be enabled on hitting Play.
 5. Otherwise, simply ensure your microphone is enabled and hit play!
 
-Note: If you want to use the ConvoMode (AI agent) feature, you will need a valid openAI api key. Click here to do that.
+Note: If you want to use the ConvoMode (AI agent) feature, you will need a valid openAI api key. [Click here to do that](https://platform.openai.com/api-keys).
 
 Once you have your key, you need to create a file in the root of the `/Assets` folder, called `secrets.json`. Its contents should be:
 
