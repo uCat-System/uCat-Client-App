@@ -1,3 +1,4 @@
+*** NOTE: This project also contains a Creative Commons License, which also applies to the repository. Please read it at <root>/CREATIVE_COMMONS_LICENSE.md
 This license applies only to assets stored under root/Assets/Characters and root/Assets/Sounds.
 
 uCat Creative Assets © 2023 by Caila Kinnaird, Diego Saldivar, and Luke Turner is licensed under CC BY-NC-ND 4.0.
