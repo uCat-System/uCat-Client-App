@@ -16,3 +16,6 @@ Once you have your key, you need to create a file in the root of the `/Assets` f
  `{"OPENAI_API_KEY":"<your-api-key>"}`
 
 Please make an issue on this repo if you have any problems running the app.
+
+--
+*** NOTE: This project also contains a Creative Commons License, which also applies to the repository. Please read it at <root>/License_Creative_Commons.md ***
